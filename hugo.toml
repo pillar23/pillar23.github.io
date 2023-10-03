@@ -1,7 +1,7 @@
 # baseURL = 'https://pillar23.github.io/'
 languageCode = 'en-us'
 title = 'π1l4r_のblog'
-
+publishDir = 'docs'
 
 # theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
 theme = ["github.com/CaiJimmy/hugo-theme-stack/v3"]
