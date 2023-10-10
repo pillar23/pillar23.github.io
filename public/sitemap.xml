@@ -2,16 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.org/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://blog2.pillar.fun/p/first_blog/</loc>
+    <lastmod>2023-10-03T17:54:20+08:00</lastmod>
   </url><url>
-    <loc>https://example.org/categories/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://blog2.pillar.fun/post/</loc>
+    <lastmod>2023-10-03T17:54:20+08:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://blog2.pillar.fun/</loc>
+    <lastmod>2023-10-03T17:54:20+08:00</lastmod>
+  </url><url>
+    <loc>https://blog2.pillar.fun/archives/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.pillar.fun/page/</loc>
+    <lastmod>2020-10-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.pillar.fun/about/</loc>
+    <lastmod>2020-10-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.pillar.fun/post/tech/</loc>
+  </url><url>
+    <loc>https://blog2.pillar.fun/post/note/</loc>
+  </url><url>
+    <loc>https://blog2.pillar.fun/post/thesis/</loc>
+  </url><url>
+    <loc>https://blog2.pillar.fun/categories/</loc>
+  </url><url>
+    <loc>https://blog2.pillar.fun/links/</loc>
+  </url><url>
+    <loc>https://blog2.pillar.fun/search/</loc>
+  </url><url>
+    <loc>https://blog2.pillar.fun/tags/</loc>
   </url>
 </urlset>
