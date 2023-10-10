@@ -76,6 +76,8 @@ params:
         disqusjs:
             shortname: 'blog2-pillar-fun'
             apiUrl: 
+                - 'pillar23.github.io'
+                - 'blog2.pillar.fun'
             apiKey: 'b03pVBPPaHA0bzUM7P7bgM0D6TBFgwNzCjzQ2svbMo4I6XcesqjxXa7wNfcb6OsL'
             admin: 'disqus_98oqy8jUCd'
             adminLabel: 'pillar'
