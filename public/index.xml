@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>π1l4r_のblog</title>
-        <link>https://blog2.pillar.fun/</link>
+        <link>https://pillar23.github.io/</link>
         <description>Recent content on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Tue, 03 Oct 2023 17:54:20 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Oct 2023 17:54:20 +0800</lastBuildDate><atom:link href="https://pillar23.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>First_blog</title>
-        <link>https://blog2.pillar.fun/p/first_blog/</link>
+        <link>https://pillar23.github.io/p/first_blog/</link>
         <pubDate>Tue, 03 Oct 2023 17:54:20 +0800</pubDate>
         
-        <guid>https://blog2.pillar.fun/p/first_blog/</guid>
+        <guid>https://pillar23.github.io/p/first_blog/</guid>
         <description>&lt;h1 id=&#34;first-take&#34;&gt;First take&lt;/h1&gt;
 &lt;p&gt;旧的博客忘了同步，导致换了电脑之后source找不到了（哭哭
 于是整了个新博客儿，采用小号githubpage+hugo的解决方法
@@ -23,18 +23,18 @@
         </item>
         <item>
         <title>Archives</title>
-        <link>https://blog2.pillar.fun/archives/</link>
+        <link>https://pillar23.github.io/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://blog2.pillar.fun/archives/</guid>
+        <guid>https://pillar23.github.io/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>About</title>
-        <link>https://blog2.pillar.fun/about/</link>
+        <link>https://pillar23.github.io/about/</link>
         <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://blog2.pillar.fun/about/</guid>
+        <guid>https://pillar23.github.io/about/</guid>
         <description>&lt;p&gt;Written in Go, Hugo is an open source static site generator available under the &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/blob/master/LICENSE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Apache Licence 2.0.&lt;/a&gt; Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p&gt;
 &lt;p&gt;Hugo makes use of a variety of open source projects including:&lt;/p&gt;
@@ -59,10 +59,10 @@
         </item>
         <item>
         <title>Links</title>
-        <link>https://blog2.pillar.fun/links/</link>
+        <link>https://pillar23.github.io/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://blog2.pillar.fun/links/</guid>
+        <guid>https://pillar23.github.io/links/</guid>
         <description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
 &lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -94,10 +94,10 @@
         </item>
         <item>
         <title>Search</title>
-        <link>https://blog2.pillar.fun/search/</link>
+        <link>https://pillar23.github.io/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://blog2.pillar.fun/search/</guid>
+        <guid>https://pillar23.github.io/search/</guid>
         <description></description>
         </item>
         

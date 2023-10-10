@@ -2,16 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on π1l4r_のblog</title>
-        <link>/post/</link>
+        <link>https://pillar23.github.io/post/</link>
         <description>Recent content in Posts on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 03 Oct 2023 17:54:20 +0800</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Tue, 03 Oct 2023 17:54:20 +0800</lastBuildDate><atom:link href="https://pillar23.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>First_blog</title>
-        <link>/post/first_blog/</link>
+        <link>https://pillar23.github.io/p/first_blog/</link>
         <pubDate>Tue, 03 Oct 2023 17:54:20 +0800</pubDate>
         
-        <guid>/post/first_blog/</guid>
+        <guid>https://pillar23.github.io/p/first_blog/</guid>
         <description>&lt;h1 id=&#34;first-take&#34;&gt;First take&lt;/h1&gt;
 &lt;p&gt;旧的博客忘了同步，导致换了电脑之后source找不到了（哭哭
 于是整了个新博客儿，采用小号githubpage+hugo的解决方法

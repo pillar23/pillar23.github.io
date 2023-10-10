@@ -4,6 +4,7 @@ theme: hugo-theme-stack
 paginate: 5
 title: 'π1l4r_のblog'
 copyright: Example Person
+publishDir: 'docs'
 
 languages:
     en:
