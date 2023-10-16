@@ -50,7 +50,7 @@ webServer.password = "dweqweas"
 
 然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件
 
-![1697438389080](static/1697438389080.png)
+![1697438389080](/images/1697438389080.png)
 
 ## 客户端
 
@@ -80,7 +80,7 @@ secretKey = "akjndsghnkjadsfjh"
 
 如果你的被控端的frpc设置开了web，那你应该可以再web界面看到你的xtcp的连接
 
-![1697439827539](static/1697439827539.png)
+![1697439827539](/images/1697439827539.png)
 
 对了你还可以再你的frps和frpc里都指定一个user，这样你的proxy的name就会变成user.name的形式，这也就使你可以在server端配置多用户（指直接管name叫做aaa.xxx而不配置frps的user）
 
@@ -112,7 +112,7 @@ visitors是在web里看不见的，看不到不要觉得奇怪。
 
 如果在server上可以看到都连上了，直接mstsc连就行了，连127.0.0.1:8000（也就是你在visitor里设置的地址端口）（这里是把log指向了console，所以可以直接看）
 
-![1697440033017](static/1697440033017.png)
+![1697440033017](/images/1697440033017.png)
 
 windwos防火墙会弹，同意了就完事了
 
