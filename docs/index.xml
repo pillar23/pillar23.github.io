@@ -74,7 +74,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/static/1697438389080.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1697438389080.png&#34;
 	
 	
 	
@@ -123,7 +123,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果你的被控端的frpc设置开了web，那你应该可以再web界面看到你的xtcp的连接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/static/1697439827539.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1697439827539.png&#34;
 	
 	
 	
@@ -172,7 +172,7 @@
 &lt;p&gt;&lt;code&gt;./frpc.exe -c ./frpc.toml&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;visitors是在web里看不见的，看不到不要觉得奇怪。&lt;/p&gt;
 &lt;p&gt;如果在server上可以看到都连上了，直接mstsc连就行了，连127.0.0.1:8000（也就是你在visitor里设置的地址端口）（这里是把log指向了console，所以可以直接看）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/static/1697440033017.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1697440033017.png&#34;
 	
 	
 	
