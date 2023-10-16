@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://pillar23.github.io/p/first_blog/</loc>
-    <lastmod>2023-10-03T17:54:20+08:00</lastmod>
+    <loc>https://pillar23.github.io/post/tech/</loc>
+    <lastmod>2023-10-16T14:10:06+08:00</lastmod>
+  </url><url>
+    <loc>https://pillar23.github.io/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</loc>
+    <lastmod>2023-10-16T14:10:06+08:00</lastmod>
   </url><url>
     <loc>https://pillar23.github.io/post/</loc>
-    <lastmod>2023-10-03T17:54:20+08:00</lastmod>
+    <lastmod>2023-10-16T14:10:06+08:00</lastmod>
   </url><url>
     <loc>https://pillar23.github.io/</loc>
+    <lastmod>2023-10-16T14:10:06+08:00</lastmod>
+  </url><url>
+    <loc>https://pillar23.github.io/p/first_blog/</loc>
     <lastmod>2023-10-03T17:54:20+08:00</lastmod>
   </url><url>
     <loc>https://pillar23.github.io/archives/</loc>
@@ -19,8 +25,6 @@
   </url><url>
     <loc>https://pillar23.github.io/about/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://pillar23.github.io/post/tech/</loc>
   </url><url>
     <loc>https://pillar23.github.io/post/note/</loc>
   </url><url>

@@ -6,6 +6,4 @@ current_date=$(date +%Y-%m-%d)
 commit_message="Update for $current_date"
 
 # 提交到Git
-git add .
-git commit -m "$commit_message"
-git push
+git add . && git commit -m "$commit_message" && git push
