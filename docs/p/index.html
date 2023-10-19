@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='&#43;&#43;&#43; title = &amp;lsquo;Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&amp;rsquo; date = 2023-10-16T20:34:22&#43;08:00 draft = true &#43;&#43;&#43;
+导语 doi is here
+Abstract 问题引入 目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。
+提出方法 提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。
+能够利用基于流量模式构建的紧凑内存图来检测加密恶意流量的未知模式。该图捕获由图结构特征表示的流交互模式，而不是特定已知攻击的特征。 我们开发了一种无监督图学习方法，通过分析图的连接性、稀疏性和统计特征来检测异常交互模式 建立了一个信息论模型来证明图保存的信息接近理想的理论边界。 Introduction 现有方法 深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测
+简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。
+HyperVision，这是一个实时检测系统，旨在通过分析流之间的交互模式来捕获加密恶意流量的足迹。特别是，它可以通过识别异常流交互（即不同于良性的交互模式）来检测具有未知足迹的加密恶意流。
+但是，构建用于实时检测的图形具有挑战性。我们不能简单地使用 IP 地址作为顶点，而传统的四元组流（源目的ip，源目的port）作为边来构建图，因为生成的密集图无法维持各种流之间的交互模式，例如，引起依赖爆炸问题 。互联网上的大多数流都是短流，而大多数数据包与长流相关联，我们利用两种策略来记录不同大小的流，并在图中分别处理短流和长流的交互模式。'>
+<title></title>
+
+<link rel='canonical' href='https://pillar23.github.io/p/'>
+
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content=''>
+<meta property='og:description' content='&#43;&#43;&#43; title = &amp;lsquo;Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&amp;rsquo; date = 2023-10-16T20:34:22&#43;08:00 draft = true &#43;&#43;&#43;
+导语 doi is here
+Abstract 问题引入 目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。
+提出方法 提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。
+能够利用基于流量模式构建的紧凑内存图来检测加密恶意流量的未知模式。该图捕获由图结构特征表示的流交互模式，而不是特定已知攻击的特征。 我们开发了一种无监督图学习方法，通过分析图的连接性、稀疏性和统计特征来检测异常交互模式 建立了一个信息论模型来证明图保存的信息接近理想的理论边界。 Introduction 现有方法 深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测
+简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。
+HyperVision，这是一个实时检测系统，旨在通过分析流之间的交互模式来捕获加密恶意流量的足迹。特别是，它可以通过识别异常流交互（即不同于良性的交互模式）来检测具有未知足迹的加密恶意流。
+但是，构建用于实时检测的图形具有挑战性。我们不能简单地使用 IP 地址作为顶点，而传统的四元组流（源目的ip，源目的port）作为边来构建图，因为生成的密集图无法维持各种流之间的交互模式，例如，引起依赖爆炸问题 。互联网上的大多数流都是短流，而大多数数据包与长流相关联，我们利用两种策略来记录不同大小的流，并在图中分别处理短流和长流的交互模式。'>
+<meta property='og:url' content='https://pillar23.github.io/p/'>
+<meta property='og:site_name' content='π1l4r_のblog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="&#43;&#43;&#43; title = &amp;lsquo;Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&amp;rsquo; date = 2023-10-16T20:34:22&#43;08:00 draft = true &#43;&#43;&#43;
+导语 doi is here
+Abstract 问题引入 目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。
+提出方法 提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。
+能够利用基于流量模式构建的紧凑内存图来检测加密恶意流量的未知模式。该图捕获由图结构特征表示的流交互模式，而不是特定已知攻击的特征。 我们开发了一种无监督图学习方法，通过分析图的连接性、稀疏性和统计特征来检测异常交互模式 建立了一个信息论模型来证明图保存的信息接近理想的理论边界。 Introduction 现有方法 深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测
+简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。
+HyperVision，这是一个实时检测系统，旨在通过分析流之间的交互模式来捕获加密恶意流量的足迹。特别是，它可以通过识别异常流交互（即不同于良性的交互模式）来检测具有未知足迹的加密恶意流。
+但是，构建用于实时检测的图形具有挑战性。我们不能简单地使用 IP 地址作为顶点，而传统的四元组流（源目的ip，源目的port）作为边来构建图，因为生成的密集图无法维持各种流之间的交互模式，例如，引起依赖爆炸问题 。互联网上的大多数流都是短流，而大多数数据包与长流相关联，我们利用两种策略来记录不同大小的流，并在图中分别处理短流和长流的交互模式。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
+            <h2 class="site-description">Like tears in rain.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/such-stupid6'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/note' >
+                
+                
+                
+                <span>📕课程</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/thesis' >
+                
+                
+                
+                <span>📚论文</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/tech' >
+                
+                
+                
+                <span>👨🏻‍💻技术</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#heading">+++</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#问题引入">问题引入</a></li>
+    <li><a href="#提出方法">提出方法</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#现有方法">现有方法</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="heading">+++</h2>
+<p>title = &lsquo;Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&rsquo;
+date = 2023-10-16T20:34:22+08:00
+draft = true
++++</p>
+<h1 id="导语">导语</h1>
+<p>doi is <a class="link" href="https://dl.acm.org/doi/10.1145/3548606.3560604"  target="_blank" rel="noopener"
+    >here</a></p>
+<h1 id="abstract">Abstract</h1>
+<h2 id="问题引入">问题引入</h2>
+<p>目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。</p>
+<h2 id="提出方法">提出方法</h2>
+<p>提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。</p>
+<ol>
+<li>能够利用基于流量模式构建的紧凑内存图来检测加密恶意流量的未知模式。该图捕获由图结构特征表示的流交互模式，而不是特定已知攻击的特征。</li>
+<li>我们开发了一种无监督图学习方法，通过分析图的连接性、稀疏性和统计特征来检测异常交互模式</li>
+<li>建立了一个信息论模型来证明图保存的信息接近理想的理论边界。</li>
+</ol>
+<h1 id="introduction">Introduction</h1>
+<h2 id="现有方法">现有方法</h2>
+<p>深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测</p>
+<p>简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。</p>
+<p><img src="/images/1697463380666.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>HyperVision，这是一个实时检测系统，旨在通过分析流之间的交互模式来捕获加密恶意流量的足迹。特别是，它可以通过识别异常流交互（即不同于良性的交互模式）来检测具有未知足迹的加密恶意流。</p>
+<p>但是，构建用于实时检测的图形具有挑战性。我们不能简单地使用 IP 地址作为顶点，而传统的四元组流（源目的ip，源目的port）作为边来构建图，因为生成的密集图无法维持各种流之间的交互模式，例如，引起依赖爆炸问题 。互联网上的大多数流都是短流，而大多数数据包与长流相关联，我们利用两种策略来记录不同大小的流，并在图中分别处理短流和长流的交互模式。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Example Person
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
