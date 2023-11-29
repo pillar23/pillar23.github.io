@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1
+choco install openssl
+首先生成私钥
+1 openssl genrsa -aes256 -out private.pem 4096 其中
+genrsa是openssl的一个命令，用于生成RSA私钥。
+-aes256表示在输出私钥之前，使用AES 256加密
+-out private.pem 表示将生成的私钥输出到名为private.pem的文件中
+4096表示生成的私钥的位数，即私钥的长度为4096位
+然后使用私钥生成证书
+1 openssl req -new -x509 -days 365 -key .\private.pem -out cacert.crt -config .\smime.cnf -extensions smime 其中
+req是openssl的一个命令，用于创建和处理PKCS#10格式的证书请求。
+-new表示创建一个新的证书请求。
+-x509表示生成一个自签名的证书，而不是生成一个证书请求。
+-days 365表示生成的证书的有效期为365天。
+-key .\private.pem表示使用名为private.pem的文件中的私钥来签署证书。
+-out cacert.crt表示将生成的证书输出到名为cacert.crt的文件中。
+-config .\smime.cnf表示使用名为smime.cnf的文件作为配置文件。
+-extensions smime表示应该包含配置文件中名为smime的部分中指定的扩展。
+smime的部分为
+1 2 3 4 5 6 7 [smime] basicConstraints = CA:FALSE keyUsage = nonRepudiation, digitalSignature, keyEncipherment extendedKeyUsage = emailProtection subjectKeyIdentifier = hash authorityKeyIdentifier = keyid:always, issuer subjectAltName = email:copy basicConstraints = CA:FALSE指定证书不能用作CA（证书颁发机构）'>
+<title>网络认证技术作业三</title>
+
+<link rel='canonical' href='https://pillar23.github.io/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/'>
+
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='网络认证技术作业三'>
+<meta property='og:description' content='为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1
+choco install openssl
+首先生成私钥
+1 openssl genrsa -aes256 -out private.pem 4096 其中
+genrsa是openssl的一个命令，用于生成RSA私钥。
+-aes256表示在输出私钥之前，使用AES 256加密
+-out private.pem 表示将生成的私钥输出到名为private.pem的文件中
+4096表示生成的私钥的位数，即私钥的长度为4096位
+然后使用私钥生成证书
+1 openssl req -new -x509 -days 365 -key .\private.pem -out cacert.crt -config .\smime.cnf -extensions smime 其中
+req是openssl的一个命令，用于创建和处理PKCS#10格式的证书请求。
+-new表示创建一个新的证书请求。
+-x509表示生成一个自签名的证书，而不是生成一个证书请求。
+-days 365表示生成的证书的有效期为365天。
+-key .\private.pem表示使用名为private.pem的文件中的私钥来签署证书。
+-out cacert.crt表示将生成的证书输出到名为cacert.crt的文件中。
+-config .\smime.cnf表示使用名为smime.cnf的文件作为配置文件。
+-extensions smime表示应该包含配置文件中名为smime的部分中指定的扩展。
+smime的部分为
+1 2 3 4 5 6 7 [smime] basicConstraints = CA:FALSE keyUsage = nonRepudiation, digitalSignature, keyEncipherment extendedKeyUsage = emailProtection subjectKeyIdentifier = hash authorityKeyIdentifier = keyid:always, issuer subjectAltName = email:copy basicConstraints = CA:FALSE指定证书不能用作CA（证书颁发机构）'>
+<meta property='og:url' content='https://pillar23.github.io/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/'>
+<meta property='og:site_name' content='π1l4r_のblog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-11-29T19:56:28&#43;08:00'/><meta property='article:modified_time' content='2023-11-29T19:56:28&#43;08:00'/>
+<meta name="twitter:title" content="网络认证技术作业三">
+<meta name="twitter:description" content="为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1
+choco install openssl
+首先生成私钥
+1 openssl genrsa -aes256 -out private.pem 4096 其中
+genrsa是openssl的一个命令，用于生成RSA私钥。
+-aes256表示在输出私钥之前，使用AES 256加密
+-out private.pem 表示将生成的私钥输出到名为private.pem的文件中
+4096表示生成的私钥的位数，即私钥的长度为4096位
+然后使用私钥生成证书
+1 openssl req -new -x509 -days 365 -key .\private.pem -out cacert.crt -config .\smime.cnf -extensions smime 其中
+req是openssl的一个命令，用于创建和处理PKCS#10格式的证书请求。
+-new表示创建一个新的证书请求。
+-x509表示生成一个自签名的证书，而不是生成一个证书请求。
+-days 365表示生成的证书的有效期为365天。
+-key .\private.pem表示使用名为private.pem的文件中的私钥来签署证书。
+-out cacert.crt表示将生成的证书输出到名为cacert.crt的文件中。
+-config .\smime.cnf表示使用名为smime.cnf的文件作为配置文件。
+-extensions smime表示应该包含配置文件中名为smime的部分中指定的扩展。
+smime的部分为
+1 2 3 4 5 6 7 [smime] basicConstraints = CA:FALSE keyUsage = nonRepudiation, digitalSignature, keyEncipherment extendedKeyUsage = emailProtection subjectKeyIdentifier = hash authorityKeyIdentifier = keyid:always, issuer subjectAltName = email:copy basicConstraints = CA:FALSE指定证书不能用作CA（证书颁发机构）">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
+            <h2 class="site-description">Like tears in rain.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/such-stupid6'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/note' >
+                
+                
+                
+                <span>📕课程</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/thesis' >
+                
+                
+                
+                <span>📚论文</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/tech' >
+                
+                
+                
+                <span>👨🏻‍💻技术</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/">网络认证技术作业三</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 29, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1</p>
+<p><code>choco install openssl</code></p>
+<p>首先生成私钥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openssl genrsa -aes256 -out private.pem <span class="m">4096</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中</p>
+<p><code>genrsa</code>是openssl的一个命令，用于生成RSA私钥。</p>
+<p><code>-aes256</code>表示在输出私钥之前，使用AES 256加密</p>
+<p><code>-out private.pem</code> 表示将生成的私钥输出到名为private.pem的文件中</p>
+<p><code>4096</code>表示生成的私钥的位数，即私钥的长度为4096位</p>
+<p>然后使用私钥生成证书</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">openssl req -new -x509 -days <span class="m">365</span> -key .<span class="se">\p</span>rivate.pem -out cacert.crt -config .<span class="se">\s</span>mime.cnf -extensions smime
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中</p>
+<p><code>req</code>是openssl的一个命令，用于创建和处理PKCS#10格式的证书请求。</p>
+<p><code>-new</code>表示创建一个新的证书请求。</p>
+<p><code>-x509</code>表示生成一个自签名的证书，而不是生成一个证书请求。</p>
+<p><code>-days 365</code>表示生成的证书的有效期为365天。</p>
+<p><code>-key .\private.pem</code>表示使用名为private.pem的文件中的私钥来签署证书。</p>
+<p><code>-out cacert.crt</code>表示将生成的证书输出到名为cacert.crt的文件中。</p>
+<p><code>-config .\smime.cnf</code>表示使用名为smime.cnf的文件作为配置文件。</p>
+<p><code>-extensions smime</code>表示应该包含配置文件中名为smime的部分中指定的扩展。</p>
+<p>smime的部分为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>smime<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">basicConstraints</span> <span class="o">=</span> CA:FALSE
+</span></span><span class="line"><span class="cl"><span class="nv">keyUsage</span> <span class="o">=</span> nonRepudiation, digitalSignature, keyEncipherment
+</span></span><span class="line"><span class="cl"><span class="nv">extendedKeyUsage</span> <span class="o">=</span> emailProtection
+</span></span><span class="line"><span class="cl"><span class="nv">subjectKeyIdentifier</span> <span class="o">=</span> <span class="nb">hash</span>
+</span></span><span class="line"><span class="cl"><span class="nv">authorityKeyIdentifier</span> <span class="o">=</span> keyid:always, issuer
+</span></span><span class="line"><span class="cl"><span class="nv">subjectAltName</span> <span class="o">=</span> email:copy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>basicConstraints = CA:FALSE</code>指定证书不能用作CA（证书颁发机构）</p>
+<p><code>keyUsage = nonRepudiation, digitalSignature, keyEncipherment</code>指定证书的公钥可以用于哪些用途。这个证书可以用于非否认（nonRepudiation）、数字签名（digitalSignature）和密钥封装（keyEncipherment）</p>
+<p><code>extendedKeyUsage = emailProtection</code>用于电子邮件保护（emailProtection）</p>
+<p><code>subjectKeyIdentifier = hash</code>用公钥的hash值唯一地标识证书中的公钥。</p>
+<p><code>authorityKeyIdentifier = keyid:always, issuer</code>用于标识签署此证书的CA的公钥。这个扩展通常包含CA公钥的keyid（一个唯一标识符），以及CA的名称（issuer）。<code>keyid:always</code>表示总是包含keyid，无论是否需要</p>
+<p><code>subjectAltName = email:copy</code>用于指定证书的主题可选名称（Subject Alternative Name）。主题可选名称是电子邮件地址，该地址从证书的主题名称字段中复制</p>
+<p>生成的时候国家地区公司啥的都不重要，我直接敲回车按默认了。邮箱写自己的就行了。</p>
+<p>直接用windwos自带的证书查看器查看这个证书。</p>
+<p><img src="/images/1701257323787.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701257323787"
+	
+	
+></p>
+<p>版本v3是指我们使用了x.509第3版本，然后序列号是有证书生成算法生成的，唯一的指定这个证书，像身份证号似的。签名算法和哈希算法是一个声明，颁发者是我们刚才在生成证书时写的。有效期由我们刚才的 <code>-days</code> 参数指明，使用者和颁发者一样。</p>
+<p><img src="/images/1701257667795.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701257667795"
+	
+	
+></p>
+<p>公钥直接在证书文件里保存。公钥参数0500表示NULL，这是因为RSA的公钥的参数（模数和公开指数）已经在公钥字段中给出，所以不需要在公钥参数字段中再给出，如果是其他的加密算法，可能会包含其他信息。</p>
+<p><img src="/images/1701257930426.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701257930426"
+	
+	
+></p>
+<p>基本约束</p>
+<p><strong>Subject Type=End Entity</strong> ：这表示该证书是一个终端实体证书，而不是CA（证书颁发机构）证书。也就是说这个证书不能用于签发/创建其他证书。<strong>Path Length Constraint=None</strong> ：这表示路径长度没有设置，准许其签发多级的数字证书。然而，由于Subject Type=End Entity，这个证书不能用于签发其他证书，所以这个设置在这种情况下没有意义。这是由于我们使用了 <code>basicConstraints = CA:FALSE</code>的选项。</p>
+<p>下面的其他拓展都在-extension部分说过了，这里就不多赘述了。</p>
+<p><img src="/images/1701253924073.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701253924073"
+	
+	
+></p>
+<p>然后安装这个证书，并且选择保存路径为受信任的根证书颁发机构</p>
+<p><img src="/images/1701254826717.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701254826717"
+	
+	
+></p>
+<p>我使用的客户端是outlook。使用的邮箱服务是qq邮箱。</p>
+<p><img src="/images/1701253859046.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701253859046"
+	
+	
+></p>
+<p>在outlook里添加我的证书</p>
+<p><img src="/images/1701254522179.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701254522179"
+	
+	
+></p>
+<p><img src="/images/1701254551598.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701254551598"
+	
+	
+></p>
+<p><img src="/images/1701254581460.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701254581460"
+	
+	
+></p>
+<p><img src="/images/1701254667232.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701254667232"
+	
+	
+></p>
+<p>这里outlook只支持导入pfx，所以我们需要把生成的证书格式转换</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">openssl pkcs12 -export -out cacert.pfx -inkey .\private.pem -in .\cacert.crt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来是导入助教的证书，首先在outlook里新建一个联系人</p>
+<p><img src="/images/1701255095693.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701255095693"
+	
+	
+></p>
+<p>导入，这里又只支持.cer了，我的windows下的openssl好像缺了库没法转，所以用wsl里的openssl转了一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">openssl pkcs12 -in limengjie22\@mails.ucas.ac.cn.pfx -nokeys -out output.cer
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>openssl pkcs12 -nokeys</code>命令用于从PKCS#12文件（通常具有.pfx或.p12扩展名）中提取证书，-nokeys指定不包含私钥，这样生成的output.cer不能做任何需要私钥的操作（我们也没有要用私钥的操作）</p>
+<p>import password即使提供的私钥.txt的内容。然后就可以成功导入了</p>
+<p><img src="/images/1701255140765.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701255140765"
+	
+	
+></p>
+<p>然后在发送邮件的时候，在选项里把加密和签署都点了</p>
+<p><img src="/images/1701255501352.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1701255501352"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Example Person
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -7,7 +7,238 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Thu, 19 Oct 2023 16:31:55 +0800</lastBuildDate><atom:link href="https://pillar23.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 29 Nov 2023 19:56:28 +0800</lastBuildDate><atom:link href="https://pillar23.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>网络认证技术作业三</title>
+        <link>https://pillar23.github.io/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</link>
+        <pubDate>Wed, 29 Nov 2023 19:56:28 +0800</pubDate>
+        
+        <guid>https://pillar23.github.io/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</guid>
+        <description>&lt;p&gt;为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;choco install openssl&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;首先生成私钥&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl genrsa -aes256 -out private.pem &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其中&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;genrsa&lt;/code&gt;是openssl的一个命令，用于生成RSA私钥。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-aes256&lt;/code&gt;表示在输出私钥之前，使用AES 256加密&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-out private.pem&lt;/code&gt; 表示将生成的私钥输出到名为private.pem的文件中&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;4096&lt;/code&gt;表示生成的私钥的位数，即私钥的长度为4096位&lt;/p&gt;
+&lt;p&gt;然后使用私钥生成证书&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl req -new -x509 -days &lt;span class=&#34;m&#34;&gt;365&lt;/span&gt; -key .&lt;span class=&#34;se&#34;&gt;\p&lt;/span&gt;rivate.pem -out cacert.crt -config .&lt;span class=&#34;se&#34;&gt;\s&lt;/span&gt;mime.cnf -extensions smime
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其中&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;req&lt;/code&gt;是openssl的一个命令，用于创建和处理PKCS#10格式的证书请求。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-new&lt;/code&gt;表示创建一个新的证书请求。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-x509&lt;/code&gt;表示生成一个自签名的证书，而不是生成一个证书请求。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-days 365&lt;/code&gt;表示生成的证书的有效期为365天。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-key .\private.pem&lt;/code&gt;表示使用名为private.pem的文件中的私钥来签署证书。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-out cacert.crt&lt;/code&gt;表示将生成的证书输出到名为cacert.crt的文件中。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-config .\smime.cnf&lt;/code&gt;表示使用名为smime.cnf的文件作为配置文件。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-extensions smime&lt;/code&gt;表示应该包含配置文件中名为smime的部分中指定的扩展。&lt;/p&gt;
+&lt;p&gt;smime的部分为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;smime&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;basicConstraints&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; CA:FALSE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;keyUsage&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; nonRepudiation, digitalSignature, keyEncipherment
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;extendedKeyUsage&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; emailProtection
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;subjectKeyIdentifier&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;hash&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;authorityKeyIdentifier&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; keyid:always, issuer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;subjectAltName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; email:copy
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;basicConstraints = CA:FALSE&lt;/code&gt;指定证书不能用作CA（证书颁发机构）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;keyUsage = nonRepudiation, digitalSignature, keyEncipherment&lt;/code&gt;指定证书的公钥可以用于哪些用途。这个证书可以用于非否认（nonRepudiation）、数字签名（digitalSignature）和密钥封装（keyEncipherment）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;extendedKeyUsage = emailProtection&lt;/code&gt;用于电子邮件保护（emailProtection）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;subjectKeyIdentifier = hash&lt;/code&gt;用公钥的hash值唯一地标识证书中的公钥。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;authorityKeyIdentifier = keyid:always, issuer&lt;/code&gt;用于标识签署此证书的CA的公钥。这个扩展通常包含CA公钥的keyid（一个唯一标识符），以及CA的名称（issuer）。&lt;code&gt;keyid:always&lt;/code&gt;表示总是包含keyid，无论是否需要&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;subjectAltName = email:copy&lt;/code&gt;用于指定证书的主题可选名称（Subject Alternative Name）。主题可选名称是电子邮件地址，该地址从证书的主题名称字段中复制&lt;/p&gt;
+&lt;p&gt;生成的时候国家地区公司啥的都不重要，我直接敲回车按默认了。邮箱写自己的就行了。&lt;/p&gt;
+&lt;p&gt;直接用windwos自带的证书查看器查看这个证书。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701257323787.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701257323787&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;版本v3是指我们使用了x.509第3版本，然后序列号是有证书生成算法生成的，唯一的指定这个证书，像身份证号似的。签名算法和哈希算法是一个声明，颁发者是我们刚才在生成证书时写的。有效期由我们刚才的 &lt;code&gt;-days&lt;/code&gt; 参数指明，使用者和颁发者一样。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701257667795.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701257667795&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;公钥直接在证书文件里保存。公钥参数0500表示NULL，这是因为RSA的公钥的参数（模数和公开指数）已经在公钥字段中给出，所以不需要在公钥参数字段中再给出，如果是其他的加密算法，可能会包含其他信息。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701257930426.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701257930426&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;基本约束&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Subject Type=End Entity&lt;/strong&gt; ：这表示该证书是一个终端实体证书，而不是CA（证书颁发机构）证书。也就是说这个证书不能用于签发/创建其他证书。&lt;strong&gt;Path Length Constraint=None&lt;/strong&gt; ：这表示路径长度没有设置，准许其签发多级的数字证书。然而，由于Subject Type=End Entity，这个证书不能用于签发其他证书，所以这个设置在这种情况下没有意义。这是由于我们使用了 &lt;code&gt;basicConstraints = CA:FALSE&lt;/code&gt;的选项。&lt;/p&gt;
+&lt;p&gt;下面的其他拓展都在-extension部分说过了，这里就不多赘述了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701253924073.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701253924073&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后安装这个证书，并且选择保存路径为受信任的根证书颁发机构&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701254826717.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701254826717&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我使用的客户端是outlook。使用的邮箱服务是qq邮箱。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701253859046.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701253859046&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在outlook里添加我的证书&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701254522179.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701254522179&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701254551598.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701254551598&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701254581460.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701254581460&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701254667232.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701254667232&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这里outlook只支持导入pfx，所以我们需要把生成的证书格式转换&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl pkcs12 -export -out cacert.pfx -inkey .\private.pem -in .\cacert.crt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;接下来是导入助教的证书，首先在outlook里新建一个联系人&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701255095693.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701255095693&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;导入，这里又只支持.cer了，我的windows下的openssl好像缺了库没法转，所以用wsl里的openssl转了一下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl pkcs12 -in limengjie22\@mails.ucas.ac.cn.pfx -nokeys -out output.cer
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;openssl pkcs12 -nokeys&lt;/code&gt;命令用于从PKCS#12文件（通常具有.pfx或.p12扩展名）中提取证书，-nokeys指定不包含私钥，这样生成的output.cer不能做任何需要私钥的操作（我们也没有要用私钥的操作）&lt;/p&gt;
+&lt;p&gt;import password即使提供的私钥.txt的内容。然后就可以成功导入了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701255140765.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701255140765&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后在发送邮件的时候，在选项里把加密和签署都点了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1701255501352.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1701255501352&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>IKEv2标准阅读</title>
         <link>https://pillar23.github.io/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</link>
         <pubDate>Thu, 19 Oct 2023 16:31:55 +0800</pubDate>
