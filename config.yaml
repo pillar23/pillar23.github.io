@@ -112,9 +112,6 @@ params:
                 - https://cdn.jsdelivr.net/gh/walinejs/emojis/qq
                 - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
             requiredMeta:
-                - name
-                - email
-                - url
             locale:
                 admin: 管理员
                 placeholder: 有什么想说的请留言，建议登录后再留言，可以获得best-effort的回复喔。
