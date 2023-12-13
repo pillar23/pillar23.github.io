@@ -71,7 +71,7 @@ params:
 
     comments:
         enabled: true
-        provider: disqus
+        provider: waline
 
         disqusjs:
             shortname: 'hugoblog-7'
@@ -102,18 +102,28 @@ params:
 
         # Waline client configuration see: https://waline.js.org/en/reference/component.html
         waline:
-            serverURL:
-            lang:
-            pageview:
+            serverURL: https://waline.pillar.fun
+            lang:  zh-cn
+            visitor: false
+            pageview: true
             emoji:
                 - https://unpkg.com/@waline/emojis@1.0.1/weibo
+                - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba
+                - https://cdn.jsdelivr.net/gh/walinejs/emojis/qq
+                - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
             requiredMeta:
                 - name
-                - email
+                - mail
                 - url
             locale:
-                admin: Admin
-                placeholder:
+                admin: 管理员
+                placeholder: 有什么想说的请留言，建议登录后再留言，可以获得best-effort的回复喔。
+                level0: '炼体'
+                level1: '炼气'
+                level2: '筑基'
+                level3: '金丹'
+                level4: '元婴'
+                level5: '化神'
 
         twikoo:
             envId:
