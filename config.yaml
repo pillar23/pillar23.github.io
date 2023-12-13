@@ -113,7 +113,7 @@ params:
                 - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
             requiredMeta:
                 - name
-                - mail
+                - email
                 - url
             locale:
                 admin: 管理员
