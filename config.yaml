@@ -80,7 +80,7 @@ params:
                 - 'blog2.pillar.fun'
             apiKey: 'b03pVBPPaHA0bzUM7P7bgM0D6TBFgwNzCjzQ2svbMo4I6XcesqjxXa7wNfcb6OsL' # publick_key
             admin: 'disqus_98oqy8jUCd'
-            adminLabel: 'pillar'
+            adminLabel: 'makabaka'
 
         utterances:
             repo:
