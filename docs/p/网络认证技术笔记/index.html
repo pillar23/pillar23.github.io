@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 ucas2023秋 林璟锵、马存庆 网络认证技术笔记
+说是开课以来从未有过挂科选手，但是想得不错的分数还是要努努力，进自己脑子的知识才是最好的知识
+笔记 网络认证技术 ≈ 密码学&#43;计算机网络
+网络认证：在信息系统/网络环境中，实现身份的确认。目标：在不可信的网络环境中确认主体是谁，有什么属性、权限、能力
+身份确认的主体：人、设备、软件服务……
+PKI：公钥基础设施
+CA：认证中心，生成数字证书
+CA是PKI的核心组成成分，但是在很多地方把CA和PKI混用了。
+考试用 两个半小时
+题型：
+判断 2分 简答 5-8分 建议不要空这 关键是原理之类的要记住的
+01 导言（意义不大） 相关概念
+02 密码学基础（会涉及题目，需要复习复习） 对称：加解密
+非对称：签名
+光看密钥长度不能知道强度，RSA1024bits=ECC160bits。短密钥可以达到高强度
+哈希：验证
+消息鉴别码：MAC=C(K,M)，K为密钥M为消息，把密钥跟着一块哈希了
+可鉴别加密CCM、GCM、AEAD（简单了解）
+国外的密码基本原理不细说了
+国产的了解一下
+SM2 非对称 ECC &amp;mdash; 椭圆曲线 知道基于椭圆曲线域上的离散对数困难问题。 替换RSA
+SM3 哈希 256bit和sha256差不多 分组长度512bit，摘要值长度256bit
+SM4 分组工作模式
+ECB：对每个块独立加密：明文同样的块会加密成同样的密文
+CBC：明文先与上一个密文异或在加密，需要初始化向量
+OFB：将块密码转为流密码，生成密钥流的块
+CTR（ICM、SIC）：将块密码变为流密码，通过递增加密计数器产生密钥流
+ZUC 流密码
+128位的初始密钥key和128位的初始向量iv来作为输入。每个时钟周期能生成32bit
+共享密钥问题-&amp;gt;为什么要有非对称的原因-&amp;gt;数字签名
+03 口令鉴别 client 用复杂口令，不要告诉别人，次数限制
+传输 使用已被验证的安全信道
+server 存储，验证
+04 基于密码技术的鉴别 两大类：
+对称： 有没有密钥'>
+<title>网络认证技术笔记</title>
+
+<link rel='canonical' href='https://pillar23.github.io/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='网络认证技术笔记'>
+<meta property='og:description' content='导语 ucas2023秋 林璟锵、马存庆 网络认证技术笔记
+说是开课以来从未有过挂科选手，但是想得不错的分数还是要努努力，进自己脑子的知识才是最好的知识
+笔记 网络认证技术 ≈ 密码学&#43;计算机网络
+网络认证：在信息系统/网络环境中，实现身份的确认。目标：在不可信的网络环境中确认主体是谁，有什么属性、权限、能力
+身份确认的主体：人、设备、软件服务……
+PKI：公钥基础设施
+CA：认证中心，生成数字证书
+CA是PKI的核心组成成分，但是在很多地方把CA和PKI混用了。
+考试用 两个半小时
+题型：
+判断 2分 简答 5-8分 建议不要空这 关键是原理之类的要记住的
+01 导言（意义不大） 相关概念
+02 密码学基础（会涉及题目，需要复习复习） 对称：加解密
+非对称：签名
+光看密钥长度不能知道强度，RSA1024bits=ECC160bits。短密钥可以达到高强度
+哈希：验证
+消息鉴别码：MAC=C(K,M)，K为密钥M为消息，把密钥跟着一块哈希了
+可鉴别加密CCM、GCM、AEAD（简单了解）
+国外的密码基本原理不细说了
+国产的了解一下
+SM2 非对称 ECC &amp;mdash; 椭圆曲线 知道基于椭圆曲线域上的离散对数困难问题。 替换RSA
+SM3 哈希 256bit和sha256差不多 分组长度512bit，摘要值长度256bit
+SM4 分组工作模式
+ECB：对每个块独立加密：明文同样的块会加密成同样的密文
+CBC：明文先与上一个密文异或在加密，需要初始化向量
+OFB：将块密码转为流密码，生成密钥流的块
+CTR（ICM、SIC）：将块密码变为流密码，通过递增加密计数器产生密钥流
+ZUC 流密码
+128位的初始密钥key和128位的初始向量iv来作为输入。每个时钟周期能生成32bit
+共享密钥问题-&amp;gt;为什么要有非对称的原因-&amp;gt;数字签名
+03 口令鉴别 client 用复杂口令，不要告诉别人，次数限制
+传输 使用已被验证的安全信道
+server 存储，验证
+04 基于密码技术的鉴别 两大类：
+对称： 有没有密钥'>
+<meta property='og:url' content='https://pillar23.github.io/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='π1l4r_のblog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-12-27T19:07:10&#43;08:00'/><meta property='article:modified_time' content='2023-12-27T19:07:10&#43;08:00'/>
+<meta name="twitter:title" content="网络认证技术笔记">
+<meta name="twitter:description" content="导语 ucas2023秋 林璟锵、马存庆 网络认证技术笔记
+说是开课以来从未有过挂科选手，但是想得不错的分数还是要努努力，进自己脑子的知识才是最好的知识
+笔记 网络认证技术 ≈ 密码学&#43;计算机网络
+网络认证：在信息系统/网络环境中，实现身份的确认。目标：在不可信的网络环境中确认主体是谁，有什么属性、权限、能力
+身份确认的主体：人、设备、软件服务……
+PKI：公钥基础设施
+CA：认证中心，生成数字证书
+CA是PKI的核心组成成分，但是在很多地方把CA和PKI混用了。
+考试用 两个半小时
+题型：
+判断 2分 简答 5-8分 建议不要空这 关键是原理之类的要记住的
+01 导言（意义不大） 相关概念
+02 密码学基础（会涉及题目，需要复习复习） 对称：加解密
+非对称：签名
+光看密钥长度不能知道强度，RSA1024bits=ECC160bits。短密钥可以达到高强度
+哈希：验证
+消息鉴别码：MAC=C(K,M)，K为密钥M为消息，把密钥跟着一块哈希了
+可鉴别加密CCM、GCM、AEAD（简单了解）
+国外的密码基本原理不细说了
+国产的了解一下
+SM2 非对称 ECC &amp;mdash; 椭圆曲线 知道基于椭圆曲线域上的离散对数困难问题。 替换RSA
+SM3 哈希 256bit和sha256差不多 分组长度512bit，摘要值长度256bit
+SM4 分组工作模式
+ECB：对每个块独立加密：明文同样的块会加密成同样的密文
+CBC：明文先与上一个密文异或在加密，需要初始化向量
+OFB：将块密码转为流密码，生成密钥流的块
+CTR（ICM、SIC）：将块密码变为流密码，通过递增加密计数器产生密钥流
+ZUC 流密码
+128位的初始密钥key和128位的初始向量iv来作为输入。每个时钟周期能生成32bit
+共享密钥问题-&amp;gt;为什么要有非对称的原因-&amp;gt;数字签名
+03 口令鉴别 client 用复杂口令，不要告诉别人，次数限制
+传输 使用已被验证的安全信道
+server 存储，验证
+04 基于密码技术的鉴别 两大类：
+对称： 有没有密钥">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
+            <h2 class="site-description">Like tears in rain.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/such-stupid6'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/note' >
+                
+                
+                
+                <span>📕课程</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/thesis' >
+                
+                
+                
+                <span>📚论文</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/tech' >
+                
+                
+                
+                <span>👨🏻‍💻技术</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#01-导言意义不大">01 导言（意义不大）</a></li>
+    <li><a href="#02-密码学基础会涉及题目需要复习复习">02 密码学基础（会涉及题目，需要复习复习）</a></li>
+    <li><a href="#03-口令鉴别">03 口令鉴别</a></li>
+    <li><a href="#04-基于密码技术的鉴别">04 基于密码技术的鉴别</a></li>
+    <li><a href="#0506-pki技术">05+06 PKI技术</a></li>
+    <li><a href="#07-证书拓展">07 证书拓展</a></li>
+    <li><a href="#08-pki信任体系">08 PKI信任体系</a></li>
+    <li><a href="#09-证书撤销">09 证书撤销</a></li>
+    <li><a href="#10-tls">10 TLS</a></li>
+    <li><a href="#105wifi认证">10.5wifi认证</a></li>
+    <li><a href="#11-不考">11 不考</a></li>
+    <li><a href="#12-pki安全增强">12 PKI安全增强</a>
+      <ol>
+        <li><a href="#入侵容忍-解决了什么问题怎么解决的-原理">入侵容忍 解决了什么问题？怎么解决的 原理</a></li>
+        <li><a href="#信任增强-解决方式原理">信任增强 解决方式原理</a></li>
+      </ol>
+    </li>
+    <li><a href="#13-证书透明化">13 证书透明化</a></li>
+    <li><a href="#14-隐式证书">14 隐式证书</a></li>
+    <li><a href="#15-kerberos">15 kerberos</a></li>
+    <li><a href="#16-oauthoidc">16 OAuth&amp;OIDC</a></li>
+    <li><a href="#17-fido">17 FIDO</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">网络认证技术笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 27, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="导语">导语</h1>
+<p>ucas2023秋 林璟锵、马存庆 网络认证技术笔记</p>
+<p>说是开课以来从未有过挂科选手，但是想得不错的分数还是要努努力，进自己脑子的知识才是最好的知识</p>
+<h1 id="笔记">笔记</h1>
+<p>网络认证技术 ≈ 密码学+计算机网络</p>
+<p>网络认证：在信息系统/网络环境中，实现身份的确认。目标：在不可信的网络环境中确认主体是谁，有什么属性、权限、能力</p>
+<p>身份确认的主体：人、设备、软件服务……</p>
+<p>PKI：公钥基础设施</p>
+<p>CA：认证中心，生成数字证书</p>
+<p>CA是PKI的核心组成成分，但是在很多地方把CA和PKI混用了。</p>
+<h1 id="考试用">考试用</h1>
+<p>两个半小时</p>
+<p>题型：</p>
+<ol>
+<li>判断 2分</li>
+<li>简答 5-8分
+<ol>
+<li>建议不要空这</li>
+</ol>
+</li>
+</ol>
+<p>关键是原理之类的要记住的</p>
+<h2 id="01-导言意义不大">01 导言（意义不大）</h2>
+<p>相关概念</p>
+<h2 id="02-密码学基础会涉及题目需要复习复习">02 密码学基础（会涉及题目，需要复习复习）</h2>
+<p>对称：加解密</p>
+<p>非对称：签名</p>
+<p>光看密钥长度不能知道强度，RSA1024bits=ECC160bits。短密钥可以达到高强度</p>
+<p>哈希：验证</p>
+<p>消息鉴别码：MAC=C(K,M)，K为密钥M为消息，把密钥跟着一块哈希了</p>
+<p>可鉴别加密CCM、GCM、AEAD（简单了解）</p>
+<p>国外的密码基本原理不细说了</p>
+<p>国产的了解一下</p>
+<p>SM2 非对称 ECC &mdash; 椭圆曲线 知道基于椭圆曲线域上的离散对数困难问题。 替换RSA</p>
+<p>SM3 哈希 256bit和sha256差不多 分组长度512bit，摘要值长度256bit</p>
+<p>SM4 分组工作模式</p>
+<p>ECB：对每个块独立加密：明文同样的块会加密成同样的密文</p>
+<p>CBC：明文先与上一个密文异或在加密，需要初始化向量</p>
+<p>OFB：将块密码转为流密码，生成密钥流的块</p>
+<p>CTR（ICM、SIC）：将块密码变为流密码，通过递增加密计数器产生密钥流</p>
+<p>ZUC 流密码</p>
+<p>128位的初始密钥key和128位的初始向量iv来作为输入。每个时钟周期能生成32bit</p>
+<p>共享密钥问题-&gt;为什么要有非对称的原因-&gt;数字签名</p>
+<h2 id="03-口令鉴别">03 口令鉴别</h2>
+<p>client 用复杂口令，不要告诉别人，次数限制</p>
+<p>传输 使用已被验证的安全信道</p>
+<p>server 存储，验证</p>
+<h2 id="04-基于密码技术的鉴别">04 基于密码技术的鉴别</h2>
+<p>两大类：</p>
+<p>对称： 有没有密钥</p>
+<p>提一个协议框架，让你看有没有什么错，一些参数有什么用【用什么方式可以抵抗什么攻击】</p>
+<p>replay attack（重放攻击）：通过加一个nonce抵抗</p>
+<p>oracle session attack（就是攻击者使另一方帮自己来计算）：让u和v不同。比如u为加密，v为解密，被挑战方只能加密，就不能被当成解密服务器了。</p>
+<p><img src="/images/1705143946346.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705143946346"
+	
+	
+></p>
+<p>Parallel Session attack：p(), q()与方向有关。从而攻击者不能利用服务器的计算。比如发起者会加一个xor，被挑战者会加一个左移</p>
+<p><img src="/images/1705144131279.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705144131279"
+	
+	
+></p>
+<p>offset attack：</p>
+<p><img src="/images/1705144243068.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705144243068"
+	
+	
+></p>
+<p>把返回的东西改为E(f()#E(g))</p>
+<p>可信第三方，kobras</p>
+<p>非对称：数字签名和验证</p>
+<p>单向（带一个时间戳之类的约定好的东西）、双向（A发给B后B还要发给A）</p>
+<p>PPT标红好好看看</p>
+<h2 id="0506-pki技术">05+06 PKI技术</h2>
+<p>CA：认证机构，权威第三方，公钥（证书）可信发布[根CA、子CA]</p>
+<p>RA：注册机构，审查信息，防止CA职能太多导致一个出问题导出都出问题</p>
+<p><img src="/images/1705144615935.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705144615935"
+	
+	
+></p>
+<p>repository（存数据的吧）</p>
+<p>CRL（Certificate Revocation List，证书撤销列表）</p>
+<p>Online Certificate Status Protocol（OCSP）一种通信协议，专门用于检查证书是否已经被撤销 相应的服务器称为OCSP Server-&gt;（证书有三种状态）Good、Revoked、Unknown ：未撤销、已经撤销、未知</p>
+<p>ASN.1-基本数据类型-DER编码-sequence-implicit/explicit tag  稍微看一下</p>
+<h2 id="07-证书拓展">07 证书拓展</h2>
+<p>证书基本域</p>
+<p>证书扩展域 X.509版本3 18种，了解功能即可</p>
+<p><img src="/images/1704713547641.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1704713547641"
+	
+	
+></p>
+<p>拓展有关键和非关键，如果关键出了错（识别不出来），直接认定证书非法。非关键出错则忽略拓展</p>
+<p>Basic Constraints：区分是否是CA证书（能否签发其他证书）以及路径的深度（说明CA可以有多少层次的下级）</p>
+<p>Authority Key Identifier：证书链中可能有多个公钥，这个确定哪个是用来验证证书的颁发者（CA）的公钥</p>
+<p>Subject Key Identifier：证书链中可能有多个公钥，确定哪个是证书自己的公钥</p>
+<p>Key Usage：密钥的用途。7种+2种辅助用途</p>
+<p>Private Key Usage Period：给出证书有效的开始到结束的时间</p>
+<p>Issuer Alternative Name：放置签发者（CA）的消息（DN存放CA信息，子CN没法用DN，就用这来放）</p>
+<p>Subject Alternative Name：放置证书拥有者的消息</p>
+<p>Subject Directory Attributes：可加入任何与Subject有关的信息，例如，民族、生日等</p>
+<p>Name Constraints：限制下级CA所能够签发证书的订户的名字空间（只在下级CA中有用）</p>
+<p>Certificate Policies（CP）：区分不同证书的安全等级</p>
+<p>Inhibit Any-Policy：（CP的Any-Policy指对于该CA所签发的订户证书的CP没有限制），值是整数N，表示：在证书路径中，本证书之下的N个证书可带有Any-Policy的证书</p>
+<p>Policy Mappings：说明了不同CA域之间的CP等级的相互映射关系</p>
+<p>Policy Constraints：对于证书认证路径的策略映射过程中，有关CP的处理，进行限制。N：在N个证书后，不允许再进行策略映射；M：在M个证书后，就必须要有认识的、明确的CP</p>
+<p>Extended Key Usage：证书/密钥可用的用途（拓展）</p>
+<p>CRL Distribution Points：和应用系统约定在哪儿获取CRL</p>
+<p>Freshest CRL：增量CRL情况下，获取最新的增量CRL的地址</p>
+<p>Authority Information Access：如何在Internet上面，访问一些CA的信息（目前只有 1、上级CA的情况 2、OCSP服务器的情况两个信息）</p>
+<p>Subject Information Access： l如何在Internet上面，访问一些用户的信息 （目前只有 1、资料库的地址（针对CA）2、TSA服务地址（针对TSA服务器））</p>
+<h2 id="08-pki信任体系">08 PKI信任体系</h2>
+<p>信任模型</p>
+<p>单根CA</p>
+<p>多根CA 根之间要互相通信-<strong>CTL</strong>（用户自主+权威发布）<em><strong>沟通方式、原理、优缺点，应用</strong></em></p>
+<p>CTL（信任锚）由权威机构统一地发布1个可信的信任锚列表（Certificate Trust List）包括多个根CA证书文件的HASH结果和受信任CA对其签名</p>
+<p>【信任锚里有根CA证书的hash、其他CA证书、CRL、信任策略和规则等。然后由一个我信任的CA对CTL签名，一般不用CTL里信任的CA来签名。】</p>
+<p><img src="/images/1705156671337.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705156671337"
+	
+	
+></p>
+<p>方式：1、不同PKI域用同一个CTL 2、加一个ACA的信任锚说明哪些根CA是可以信任的</p>
+<p>交叉认证-网状mesh-&gt;桥CA</p>
+<p>相当于将对方CA认作是我的子CA。</p>
+<p>mesh-&gt;信任链变成信任网</p>
+<p>桥CA-&gt;不同域之间的证书传递</p>
+<h2 id="09-证书撤销">09 证书撤销</h2>
+<p>验证签名-验证有效期-验证撤销状态</p>
+<p>撤销状态 CRL、OCSP、CRT 原理</p>
+<p>CA/CRL Issuer定期地签发CRL CRL，certificate revocation list</p>
+<p>完全CRL－Complete CRL：所有CRL信息一次发布</p>
+<p>增量CRL－Delta CRL：发布新增的CRL信息发布</p>
+<p>直接CRL－Direct CRL：证书签发者签发CRL</p>
+<p>间接CRL－Indirect CRL：使用CRL issuer签发CRL</p>
+<p>OCSP在线证书状态协议 Online Certificate Status Protocol 在线服务器</p>
+<p>CRT：证书撤销树，对于各证书序列号进行一定的结构化，形成了HASH链</p>
+<p>使用了merkle hash tree【区块链信任算法】</p>
+<p><img src="/images/1705164608101.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705164608101"
+	
+	
+></p>
+<p>拿加粗的子哈希算哈希，就可以推出根hash，验证起来需要更少的那啥</p>
+<h2 id="10-tls">10 TLS</h2>
+<p>handshake怎么shake的</p>
+<p><img src="/images/1705163142817.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705163142817"
+	
+	
+></p>
+<p>增加一个server对client的鉴别</p>
+<p><img src="/images/1705208493971.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705208493971"
+	
+	
+></p>
+<p>如果server证书只能签名不能加密，则要生成一个临时公钥，签名后发给client【ServerKeyExchange】</p>
+<p>两张图里的消息有什么含义 1.3和1.2的区别</p>
+<p><img src="/images/1705208812117.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705208812117"
+	
+	
+></p>
+<p>直接在client hello中发了选择算法的key（用server 公钥加密）</p>
+<h2 id="105wifi认证">10.5wifi认证</h2>
+<p>WPA-PSK共享口令 （路由器上做）</p>
+<p>WPA-802.1X 基于账号的身份鉴别 （身份鉴别server）</p>
+<p>客户端或网页 （微信、短信）</p>
+<h2 id="11-不考">11 不考</h2>
+<h2 id="12-pki安全增强">12 PKI安全增强</h2>
+<h3 id="入侵容忍-解决了什么问题怎么解决的-原理">入侵容忍 解决了什么问题？怎么解决的 原理</h3>
+<p>解决了在入侵场景下的高可用。黑客侵入了其中一个PKI节点无法获利，同时PKI系统任然保持可用性</p>
+<p>【门限密码学：把密钥分成L份，当有其中f+1份时可以解密，否则解密不了】</p>
+<p>eg. Shamir&rsquo;s Secret Sharing 基于拉格朗日插值法</p>
+<p><img src="/images/1705065190379.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705065190379"
+	
+	
+></p>
+<p>eg2. ITTC 基于离散对数的子密钥分配</p>
+<p><img src="/images/1705065815902.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705065815902"
+	
+	
+></p>
+<p><img src="/images/1705065831688.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705065831688"
+	
+	
+></p>
+<p>server上用密码算，CA来整合</p>
+<p>也就是说黑客就算攻入了一个节点，他仍然无法获取PKI用来签名证书的私钥，同时其他节点还能继续工作。</p>
+<h3 id="信任增强-解决方式原理">信任增强 解决方式原理</h3>
+<p>信任机制基本假设：1、CA行为不会出错，证书中的信息不会出错【只有可能是错误操作导致的签发给错误的人】 2、无限制权利</p>
+<p>三个思路：</p>
+<p>1、 浏览器端实施检测：</p>
+<p>（1）浏览器维护证书信息</p>
+<p>（2）多个会话之间互相比较</p>
+<p>2、限制CA权利</p>
+<p>（1）假定server只会向同一个国家的CA申请证书</p>
+<p>（2）限定CA能签发的顶级域名范围</p>
+<p>（3）域名拥有者可以控制哪个CA给他签发证书</p>
+<p>（4）server再次确认机制：</p>
+<p><img src="/images/1705067041133.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705067041133"
+	
+	
+></p>
+<p>server在多一个sovereign Key的公私钥对挂在timeline上，浏览器看到timeline上有sovereign Key，会要求server再次拿sovereign Key私钥签名，黑客控制了CA，却无法获取server的sovereign Key私钥，因此仍然无法伪造身份</p>
+<p>3、证书透明化：</p>
+<p>假定CA也会出错，审计CA</p>
+<h2 id="13-证书透明化">13 证书透明化</h2>
+<p>虚假证书：证书可以被严格验证通过，但是证书对应的私钥并不被证书主体拥有，而是被其他人拥有（CA被人黑了，一顿乱发）</p>
+<p>透明化增加哪些步骤SCT相关特点弄清楚一点</p>
+<p>增加</p>
+<ol>
+<li>
+<p>公开日志服务器（Public Log Server）：保存和维护记录证书的公开日志（Public Log）</p>
+<p>收到证书并验证通过后，公开日志服务器会向提交者返回一个凭据（SCT）Signed Certificate Timestamp。（有可能多个公开日志服务器，就会返回多个SCT）用户不仅需要验证证书，还需要验证相应的SCT（将SCT放入证书中，作为证书扩展）</p>
+</li>
+</ol>
+<p><img src="/images/1705068113028.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705068113028"
+	
+	
+></p>
+<pre><code>用户不仅需要验证证书，还需要验证相应的SCT（将SCT放入证书中，作为证书扩展）
+
+怎么获得SCT呢？
+
+1.从X.509证书扩展项获得SCT
+
+2.从连接建立时TLS扩展项获得SCT -&gt;TLS客户端要支持
+
+3.从OCSP stapling的扩展项获得SCT
+</code></pre>
+<p>下面不重要</p>
+<ol start="2">
+<li>监视员（Monitor）：周期性的访问公开日志服务器，寻找和发现可疑的证书</li>
+<li>审计员（Auditor）：审计公开日志的行为</li>
+</ol>
+<h2 id="14-隐式证书">14 隐式证书</h2>
+<p>传统和隐式的结构和使用的区别</p>
+<p>在带宽、计算能力、存储资源有限制的环境下，隐式证书是传统X.509证书的一种高效替代</p>
+<p>X.509证书基本内容：订户身份信息+公钥数据+CA数字签名</p>
+<p>隐式证书基本内容：中间公钥数据$P_U$  + 订户身份标识。 最终公钥 P=$P_{CA}$+$P_U$以及身份信息也有关  $P_{CA}$：CA证书公钥</p>
+<p><img src="/images/1705069930310.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705069930310"
+	
+	
+></p>
+<p>使用：</p>
+<p><img src="/images/1705070190100.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705070190100"
+	
+	
+></p>
+<p><img src="/images/1705070203597.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705070203597"
+	
+	
+></p>
+<p>X.509： 需要对订户证书进行CA签名的验证</p>
+<p>隐式证书：需要重构出订户公钥，在对消息的验签时同时完成对证书本身的验证</p>
+<p>隐式证书中，没有对CA数字签名的验证，取而代之的是，重构公钥的计算，后者的计算量较小。</p>
+<p>假名证书不考</p>
+<h2 id="15-kerberos">15 kerberos</h2>
+<p>可信第三方TTP，基于对称密码，也支持在某些过程使用非对称</p>
+<p>获得一个TGT，用TGT和要访问的目，请求问kerberos服务器，来获取访问目标的票据（不是TGT，TGT只是告诉kerberos我已经被验证过了）</p>
+<p>kerberos票据流程</p>
+<p>长期密钥（主密钥）Long-term Key/Master Key： 长期保持不变的密钥。被长期密钥（主密钥）加密的数据尽量不在网络上传输。（防止暴力破解、分析）</p>
+<p>短期密钥（会话密钥）Short-term Key/Session Key： 加密需要进行网络传输的数据。只在一段时间内有效，即使被加密的数据包被黑客截获并破解成功后，这个Key早就已经过期了。</p>
+<p>KDC（Key Distribution Center）：kerberos server作为可信第三方，维护所有帐户（client、server）的注册信息、用户名、口令、用户主密钥、服务器主密钥</p>
+<p>Server 与Client之间基于共享秘密短期密钥key实现身份鉴别</p>
+<p>KDC仅仅是允许进入应用系统，至于有什么权限、由应用系统自主决定</p>
+<p>获取TGT：</p>
+<p><img src="/images/1705080938952.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705080938952"
+	
+	
+></p>
+<p>client发请求，KDC用client的master key加密一个会话密钥$S_{KDC-Client}$，用KDC的master key加密TGT，TGT里包含会话密钥和client信息（让client 鉴别KDC是KDC而非被伪造）</p>
+<p>获取ST：</p>
+<p><img src="/images/1705139628762.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705139628762"
+	
+	
+></p>
+<p><em><strong>这个图有问题，KDC还给client的不是用clinet的master key，而是用session key。</strong></em></p>
+<p>当client要访问server的时候，给KDC自己的TGT和要访问的server。</p>
+<p>KDC根据TGT来对client进行认证，生成$S_{Server-Client}$和ST(session ticket)</p>
+<p>$S_{Server-Client}$：用client的主密钥加密一个会话密钥，</p>
+<p>ST：用server的主密钥加密，ST包含会话密钥和client的信息。</p>
+<p>将这两个被加密的Copy一并发送给Client</p>
+<p>client得到会话密钥后，用session key解密，创建Authenticator（Client Info + Timestamp）并用会话密钥加密</p>
+<p>client将ST和Authenticator访问server，server用自己的主密钥解密ST得到会话密钥，在用会话密钥解密Authenticator，比较Authenticator里的client info和ST里的client info来确定client就是client</p>
+<p>那如果TGT没过期，session key过期了呢？可以用TGT再申请一个，因为TGT用KDC的master key加密，KDC可以得到旧的session key和client info，进而再发一个session key。由于session key是TGT的一部分，这其实也就相当于重新申请了TGT</p>
+<p>client鉴别server（双向鉴别）：</p>
+<p><img src="/images/1705080767000.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1705080767000"
+	
+	
+></p>
+<p>在Authenticator里在加一个flag要求server自证。</p>
+<p>server看到后，用ST里得到的会话密钥解密Authenticator，把里面的timestamp用会话密钥加密发给client</p>
+<h2 id="16-oauthoidc">16 OAuth&amp;OIDC</h2>
+<p>单点登录(Single Sign on)在某个地方认证了之后，在整个域里都不用再认证了。</p>
+<p>SSO 口令记录器-&gt;保存在edge/chrome</p>
+<p>OAuth 协议流程图，理解认证的流程，有那几个角色，分别做了什么</p>
+<p>OIDC 协议流程图，理解认证的流程</p>
+<h2 id="17-fido">17 FIDO</h2>
+<p>在服务器端将用户与移动终端的可信环境进行身份绑定
+将用户与服务器之间的直接鉴别转变为两段式鉴别
+1 移动终端鉴别用户主要是靠生物特征
+2 服务器端鉴别移动终端主要是靠数字签名</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus"],"lang":"zh-cn","locale":{"admin":"管理员","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神","placeholder":"有什么想说的请留言，建议登录后再留言，可以获得best-effort的回复喔。"},"pageview":true,"serverURL":"https://waline.pillar.fun","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 pill4r
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
