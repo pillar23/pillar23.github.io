@@ -7,7 +7,287 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Wed, 27 Dec 2023 19:07:10 +0800</lastBuildDate><atom:link href="https://pillar23.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 16 Feb 2024 16:28:03 +0800</lastBuildDate><atom:link href="https://pillar23.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>TFE GNN</title>
+        <link>https://pillar23.github.io/p/tfe-gnn/</link>
+        <pubDate>Fri, 16 Feb 2024 16:28:03 +0800</pubDate>
+        
+        <guid>https://pillar23.github.io/p/tfe-gnn/</guid>
+        <description>&lt;h1 id=&#34;abstract&#34;&gt;abstract&lt;/h1&gt;
+&lt;p&gt;目的：实现加密流量[VPN、tor]的分类&lt;/p&gt;
+&lt;p&gt;现有局限性：只能提取低级别特征，基于统计的方法对&lt;strong&gt;短流&lt;/strong&gt;无效，对header和payload采取&lt;strong&gt;不平等&lt;/strong&gt;的处理，难以挖掘字节之间的潜在相关性。&lt;/p&gt;
+&lt;p&gt;提出方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;基于逐点互信息(PMI)的字节级流量图构建方法&lt;/li&gt;
+&lt;li&gt;基于图神经网络(TFE-GNN)进行特征提取的时序融合编码器模型&lt;/li&gt;
+&lt;li&gt;引入了一个双嵌入层、一个基于GNN的流量图编码器以及一个交叉门控特征融合机制。[分别嵌入header和payload，然后通过融合实现数据增强]&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;结果：两个真实数据集（WWT和ISCX）优于SOTA&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708314808397.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708314808397&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;introduction&lt;/h1&gt;
+&lt;p&gt;加密流量保存用户隐私同时也给了攻击者藏身的机会。&lt;/p&gt;
+&lt;p&gt;传统的数据包检测（DPI）挖掘数据包中的潜在模式或关键词，面对加密数据包时&lt;strong&gt;耗时&lt;/strong&gt;且准确性低。&lt;/p&gt;
+&lt;p&gt;由于动态端口的应用，基于端口的工作不再有效。&lt;/p&gt;
+&lt;p&gt;通过数据流的统计特征（e.g.数据包长度的平均值）采用机器学习分类器（e.g.随机森林）来实现分类的方法，需要手工制作的特征工程，并且在某些情况下可能会由于不可靠/不稳定的fow级统计信息而失败。与长流相比，短流的统计特征有更大的偏差（e.g.长度通常服从长尾分布）意味着不可靠的统计特征普遍存在。我们使用&lt;strong&gt;数据包字节&lt;/strong&gt;而非统计特征。&lt;/p&gt;
+&lt;p&gt;GNN 可以识别图中隐含的特定拓扑模式，以便我们可以用预测标签对每个图进行分类。目前大多数GNN根据数据包之间的相关性来构建图，这实际上是统计特征的另一种使用形式，导致上述问题。&lt;/p&gt;
+&lt;p&gt;用了数据包字节的方法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;平等地对待header和payload，忽略了它们之间的含义差异。&lt;/li&gt;
+&lt;li&gt;原始字节利用不足，只是将数据包视为节点，将原始字节作为节点特征，不能充分利用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本文提出了一种基于逐点互信息（PMI）的字节级图构建方法，一种基于图神经网络(TFE-GNN)进行特征提取的时序融合编码器模型。通过挖掘字节之间的相关性来构建流量图，用作TFE-GNN的输入。&lt;/p&gt;
+&lt;p&gt;TFE-GNN由三大子模块组成（即双嵌入、流量图编码器和交叉门控特征融合机制）。双嵌入层分别嵌入header和payload；图编码器将图编码为高维图向量；交叉门控特征融合机制对header和payload的图向量融合，得到数据包的整体表示向量。&lt;/p&gt;
+&lt;p&gt;使用端到端训练（从输入数据到最终输出直接进行训练，而无需将任务分解为多个独立的阶段或模块），采用时间序列模型，获得下游任务的预测结果。&lt;/p&gt;
+&lt;p&gt;实验使用了自收集的WWT（WhatsApp、WeChat、Telegram）和公开的ISCX数据集，与十几个baseline比较得出TFE-GNN效果最好。&lt;/p&gt;
+&lt;h1 id=&#34;preliminary&#34;&gt;preliminary&lt;/h1&gt;
+&lt;p&gt;1、图的定义&lt;/p&gt;
+&lt;p&gt;G = { $V,\varepsilon,X$}表示一个图，V是节点集合，$\varepsilon$是边集，X是节点的初始特征矩阵（每个节点的特征向量拼起来）&lt;/p&gt;
+&lt;p&gt;$A$是大小为$\lvert V \lvert * \lvert V \lvert$图的邻接矩阵&lt;/p&gt;
+&lt;p&gt;$N(v)$是节点v相邻的节点&lt;/p&gt;
+&lt;p&gt;$d_l$是第l层的嵌入维度&lt;/p&gt;
+&lt;p&gt;TS(traffic segment)=[$P_{t_1},P_{t_2}&amp;hellip;P_{t_n}$]是一段时间内的数据包的集合。$P_{t_i}$是时间戳为$t_i$的数据包，n是流量序列的长度。$t_1,t_2$是流量序列的开始和结束时间。&lt;/p&gt;
+&lt;p&gt;2、加密流量分类&lt;/p&gt;
+&lt;p&gt;M是训练样本数量&lt;/p&gt;
+&lt;p&gt;N是分类类别&lt;/p&gt;
+&lt;p&gt;$bs^j_i=[b^{ij}_1, b^{ij}_2,&amp;hellip;,b^{ij}_m]$，m是字节序列长度，$b^{ij}_k$是第i个流量样本第j个字节序列的第k个字节&lt;/p&gt;
+&lt;p&gt;$s_i=[bs^i_1,bs^i_2,&amp;hellip;,bs^i_n)]$，n是序列长度$bs^i_j$为第i个样本的第j个字节序列，可以理解为就是TS&lt;/p&gt;
+&lt;p&gt;3、 MP-GNN&lt;/p&gt;
+&lt;p&gt;MP-GNN 是 Message Passing Graph Neural Network（消息传递图神经网络）的简称，节点嵌入向量可以通过特定的聚合策略将节点的嵌入向量集成到邻域中，从而迭代更新节点嵌入向量。&lt;/p&gt;
+&lt;p&gt;第l层 MP-GNN 可以形式化为两个过程&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708310294876.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708310294876&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中$h^{(l)}_u,h^{(l)}_v$是节点u和v在第l层的嵌入向量，$m^{(l)}_u$是l层中节点u的计算信息，$MSG^{(l)}$是消息计算函数，$AGG^{(l)}$是消息聚合函数，$\theta$是他们对应的参数&lt;/p&gt;
+&lt;h1 id=&#34;methodology&#34;&gt;methodology&lt;/h1&gt;
+&lt;h2 id=&#34;字节级流量图构造-byte-level-traffic-graph-construction&#34;&gt;字节级流量图构造 Byte-level Traffic Graph Construction&lt;/h2&gt;
+&lt;p&gt;节点：某一个字节，注意相同的字节值共享同一个节点，因此节点个数不会超过256，这样能够保持图在一定的规模下，不会太大。&lt;/p&gt;
+&lt;p&gt;字节之间的相关性表示：采用点互信息（PMI）来建模两个字节之间的相似性，字节i和字节j的相似性用$PMI(i,j)$表示。&lt;/p&gt;
+&lt;p&gt;边：根据PMI值来构造边，PMI值为正：表示字节之间的语义相关性高；而PMI值为零或负值：表示字节之间的语义相关性很小或没有。因此，我们只在PMI值为正的两个字节之间创建一条边。&lt;/p&gt;
+&lt;p&gt;节点特征：每个节点的初始特征为字节的值，维度为1，范围为[0,255]&lt;/p&gt;
+&lt;p&gt;图构建：由于$PMI(i,j)=PMI(j,i)$，因此该图是个无向图。&lt;/p&gt;
+&lt;h3 id=&#34;pmi&#34;&gt;PMI&lt;/h3&gt;
+&lt;p&gt;PMI：是一种用于衡量两个事件之间相关性的统计量。&lt;/p&gt;
+&lt;p&gt;$$
+PMI(A, B) = \log \frac{P(A, B)}{P(A) \cdot P(B)}
+$$&lt;/p&gt;
+&lt;p&gt;值大于零，则表示 A 和 B 之间有正相关性；如果值等于零，则表示它们之间没有关联；如果值小于零，则表示它们之间有负相关性。&lt;/p&gt;
+&lt;h2 id=&#34;双嵌入-dual-embedding&#34;&gt;双嵌入 dual embedding&lt;/h2&gt;
+&lt;p&gt;原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用&lt;strong&gt;两个不共享参数的嵌入层&lt;/strong&gt;的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$&lt;/p&gt;
+&lt;h2 id=&#34;交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion&#34;&gt;交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion&lt;/h2&gt;
+&lt;p&gt;因为要double embedding，所以encoder也要两个。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708314903093.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708314903093&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这里堆叠了N个GraphSAGE&lt;/p&gt;
+&lt;h3 id=&#34;graphsage&#34;&gt;GraphSAGE&lt;/h3&gt;
+&lt;p&gt;对于图 G 中的每个节点 v，GraphSAGE 通过使用节点 v 的度数归一化其嵌入向量，计算来自每个相邻节点的消息。&lt;/p&gt;
+&lt;p&gt;通过逐元素均值运算（element-wise mean operation）计算所有相邻节点$N(v)$的整体消息，并通过串联运算聚合整体消息以及节点v的嵌入向量&lt;/p&gt;
+&lt;p&gt;对节点A的嵌入向量进行非线性变换，完成一个GraphSAGE层的正向过程&lt;/p&gt;
+&lt;p&gt;GraphSAGE的消息聚合和计算可以描述为&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708315615539.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708315615539&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;$m^{(l)}_{N(v)}$是将v节点所有临接节点的上一层嵌入向量求平均的结果&lt;/p&gt;
+&lt;p&gt;$h_v^{(l)}$是本层v节点的嵌入向量，$\sigma(\cdot)$是激活函数，$CONCAT(\cdot)$是连接函数。然后通过BatchNorm对h进行批量归一化&lt;/p&gt;
+&lt;p&gt;激活函数选择PReLU，将每个负元素值按不同因子缩放，不但引入了非线性，还由于每个负元素的缩放因子的不同而起到类似于注意力机制的作用。&lt;/p&gt;
+&lt;p&gt;由于深度GNN模型中的过度平滑问题，我们最多只堆叠GraphSAGE4层，并将输出拼接起来。这与跳转知识网络（JKL）相类似&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708316388852.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708316388852&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最后，通过对每个节点的最终嵌入使用meanpooling来得到图嵌入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708316889596.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708316889596&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;用$g_h,g_p$表示header和payload得到的图嵌入&lt;/p&gt;
+&lt;h2 id=&#34;cross-gated-feature-fusion&#34;&gt;Cross-gated Feature Fusion&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708316997715.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708316997715&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;交叉门控特征融合，这个模块的目标是将$g_h,g_p$融合，获取门控矢量$s_h,s_p$。&lt;/p&gt;
+&lt;p&gt;如上图，我们用了两个filter，每个filter的组成都是线性层、PReLU、线性层、Sigmoid。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708317405446.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708317405446&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中w和b分别是线性层的weight和bias。z 是数据包字节的整体表示向量。&lt;/p&gt;
+&lt;h2 id=&#34;端到端的下游任务训练-end-to-end-training-on-downstream-tasks&#34;&gt;端到端的下游任务训练 End-to-End Training on Downstream Tasks&lt;/h2&gt;
+&lt;p&gt;由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。&lt;/p&gt;
+&lt;p&gt;这里我们使用双层Bi-LSTM作为baseline，他的输出喂给一个带PReLU的两层线性分类器，使用交叉熵作为损失函数&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708318165707.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708318165707&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;n是长度，CE是交叉熵，y是ground truth（标注数据的分类标签）&lt;/p&gt;
+&lt;p&gt;实验部分还有一个用transformer的&lt;/p&gt;
+&lt;h1 id=&#34;experiments&#34;&gt;experiments&lt;/h1&gt;
+&lt;p&gt;介绍了实验设置，在很多数据集和baseline上做了对比实验，&lt;strong&gt;做了消融实验（good）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;还分析了TFE-GNN的灵敏度，回答了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;每个组件的功能&lt;/li&gt;
+&lt;li&gt;哪个GNN架构效果最好&lt;/li&gt;
+&lt;li&gt;TFE-GNN的复杂度如何&lt;/li&gt;
+&lt;li&gt;超参数的变化在多大程度上会影响TFE-GNN的有效性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;实验设置&#34;&gt;实验设置&lt;/h2&gt;
+&lt;p&gt;数据集：ISCX VPN-nonVPN , ISCX Tor-nonTor , self-collected WWT datasets.&lt;/p&gt;
+&lt;p&gt;预处理：对于每个数据集，筛除&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;空流或空段：所有数据包都没有有效负载（用于establish 连接）&lt;/li&gt;
+&lt;li&gt;超长流或超长段：长度（即数据包数）大于 10000&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然后对于每个数据包，删掉以太网标头，源 IP 地址和目标 IP 地址以及端口号都将被删除，以消除IP地址和端口号的敏感信息的干扰##&lt;/p&gt;
+&lt;p&gt;细节：一个样本的最大数据包数设置为50，最大有效负载字节长度和最大标头字节长度分别设置为 150 和 40，PMI 窗口大小设置为 5&lt;/p&gt;
+&lt;p&gt;epoch设置为120，lr为1e-2，用Adam优化器分512批次将lr从1e-2衰减到1e-4。warmup为0.1，droupout为0.2.\&lt;/p&gt;
+&lt;p&gt;运行了10次实验。&lt;/p&gt;
+&lt;p&gt;用AC、PR、RC和F1做评估&lt;/p&gt;
+&lt;p&gt;和基于传统特征工程的方法（即 AppScanner [31]、CUMUL [23]、K-FP （K-Fingerprinting） [8]、FlowPrint [32]、GRAIN [43]、FAAR [19]、ETC-PS [40]）、基于深度学习的方法（即 FS-Net [18]、 EDC [16]、FFB [44]、MVML [4]、DF [30]、ET-BERT [17]）和基于图神经网络的方法（即 GraphDApp [29]、ECD-GNN [11]）做比较。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708319331300.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708319331300&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708319345719.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708319345719&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;消融实验&#34;&gt;消融实验&lt;/h2&gt;
+&lt;p&gt;在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &amp;lsquo;H&amp;rsquo;、&amp;lsquo;P&amp;rsquo;、&amp;lsquo;DUAL&amp;rsquo;、&amp;lsquo;JKN&amp;rsquo;、&amp;lsquo;CGFF&amp;rsquo; 和 &amp;lsquo;A&amp;amp;N&amp;rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM&lt;/p&gt;
+&lt;p&gt;（只用H或P就不需要DUAL和CGFF）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708319828833.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708319828833&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;得出结论&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数据包标头在分类中起着比数据包有效载荷更重要的作用，不同的数据集具有不同级别的标头和有效载荷重要性&lt;/li&gt;
+&lt;li&gt;使用双嵌入使 f1 分数分别提高了 3.63% 和 0.95%，这表明其总体有效性。JKN样串联和交叉门控特征融合在两个数据集上都以相似的幅度增强了TFE-GNN的性能。&lt;/li&gt;
+&lt;li&gt;缺少激活函数和批量归一化在两个数据集上都可以看到显著的性能下降，证明了其必要性&lt;/li&gt;
+&lt;li&gt;用sum替换mean在两个数据集上分别差了11.1%和29.64%，用max替换mean在VPN上差很多在tor上只差一点&lt;/li&gt;
+&lt;li&gt;用GRU替换LSTM导致两个都差10%左右，transformer替换LSTM导致VPN差了40%左右，tor上只差一点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;换GNN架构为GAT, GIN, GCN and SGC，还是GraphSAGE最好&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708321015036.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708321015036&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此外，通过TFE-GNN可以快捷的拓展一个segment级的全局特征&lt;/p&gt;
+&lt;p&gt;复杂度&lt;/p&gt;
+&lt;p&gt;TFE-GNN 在模型复杂度相对较小的情况下，在公共数据集上实现了最显着的改进。虽然ET-BERT在ISCX-nonVPN数据集上达到了可比的结果，但ET-BERT的FLOP大约是TFEGNN的五倍，模型参数的数量也增加了一倍，这通常表明模型推理时间更长，需要更多的计算资源。此外，ETBERT的预训练阶段非常耗时，由于预训练期间有大量的额外数据，并且模型复杂度高，因此成本很高。相比之下，TFE-GNN可以实现更高的精度，同时降低训练或推理成本。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708321171217.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708321171217&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;双重嵌入维度的影响。为了研究双嵌入层隐藏维度的影响，我们进行了灵敏度实验，结果如图a所示。正如我们所看到的，当嵌入维度低于 100 时，f1 分数会迅速增加。在此之后，随着维度的变化，模型性能趋于稳定。为了减少计算消耗，选取50作为默认维度&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1708321219227.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708321219227&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;PMI窗口大小的影响。从图 b 中可以看出，较小的窗口大小通常会导致更好的 f1 分数。窗口越大图中添加的边就越多，由于图太密集，模型将更难分类。&lt;/p&gt;
+&lt;p&gt;段长的影响。从图 c 中，我们可以得出一个结论，即用于训练的短段长度通常会使性能更好。&lt;/p&gt;
+&lt;h1 id=&#34;conclusion-and-future-work&#34;&gt;conclusion and future work&lt;/h1&gt;
+&lt;p&gt;我们提出了一种构建字节级流量图的方法和一个名为 TFE-GNN 的模型，用于加密流量分类。字节级流量图构造方法可以挖掘原始字节之间的潜在相关性并生成判别性流量图。TFE-GNN 旨在从构建的流量图中提取高维特征。最后，TFE-GNN可以将每个数据包编码为一个整体表示向量，该向量可用于一些下游任务，如流量分类。选择了几个基线来评估 TFE-GNN 的有效性。实验结果表明，所提模型全面超越了WWT和ISCX数据集上的所有基线。精心设计的实验进一步证明了TFE-GNN具有很强的有效性。&lt;/p&gt;
+&lt;p&gt;将来，我们将尝试在以下限制方面改进 TFE-GNN。（1）有限的图构建方法。所提模型的图拓扑结构是在训练过程之前确定的，这可能会导致非最佳性能。此外，TFE-GNN无法应对每个数据包的原始字节中隐含的字节级噪声。（2） 字节序列中隐含的未使用的时间信息。字节级 trafc 图的构造没有引入字节序列的显式时间特征。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>网络认证技术笔记</title>
         <link>https://pillar23.github.io/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Wed, 27 Dec 2023 19:07:10 +0800</pubDate>
@@ -2707,6 +2987,132 @@ $$&lt;/p&gt;
 &lt;h1 id=&#34;可能存在的问题&#34;&gt;可能存在的问题&lt;/h1&gt;
 &lt;p&gt;参考发表在27th USENIX Security Symposium (USENIX Security 18), 2018的&lt;a class=&#34;link&#34; href=&#34;https://usenix.org/conference/usenixsecurity18/presentation/felsch&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;The Dangers of Key Reuse: Practical Attacks on IPsec IKE&lt;/a&gt;可IKEv1、v2如果重用密钥可能导致跨协议身份验证绕过，从而使攻击者能够冒充受害者主机或网络。在IKEv1模式下利用Bleichenbacher预言机，其中RSA加密的随机数用于身份验证。利用此漏洞打破了基于 RSA 加密的模式，此外还破坏了 IKEv1 和 IKEv2 中基于 RSA 签名的身份验证。此外，还存在针对基于 PSK（预共享密钥）的 IKE 模式的离线字典攻击，从而涵盖了 IKE 的所有可用身份验证机制。在思科（CVE-2018-0131）、华为（CVE2017-17305）、Clavister（CVE-2018-8753）和合勤科技（CVE-2018-9129）的IKEv1实现中找到了Bleichenbacher预言机。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</title>
+        <link>https://pillar23.github.io/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</link>
+        <pubDate>Mon, 16 Oct 2023 20:34:22 +0800</pubDate>
+        
+        <guid>https://pillar23.github.io/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
+        <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
+&lt;p&gt;doi is &lt;a class=&#34;link&#34; href=&#34;https://dl.acm.org/doi/10.1145/3548606.3560604&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;h2 id=&#34;问题引入&#34;&gt;问题引入&lt;/h2&gt;
+&lt;p&gt;目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。&lt;/p&gt;
+&lt;h2 id=&#34;提出方法&#34;&gt;提出方法&lt;/h2&gt;
+&lt;p&gt;提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;能够利用基于流量模式构建的紧凑内存图来检测加密恶意流量的未知模式。该图捕获由图结构特征表示的流交互模式，而不是特定已知攻击的特征。&lt;/li&gt;
+&lt;li&gt;我们开发了一种无监督图学习方法，通过分析图的连接性、稀疏性和统计特征来检测异常交互模式&lt;/li&gt;
+&lt;li&gt;建立了一个信息论模型来证明图保存的信息接近理想的理论边界。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;h2 id=&#34;现有方法&#34;&gt;现有方法&lt;/h2&gt;
+&lt;p&gt;深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测&lt;/p&gt;
+&lt;p&gt;简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1697463380666.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;HyperVision，这是一个实时检测系统，旨在通过分析流之间的交互模式来捕获加密恶意流量的足迹。特别是，它可以通过识别异常流交互（即不同于良性的交互模式）来检测具有未知足迹的加密恶意流。&lt;/p&gt;
+&lt;p&gt;但是，构建用于实时检测的图形具有挑战性。我们不能简单地使用 IP 地址作为顶点，而传统的四元组流（源目的ip，源目的port）作为边来构建图，因为生成的密集图无法维持各种流之间的交互模式，例如，引起依赖爆炸问题 。&lt;/p&gt;
+&lt;p&gt;收到流量尺寸分布的研究的启发，互联网上的大多数流都是短流，而大多数数据包与长流相关联，我们利用两种策略来记录不同大小的流，并在图中分别处理短流和长流的交互模式。&lt;/p&gt;
+&lt;p&gt;我们设计了一种四步 轻量级 无监督 图学习方法，通过利用图上维护的丰富流交互信息来检测加密的恶意流量。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先，我们通过提取连通分量来分析图的连通性，并通过对高层次统计特征进行聚类来识别异常分量。通过排除良性分量，我们还显著减少了学习开销。&lt;/li&gt;
+&lt;li&gt;其次，我们根据在边特征中观察到的局部邻接关系对边进行预聚类。预聚类操作显著降低了特征处理开销，并确保了实时检测。&lt;/li&gt;
+&lt;li&gt;第三，我们使用Z3 SMT solver求解顶点覆盖问题来提取关键顶点，以最大程度地减少聚类的数量。&lt;/li&gt;
+&lt;li&gt;最后，根据每个临界顶点的连接边进行聚类，这些边位于预聚类产生的簇的中心，从而得到指示加密恶意流量的异常边。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此外，为了量化HyperVision基于图的流量记录相对于现有方法的优势，我们开发了一个流量记录熵模型，这是一个基于信息论的框架，从理论上分析恶意流量检测系统的现有数据源保留的信息量。这个框架表明NetFlow [19]和Zeek [86]无法保留高保真流量信息，而HyperVision中的图捕获了接近最优的流量信息，并且图中维护的信息量接近理想化数据源的理论上界。（这么屌啊？）此外，分析结果表明，HyperVision中的图形实现了比所有现有数据源更高的信息密度（即每单位存储的流量信息量），这是准确高效检测的基础。&lt;/p&gt;
+&lt;p&gt;过两天读R. Zamir, “A proof of the fisher information inequality via a data processing argument,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 12461250, 1998.&lt;/p&gt;
+&lt;h2 id=&#34;平台和数据集&#34;&gt;平台和数据集&lt;/h2&gt;
+&lt;p&gt;我们使用英特尔的数据平面开发套件 （DPDK） [37] 对 HyperVision进行原型设计。为了广泛评估原型的性能，我们重放了92个攻击数据集，其中包括在我们的虚拟私有云 （VPC）中收集的80个新数据集，其中包含 1,500 多个实例。在 VPC 中，我们收集了 48 个典型的加密恶意流量，包括 （i） 加密泛洪流量，例如泛洪目标链路 [41];（ii） 网络攻击，例如利用网络漏洞 [64];（iii） 恶意软件活动，包括连接测试、依赖项更新和下载。&lt;/p&gt;
+&lt;p&gt;此外，HyperVision 的平均检测吞吐量超过 100 Gb/s，平均检测延迟为 0.83 秒。&lt;/p&gt;
+&lt;h2 id=&#34;省流&#34;&gt;省流&lt;/h2&gt;
+&lt;p&gt;• 我们提出了 HyperVision，这是首个使用流交互图实现对未知模式的加密恶意流量进行实时无监督检测的方法。
+• 我们开发了多种算法来构建内存中的图，使我们能够准确捕获不同流之间的交互模式。
+• 我们设计了一种轻量级的无监督图形学习方法，通过图形特征来检测加密流量。
+• 我们开发了一个由信息论建立的理论分析框架，以展示该图形捕获了接近最优的流量交互信息。
+• 我们原型化了 HyperVision，并进行了广泛的实验，使用各种真实世界的加密恶意流量来验证其准确性和效率。&lt;/p&gt;
+&lt;h2 id=&#34;名词解释&#34;&gt;名词解释&lt;/h2&gt;
+&lt;p&gt;连通分量：在图论中，连通分量是一个图中的一个子图，其中任意两个顶点都可以通过边相连的路径相互访问。&lt;/p&gt;
+&lt;p&gt;Z3 SMT solver：3（Z3 SMT solver）是由微软研究院开发的一个高性能的SMT（Satisfiability Modulo Theories）求解器。SMT 求解器是一种自动化工具，用于解决布尔公式、一阶逻辑公式和其他数学理论的判定问题。Z3 在各种计算机科学和工程领域都有广泛的应用，包括软件验证、形式化方法、人工智能、编译器优化和硬件验证等。&lt;/p&gt;
+&lt;p&gt;英特尔的数据平面开发套件 （DPDK）：旨在优化数据包处理性能。它专注于高性能网络应用程序和数据平面开发，使开发人员能够在通用服务器硬件上实现高吞吐量和低延迟的数据包处理。它通过绕过操作系统内核，并在用户空间中实现网络协议栈，从而提供极低的延迟和高吞吐量。支持多核处理器，允许并行处理大量数据包。利用支持硬件加速的网络接口卡（NIC）来进一步提高性能。DPDK 是一个开源项目，开发人员可以根据其需求进行自定义和扩展。DPDK 通常用于构建高性能网络应用程序，如网络功能虚拟化（NFV）、防火墙、负载均衡、数据包过滤和路由等。它还用于云计算、边缘计算和网络设备。&lt;/p&gt;
+&lt;h1 id=&#34;hypervision&#34;&gt;HyperVision&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1698218520903.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698218520903&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;首先HyperVision以镜像来的路由器流量作为输入，确保不会干扰流量转发。在识别加密的恶意流量后，它可以与现有的中间恶意流量防御配合，以限制检测到的流量。重点检测使用加密流量构建的主动攻击。不考虑不会为受害者带来流量的被动攻击，例如流量窃听和被动流量分析&lt;/p&gt;
+&lt;p&gt;HyperVision的设计目标如下：首先，它应该能够实现通用检测，即检测使用加密或非加密流量构建的攻击，从而确保攻击无法逃避流量加密的检测。其次，它能够实现实时高速流量处理，这意味着它可以识别通过加密流量是否是恶意的，同时产生低检测延迟。第三，HyperVision 执行的检测是不受监督的，这意味着它不需要任何加密恶意流量的先验知识。&lt;/p&gt;
+&lt;h2 id=&#34;图构造&#34;&gt;图构造&lt;/h2&gt;
+&lt;p&gt;将流分为短流和长流，并分别记录它们的相互作用模式，以降低图的密度。&lt;/p&gt;
+&lt;p&gt;使用不同的地址作为顶点，分别连接与短流和长流关联的边。聚合大量相似的短流，为一组短流构建一条边，从而减少维护流交互模式的开销。拟合长流中数据包特征的分布，构建与长流相关的边缘，从而保证了高保真记录的流交互模式，同时解决了传统方法中粗粒度流特征的问题。&lt;/p&gt;
+&lt;h2 id=&#34;预处理图&#34;&gt;预处理图&lt;/h2&gt;
+&lt;p&gt;通过提取连通分量来减少图的开销，并使用高级统计信息进行聚类。其中，聚类可以准确地检测出只有良性交互模式的组件，从而对这些良性组件进行过滤，减小图的规模。此外，我们进行了预聚类，并使用生成的聚类中心来表示图像中的识别的集群的边缘。（第五节详细讲）&lt;/p&gt;
+&lt;h2 id=&#34;基于图的恶意流量检测&#34;&gt;基于图的恶意流量检测&lt;/h2&gt;
+&lt;p&gt;通过分析图特征来实现无监督加密恶意流量检测。&lt;/p&gt;
+&lt;h1 id=&#34;图构造-1&#34;&gt;图构造&lt;/h1&gt;
+&lt;h2 id=&#34;流的分类&#34;&gt;流的分类&lt;/h2&gt;
+&lt;p&gt;为了避免图构建过程中流之间的依赖爆炸，把流分成长流和短流，并且降低密度。下图显示了显示了2020年1月MAWI互联网流量数据集的流完成时间和流长度的分布，纵轴PDF是概率密度函数，可以看到不论是长流还是短流都在分布短时间、长长度更多。
+&lt;img src=&#34;https://pillar23.github.io/images/1698331144407.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698331144407&#34;
+	
+	
+&gt;
+利用短流合并后，图的稠密度显著下降
+&lt;img src=&#34;https://pillar23.github.io/images/1698332038326.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698332038326&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;获取每个数据包的信息，并获取其源、目标地址、端口号和每个数据包的功能，包括协议、长度和到达间隔。我们开发了一种流量分类算法来对流量进行分类（附录A中的算法1）简单来说就是维护一个哈希表，键是hash(src,dest,src_post,dest_port)，值是流的所有数据包特征的序列(协议、数据包长度、到达间隔)，然后用一个定时器TIME_NOW，每隔JUDGE_INTERVAL检查一下，如果在这个interval里流发了多个数据包，就算他是长流，否则就说他是短流）【q，这个interval怎么设置？为什么后面说ssh暴力破解都是短流？这不是应该是短期发好多包吗？】&lt;/p&gt;
+&lt;h2 id=&#34;短流聚合&#34;&gt;短流聚合&lt;/h2&gt;
+&lt;p&gt;我们观察到，大多数短流具有几乎相同的每个数据包的特征序列。我们设计了一种聚合短流的算法（附录A中的算法2）。当满足以下所有要求时，可以聚合一组流&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;流具有相同的源和/或目标地址（为啥不是哈希表的键值一样）&lt;/li&gt;
+&lt;li&gt;流具有相同的协议类型&lt;/li&gt;
+&lt;li&gt;流的数量足够大，即当短流量的数量达到阈值AGG_LINE&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们为短流构建一条边，为所有流及其四个元组保留一个特征序列（即协议、数据包长度和到达间隔）&lt;/p&gt;
+&lt;h2 id=&#34;长流的特征分布拟合&#34;&gt;长流的特征分布拟合&lt;/h2&gt;
+&lt;p&gt;由于长流中的特征是集中分布的，我们使用直方图来表示长流中每个数据包特征的频率分布。直方图的每个条目表示一个数据包特征的频率，从而避免保留其长的每个数据包特征序列。具体来说，我们为每个长流中的每个数据包特征序列构建直方图，然后维护一个哈希表，    键为数据包特征序列，值为直方图。我们将数据包长度和到达间隔的桶宽度分别设置为 10 字节和 1 毫秒，以在拟合精度和开销之间进行权衡。
+下图显示了数据集中的长流中已用桶的数量和最大桶的大小，可以看是集中分布的，即长流中的大多数数据包具有相似的包长度和到达间隔。长度拟合平均用11个桶，每个桶平均200个数据包；到达间隔拟合平均用121个桶，每个桶平均71个数据包。
+&lt;img src=&#34;https://pillar23.github.io/images/1698336076628.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698336076628&#34;
+	
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
