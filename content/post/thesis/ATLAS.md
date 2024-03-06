@@ -7,7 +7,7 @@ draft = true
 文章可以在[这里](https://www.usenix.org/conference/usenixsecurity21/presentation/alsaheel)获取
 
 
-# introduction
+## introduction
 
 APT攻击涉及长期的多个攻击步骤，其调查需要分析大量日志以确定其攻击步骤。因此提出ATLAS从现成的审计日志构建端到端攻击故事的框架。
 
@@ -48,7 +48,7 @@ ATLAS不会带来额外开销，不同的审计日志可以很容易地集成到
 2. 提出了一种新的序列表示，通过词形还原和词嵌入来抽象攻击和非攻击语义模式。这些序列使 ATLAS 能够构建一个有效的基于序列的模型，以识别构成攻击故事的攻击事件
 3. 我们在受控环境中通过其真实世界报告开发的 10 种现实 APT 攻击中验证了 ATLAS。结果表明，ATLAS能够高精度、最小开销地识别攻击故事的关键攻击条目。
 
-# Motivation and Definitions
+## Motivation and Definitions
 
 整篇论文中设定了一种攻击场景：攻击者通过电子邮件向企业中的目标用户发送恶意Microsoft Word文件（contract.doc）。用户被欺骗使用 Firefox 从 Gmail 下载和打开 Word 文件。该文档包含一段恶意代码，该代码利用易受攻击的 Microsoft Word （winword.exe） 并发出 HTTPS 请求以下载恶意 Microsoft HTA 脚本 （template.hta）。此脚本执行恶意 Visual Basic 脚本 （maintenance.vbs），其中包含安装后门以泄露敏感文件的 PowerShell 命令。最后，攻击者横向移动到其他主机。
 
@@ -69,7 +69,7 @@ ATLAS 在推理时给定攻击症状节点（警报事件α包含的恶意 IP �
 图 1 （c） 说明了 ATLAS 为激励示例恢复的攻击故事，其中包括示例攻击的完整关键攻击步骤。此过程大大减少了从大型因果图中进行攻击调查的手动工作，该图排除了对攻击没有影响的事件，并减少了调查大型因果图所需的时间。
 
 
-## definition
+### definition
 
 ![1709635161753](ATLAS/1709635161753.png)
 
@@ -89,6 +89,6 @@ ATLAS 在推理时给定攻击症状节点（警报事件α包含的恶意 IP �
 
 
 
-# 我的想法
+## 我的想法
 
 利用NLP的方法，将问题转为序列识别问题。使用了新颖的数据增强方法。
