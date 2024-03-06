@@ -1,7 +1,7 @@
 +++
 title = '复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis'
 date = 2023-10-25T10:25:43+08:00
-draft = true
+draft = false
 +++
 
 # 导语
@@ -44,12 +44,6 @@ cd ./result_analyze
 cat ./log/brute/*.log | grep AU_ROC
 ```
 
-然后就复现完了
+在[https://www.bilibili.com/video/BV1zj411e7xC/](https://www.bilibili.com/video/BV1zj411e7xC/)可以看到复现视频
 
 ![1698203084469](fileName/1698203084469.png)
-
-# 读代码
-
-建议先看论文再看代码，可以看我的另一篇博客
-
-首先理解一下这个项目是怎么编译的。看看执行的script都做了什么
