@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>👨🏻‍💻技术 on π1l4r_のblog</title>
-        <link>https://pillar23.github.io/post/tech/</link>
+        <link>http://localhost:1313/post/tech/</link>
         <description>Recent content in 👨🏻‍💻技术 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Mon, 16 Oct 2023 14:10:06 +0800</lastBuildDate><atom:link href="https://pillar23.github.io/post/tech/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 16 Oct 2023 14:10:06 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/tech/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Frp实现隧道穿透远程桌面</title>
-        <link>https://pillar23.github.io/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
+        <link>http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
         <pubDate>Mon, 16 Oct 2023 14:10:06 +0800</pubDate>
         
-        <guid>https://pillar23.github.io/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</guid>
+        <guid>http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</guid>
         <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
 &lt;p&gt;果壳的校园网不给直接内网连远程桌面，感觉是因为划的子网之间不能互相通信，不知道是深澜故意的还是不小心的。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。&lt;/p&gt;
 &lt;h1 id=&#34;操作&#34;&gt;操作&lt;/h1&gt;
@@ -74,7 +74,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1697438389080.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1697438389080.png&#34;
 	
 	
 	
@@ -123,7 +123,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果你的被控端的frpc设置开了web，那你应该可以再web界面看到你的xtcp的连接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1697439827539.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1697439827539.png&#34;
 	
 	
 	
@@ -172,7 +172,7 @@
 &lt;p&gt;&lt;code&gt;./frpc.exe -c ./frpc.toml&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;visitors是在web里看不见的，看不到不要觉得奇怪。&lt;/p&gt;
 &lt;p&gt;如果在server上可以看到都连上了，直接mstsc连就行了，连127.0.0.1:8000（也就是你在visitor里设置的地址端口）（这里是把log指向了console，所以可以直接看）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://pillar23.github.io/images/1697440033017.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1697440033017.png&#34;
 	
 	
 	

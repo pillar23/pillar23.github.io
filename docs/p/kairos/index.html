@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 SP24
+doi is here
+Abstract 溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。
+senario 来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。
+challenge 不可知性：有没见过的攻击，需要模型具有泛化性 攻击重建：很难通过溯源图得到并重现完整的攻击流程 及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高 Method KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的深度图学习和社区发现， 可以做到
+在事先不了解任何特定攻击特征的情况下检测异常系统行为。 根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。 下图描述了KAIROS的架构，由四个主要组件组成：
+图的构建和表示。 KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑三种类型的内核对象和九种类型的交互（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用基于节点属性的分层特征哈希技术对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)
+图学习。 当图中出现新的边缘，KAIROS 使用编码器-解码器架构来重建边缘。编码器将边缘周围的邻域结构和邻域中节点的状态作为输入。节点的状态是与每个节点关联的特征向量，描述节点邻域的变化历史。然后，解码器根据编码器输出的边缘嵌入重建边缘。原始边缘和重建边缘之间的差异称为重建误差。在训练阶段，KAIROS同时训练编码器和解码器，以最大限度地减少良性边缘的重建误差。在部署过程中，各个边缘的重建误差被用作异常检测和调查的基础。此外，KAIROS更新新边的源节点和目标节点的状态。在encoder-decoder结构中，使用基于节点属性的分层特征哈希技术对节点的特征进行编码，利用时间图网络（TGN）对边进行嵌入，通过新的边（事件）动态更新节点特征，可以有效地将时序特征保存在节点特征中，同时边的嵌入也基于邻域内节点的特征向量。这样可以有效地保存事件的时序信息（感觉这个想法还挺常见的，就是要获取时间相关的特征)。
+异常检测。 KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，KAIROS根据边的重建误差在每个时间窗口中识别一组可疑节点。具有重叠可疑节点的两个时间窗口被排在一起。当新的时间窗口添加到队列时，KAIROS 也会根据重建错误更新队列的异常分数。如果分数超过阈值，KAIROS会认为队列异常并触发警报。因此，KAIROS以时间窗口的间隔定期执行异常检测。在图中，KAIROS 检测到由时间窗口 1、2 和 4 组成的异常队列。
+异常调查。 为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。
+补充知识 分层特征哈希 在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。
+分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。
+分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。
+TGN TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。
+TGN对边的嵌入主要涉及以下步骤：'>
+<title>KAIROS</title>
+
+<link rel='canonical' href='http://localhost:1313/p/kairos/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='KAIROS'>
+<meta property='og:description' content='导语 SP24
+doi is here
+Abstract 溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。
+senario 来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。
+challenge 不可知性：有没见过的攻击，需要模型具有泛化性 攻击重建：很难通过溯源图得到并重现完整的攻击流程 及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高 Method KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的深度图学习和社区发现， 可以做到
+在事先不了解任何特定攻击特征的情况下检测异常系统行为。 根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。 下图描述了KAIROS的架构，由四个主要组件组成：
+图的构建和表示。 KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑三种类型的内核对象和九种类型的交互（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用基于节点属性的分层特征哈希技术对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)
+图学习。 当图中出现新的边缘，KAIROS 使用编码器-解码器架构来重建边缘。编码器将边缘周围的邻域结构和邻域中节点的状态作为输入。节点的状态是与每个节点关联的特征向量，描述节点邻域的变化历史。然后，解码器根据编码器输出的边缘嵌入重建边缘。原始边缘和重建边缘之间的差异称为重建误差。在训练阶段，KAIROS同时训练编码器和解码器，以最大限度地减少良性边缘的重建误差。在部署过程中，各个边缘的重建误差被用作异常检测和调查的基础。此外，KAIROS更新新边的源节点和目标节点的状态。在encoder-decoder结构中，使用基于节点属性的分层特征哈希技术对节点的特征进行编码，利用时间图网络（TGN）对边进行嵌入，通过新的边（事件）动态更新节点特征，可以有效地将时序特征保存在节点特征中，同时边的嵌入也基于邻域内节点的特征向量。这样可以有效地保存事件的时序信息（感觉这个想法还挺常见的，就是要获取时间相关的特征)。
+异常检测。 KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，KAIROS根据边的重建误差在每个时间窗口中识别一组可疑节点。具有重叠可疑节点的两个时间窗口被排在一起。当新的时间窗口添加到队列时，KAIROS 也会根据重建错误更新队列的异常分数。如果分数超过阈值，KAIROS会认为队列异常并触发警报。因此，KAIROS以时间窗口的间隔定期执行异常检测。在图中，KAIROS 检测到由时间窗口 1、2 和 4 组成的异常队列。
+异常调查。 为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。
+补充知识 分层特征哈希 在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。
+分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。
+分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。
+TGN TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。
+TGN对边的嵌入主要涉及以下步骤：'>
+<meta property='og:url' content='http://localhost:1313/p/kairos/'>
+<meta property='og:site_name' content='π1l4r_のblog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-03-02T20:15:55&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:15:55&#43;08:00'/>
+<meta name="twitter:title" content="KAIROS">
+<meta name="twitter:description" content="导语 SP24
+doi is here
+Abstract 溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。
+senario 来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。
+challenge 不可知性：有没见过的攻击，需要模型具有泛化性 攻击重建：很难通过溯源图得到并重现完整的攻击流程 及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高 Method KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的深度图学习和社区发现， 可以做到
+在事先不了解任何特定攻击特征的情况下检测异常系统行为。 根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。 下图描述了KAIROS的架构，由四个主要组件组成：
+图的构建和表示。 KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑三种类型的内核对象和九种类型的交互（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用基于节点属性的分层特征哈希技术对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)
+图学习。 当图中出现新的边缘，KAIROS 使用编码器-解码器架构来重建边缘。编码器将边缘周围的邻域结构和邻域中节点的状态作为输入。节点的状态是与每个节点关联的特征向量，描述节点邻域的变化历史。然后，解码器根据编码器输出的边缘嵌入重建边缘。原始边缘和重建边缘之间的差异称为重建误差。在训练阶段，KAIROS同时训练编码器和解码器，以最大限度地减少良性边缘的重建误差。在部署过程中，各个边缘的重建误差被用作异常检测和调查的基础。此外，KAIROS更新新边的源节点和目标节点的状态。在encoder-decoder结构中，使用基于节点属性的分层特征哈希技术对节点的特征进行编码，利用时间图网络（TGN）对边进行嵌入，通过新的边（事件）动态更新节点特征，可以有效地将时序特征保存在节点特征中，同时边的嵌入也基于邻域内节点的特征向量。这样可以有效地保存事件的时序信息（感觉这个想法还挺常见的，就是要获取时间相关的特征)。
+异常检测。 KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，KAIROS根据边的重建误差在每个时间窗口中识别一组可疑节点。具有重叠可疑节点的两个时间窗口被排在一起。当新的时间窗口添加到队列时，KAIROS 也会根据重建错误更新队列的异常分数。如果分数超过阈值，KAIROS会认为队列异常并触发警报。因此，KAIROS以时间窗口的间隔定期执行异常检测。在图中，KAIROS 检测到由时间窗口 1、2 和 4 组成的异常队列。
+异常调查。 为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。
+补充知识 分层特征哈希 在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。
+分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。
+分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。
+TGN TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。
+TGN对边的嵌入主要涉及以下步骤：">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
+            <h2 class="site-description">Like tears in rain.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/such-stupid6'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/note' >
+                
+                
+                
+                <span>📕课程</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/thesis' >
+                
+                
+                
+                <span>📚论文</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/tech' >
+                
+                
+                
+                <span>👨🏻‍💻技术</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#导语">导语</a></li>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#senario">senario</a></li>
+    <li><a href="#challenge">challenge</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#补充知识">补充知识</a>
+      <ol>
+        <li><a href="#分层特征哈希">分层特征哈希</a></li>
+        <li><a href="#tgn">TGN</a></li>
+      </ol>
+    </li>
+    <li><a href="#我的评价">我的评价</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kairos/">KAIROS</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 02, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="导语">导语</h2>
+<p>SP24</p>
+<p>doi is <a class="link" href="https://doi.org/10.48550/arXiv.2308.05034"  target="_blank" rel="noopener"
+    >here</a></p>
+<h2 id="abstract">Abstract</h2>
+<p>溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。</p>
+<h2 id="senario">senario</h2>
+<p><img src="/images/1715250405508.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1715250405508"
+	
+	
+></p>
+<p>来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。</p>
+<h2 id="challenge">challenge</h2>
+<ol>
+<li>不可知性：有没见过的攻击，需要模型具有泛化性</li>
+<li>攻击重建：很难通过溯源图得到并重现完整的攻击流程</li>
+<li>及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高</li>
+</ol>
+<h2 id="method">Method</h2>
+<p>KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的<strong>深度图学习</strong>和<strong>社区发现</strong>， 可以做到</p>
+<ol>
+<li>在事先不了解任何特定攻击特征的情况下检测异常系统行为。</li>
+<li>根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。</li>
+</ol>
+<p>下图描述了KAIROS的架构，由四个主要组件组成：</p>
+<p><img src="/images/1715251388567.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1715251388567"
+	
+	
+></p>
+<ol>
+<li>
+<p>图的构建和表示。
+KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑<strong>三种类型的内核对象和九种类型的交互</strong>（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用<strong>基于节点属性的分层特征哈希技术</strong>对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)</p>
+<p><img src="/images/1715253831664.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1715253831664"
+	
+	
+></p>
+</li>
+<li>
+<p>图学习。
+当图中出现新的边缘，KAIROS 使用编码器-解码器架构来重建边缘。编码器将边缘周围的邻域结构和邻域中节点的状态作为输入。节点的状态是与每个节点关联的特征向量，描述节点邻域的变化历史。然后，解码器根据编码器输出的边缘嵌入重建边缘。原始边缘和重建边缘之间的差异称为重建误差。在训练阶段，KAIROS同时训练编码器和解码器，以最大限度地减少良性边缘的重建误差。在部署过程中，各个边缘的重建误差被用作异常检测和调查的基础。此外，KAIROS更新新边的源节点和目标节点的状态。在encoder-decoder结构中，使用基于节点属性的分层特征哈希技术对节点的特征进行编码，利用时间图网络（TGN）对边进行嵌入，通过新的边（事件）动态更新节点特征，可以有效地将时序特征保存在节点特征中，同时边的嵌入也基于邻域内节点的特征向量。这样可以有效地保存事件的时序信息（感觉这个想法还挺常见的，就是要获取时间相关的特征)。</p>
+</li>
+<li>
+<p>异常检测。
+KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，KAIROS根据边的重建误差在每个时间窗口中识别一组可疑节点。具有重叠可疑节点的两个时间窗口被排在一起。当新的时间窗口添加到队列时，KAIROS 也会根据重建错误更新队列的异常分数。如果分数超过阈值，KAIROS会认为队列异常并触发警报。因此，KAIROS以时间窗口的间隔定期执行异常检测。在图中，KAIROS 检测到由时间窗口 1、2 和 4 组成的异常队列。</p>
+</li>
+<li>
+<p>异常调查。
+为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。</p>
+</li>
+</ol>
+<h2 id="补充知识">补充知识</h2>
+<h3 id="分层特征哈希">分层特征哈希</h3>
+<p>在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。</p>
+<p>分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。</p>
+<p>分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。</p>
+<h3 id="tgn">TGN</h3>
+<p>TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。</p>
+<p>TGN对边的嵌入主要涉及以下步骤：</p>
+<ol>
+<li><strong>节点嵌入更新</strong>：当新的边事件（如用户间的交互）发生时，TGN会根据新的边事件信息更新对应节点的嵌入。具体来说，TGN采用了记忆化的节点嵌入更新机制，即根据节点的历史嵌入和新的边事件信息共同决定节点的新的嵌入。</li>
+<li><strong>边嵌入生成</strong>：在节点嵌入更新后，TGN会生成新的边的嵌入。具体来说，边的嵌入是由连接该边的两个节点的嵌入和边事件的时间信息共同决定的。例如，一种简单的方法是将两个节点的嵌入和边事件的时间信息拼接起来，然后通过一个全连接网络生成边的嵌入。</li>
+<li><strong>时间编码器</strong>：为了捕获边事件的时间信息，TGN引入了一个时间编码器，它可以将边事件的时间戳编码为一个连续的向量。在生成边的嵌入时，会将这个时间向量和节点的嵌入一起考虑。</li>
+</ol>
+<p>通过以上步骤，TGN能够处理时间图中的边事件，并为每个边事件生成一个嵌入向量，这个嵌入向量同时考虑了边事件的拓扑结构信息和时间信息。这使得TGN能够适应图的动态变化，并进行各种预测任务。</p>
+<h2 id="我的评价">我的评价</h2>
+<p>贡献主要有：</p>
+<ol>
+<li>提出了PIDS的四个重要指标</li>
+<li>提出了新的三对象九交互的建图模式（但是没怎么证明有效性)</li>
+<li>提出了时间窗口的社区发现的攻击重建方法，比较紧凑，会更方便溯源人员重建攻击。</li>
+<li>实验做的很丰富，包括对不同数据集的分析，以及在相应的数据集上和其他的现有方法的对比做的很好。</li>
+</ol>
+<p>我的评价是，这篇文章最厉害的是实验部分，他把DARPA的数据集都做了检测，其他的感觉中规中矩也就，但是他能发SP你有意见吗？</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus"],"lang":"zh-cn","locale":{"admin":"管理员","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神","placeholder":"有什么想说的请留言，建议登录后再留言，可以获得best-effort的回复喔。"},"pageview":true,"serverURL":"https://waline.pillar.fun","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 pill4r
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

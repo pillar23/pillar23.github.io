@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='This is a test page for i18n support.'>
 <title>关于</title>
 
-<link rel='canonical' href='https://pillar23.github.io/%E5%85%B3%E4%BA%8E/'>
+<link rel='canonical' href='http://localhost:1313/%E5%85%B3%E4%BA%8E/'>
 
-<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='关于'>
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='关于'>
 <meta property='og:description' content='This is a test page for i18n support.'>
-<meta property='og:url' content='https://pillar23.github.io/%E5%85%B3%E4%BA%8E/'>
+<meta property='og:url' content='http://localhost:1313/%E5%85%B3%E4%BA%8E/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Page' />
 <meta name="twitter:title" content="关于">
@@ -226,6 +226,25 @@
         
 
         <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
             
             
                 <li id="dark-mode-toggle">
