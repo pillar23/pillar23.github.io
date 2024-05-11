@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 ucas 2023秋 网络认证技术
 作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。
 概述 我选择阅读RFC 7296，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。
@@ -11,9 +11,9 @@
 1.1.2 端点到端点传输模式 在此方案中，IP 连接的两个终结点都实现 IPsec，这是 [IPSECARCH] 中主机的要求。该模式通常使用没有内部 IP 标头。将协商一对地址，以便此 SA 保护数据包。这些endpoint可以根据参与者的 IPsec 身份验证身份实现应用层访问控制。此方案实现了端到端安全性。虽然此场景可能不完全适用于 IPv4 公网，但已在使用 IKEv1 的内网内的特定场景中成功部署。在向 IPv6 过渡期间和采用 IKEv2 期间，应该更广泛地启用它。'>
 <title>IKEv2标准阅读</title>
 
-<link rel='canonical' href='http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
+<link rel='canonical' href='https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='IKEv2标准阅读'>
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='IKEv2标准阅读'>
 <meta property='og:description' content='导语 ucas 2023秋 网络认证技术
 作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。
 概述 我选择阅读RFC 7296，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。
@@ -22,7 +22,7 @@
 基本原理 1.1 使用场景 IP 安全性 （IPsec） 为 IP 数据报提供机密性、数据完整性、访问控制和数据源身份验证，这些服务是通过维护 IP 数据报的源和接收方之间的共享状态来提供的。以手动方式建立此共享状态不能很好地扩展。IKEv2正是这样一个动态建立此状态的协议。IKE 在双方之间执行相互身份验证，并建立 IKE 安全关联 （SA），该关联包含共享机密信息，可用于高效建立用于封装安全有效负载 （ESP） [ESP] 或身份验证标头 （AH） [AH] 的 SA，以及一组加密算法，供 SA 用于保护其承载的流量。IKE 用于在许多不同的场景中协商 ESP 或 AH SA，每种方案都有自己的特殊要求。
 1.1.1 隧道模式下的安全网关到安全网关 在此方案中，IP 连接的两个endpoint都不实现 IPsec，但它们之间的网络节点会保护部分方式的流量。保护对endpoint是透明的，并且依赖于普通路由通过隧道终结点发送数据包进行处理。每个endpoint将宣布其后subnet的地址集，数据包将以隧道模式发送，其中内部 IP 标头将包含实际端点的 IP 地址。
 1.1.2 端点到端点传输模式 在此方案中，IP 连接的两个终结点都实现 IPsec，这是 [IPSECARCH] 中主机的要求。该模式通常使用没有内部 IP 标头。将协商一对地址，以便此 SA 保护数据包。这些endpoint可以根据参与者的 IPsec 身份验证身份实现应用层访问控制。此方案实现了端到端安全性。虽然此场景可能不完全适用于 IPv4 公网，但已在使用 IKEv1 的内网内的特定场景中成功部署。在向 IPv6 过渡期间和采用 IKEv2 期间，应该更广泛地启用它。'>
-<meta property='og:url' content='http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
+<meta property='og:url' content='https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-10-19T16:31:55&#43;08:00'/><meta property='article:modified_time' content='2023-10-19T16:31:55&#43;08:00'/>
 <meta name="twitter:title" content="IKEv2标准阅读">
@@ -247,25 +247,6 @@
         
 
         <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="http://localhost:1313/" selected>中文</option>
-                        
-                    </select>
-                </li>
-            
             
             
                 <li id="dark-mode-toggle">
@@ -513,44 +494,44 @@
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Notation</span>        <span class="n">Payload</span> 
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Notation        Payload 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">----------------------------------------</span>
+</span></span><span class="line"><span class="cl">----------------------------------------
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">AUTH</span>            <span class="n">Authentication</span> 
+</span></span><span class="line"><span class="cl">AUTH            Authentication 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CERT</span>            <span class="n">Certificate</span> 
+</span></span><span class="line"><span class="cl">CERT            Certificate 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CERTREQ</span>         <span class="n">Certificate</span> <span class="n">Request</span> 
+</span></span><span class="line"><span class="cl">CERTREQ         Certificate Request 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CP</span>              <span class="n">Configuration</span> 
+</span></span><span class="line"><span class="cl">CP              Configuration 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">D</span>               <span class="n">Delete</span> 
+</span></span><span class="line"><span class="cl">D               Delete 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">EAP</span>             <span class="n">Extensible</span> <span class="n">Authentication</span> 
+</span></span><span class="line"><span class="cl">EAP             Extensible Authentication 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">HDR</span>             <span class="n">IKE</span> <span class="n">header</span> <span class="p">(</span><span class="ow">not</span> <span class="n">a</span> <span class="n">payload</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">HDR             IKE header (not a payload) 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">IDi</span>             <span class="n">Identification</span> <span class="o">-</span> <span class="n">Initiator</span> 
+</span></span><span class="line"><span class="cl">IDi             Identification - Initiator 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">IDr</span>             <span class="n">Identification</span> <span class="o">-</span> <span class="n">Responder</span> 
+</span></span><span class="line"><span class="cl">IDr             Identification - Responder 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">KE</span>              <span class="n">Key</span> <span class="n">Exchange</span> 
+</span></span><span class="line"><span class="cl">KE              Key Exchange 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Ni</span><span class="p">,</span> <span class="n">Nr</span>          <span class="n">Nonce</span> 
+</span></span><span class="line"><span class="cl">Ni, Nr          Nonce 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">N</span>               <span class="n">Notify</span> 
+</span></span><span class="line"><span class="cl">N               Notify 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">SA</span>              <span class="n">Security</span> <span class="n">Association</span> 
+</span></span><span class="line"><span class="cl">SA              Security Association 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">SK</span>              <span class="n">Encrypted</span> <span class="ow">and</span> <span class="n">Authenticated</span>
+</span></span><span class="line"><span class="cl">SK              Encrypted and Authenticated
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">TSi</span>             <span class="n">Traffic</span> <span class="n">Selector</span> <span class="o">-</span> <span class="n">Initiator</span> 
+</span></span><span class="line"><span class="cl">TSi             Traffic Selector - Initiator 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">TSr</span>             <span class="n">Traffic</span> <span class="n">Selector</span> <span class="o">-</span> <span class="n">Responder</span> 
+</span></span><span class="line"><span class="cl">TSr             Traffic Selector - Responder 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">V</span>               <span class="n">Vendor</span> <span class="n">ID</span>
+</span></span><span class="line"><span class="cl">V               Vendor ID
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>第 3 节介绍了每个有效负载的内容的详细信息。可能选择显示的有效负载将显示在括号中，例如 [CERTREQ];这表示可以选择包含证书请求有效负载。</p>

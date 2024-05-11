@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 果壳的校园网不给直接内网连远程桌面，感觉是因为划的子网之间不能互相通信，不知道是深澜故意的还是不小心的。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。
 操作 实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。
 去github下载frp的releas
@@ -11,9 +11,9 @@
 客户端 这里使用了xtcp的代理协议来进行p2p的内网穿透，如果想用其他方法可以参考官方文档（？是吗）'>
 <title>Frp实现隧道穿透远程桌面</title>
 
-<link rel='canonical' href='http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/'>
+<link rel='canonical' href='https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Frp实现隧道穿透远程桌面'>
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='Frp实现隧道穿透远程桌面'>
 <meta property='og:description' content='导语 果壳的校园网不给直接内网连远程桌面，感觉是因为划的子网之间不能互相通信，不知道是深澜故意的还是不小心的。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。
 操作 实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。
 去github下载frp的releas
@@ -22,7 +22,7 @@
 1 auth.token = &amp;#34;hsijdfhsjdhf&amp;#34; # 这个感觉可以随便写，多复杂都行，反正你能连上你的服务器就能查 然后再改一改web界面的用户名密码端口啥的或者直接把web也注释了
 1 2 3 4 webServer.addr = &amp;#34;0.0.0.0&amp;#34; webServer.port = 7500 webServer.user = &amp;#34;dgsdgfsdfs&amp;#34; webServer.password = &amp;#34;dweqweas&amp;#34; 然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件
 客户端 这里使用了xtcp的代理协议来进行p2p的内网穿透，如果想用其他方法可以参考官方文档（？是吗）'>
-<meta property='og:url' content='http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/'>
+<meta property='og:url' content='https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-10-16T14:10:06&#43;08:00'/><meta property='article:modified_time' content='2023-10-16T14:10:06&#43;08:00'/>
 <meta name="twitter:title" content="Frp实现隧道穿透远程桌面">
@@ -247,25 +247,6 @@
         
 
         <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="http://localhost:1313/" selected>中文</option>
-                        
-                    </select>
-                </li>
-            
             
             
                 <li id="dark-mode-toggle">

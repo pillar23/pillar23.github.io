@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on π1l4r_のblog</title>
-        <link>http://localhost:1313/post/</link>
+        <link>https://blog2.pillar.fun/post/</link>
         <description>Recent content in Posts on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Thu, 18 Apr 2024 10:51:57 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 02 Mar 2024 20:19:11 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>网络认证技术笔记</title>
-        <link>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</link>
+        <link>https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Wed, 27 Dec 2023 19:07:10 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</guid>
+        <guid>https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</guid>
         <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
 &lt;p&gt;ucas2023秋 林璟锵、马存庆 网络认证技术笔记&lt;/p&gt;
 &lt;p&gt;说是开课以来从未有过挂科选手，但是想得不错的分数还是要努努力，进自己脑子的知识才是最好的知识&lt;/p&gt;
@@ -66,7 +66,7 @@
 &lt;p&gt;提一个协议框架，让你看有没有什么错，一些参数有什么用【用什么方式可以抵抗什么攻击】&lt;/p&gt;
 &lt;p&gt;replay attack（重放攻击）：通过加一个nonce抵抗&lt;/p&gt;
 &lt;p&gt;oracle session attack（就是攻击者使另一方帮自己来计算）：让u和v不同。比如u为加密，v为解密，被挑战方只能加密，就不能被当成解密服务器了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705143946346.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705143946346.png&#34;
 	
 	
 	
@@ -77,7 +77,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Parallel Session attack：p(), q()与方向有关。从而攻击者不能利用服务器的计算。比如发起者会加一个xor，被挑战者会加一个左移&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705144131279.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705144131279.png&#34;
 	
 	
 	
@@ -88,7 +88,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;offset attack：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705144243068.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705144243068.png&#34;
 	
 	
 	
@@ -106,7 +106,7 @@
 &lt;h2 id=&#34;0506-pki技术&#34;&gt;05+06 PKI技术&lt;/h2&gt;
 &lt;p&gt;CA：认证机构，权威第三方，公钥（证书）可信发布[根CA、子CA]&lt;/p&gt;
 &lt;p&gt;RA：注册机构，审查信息，防止CA职能太多导致一个出问题导出都出问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705144615935.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705144615935.png&#34;
 	
 	
 	
@@ -123,7 +123,7 @@
 &lt;h2 id=&#34;07-证书拓展&#34;&gt;07 证书拓展&lt;/h2&gt;
 &lt;p&gt;证书基本域&lt;/p&gt;
 &lt;p&gt;证书扩展域 X.509版本3 18种，了解功能即可&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704713547641.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704713547641.png&#34;
 	
 	
 	
@@ -158,7 +158,7 @@
 &lt;p&gt;多根CA 根之间要互相通信-&lt;strong&gt;CTL&lt;/strong&gt;（用户自主+权威发布）&lt;em&gt;&lt;strong&gt;沟通方式、原理、优缺点，应用&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;CTL（信任锚）由权威机构统一地发布1个可信的信任锚列表（Certificate Trust List）包括多个根CA证书文件的HASH结果和受信任CA对其签名&lt;/p&gt;
 &lt;p&gt;【信任锚里有根CA证书的hash、其他CA证书、CRL、信任策略和规则等。然后由一个我信任的CA对CTL签名，一般不用CTL里信任的CA来签名。】&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705156671337.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705156671337.png&#34;
 	
 	
 	
@@ -184,7 +184,7 @@
 &lt;p&gt;OCSP在线证书状态协议 Online Certificate Status Protocol 在线服务器&lt;/p&gt;
 &lt;p&gt;CRT：证书撤销树，对于各证书序列号进行一定的结构化，形成了HASH链&lt;/p&gt;
 &lt;p&gt;使用了merkle hash tree【区块链信任算法】&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705164608101.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705164608101.png&#34;
 	
 	
 	
@@ -197,7 +197,7 @@
 &lt;p&gt;拿加粗的子哈希算哈希，就可以推出根hash，验证起来需要更少的那啥&lt;/p&gt;
 &lt;h2 id=&#34;10-tls&#34;&gt;10 TLS&lt;/h2&gt;
 &lt;p&gt;handshake怎么shake的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705163142817.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705163142817.png&#34;
 	
 	
 	
@@ -208,7 +208,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;增加一个server对client的鉴别&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705208493971.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705208493971.png&#34;
 	
 	
 	
@@ -220,7 +220,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;如果server证书只能签名不能加密，则要生成一个临时公钥，签名后发给client【ServerKeyExchange】&lt;/p&gt;
 &lt;p&gt;两张图里的消息有什么含义 1.3和1.2的区别&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705208812117.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705208812117.png&#34;
 	
 	
 	
@@ -241,7 +241,7 @@
 &lt;p&gt;解决了在入侵场景下的高可用。黑客侵入了其中一个PKI节点无法获利，同时PKI系统任然保持可用性&lt;/p&gt;
 &lt;p&gt;【门限密码学：把密钥分成L份，当有其中f+1份时可以解密，否则解密不了】&lt;/p&gt;
 &lt;p&gt;eg. Shamir&amp;rsquo;s Secret Sharing 基于拉格朗日插值法&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705065190379.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705065190379.png&#34;
 	
 	
 	
@@ -252,7 +252,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;eg2. ITTC 基于离散对数的子密钥分配&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705065815902.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705065815902.png&#34;
 	
 	
 	
@@ -262,7 +262,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705065831688.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705065831688.png&#34;
 	
 	
 	
@@ -285,7 +285,7 @@
 &lt;p&gt;（2）限定CA能签发的顶级域名范围&lt;/p&gt;
 &lt;p&gt;（3）域名拥有者可以控制哪个CA给他签发证书&lt;/p&gt;
 &lt;p&gt;（4）server再次确认机制：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705067041133.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705067041133.png&#34;
 	
 	
 	
@@ -308,7 +308,7 @@
 &lt;p&gt;收到证书并验证通过后，公开日志服务器会向提交者返回一个凭据（SCT）Signed Certificate Timestamp。（有可能多个公开日志服务器，就会返回多个SCT）用户不仅需要验证证书，还需要验证相应的SCT（将SCT放入证书中，作为证书扩展）&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705068113028.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705068113028.png&#34;
 	
 	
 	
@@ -338,7 +338,7 @@
 &lt;p&gt;在带宽、计算能力、存储资源有限制的环境下，隐式证书是传统X.509证书的一种高效替代&lt;/p&gt;
 &lt;p&gt;X.509证书基本内容：订户身份信息+公钥数据+CA数字签名&lt;/p&gt;
 &lt;p&gt;隐式证书基本内容：中间公钥数据$P_U$  + 订户身份标识。 最终公钥 P=$P_{CA}$+$P_U$以及身份信息也有关  $P_{CA}$：CA证书公钥&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705069930310.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705069930310.png&#34;
 	
 	
 	
@@ -349,7 +349,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;使用：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705070190100.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705070190100.png&#34;
 	
 	
 	
@@ -359,7 +359,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705070203597.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705070203597.png&#34;
 	
 	
 	
@@ -383,7 +383,7 @@
 &lt;p&gt;Server 与Client之间基于共享秘密短期密钥key实现身份鉴别&lt;/p&gt;
 &lt;p&gt;KDC仅仅是允许进入应用系统，至于有什么权限、由应用系统自主决定&lt;/p&gt;
 &lt;p&gt;获取TGT：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705080938952.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705080938952.png&#34;
 	
 	
 	
@@ -395,7 +395,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;client发请求，KDC用client的master key加密一个会话密钥$S_{KDC-Client}$，用KDC的master key加密TGT，TGT里包含会话密钥和client信息（让client 鉴别KDC是KDC而非被伪造）&lt;/p&gt;
 &lt;p&gt;获取ST：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705139628762.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705139628762.png&#34;
 	
 	
 	
@@ -415,7 +415,7 @@
 &lt;p&gt;client将ST和Authenticator访问server，server用自己的主密钥解密ST得到会话密钥，在用会话密钥解密Authenticator，比较Authenticator里的client info和ST里的client info来确定client就是client&lt;/p&gt;
 &lt;p&gt;那如果TGT没过期，session key过期了呢？可以用TGT再申请一个，因为TGT用KDC的master key加密，KDC可以得到旧的session key和client info，进而再发一个session key。由于session key是TGT的一部分，这其实也就相当于重新申请了TGT&lt;/p&gt;
 &lt;p&gt;client鉴别server（双向鉴别）：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705080767000.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705080767000.png&#34;
 	
 	
 	
@@ -441,10 +441,10 @@
         </item>
         <item>
         <title>自然语言处理笔记</title>
-        <link>http://localhost:1313/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/</link>
+        <link>https://blog2.pillar.fun/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Wed, 27 Dec 2023 19:07:00 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/</guid>
+        <guid>https://blog2.pillar.fun/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/</guid>
         <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
 &lt;p&gt;ucas 2023秋 自然语言处理基础 胡玥、曹亚男&lt;/p&gt;
 &lt;p&gt;期末全是开放问题，因此弄清楚各种模型的优劣非常有必要。&lt;/p&gt;
@@ -463,7 +463,7 @@
 &lt;p&gt;常见的模型有DNN、CNN、RNN、GNN、LSTM、&lt;/p&gt;
 &lt;h2 id=&#34;task&#34;&gt;task&lt;/h2&gt;
 &lt;p&gt;NLP的经典问题有&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704274435391.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704274435391.png&#34;
 	
 	
 	
@@ -480,7 +480,7 @@
 &lt;p&gt;目标：抽取对象。eg：华为技术遥遥领先！-&amp;gt; 抽取出“华为”&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/51189078&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Aspect Term Extraction 论文阅读（一） - 知乎 (zhihu.com)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704948448294.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704948448294.png&#34;
 	
 	
 	
@@ -493,7 +493,7 @@
 &lt;p&gt;THA是用了attention机制的LSTM，用于获得上文（单向）已经标注过的aspect的信息，来指导当前aspect标注。&lt;/p&gt;
 &lt;p&gt;STN是LSTM，用于获得opinion的摘要信息。首先，STN单元获得基于给定aspect的opinion的表示，接下来利用attention机制来获得基于全局的opinion的表示。自此就可以获得基于当前aspect的opinion摘要。将aspect的表示和opinion摘要拼接作为特征，用于标注。&lt;/p&gt;
 &lt;p&gt;（表示就是一个框里三个圆圆）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704954212132.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704954212132.png&#34;
 	
 	
 	
@@ -505,7 +505,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;将ATE形式化为一个seq2seq的学习任务。在这个任务中，源序列和目标序列分别由单词和标签组成。为了使Seq2Seq学习更适合ATE,作者设计了门控单元网络和位置感知注意力机制。门控单元网络用于将相应的单词表示融入解码器，而位置感知注意力机制则用于更多地关注目标词的相邻词。&lt;/p&gt;
 &lt;p&gt;decoder包含一个门控单元，用于控制编码器和解码器产生的隐状态。当解码标签时，这个门控单元可以自动的整合来自编码器和解码器隐状态的信息。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704955929276.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704955929276.png&#34;
 	
 	
 	
@@ -519,7 +519,7 @@
 &lt;h4 id=&#34;观点抽取oe&#34;&gt;观点抽取（OE）&lt;/h4&gt;
 &lt;p&gt;一般都是先抽取aspect，在对aspect进行情感预测的流水线方式&lt;/p&gt;
 &lt;p&gt;IMN使用非流水线方式。与传统的多任务学习方法依赖于学习不同任务的共同特征不同，IMN引入了一种消息传递体系结构，通过一组共享的潜在变量将信息迭代地传递给不同的任务&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704957048177.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704957048177.png&#34;
 	
 	
 	
@@ -548,7 +548,7 @@
 &lt;p&gt;第10章 信息抽取 （要求掌握：实体和关系联合抽取基本方法原理）&lt;/p&gt;
 &lt;p&gt;第 11章 问答系统（要求掌握：检索式问答系统基本方法原理）&lt;/p&gt;
 &lt;h2 id=&#34;语言模型概念&#34;&gt;语言模型概念&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704349075208.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704349075208.png&#34;
 	
 	
 	
@@ -558,7 +558,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704349189011.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704349189011.png&#34;
 	
 	
 	
@@ -568,7 +568,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704349255995.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704349255995.png&#34;
 	
 	
 	
@@ -628,7 +628,7 @@ $$&lt;/p&gt;
 &lt;p&gt;PPO算法的核心在于更新策略梯度，主流方法有两种，分别是KL散度做penalty，另一种是Clip剪裁，它们的主要作用都是限制策略梯度更新的幅度，从而推导出不同的神经网络参数更新方式。&lt;/p&gt;
 &lt;p&gt;PPO算法具备Policy Gradient、TRPO的部分优点，采样数据和使用随机梯度上升方法优化代替目标函数之间交替进行，虽然标准的策略梯度方法对每个数据样本执行一次梯度更新，但PPO提出新目标函数，可以实现小批量更新。&lt;/p&gt;
 &lt;h3 id=&#34;dnnnnlm&#34;&gt;DNN（NNLM）&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704359720351.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704359720351.png&#34;
 	
 	
 	
@@ -639,7 +639,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;2-grambigram&#34;&gt;2-gram（bigram）&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704364780556.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704364780556.png&#34;
 	
 	
 	
@@ -649,7 +649,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704364894689.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704364894689.png&#34;
 	
 	
 	
@@ -660,7 +660,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中$\theta$就是训练过程中要学习的参数，有了这些参数就可以直接的到 $p(w_i|w_{i-1})$， 找到一组足够好的参数，就能让得到的$p(w_i|w_{i-1})$最接近训练语料库&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704365950174.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704365950174.png&#34;
 	
 	
 	
@@ -671,7 +671,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里的最大化就是损失函数最小（最接近0），因为P永远小于1，所以log永远是负数，他们加起来永远小于0，让log最大，也就是让log最接近0&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704366274757.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704366274757.png&#34;
 	
 	
 	
@@ -683,7 +683,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;n-gram&#34;&gt;n-gram&lt;/h4&gt;
 &lt;p&gt;拓展一下罢了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704366342703.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704366342703.png&#34;
 	
 	
 	
@@ -693,7 +693,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704366354123.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704366354123.png&#34;
 	
 	
 	
@@ -703,7 +703,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704366370789.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704366370789.png&#34;
 	
 	
 	
@@ -714,7 +714,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;rnnrnnlm&#34;&gt;RNN（RNNLM）&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704367534089.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704367534089.png&#34;
 	
 	
 	
@@ -724,7 +724,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704367561457.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704367561457.png&#34;
 	
 	
 	
@@ -734,7 +734,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704367582922.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704367582922.png&#34;
 	
 	
 	
@@ -744,7 +744,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704368432414.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704368432414.png&#34;
 	
 	
 	
@@ -773,7 +773,7 @@ $$&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;总的来说，不同模型的词向量之间的区别主要在于它们捕获和编码词义和上下文信息的方式。选择哪种词向量取决于具体的任务需求和计算资源。&lt;/p&gt;
 &lt;h3 id=&#34;nnlm的词向量&#34;&gt;NNLM的词向量&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704369375532.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704369375532.png&#34;
 	
 	
 	
@@ -784,7 +784,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;解决办法&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704369411606.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704369411606.png&#34;
 	
 	
 	
@@ -795,7 +795,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;通过一个|D| * |V|的矩阵，额可以将one-shot的编码转为D维的稠密的词向量，所以管他叫lookup表&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704369517877.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704369517877.png&#34;
 	
 	
 	
@@ -805,7 +805,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704369568799.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704369568799.png&#34;
 	
 	
 	
@@ -817,7 +817,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;NNLM 语言模型在训练语言模型同时也训练了词向量&lt;/p&gt;
 &lt;h3 id=&#34;rnnlm的词向量&#34;&gt;RNNLM的词向量&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704369951464.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704369951464.png&#34;
 	
 	
 	
@@ -827,7 +827,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704370827646.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704370827646.png&#34;
 	
 	
 	
@@ -839,7 +839,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;cw&#34;&gt;C&amp;amp;W&lt;/h3&gt;
 &lt;p&gt;C&amp;amp;W模型是靠两边猜中间的一种模型，输入层是wi上下文的词向量&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704371807694.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704371807694.png&#34;
 	
 	
 	
@@ -850,7 +850,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;score是wi中间这个word在这个位置有多合理，越高越合理。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704372099728.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704372099728.png&#34;
 	
 	
 	
@@ -866,7 +866,7 @@ $$&lt;/p&gt;
 &lt;p&gt;然后，我们会使用一种优化算法来最小化这个损失函数，这里是梯度下降，在每一次迭代中，我们都会根据当前的损失来更新我们的词向量。&lt;/p&gt;
 &lt;p&gt;训练的目标是在正样本中的score高，负样本的score低，然后score差的越大效果越好&lt;/p&gt;
 &lt;h3 id=&#34;cbow&#34;&gt;CBOW&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704372201199.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704372201199.png&#34;
 	
 	
 	
@@ -878,7 +878,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;CBOW也是靠两边猜中间，输入层是wi上下文词向量的平均值，目标是最小化（最收敛与0）上下文词的平均与目标词之间的距离。输出是&lt;/p&gt;
 &lt;h3 id=&#34;skip-gram&#34;&gt;skip-gram&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704372268757.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704372268757.png&#34;
 	
 	
 	
@@ -894,7 +894,7 @@ $$&lt;/p&gt;
 &lt;p&gt;在注意力机制中，Q、K、V 分别代表查询（Query）、键（Key）和值（Value）。&lt;/p&gt;
 &lt;p&gt;注意力机制的工作过程可以简单概括为：对于每一个查询，计算它与所有键的匹配程度（通常使用点积），然后对这些匹配程度进行归一化（通常使用 softmax 函数），得到每个键对应的&lt;strong&gt;权重&lt;/strong&gt;。最后，用这些权重对所有的值进行加权求和，得到最终的输出。&lt;/p&gt;
 &lt;p&gt;这种机制允许模型在处理一个元素时，考虑到其他相关元素的信息，从而捕捉输入元素之间的依赖关系。在自然语言处理、计算机视觉等领域，注意力机制已经被广泛应用，并取得了显著的效果。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704978816700.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704978816700.png&#34;
 	
 	
 	
@@ -904,7 +904,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704978826803.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704978826803.png&#34;
 	
 	
 	
@@ -914,7 +914,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704978837242.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704978837242.png&#34;
 	
 	
 	
@@ -930,7 +930,7 @@ $$&lt;/p&gt;
     &gt;https://www.bilibili.com/video/BV1dt4y1J7ov/?share_source=copy_web&amp;vd_source=2fbfeabcc6cdd857dcd6247eb0154d83&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Attention机制： &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1YA411G7Ep&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/video/BV1YA411G7Ep&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704455161185.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704455161185.png&#34;
 	
 	
 	
@@ -940,7 +940,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704455261000.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704455261000.png&#34;
 	
 	
 	
@@ -955,7 +955,7 @@ $$&lt;/p&gt;
 &lt;p&gt;A是一个注意力值，就是我们设置的这个字的注意力值&lt;/p&gt;
 &lt;p&gt;通过attention的学习，可以得到a1、a2……，这些就是K中各个向量对Q的权重&lt;/p&gt;
 &lt;p&gt;步骤1：计算 f ( Q ,Ki )&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704467445387.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704467445387.png&#34;
 	
 	
 	
@@ -966,7 +966,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;步骤2：计算对于Q 各个 Ki 的权重&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704467647363.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704467647363.png&#34;
 	
 	
 	
@@ -977,7 +977,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;步骤3：计算输出 Att-V值（各 Ki 乘以自己的权重，然后求和 ）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704467679320.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704467679320.png&#34;
 	
 	
 	
@@ -988,7 +988,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;举例1-seq2seqrnn2rnn的机器翻译中&#34;&gt;举例1， seq2seq（RNN2RNN）的机器翻译中&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704543763032.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704543763032.png&#34;
 	
 	
 	
@@ -1005,7 +1005,7 @@ $$&lt;/p&gt;
 &lt;p&gt;h可以表示为$h_t = f(W_{hh}h_{t-1} + W_{xh}x_t + b_h)$其中$h_t$ 是当前时间步的隐藏状态，$h_{t-1}$ 是前一时间步的隐藏状态，$x_t$ 是当前时间步的输入，$W_{hh}$ 和 $W_{xh}$ 是权重矩阵，$b_h$ 是偏置项，$f$ 是激活函数&lt;/p&gt;
 &lt;p&gt;不加注意力机智的seq2seq模型，encoder是RNN，decoder也是RNN，在encoder接受了$x_1$到$x_m$的词向量序列后，得到最终的隐藏状态$h_m$， 也就是$s_0$，作为decoder的初始状态。&lt;/p&gt;
 &lt;p&gt;如果不加注意力机制，decoder那边也就是靠隐藏状态、x和参数（A矩阵，偏置值b）来继续进行RNN的步骤。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704550430429.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704550430429.png&#34;
 	
 	
 	
@@ -1018,7 +1018,7 @@ $$&lt;/p&gt;
 &lt;p&gt;现在我们引入注意力机制，也就是图上的$c_0$，权重的计算按照上面所说的KQV计算方法，这里K是词向量集合x1,x2&amp;hellip; Q是隐藏状态。也就是对于每一个隐藏状态，都可以求一个关于词向量序列的权重值$\alpha$。&lt;/p&gt;
 &lt;p&gt;通过求出这一系列的$\alpha$，就可以加权求出上下文矩阵$c$，c知道当前隐藏状态和词向量矩阵的全部关系。&lt;/p&gt;
 &lt;p&gt;加了注意力机制之后，decoder的各个隐藏状态求解过程就会向之前提到的那样变得更复杂&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704551152595.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704551152595.png&#34;
 	
 	
 	
@@ -1029,7 +1029,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;而每一个步骤的c都不一样，比如&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704550965949.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704550965949.png&#34;
 	
 	
 	
@@ -1040,7 +1040,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;c0是s0对于x1,x2&amp;hellip;的att-V，也就是hm对于x1,x2&amp;hellip;的att-V；c1是隐藏状态s1对于x1,x2&amp;hellip;的att-V，c2是隐藏状态s2对于x1,x2&amp;hellip;的att-V这些c都需要花算力来算&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704551282267.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704551282267.png&#34;
 	
 	
 	
@@ -1052,7 +1052,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;注意力机制的问题是时间复杂度太大了。如果是简单的RNN2RNN，如果encoder词向量矩阵大小为m，decoder词向量矩阵大小为n，所需的时间复杂度为O(m+n)，而使用注意力机制之后就会变成O(mn)，还是打分函数比较简单的情况下。&lt;/p&gt;
 &lt;h3 id=&#34;注意力编码机制&#34;&gt;注意力编码机制&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704470189498.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704470189498.png&#34;
 	
 	
 	
@@ -1062,7 +1062,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704470407421.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704470407421.png&#34;
 	
 	
 	
@@ -1072,7 +1072,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704470394991.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704470394991.png&#34;
 	
 	
 	
@@ -1086,7 +1086,7 @@ $$&lt;/p&gt;
 &lt;p&gt;就是给每个词向量乘个权重加起来，被称作注意力池化（Attention Pooling）或加权求和（Weighted Sum）。这个操作的含义是将注意力权重分配给输入序列中的不同部分，从而形成一个汇聚了注意力的向量表示。&lt;/p&gt;
 &lt;p&gt;这个操作的效果是聚焦于输入序列中具有更高注意力权重的部分，形成一个综合的表示，其中对于重要的部分有更大的贡献。这对于处理序列数据中的上下文信息，关注重要元素，以及实现对不同部分不同程度的关注都非常有用，特别是在自然语言处理中的任务中。&lt;/p&gt;
 &lt;h2 id=&#34;预训练语言模型&#34;&gt;预训练语言模型&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704705278999.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704705278999.png&#34;
 	
 	
 	
@@ -1099,7 +1099,7 @@ $$&lt;/p&gt;
 &lt;h4 id=&#34;迁移学习&#34;&gt;迁移学习&lt;/h4&gt;
 &lt;p&gt;迁移学习（Transfer Learning）是一种机器学习方法，其核心思想是利用已有的知识来辅助学习新的知识。例如，已经会下中国象棋，就可以类比着来学习国际象棋；已经会编写Java程序，就可以类比着来学习C#。&lt;/p&gt;
 &lt;p&gt;迁移学习通常会关注有一个源域（源任务） $D_ {s}$ 和一个目标域（目标任务） $D_ {t}$ 的情况.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704705772371.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704705772371.png&#34;
 	
 	
 	
@@ -1110,7 +1110,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;迁移方式分为两种&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704705819455.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704705819455.png&#34;
 	
 	
 	
@@ -1121,7 +1121,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;几个范式&#34;&gt;几个范式&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704782526810.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704782526810.png&#34;
 	
 	
 	
@@ -1132,7 +1132,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h5 id=&#34;第三范式预训练-精调范式&#34;&gt;第三范式：预训练-精调范式&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704782261195.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704782261195.png&#34;
 	
 	
 	
@@ -1142,7 +1142,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704785636077.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704785636077.png&#34;
 	
 	
 	
@@ -1155,7 +1155,7 @@ $$&lt;/p&gt;
 &lt;p&gt;自回归：预测序列的下一个或者上一个&lt;/p&gt;
 &lt;p&gt;自编码：预测序列中的某一个或某几个&lt;/p&gt;
 &lt;p&gt;广义自回归：和自回归主要区别在于他们处理输入数据的方式。自回归预训练语言模型在生成序列时，会一个接一个地生成新的词，每个新词都依赖于前面的词。如GPT，而广义自回归预训练语言模型则更为灵活，它们可以在生成序列时考虑更多的上下文信息，模型不仅可以查看前面的词，还可以查看后面的词或者整个序列。如XLNet&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704787153210.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704787153210.png&#34;
 	
 	
 	
@@ -1171,7 +1171,7 @@ $$&lt;/p&gt;
 &lt;p&gt;feedforward： 作用是提取更深层次的特征。在每个序列的位置单独应用一个全连接前馈网络，由两个线性层和一个激活函数组成。线性层将每个位置的表示扩展，为学习更复杂的特征提供可能性，激活函数帮助模型学习更复杂的非线性特征，第二个线性层将每个位置的表示压缩回原始维度。这样，位置特征敏感的部分就会被表达出来，提供给后续网络学习。&lt;/p&gt;
 &lt;p&gt;就是十二个下图这样的小东西&lt;/p&gt;
 &lt;p&gt;transformer输入有token embedding和position embedding&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704860957530.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704860957530.png&#34;
 	
 	
 	
@@ -1182,7 +1182,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;对比一下transformer，transformer的decoder是6个右边的，少了一层multi-head attention的encoder-decoder注意力子层（cross-attention的那个子模块）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704861830326.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704861830326.png&#34;
 	
 	
 	
@@ -1194,7 +1194,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;6层attention堆叠就是六个encoder就是个小的encoder，每个encoder里都有attention机制，上图N=6的意思。&lt;/p&gt;
 &lt;p&gt;训练：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704865198754.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704865198754.png&#34;
 	
 	
 	
@@ -1206,7 +1206,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;maximize负数=近0最小化&lt;/p&gt;
 &lt;p&gt;与下游任务对接：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704865491544.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704865491544.png&#34;
 	
 	
 	
@@ -1217,7 +1217,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;把多序列通过一些特定的规则拼成一个单序列。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704865594321.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704865594321.png&#34;
 	
 	
 	
@@ -1230,7 +1230,7 @@ $$&lt;/p&gt;
 &lt;p&gt;微调：&lt;/p&gt;
 &lt;p&gt;任务微调有2种方式 ：① 只调任务参数 ② 任务参数和预训练模型参数一起调，这样可以让预训练模型更加适配任务&lt;/p&gt;
 &lt;p&gt;举例：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704866344121.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704866344121.png&#34;
 	
 	
 	
@@ -1240,7 +1240,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704866727437.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704866727437.png&#34;
 	
 	
 	
@@ -1251,7 +1251,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这儿的$L_1(C)$是上面提到的预训练过程中的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704866802266.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704866802266.png&#34;
 	
 	
 	
@@ -1265,7 +1265,7 @@ $$&lt;/p&gt;
 &lt;p&gt;用了transformer的encoder再加FFN（前馈神经网络，FFN 层有助于学习序列中的非线性关系和模式）层&lt;/p&gt;
 &lt;p&gt;【但是transformer的encoder不是带FeedForward吗？】FFN仅在MLM过程中有用，而BERT的最终输出是模型在整个预训练过程中学到的表示的某种组合。这些表示在后续的任务中可以进一步微调或者用作特征。（BYD，原来只是训练过程中的一个b东西）&lt;/p&gt;
 &lt;p&gt;下图中一个trm是一个子层，&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704867651617.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704867651617.png&#34;
 	
 	
 	
@@ -1275,7 +1275,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704867919696.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704867919696.png&#34;
 	
 	
 	
@@ -1290,7 +1290,7 @@ $$&lt;/p&gt;
 &lt;p&gt;Segment Embedding：是用来区分不同的句子的。在处理两个句子的任务（如自然语言推理）时，BERT需要知道每个单词属于哪个句子。&lt;/p&gt;
 &lt;p&gt;Position Embedding：由于Transformer模型并没有像循环神经网络那样的顺序性，因此需要显式地向模型添加位置信息，以保留句子中单词的顺序信息&lt;/p&gt;
 &lt;p&gt;训练：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704871798829.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704871798829.png&#34;
 	
 	
 	
@@ -1301,7 +1301,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;MLM：把一个序列的几个word给mask了让模型猜的训练方法。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704880632493.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704880632493.png&#34;
 	
 	
 	
@@ -1313,7 +1313,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;(2).句子顺序模型训练&lt;/p&gt;
 &lt;p&gt;凑一些下一句不是下一句的负样本来训练预训练模型对句子顺序的敏感。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704871959170.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704871959170.png&#34;
 	
 	
 	
@@ -1324,7 +1324,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;对接：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704872111654.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704872111654.png&#34;
 	
 	
 	
@@ -1337,7 +1337,7 @@ $$&lt;/p&gt;
 &lt;p&gt;微调同样有两种① 只调任务参数 ② 任务参数和预训练模型参数一起调，这样可以让预训练模型更加适配任务&lt;/p&gt;
 &lt;h6 id=&#34;其他&#34;&gt;其他&lt;/h6&gt;
 &lt;p&gt;RoBERTa：把BERT使用Adam默认的参数改为使用更大的batches，训练时把静态mask改为动态mask。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704873163103.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704873163103.png&#34;
 	
 	
 	
@@ -1351,7 +1351,7 @@ $$&lt;/p&gt;
 &lt;p&gt;BERT具备双向语言理解能力的却不具备做生成任务的能力。GPT拥有自回归特性的却不能更好的从双向理解语言.&lt;/p&gt;
 &lt;p&gt;（模型的&amp;quot;自回归&amp;quot;特性指的是，当前的观察值是过去观察值的加权平均和一个随机项）&lt;/p&gt;
 &lt;p&gt;BART使用标准的Transformer结构为基础，吸纳BERT和GPT的优点，使用&lt;strong&gt;多种噪声破坏原文本&lt;/strong&gt;，再将残缺文本通过序列到序列的任务重新复原（降噪自监督）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704880759669.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704880759669.png&#34;
 	
 	
 	
@@ -1363,7 +1363,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;BERT在预测时加了额外的FFN, 而BART没使用FFN.&lt;/p&gt;
 &lt;p&gt;（还记得这个Beyond吗）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704880695071.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704880695071.png&#34;
 	
 	
 	
@@ -1375,7 +1375,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;T5&lt;/p&gt;
 &lt;p&gt;给整个 NLP 预训练模型领域提供了一个通用框架，把所有NLP任务都转化成一种形式(Text-to-Text)，通过这样的方式可以用同样的模型，同样的损失函数，同样的训练过程，同样的解码过程来完成所有 NLP 任务。以后的各种NLP任务，只需针对一个超大预训练模型，考虑怎么把任转换成合适的文本输入输出。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704881664053.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704881664053.png&#34;
 	
 	
 	
@@ -1385,7 +1385,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704881694268.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704881694268.png&#34;
 	
 	
 	
@@ -1395,7 +1395,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704881712622.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704881712622.png&#34;
 	
 	
 	
@@ -1407,7 +1407,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h5 id=&#34;第四范式预训练提示预测范式pre-trainpromptpredict&#34;&gt;第四范式：预训练，提示，预测范式（Pre-train,Prompt,Predict）&lt;/h5&gt;
 &lt;p&gt;prompt挖掘工程&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704881803249.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704881803249.png&#34;
 	
 	
 	
@@ -1419,7 +1419,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;特点：不通过目标工程使预训练的语言模型（LM）适应下游任务，而是将下游任务建模的方式重新定义（Reformulate），通过利用合适prompt实现不对预训练语言模型改动太多，尽量在原始 LM上解决任务的问题。&lt;/p&gt;
 &lt;p&gt;实现方法eg：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704882346953.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704882346953.png&#34;
 	
 	
 	
@@ -1429,7 +1429,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704882361576.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704882361576.png&#34;
 	
 	
 	
@@ -1439,7 +1439,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704882378196.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704882378196.png&#34;
 	
 	
 	
@@ -1449,7 +1449,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704882674432.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704882674432.png&#34;
 	
 	
 	
@@ -1459,7 +1459,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704882723263.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704882723263.png&#34;
 	
 	
 	
@@ -1470,7 +1470,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;要素：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704882803241.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704882803241.png&#34;
 	
 	
 	
@@ -1483,7 +1483,7 @@ $$&lt;/p&gt;
 &lt;p&gt;输入端&lt;/p&gt;
 &lt;p&gt;prompt工程&lt;/p&gt;
 &lt;p&gt;完形填空和前缀提示&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704882845802.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704882845802.png&#34;
 	
 	
 	
@@ -1493,7 +1493,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704882862203.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704882862203.png&#34;
 	
 	
 	
@@ -1504,7 +1504,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;模板创建&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704883318434.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704883318434.png&#34;
 	
 	
 	
@@ -1515,7 +1515,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;输出端&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704883343584.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704883343584.png&#34;
 	
 	
 	
@@ -1526,7 +1526,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;方法&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704883381023.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704883381023.png&#34;
 	
 	
 	
@@ -1537,7 +1537,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;微调&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704883499101.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704883499101.png&#34;
 	
 	
 	
@@ -1551,7 +1551,7 @@ $$&lt;/p&gt;
 &lt;h5 id=&#34;第五范式大模型&#34;&gt;第五范式：大模型&lt;/h5&gt;
 &lt;p&gt;大语言模型 (Large Language Model，LLM) 通常指由大量参数（通常数十亿个权重或更多）组成的人工神经网络预训练语言模型，使用大量的计算资源在海量数据上进行训练。&lt;/p&gt;
 &lt;p&gt;大型语言模型是通用的模型，在广泛的任务（例如情感分析、命名实体识别或数学推理）中表现出色，具有与人类认证对齐的特点。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704890488901.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704890488901.png&#34;
 	
 	
 	
@@ -1561,7 +1561,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704890734795.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704890734795.png&#34;
 	
 	
 	
@@ -1571,7 +1571,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704891371789.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704891371789.png&#34;
 	
 	
 	
@@ -1581,7 +1581,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704891495297.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704891495297.png&#34;
 	
 	
 	
@@ -1591,7 +1591,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704891515801.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704891515801.png&#34;
 	
 	
 	
@@ -1601,7 +1601,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704891548168.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704891548168.png&#34;
 	
 	
 	
@@ -1612,7 +1612,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;不需要任务模型的意思是只要有预训练就行&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892005089.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892005089.png&#34;
 	
 	
 	
@@ -1622,7 +1622,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892027838.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892027838.png&#34;
 	
 	
 	
@@ -1634,7 +1634,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;（我靠，这要传统注意力算死了）&lt;/p&gt;
 &lt;p&gt;学习方法&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892066074.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892066074.png&#34;
 	
 	
 	
@@ -1645,7 +1645,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;因为上下文学习，在使用的时候也可以用zero-shot, one-shot和few-shot。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892306373.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892306373.png&#34;
 	
 	
 	
@@ -1655,7 +1655,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892321288.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892321288.png&#34;
 	
 	
 	
@@ -1666,7 +1666,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;chain-of-thought&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892359407.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892359407.png&#34;
 	
 	
 	
@@ -1676,7 +1676,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892375228.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892375228.png&#34;
 	
 	
 	
@@ -1686,7 +1686,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892402637.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892402637.png&#34;
 	
 	
 	
@@ -1696,7 +1696,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892464014.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892464014.png&#34;
 	
 	
 	
@@ -1706,7 +1706,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892496826.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892496826.png&#34;
 	
 	
 	
@@ -1717,7 +1717,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;与人类对齐：RLHF&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704892569477.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704892569477.png&#34;
 	
 	
 	
@@ -1730,7 +1730,7 @@ $$&lt;/p&gt;
 &lt;p&gt;简而言之：1、在人工标注数据上SFT（有监督微调）模型&lt;/p&gt;
 &lt;p&gt;2、多模型给标注人员做排序，用来训练奖励模型（RM）&lt;/p&gt;
 &lt;p&gt;3、使用强化学习PPO算法，交互地优化模型参数。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704894207867.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704894207867.png&#34;
 	
 	
 	
@@ -1741,7 +1741,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;文本分类在各个范式上的例子&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704894268859.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704894268859.png&#34;
 	
 	
 	
@@ -1751,7 +1751,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704894283289.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704894283289.png&#34;
 	
 	
 	
@@ -1761,7 +1761,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704894294431.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704894294431.png&#34;
 	
 	
 	
@@ -1771,7 +1771,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704894305898.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704894305898.png&#34;
 	
 	
 	
@@ -1781,7 +1781,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704894318376.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704894318376.png&#34;
 	
 	
 	
@@ -1791,7 +1791,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704894335472.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704894335472.png&#34;
 	
 	
 	
@@ -1801,7 +1801,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704894354621.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704894354621.png&#34;
 	
 	
 	
@@ -1813,7 +1813,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;方面级情感分类&#34;&gt;方面级情感分类&lt;/h2&gt;
 &lt;p&gt;方面级情感分类（Aspect-Level Sentiment Classification）是自然语言处理（NLP）中的一个任务，它的目标是识别文本中特定方面的情感倾向。例如，在产品评论中，“这款手机的电池寿命很长，但屏幕质量差。”这句话中，“电池寿命”这个方面的情感是积极的，而“屏幕质量”这个方面的情感是消极的。所以，方面级情感分类不仅要识别出文本中的各个方面，还要判断这些方面的情感倾向。这个任务在许多领域都有应用，比如产品评论分析、社交媒体监控等。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704946258919.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704946258919.png&#34;
 	
 	
 	
@@ -1823,7 +1823,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704946290972.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704946290972.png&#34;
 	
 	
 	
@@ -1834,7 +1834,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;问题定义&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704946620060.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704946620060.png&#34;
 	
 	
 	
@@ -1844,7 +1844,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704946709801.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704946709801.png&#34;
 	
 	
 	
@@ -1854,7 +1854,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704946746917.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704946746917.png&#34;
 	
 	
 	
@@ -1866,7 +1866,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;基本方法原理&#34;&gt;基本方法、原理&lt;/h3&gt;
 &lt;p&gt;子任务等：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704946917658.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704946917658.png&#34;
 	
 	
 	
@@ -1890,7 +1890,7 @@ $$&lt;/p&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;lstm&#34;&gt;LSTM&lt;/h4&gt;
 &lt;p&gt;LSTM 方法先将所有变长的句子均表示为一种固定长度的向量，具体做法是将最后一个word对应的计算得到的 hidden vector 作为整句话的表示（sentence vector）。之后，将最后得到的这个 sentence vector 送入一个 linear layer，使其输出为一个维度为情绪种类个数。最后对 linear layer 得出的结果做 softmax 并依次为依据选出该句（同时也是 target）的情绪分类。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704968549919.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704968549919.png&#34;
 	
 	
 	
@@ -1902,7 +1902,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;td-lstm&#34;&gt;TD-LSTM&lt;/h4&gt;
 &lt;p&gt;将输入的句子根据 aspect 分为两部分，两边都朝着 aspect 的方向分别同时把 words 送入两个 LSTM 中&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704968574703.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704968574703.png&#34;
 	
 	
 	
@@ -1914,7 +1914,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;tc-lstm&#34;&gt;TC-LSTM&lt;/h4&gt;
 &lt;p&gt;与 TD-LSTM 唯一的不同就是在 input 时在每个 word embedding vector 后面拼接上 aspect vector（如果 aspect 中有多个 word，则取平均）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704963182156.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704963182156.png&#34;
 	
 	
 	
@@ -1925,7 +1925,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;at-lstm&#34;&gt;AT-LSTM&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704970432154.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704970432154.png&#34;
 	
 	
 	
@@ -1937,7 +1937,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;对隐藏状态h和aspect的词嵌入后施加attention&lt;/p&gt;
 &lt;h4 id=&#34;atae-lstm&#34;&gt;ATAE-LSTM&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704970484908.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704970484908.png&#34;
 	
 	
 	
@@ -1949,7 +1949,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;在LSTM的输入方面在concat一个aspect的词向量，说明aspect的重要性&lt;/p&gt;
 &lt;h4 id=&#34;ian&#34;&gt;IAN&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704971332861.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704971332861.png&#34;
 	
 	
 	
@@ -1967,7 +1967,7 @@ $$&lt;/p&gt;
 &lt;h4 id=&#34;名词解释&#34;&gt;名词解释&lt;/h4&gt;
 &lt;p&gt;span：指的是文本中的一段连续的子串，这段子串对应于某个&lt;em&gt;&lt;strong&gt;实体&lt;/strong&gt;&lt;/em&gt;或者&lt;em&gt;&lt;strong&gt;关系&lt;/strong&gt;&lt;/em&gt;的具体文本表述。&lt;/p&gt;
 &lt;h4 id=&#34;dygie&#34;&gt;DyGIE&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704981462026.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704981462026.png&#34;
 	
 	
 	
@@ -1987,7 +1987,7 @@ $$&lt;/p&gt;
 &lt;p&gt;Final Prediction Layer（最终预测层）：去预测任务—实体任务，关系任务&lt;/p&gt;
 &lt;h4 id=&#34;oneie&#34;&gt;OneIE&lt;/h4&gt;
 &lt;p&gt;任务定义：给定一个输入的句子，输出一个图，图中节点(含节点类型)代表实体提及或者触发词，图中的边表示表示节点之间的关系&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704982012782.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704982012782.png&#34;
 	
 	
 	
@@ -1997,7 +1997,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704982419293.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704982419293.png&#34;
 	
 	
 	
@@ -2011,7 +2011,7 @@ $$&lt;/p&gt;
 &lt;p&gt;Beam Search（集束搜索）是一种启发式图搜索算法，通常用在图的解空间比较大的情况下，为了减少搜索所占用的空间和时间，在每一步深度扩展的时候，剪掉一些质量比较差的结点，保留下一些质量较高的结点。Beam Search不保证全局最优，但是比greedy search搜索空间更大，一般结果比greedy search要好。&lt;/p&gt;
 &lt;p&gt;在这里只保留最好的&lt;/p&gt;
 &lt;h4 id=&#34;uie&#34;&gt;UIE&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704982684822.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704982684822.png&#34;
 	
 	
 	
@@ -2021,7 +2021,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704982702205.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704982702205.png&#34;
 	
 	
 	
@@ -2032,7 +2032,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;uniex&#34;&gt;UniEX&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704982730929.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704982730929.png&#34;
 	
 	
 	
@@ -2042,7 +2042,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1704982749870.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1704982749870.png&#34;
 	
 	
 	
@@ -2053,7 +2053,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;检索式问答系统&#34;&gt;检索式问答系统&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705210507003.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705210507003.png&#34;
 	
 	
 	
@@ -2065,7 +2065,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;1、问题分析模块：问题分类和关键词提取&lt;/p&gt;
 &lt;p&gt;问题分类：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705210654986.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705210654986.png&#34;
 	
 	
 	
@@ -2077,7 +2077,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;关键词提取：根据问题分类，用&lt;strong&gt;序列标注法&lt;/strong&gt;抽取相应类别的&lt;strong&gt;实体&lt;/strong&gt;做为检索关键词&lt;/p&gt;
 &lt;p&gt;2、检索模块：检索问题答案所在文档与段落&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705210788393.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705210788393.png&#34;
 	
 	
 	
@@ -2088,7 +2088,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;3、 答案抽取模块：在相关片段中抽取备选答案，并对备选答案进行排序&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705210839822.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705210839822.png&#34;
 	
 	
 	
@@ -2103,7 +2103,7 @@ $$&lt;/p&gt;
 &lt;p&gt;Document Retriever + Reading Comprehension Reader框架&lt;/p&gt;
 &lt;h4 id=&#34;drqa&#34;&gt;DrQA&lt;/h4&gt;
 &lt;p&gt;TF-IDF：（Term Frequency-Inverse Document Frequency，词频-逆文件频率）是一种用于信息检索和数据挖掘的常用加权技术。它是一种统计方法，用以评估一字词对于一个文件集或一个语料库中的其中一份文件的重要程度&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705210960856.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705210960856.png&#34;
 	
 	
 	
@@ -2114,7 +2114,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;使用TF-IDF获取与问题topK相关的文档&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705210980785.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705210980785.png&#34;
 	
 	
 	
@@ -2127,7 +2127,7 @@ $$&lt;/p&gt;
 &lt;p&gt;然后将对topK使用抽取式阅读理解，从原文中抽取出可以回答的文本&lt;/p&gt;
 &lt;h4 id=&#34;evidence-aggregation-for-answer-re-ranking-in-open-domain-question-answering&#34;&gt;Evidence Aggregation for Answer Re-Ranking in Open-Domain Question Answering&lt;/h4&gt;
 &lt;p&gt;有些问题需要来自不同来源的证据相结合才能正确回答。解决方法：strength-based re-ranker&amp;amp;coverage-based re-ranker&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705235444754.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705235444754.png&#34;
 	
 	
 	
@@ -2138,7 +2138,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;strength-based re-ranker的基本思想是，正确的答案通常会被更多的段落反复提及&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705235457636.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705235457636.png&#34;
 	
 	
 	
@@ -2149,7 +2149,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;coverage-based re-ranker考虑每个答案在覆盖不同证据方面的能力，这里用一个BiLSTM来计算答案支撑片段的相似表征【指一个答案和它的支撑片段在表征空间中的相似度】，在垮文本上的相似表征很很高说明这个答案更可靠&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705235473330.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705235473330.png&#34;
 	
 	
 	
@@ -2159,7 +2159,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705235487967.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705235487967.png&#34;
 	
 	
 	
@@ -2175,7 +2175,7 @@ $$&lt;/p&gt;
 &lt;p&gt;问题引入：&lt;/p&gt;
 &lt;p&gt;1）需要具有强监督的支持证据：监督数据难以获得&lt;/p&gt;
 &lt;p&gt;2）利用IR（信息检索）系统检索候选证据：QA与IR存在一定差异性，IR更关注词法或语义相似性，QA对于语言理解层次更丰富&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705235654530.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705235654530.png&#34;
 	
 	
 	
@@ -2186,7 +2186,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;就是一个S是打分函数。评价retrieval和评价reader是两个不同的，$s_{retr}$是评价这个block和问题的相关性的，$S_{read}$是评价块儿里的文本和q的相关性的。这个里面的bert是用来理解retrieval和question的。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705235732678.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705235732678.png&#34;
 	
 	
 	
@@ -2197,7 +2197,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;每个块通过BERT和权重矩阵b生成隐藏向量h，问题通过BERT和权重矩阵q生成隐藏向量h，通过点积判断相关性&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705235784735.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705235784735.png&#34;
 	
 	
 	
@@ -2209,7 +2209,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;BERT_R+MLP生成s，给S_read来评分&lt;/p&gt;
 &lt;p&gt;有监督训练，需要手标与a有关的s&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705239164034.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705239164034.png&#34;
 	
 	
 	
@@ -2222,7 +2222,7 @@ $$&lt;/p&gt;
 &lt;p&gt;有挑战，但是懒得管了&lt;/p&gt;
 &lt;h4 id=&#34;基于预训练的retriever-free方法&#34;&gt;基于预训练的Retriever-Free方法&lt;/h4&gt;
 &lt;p&gt;对预训练模型进行微调，使其能够在没有任何外部上下文或知识的情况下回答问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705240830964.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705240830964.png&#34;
 	
 	
 	
@@ -2235,7 +2235,7 @@ $$&lt;/p&gt;
 &lt;p&gt;使用span corruption来预训练&lt;/p&gt;
 &lt;p&gt;Span Corruption是T5模型预训练任务中的一种方法。它将完整的句子根据随机的span进行掩码。例如，原句：“Thank you for inviting me to your party last week”，Span Corruption之后可能得到输入：“Thank you [X] me to your party [Y] week”，目标：“[X] for inviting [Y] last [Z]”。其中[X]等一系列辅助编码称为sentinels。&lt;/p&gt;
 &lt;p&gt;这种方法的目标是让模型学习如何从被打乱或被掩码的句子中恢复出原始的句子。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1705234885580.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1705234885580.png&#34;
 	
 	
 	
@@ -2253,335 +2253,11 @@ $$&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>编译程序高级教程</title>
-        <link>http://localhost:1313/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/</link>
-        <pubDate>Fri, 15 Dec 2023 17:37:48 +0800</pubDate>
-        
-        <guid>http://localhost:1313/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/</guid>
-        <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
-&lt;p&gt;本笔记是ucas李炼编译程序高级教程课程的笔记。属于知识点碎碎念，不知道对作业、考试有没有作用。&lt;/p&gt;
-&lt;h2 id=&#34;文法&#34;&gt;文法&lt;/h2&gt;
-&lt;p&gt;文法：终结符、非终结符、产生式、开始符号（或者识别符号）的四元组&lt;/p&gt;
-&lt;p&gt;产生式：可以理解为推导规则&lt;/p&gt;
-&lt;p&gt;终结符、非终结符：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;非终结符：能出现在推导左边的就是非终结符&lt;/li&gt;
-&lt;li&gt;终结符：不能出现在推导左边的局势终结符&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;即能否进一步推导细分是区分终结符和非终结符的关键&lt;/p&gt;
-&lt;p&gt;句型、句子：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;句型：符号串x是从开始符号S推导出来的，则x是文法G[S]的句型&lt;/li&gt;
-&lt;li&gt;句子：若推导出的符号串x仅由终结符号组成，则x为G[S]的句子&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;语言：从S推导出的所有句子的集合，也就是从S开始推导出的只有终结符的东西 G产生的语言记作L（G）&lt;/p&gt;
-&lt;p&gt;文法的等价： 如果L(G)==L(G2)，则G1等价于G2&lt;img src=&#34;http://localhost:1313/images/1702825475406.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702825475406&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;3型文法==有限自动机： 如果文法的产生式P都有A→aB或A→a的形式，其中A、B∈$V_N$，a∈$V_T$。3型文法的许多性质是可判定的常用于编译器的词法分析程序的构造&lt;/p&gt;
-&lt;p&gt;左右线性文法：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;右线性文法：形如A→aB或A→a&lt;/li&gt;
-&lt;li&gt;左线性文法：形如A→Ba或A→a&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;词法&#34;&gt;词法&lt;/h2&gt;
-&lt;p&gt;字母表Σ&lt;/p&gt;
-&lt;p&gt;正规式==3型文法（感觉正规式就是正则表达式）&lt;/p&gt;
-&lt;p&gt;正规式和正规集：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;正规集&lt;/strong&gt;可以用&lt;strong&gt;正规式&lt;/strong&gt;表示&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;正规式&lt;/strong&gt;是表示&lt;strong&gt;正规集&lt;/strong&gt;一种方法&lt;/li&gt;
-&lt;li&gt;一个字集合是&lt;strong&gt;正规集&lt;/strong&gt;当且仅当它能用&lt;strong&gt;正规式&lt;/strong&gt;表示&lt;/li&gt;
-&lt;li&gt;正规集是正规式表示的语言&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;正规式可以递归定义&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702827890746.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702827890746&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;且正规式有运算优先级&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702827940374.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702827940374&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;感觉正规式和正则表达式没啥区别&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702828036529.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702828036529&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702828089523.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702828089523&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;（这他妈不就是正则表达式吗）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702828125607.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702828125607&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;有限状态自动机&lt;/p&gt;
-&lt;p&gt;五元式M = (S, ∑, δ, s0, F)，其中&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;S是状态集合&lt;/li&gt;
-&lt;li&gt;∑是字母表&lt;/li&gt;
-&lt;li&gt;s0为开始状态，属于S&lt;/li&gt;
-&lt;li&gt;F是接受（或终止）状态的集合，属于S&lt;/li&gt;
-&lt;li&gt;δ是转换函数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;只有转换函数的表示稍微难理解一点，下面是一个例子&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702830079847.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702830079847&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702830092290.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702830092290&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;也可以转成转换表&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702830424900.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702830424900&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;只要有从s0到F内元素的路径，NFA就接受这个串（串也被称为语言）&lt;/p&gt;
-&lt;p&gt;根据是否有ε转换细分成两种&lt;/p&gt;
-&lt;h3 id=&#34;二型文法&#34;&gt;二型文法&lt;/h3&gt;
-&lt;p&gt;设G=(VN,Vt,P,S)，如果它的每个产生式有如下形式，A→β，A∈VN，β∈(VN∪VT)*，则G是二型文法【即，所有的产生式都是非终结符推别的】&lt;/p&gt;
-&lt;p&gt;二型文法==下推自动机（PDA）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702837305466.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702837305466&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;最右（左）推导：推导的每一步都是替代最右（左）边非终结符的推导&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702837388134.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702837388134&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;二义性文法：一个文法，如果存在某个句子有不止一棵分析树与之对应，则称这个文法是二义的&lt;/p&gt;
-&lt;p&gt;一个二义性的文法是&lt;strong&gt;可能&lt;/strong&gt;将其改写，得到一个等价的无二义性的文法的。这种变换不总是可行的，具体看看第三章ppt吧&lt;/p&gt;
-&lt;p&gt;自上而下、自下而上：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;对任何输入串，试图用一切可能的方法，从文法开始符号出发，自上而下、从左到右地为输入串建立分析树，&lt;strong&gt;即为输入串寻找最左推导&lt;/strong&gt;。
-&lt;ul&gt;
-&lt;li&gt;消除左递归&lt;/li&gt;
-&lt;li&gt;&lt;img src=&#34;http://localhost:1313/images/1702837838455.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702837838455&#34;
-	
-	
-&gt;&lt;/li&gt;
-&lt;li&gt;左递归的分类
-&lt;ul&gt;
-&lt;li&gt;直接左递归：直接见诸于产生式的左递&lt;/li&gt;
-&lt;li&gt;一般的左递归：如S→Aa|b  A→Ac|Sd|
-&lt;ul&gt;
-&lt;li&gt;直接左递归消除：
-&lt;ul&gt;
-&lt;li&gt;&lt;img src=&#34;http://localhost:1313/images/1702837997032.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702837997032&#34;
-	
-	
-&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;一般左递归消除：
-&lt;ul&gt;
-&lt;li&gt;&lt;img src=&#34;http://localhost:1313/images/1702838049872.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702838049872&#34;
-	
-	
-&gt;&lt;/li&gt;
-&lt;li&gt;&lt;img src=&#34;http://localhost:1313/images/1702866138165.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702866138165&#34;
-	
-	
-&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;文法G满足一定条件可以唯一的选择产生式继续推导&lt;/p&gt;
-&lt;p&gt;FIRST集：令文法G是不含左递归的文法，对G的非终结符的候选α，定义它的开始符号（终结首符）集合&lt;/p&gt;
-&lt;p&gt;求FIRST集：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;直接收取：对形如U－a…的产生式（其中a是终结符），把a收入到First(U)中&lt;/li&gt;
-&lt;li&gt;反复传送：对形入U－P…的产生式（其中P是非终结符），应把First(P)中的全部内容传送到First(U)中。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702869172762.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702869172762&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702869180028.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702869180028&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;在不含左递归且每个非终结符所有选择的FIRST集都两两不相交的条件下（互相求∩为空集），存在可能构造专门的递归下降分析器&lt;/p&gt;
-&lt;p&gt;FOLLOW集合：Follow集合是针对非终结符而言的，Follow(U)所表达的是句型中非终结符U所有可能的后随终结符号的集合（U后面可能跟着的终结符的集合）&lt;/p&gt;
-&lt;p&gt;求FOLLOW集：例，求FOLLOW(U)&lt;/p&gt;
-&lt;p&gt;（1）将 $ 放到follow（S）中，其中S是文法的开始符号。&lt;/p&gt;
-&lt;p&gt;（2）如果存、A→αBβ，那么first（β）中除ε之外加入follow（B）中。 【 follow(B)是求跟在B后的终结符或$组成的集合，因此对于跟在B后的β，它的first集合就是follow(B)的子集 】&lt;/p&gt;
-&lt;p&gt;（3）如果存在A→αB，或A→αBβ， 且first（β）包含ε， follow（A）加入follow（B）中。 【 对于A→αBβ,且β多步推导出ε ，那么可以用αB替换A, B后面紧跟的字符就是A后面紧跟的字符】&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702869910505.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702869910505&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;预测分析表&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702869980264.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702869980264&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;例，上面那个的预测分析表：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702870003296.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702870003296&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;非递归预测分析&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1702870062669.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1702870062669&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;LL(1)文法：&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leiblog.wang/%E7%BC%96%E8%AF%91%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://leiblog.wang/%E7%BC%96%E8%AF%91%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&lt;/a&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/m0_67877471/article/details/124776449&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://blog.csdn.net/m0_67877471/article/details/124776449&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.cnblogs.com/acgoto/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.cnblogs.com/henuliulei/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_43319080/article/details/106379883#:~:text=%EF%BC%881%EF%BC%89%E5%B0%86%20%24%20%E6%94%BE%E5%88%B0follow%EF%BC%88S%EF%BC%89%E4%B8%AD%EF%BC%8C%E5%85%B6%E4%B8%ADS%E6%98%AF%E6%96%87%E6%B3%95%E7%9A%84%E5%BC%80%E5%A7%8B%E7%AC%A6%E5%8F%B7%E3%80%82%20%EF%BC%882%EF%BC%89%E5%A6%82%E6%9E%9C%E5%AD%98%E5%9C%A8%E4%B8%80%E4%B8%AA%E4%BA%A7%E7%94%9F%E5%BC%8FA%E2%86%92%CE%B1B%CE%B2%EF%BC%8C%E9%82%A3%E4%B9%88first%EF%BC%88%CE%B2%EF%BC%89%E4%B8%AD%20%E9%99%A4%CE%B5%E4%B9%8B%E5%A4%96%20%E7%9A%84%E6%89%80%E6%9C%89%E7%AC%A6%E5%8F%B7%E9%83%BD%E5%9C%A8follow%EF%BC%88B%EF%BC%89%E4%B8%AD%E3%80%82,%E3%80%90%20follow%20%28B%29%E6%98%AF%E6%B1%82%E8%B7%9F%E5%9C%A8B%E5%90%8E%E7%9A%84%E7%BB%88%E7%BB%93%E7%AC%A6%E6%88%96%24%E7%BB%84%E6%88%90%E7%9A%84%E9%9B%86%E5%90%88%EF%BC%8C%E5%9B%A0%E6%AD%A4%E5%AF%B9%E4%BA%8E%E8%B7%9F%E5%9C%A8B%E5%90%8E%E7%9A%84%CE%B2%EF%BC%8C%E5%AE%83%E7%9A%84first%E9%9B%86%E5%90%88%E5%B0%B1%E6%98%AFfollow%20%28B%29%E7%9A%84%E5%AD%90%E9%9B%86%20%E3%80%91%20%EF%BC%883%EF%BC%89%E5%A6%82%E6%9E%9C%E5%AD%98%E5%9C%A8%E4%B8%80%E4%B8%AA%E4%BA%A7%E7%94%9F%E5%BC%8FA%E2%86%92%CE%B1B%EF%BC%8C%E6%88%96%E5%AD%98%E5%9C%A8%E4%BA%A7%E7%94%9F%E5%BC%8FA%E2%86%92%CE%B1B%CE%B2%E4%B8%94first%EF%BC%88%CE%B2%EF%BC%89%E5%8C%85%E5%90%AB%CE%B5%EF%BC%8C%E9%82%A3%E4%B9%88follow%EF%BC%88A%EF%BC%89%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AC%A6%E5%8F%B7%E9%83%BD%E5%9C%A8follow%EF%BC%88B%EF%BC%89%E4%B8%AD%E3%80%82&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;编译原理FOLLOW集的求法_follow集合怎么求-CSDN博客&lt;/a&gt;&lt;/p&gt;
-</description>
-        </item>
-        <item>
         <title>网络认证技术作业三</title>
-        <link>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</link>
+        <link>https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</link>
         <pubDate>Wed, 29 Nov 2023 19:56:28 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</guid>
+        <guid>https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</guid>
         <description>&lt;p&gt;为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;choco install openssl&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;首先生成私钥&lt;/p&gt;
@@ -2645,7 +2321,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;subjectAltName = email:copy&lt;/code&gt;用于指定证书的主题可选名称（Subject Alternative Name）。主题可选名称是电子邮件地址，该地址从证书的主题名称字段中复制&lt;/p&gt;
 &lt;p&gt;生成的时候国家地区公司啥的都不重要，我直接敲回车按默认了。邮箱写自己的就行了。&lt;/p&gt;
 &lt;p&gt;直接用windwos自带的证书查看器查看这个证书。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701257323787.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701257323787.png&#34;
 	
 	
 	
@@ -2656,7 +2332,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;版本v3是指我们使用了x.509第3版本，然后序列号是有证书生成算法生成的，唯一的指定这个证书，像身份证号似的。签名算法和哈希算法是一个声明，颁发者是我们刚才在生成证书时写的。有效期由我们刚才的 &lt;code&gt;-days&lt;/code&gt; 参数指明，使用者和颁发者一样。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701257667795.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701257667795.png&#34;
 	
 	
 	
@@ -2667,7 +2343,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;公钥直接在证书文件里保存。公钥参数0500表示NULL，这是因为RSA的公钥的参数（模数和公开指数）已经在公钥字段中给出，所以不需要在公钥参数字段中再给出，如果是其他的加密算法，可能会包含其他信息。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701257930426.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701257930426.png&#34;
 	
 	
 	
@@ -2680,7 +2356,7 @@ $$&lt;/p&gt;
 &lt;p&gt;基本约束&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Subject Type=End Entity&lt;/strong&gt; ：这表示该证书是一个终端实体证书，而不是CA（证书颁发机构）证书。也就是说这个证书不能用于签发/创建其他证书。&lt;strong&gt;Path Length Constraint=None&lt;/strong&gt; ：这表示路径长度没有设置，准许其签发多级的数字证书。然而，由于Subject Type=End Entity，这个证书不能用于签发其他证书，所以这个设置在这种情况下没有意义。这是由于我们使用了 &lt;code&gt;basicConstraints = CA:FALSE&lt;/code&gt;的选项。&lt;/p&gt;
 &lt;p&gt;下面的其他拓展都在-extension部分说过了，这里就不多赘述了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701253924073.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701253924073.png&#34;
 	
 	
 	
@@ -2691,7 +2367,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后安装这个证书，并且选择保存路径为受信任的根证书颁发机构&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701254826717.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701254826717.png&#34;
 	
 	
 	
@@ -2702,7 +2378,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;我使用的客户端是outlook。使用的邮箱服务是qq邮箱。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701253859046.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701253859046.png&#34;
 	
 	
 	
@@ -2713,7 +2389,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;在outlook里添加我的证书&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701254522179.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701254522179.png&#34;
 	
 	
 	
@@ -2723,7 +2399,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701254551598.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701254551598.png&#34;
 	
 	
 	
@@ -2733,7 +2409,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701254581460.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701254581460.png&#34;
 	
 	
 	
@@ -2743,7 +2419,7 @@ $$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701254667232.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701254667232.png&#34;
 	
 	
 	
@@ -2759,11 +2435,11 @@ $$&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;openssl&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pkcs12&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cacert&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pfx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inkey&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pem&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;cacert&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;crt&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl pkcs12 -export -out cacert.pfx -inkey .\private.pem -in .\cacert.crt
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;接下来是导入助教的证书，首先在outlook里新建一个联系人&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701255095693.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701255095693.png&#34;
 	
 	
 	
@@ -2784,7 +2460,7 @@ $$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;code&gt;openssl pkcs12 -nokeys&lt;/code&gt;命令用于从PKCS#12文件（通常具有.pfx或.p12扩展名）中提取证书，-nokeys指定不包含私钥，这样生成的output.cer不能做任何需要私钥的操作（我们也没有要用私钥的操作）&lt;/p&gt;
 &lt;p&gt;import password即使提供的私钥.txt的内容。然后就可以成功导入了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701255140765.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701255140765.png&#34;
 	
 	
 	
@@ -2795,7 +2471,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后在发送邮件的时候，在选项里把加密和签署都点了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1701255501352.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1701255501352.png&#34;
 	
 	
 	
@@ -2809,10 +2485,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>IKEv2标准阅读</title>
-        <link>http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</link>
+        <link>https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</link>
         <pubDate>Thu, 19 Oct 2023 16:31:55 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</guid>
+        <guid>https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</guid>
         <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
 &lt;p&gt;ucas 2023秋 网络认证技术&lt;/p&gt;
 &lt;p&gt;作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。&lt;/p&gt;
@@ -2834,7 +2510,7 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;11-使用场景&#34;&gt;1.1 使用场景&lt;/h2&gt;
 &lt;p&gt;IP 安全性 （IPsec） 为 IP 数据报提供机密性、数据完整性、访问控制和数据源身份验证，这些服务是通过维护 IP 数据报的源和接收方之间的共享状态来提供的。以手动方式建立此共享状态不能很好地扩展。IKEv2正是这样一个动态建立此状态的协议。IKE 在双方之间执行相互身份验证，并建立 IKE 安全关联 （SA），该关联包含共享机密信息，可用于高效建立用于封装安全有效负载 （ESP） [ESP] 或身份验证标头 （AH） [AH] 的 SA，以及一组加密算法，供 SA 用于保护其承载的流量。IKE 用于在许多不同的场景中协商 ESP 或 AH SA，每种方案都有自己的特殊要求。&lt;/p&gt;
 &lt;h3 id=&#34;111-隧道模式下的安全网关到安全网关&#34;&gt;1.1.1 隧道模式下的安全网关到安全网关&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1697641620088.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1697641620088.png&#34;
 	
 	
 	
@@ -2846,7 +2522,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;在此方案中，IP 连接的两个endpoint都不实现 IPsec，但它们之间的网络节点会保护部分方式的流量。保护对endpoint是透明的，并且依赖于普通路由通过隧道终结点发送数据包进行处理。每个endpoint将宣布其后subnet的地址集，数据包将以隧道模式发送，其中内部 IP 标头将包含实际端点的 IP 地址。&lt;/p&gt;
 &lt;h3 id=&#34;112-端点到端点传输模式&#34;&gt;1.1.2 端点到端点传输模式&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1697642019874.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1697642019874.png&#34;
 	
 	
 	
@@ -2859,7 +2535,7 @@ $$&lt;/p&gt;
 &lt;p&gt;在此方案中，IP 连接的两个终结点都实现 IPsec，这是 [IPSECARCH] 中主机的要求。该模式通常使用没有内部 IP 标头。将协商一对地址，以便此 SA 保护数据包。这些endpoint可以根据参与者的 IPsec 身份验证身份实现应用层访问控制。此方案实现了端到端安全性。虽然此场景可能不完全适用于 IPv4 公网，但已在使用 IKEv1 的内网内的特定场景中成功部署。在向 IPv6 过渡期间和采用 IKEv2 期间，应该更广泛地启用它。&lt;/p&gt;
 &lt;p&gt;在这种情况下，一个或两个受保护的端点可能位于网络地址转换 （NAT） 节点后面，在这种情况下，必须对隧道数据包进行 UDP 封装，以便 UDP 标头中的端口号可用于标识 NAT “后面”的各个endpoint。&lt;/p&gt;
 &lt;h3 id=&#34;113隧道模式下的端点到安全网关&#34;&gt;1.1.3隧道模式下的端点到安全网关&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/1697642991491.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1697642991491.png&#34;
 	
 	
 	
@@ -2920,44 +2596,44 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Notation&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;Payload&lt;/span&gt; 
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Notation        Payload 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;----------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;AUTH&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;Authentication&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AUTH            Authentication 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CERT&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;Certificate&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CERT            Certificate 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CERTREQ&lt;/span&gt;         &lt;span class=&#34;n&#34;&gt;Certificate&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Request&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CERTREQ         Certificate Request 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CP&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Configuration&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CP              Configuration 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;D&lt;/span&gt;               &lt;span class=&#34;n&#34;&gt;Delete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D               Delete 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;EAP&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Extensible&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Authentication&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;EAP             Extensible Authentication 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;HDR&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;IKE&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;header&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HDR             IKE header (not a payload) 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;IDi&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Identification&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Initiator&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IDi             Identification - Initiator 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;IDr&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Identification&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Responder&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IDr             Identification - Responder 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;KE&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Key&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Exchange&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;KE              Key Exchange 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Ni&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Nr&lt;/span&gt;          &lt;span class=&#34;n&#34;&gt;Nonce&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ni, Nr          Nonce 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;N&lt;/span&gt;               &lt;span class=&#34;n&#34;&gt;Notify&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;N               Notify 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;SA&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Security&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Association&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SA              Security Association 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;SK&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Encrypted&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Authenticated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SK              Encrypted and Authenticated
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;TSi&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Traffic&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Selector&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Initiator&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TSi             Traffic Selector - Initiator 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;TSr&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Traffic&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Selector&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Responder&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TSr             Traffic Selector - Responder 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;               &lt;span class=&#34;n&#34;&gt;Vendor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ID&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;V               Vendor ID
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;第 3 节介绍了每个有效负载的内容的详细信息。可能选择显示的有效负载将显示在括号中，例如 [CERTREQ];这表示可以选择包含证书请求有效负载。&lt;/p&gt;
@@ -3034,618 +2710,17 @@ $$&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>Cuda实现CNN推理与卷积</title>
-        <link>http://localhost:1313/p/cuda%E5%AE%9E%E7%8E%B0cnn%E6%8E%A8%E7%90%86%E4%B8%8E%E5%8D%B7%E7%A7%AF/</link>
-        <pubDate>Tue, 17 Oct 2023 10:31:05 +0800</pubDate>
-        
-        <guid>http://localhost:1313/p/cuda%E5%AE%9E%E7%8E%B0cnn%E6%8E%A8%E7%90%86%E4%B8%8E%E5%8D%B7%E7%A7%AF/</guid>
-        <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
-&lt;p&gt;ucas 2023 赵地老师GPU架构与编程课程大作业一&lt;/p&gt;
-&lt;p&gt;要求：cuda不调库实现CNN推理 加分：cuda不调库实现CNN训练&lt;/p&gt;
-&lt;h1 id=&#34;分析&#34;&gt;分析&lt;/h1&gt;
-&lt;p&gt;实现CNN推理的话应该只需要用cuda实现CNN的正向传播，训练就都得实现。&lt;/p&gt;
-&lt;p&gt;参考一下&lt;a class=&#34;link&#34; href=&#34;https://github.com/aammya8/LeNet5_CNN&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;LeNet5_CNN&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这个项目大概是ece408课程的大作业，就是直接实现了LeNet5&lt;/p&gt;
-&lt;p&gt;然后他的Makefile对编译的每个东西都include了一个&lt;a class=&#34;link&#34; href=&#34;https://github.com/KastnerRG/cse160-WI23/tree/315bf09ecd72973ba1e2a461844d10349751f08c/libgputk#libgputk&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;libgputk&lt;/a&gt;，应该是他们课程给的一个用来调试的库，直接全删了依然可以编译。&lt;/p&gt;
-&lt;p&gt;然后再按照课程要求，在每个nvcc命令后面加上编译选项 &lt;code&gt;-Xcompiler &amp;quot;-O3 -std=c++14&amp;quot; -gencode arch=compute_60,code=sm_60 -gencode arch=compute_61,code=sm_61 -gencode arch=compute_70,code=sm_70 -rdc=true&lt;/code&gt;&lt;/p&gt;
-&lt;h1 id=&#34;源码分析&#34;&gt;源码分析&lt;/h1&gt;
-&lt;p&gt;makefile如下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-makefile&#34; data-lang=&#34;makefile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;m2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;		&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;2.&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;custom&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc -o m2 -lm -lcuda -lrt m2.o ece408net.o src/network.o src/mnist.o src/layer/*.o src/loss/*.o src/layer/custom/*.o -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;m2.o&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;		&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;2.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile m2.cc  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;ece408net.o&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;ece&lt;/span&gt;408&lt;span class=&#34;n&#34;&gt;net&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile ece408net.cc  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;network.o&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;	&lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;network&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/network.cc -o src/network.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;mnist.o&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;	&lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;mnist&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/mnist.cc -o src/mnist.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;		&lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;conv&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;ave_pooling&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;conv_cpu&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;conv_cust&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;fully_connected&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;max_pooling&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;relu&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;sigmoid&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;softmax&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/ave_pooling.cc -o src/layer/ave_pooling.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/conv.cc -o src/layer/conv.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/conv_cpu.cc -o src/layer/conv_cpu.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/conv_cust.cc -o src/layer/conv_cust.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/fully_connected.cc -o src/layer/fully_connected.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/max_pooling.cc -o src/layer/max_pooling.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/relu.cc -o src/layer/relu.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/sigmoid.cc -o src/layer/sigmoid.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/softmax.cc -o src/layer/softmax.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;custom&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/custom/cpu-new-forward.cc -o src/layer/custom/cpu-new-forward.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/custom/gpu-utils.cu -o src/layer/custom/gpu-utils.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/layer/custom/gpu-new-forward-optimized.cu -o src/layer/custom/gpu-new-forward-optimized.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;loss&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;           &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;cross_entropy_loss&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;/&lt;span class=&#34;n&#34;&gt;mse_loss&lt;/span&gt;.&lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/loss/cross_entropy_loss.cc -o src/loss/cross_entropy_loss.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		nvcc --compile src/loss/mse_loss.cc -o src/loss/mse_loss.o  -I./ -Xcompiler &lt;span class=&#34;s2&#34;&gt;&amp;#34;-O3 -std=c++14&amp;#34;&lt;/span&gt; -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_60,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_60 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_61,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_61 -gencode &lt;span class=&#34;nv&#34;&gt;arch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;compute_70,code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sm_70 -rdc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;clean&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		rm m2
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		rm m2.o
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; 		&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;2
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		./m2 &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;最终得到的可执行文件是m2，是m2.o和ece408net.o组成的，先查看一下生成m2.o的源码m2.cc&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;#34;ece408net.h&amp;#34;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;inference_only&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Loading fashion-mnist data...&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;MNIST&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dataset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;./data/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;MNIST定义在minst&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h里&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dataset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_test_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Done&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Loading model...&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Network&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;createNetwork_GPU&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;通过&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;createNetworkGPU来建立dnn模型&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Done&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;forward&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dataset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;进行正向传播，得到结果&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;acc&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;compute_accuracy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dataset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test_labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Test Accuracy: &amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;acc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[])&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argc&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;atoi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Test batch size: &amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;inference_only&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;追踪一下控制流把。&lt;/p&gt;
-&lt;h2 id=&#34;读取数据集&#34;&gt;读取数据集&lt;/h2&gt;
-&lt;p&gt;首先是读取dataset，定义了一个MNIST类，在minst.h和minst.cc里声明和实现&lt;/p&gt;
-&lt;p&gt;mnist.h&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#ifndef SRC_MNIST_H_
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#define SRC_MNIST_H_
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;fstream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;#34;./utils.h&amp;#34;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;MNIST&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;k&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data_dir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;train_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;train_labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;read_mnist_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;read_mnist_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;explicit&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;MNIST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data_dir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data_dir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_dir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;read_test_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#endif  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// SRC_MNIST_H_
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;explicit MNIST(std::string data_dir) : data_dir(data_dir) {}&lt;/code&gt; 是MNIST类的构造函数，接受一个string类型的data_dir，并使用成员初始化列表将该参数的值赋给 &lt;code&gt;data_dir&lt;/code&gt; 成员变量，且构造函数体为空，即构造的时候不做其他操作（cpp苦手），在代码里使用 &lt;code&gt;MNIST dataset(&#39;./data&#39;)&lt;/code&gt;就是给dataset的对象的private变量data_dir赋值为 &lt;code&gt;./data&lt;/code&gt;explicit声明是要求cpp不要进行强制类型转换&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;成员初始化列表&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;MyClass&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// 成员初始化列表初始化成员变量 x 和 y
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;MyClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;// 构造函数体（如果需要）
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;c1&#34;&gt;// 可以在这里执行其他操作
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;语法类似上面，给private赋值&lt;/p&gt;
-&lt;p&gt;然后使用MNIST类的read_test_data()方法读取数据集&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MNIST&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_test_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;read_mnist_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_dir&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;t10k-86-images-idx3-ubyte&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;read_mnist_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data_dir&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;t10k-86-labels-idx1-ubyte&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;使用read_mnist_data方法读取ubyte数据集&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MNIST&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read_mnist_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ifstream&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ios&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;binary&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// std::cout&amp;lt;&amp;lt;&amp;#34;Reading: &amp;#34;&amp;lt;&amp;lt;filename&amp;lt;&amp;lt;std::endl;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;is_open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;magic_number&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;number_of_images&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n_rows&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n_cols&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;magic_number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;sizeof&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;magic_number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;number_of_images&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;sizeof&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;number_of_images&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_rows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;sizeof&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_rows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_cols&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;sizeof&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_cols&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;//magic_number = ReverseInt(magic_number);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;//number_of_images = ReverseInt(number_of_images);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;//n_rows = ReverseInt(n_rows);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;//n_cols = ReverseInt(n_cols);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;number_of_images&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;n&#34;&gt;number_of_images&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// std::cout&amp;lt;&amp;lt;number_of_images&amp;lt;&amp;lt;&amp;#34;,&amp;#34;&amp;lt;&amp;lt;n_rows&amp;lt;&amp;lt;&amp;#34;,&amp;#34;&amp;lt;&amp;lt;n_cols&amp;lt;&amp;lt;std::endl;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;resize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_cols&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n_rows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;number_of_images&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;number_of_images&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n_rows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n_cols&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;image&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;sizeof&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n_cols&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这里要说一下MNIST的ubyte数据集的结构&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;前4个字节：魔数（Magic Number） - 一个32位整数，用于标识文件的类型。&lt;/li&gt;
-&lt;li&gt;接下来4个字节：图像数量（Number of Images） - 一个32位整数，指示文件中包含的图像数量。&lt;/li&gt;
-&lt;li&gt;接下来4个字节：图像的行数（Number of Rows） - 一个32位整数，表示每个图像的行数。&lt;/li&gt;
-&lt;li&gt;接下来4个字节：图像的列数（Number of Columns） - 一个32位整数，表示每个图像的列数。&lt;/li&gt;
-&lt;li&gt;接下来的字节：图像数据 - 连续的字节序列，每个字节表示一个像素的灰度值，通常是8位的无符号字符。图像数据以行为主排列，依次为每个图像的每一行。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;转为float的是CNN的需求，能够方便范围与归一化、求导和反向传播以及激活函数的非线性需求&lt;/p&gt;
-&lt;h2 id=&#34;读取模型&#34;&gt;读取模型&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;Network dnn=createNetwork_GPU();&lt;/code&gt;用来读取模型，Network类在network.h和network.cc声明与实现&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#ifndef SRC_NETWORK_H_
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#define SRC_NETWORK_H_
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;fstream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;#34;./layer.h&amp;#34;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;#34;./loss.h&amp;#34;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;#34;./optimizer.h&amp;#34;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;#34;./utils.h&amp;#34;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Network&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;k&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;layers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// layer pointers
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;Loss&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// loss pointer
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BIN_FILE_DELIM&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;0xFFFFFFFF&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Network&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Network&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;layers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;delete&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;layers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;k&#34;&gt;delete&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;layers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;push_back&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;add_loss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Loss&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss_in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss_in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;forward&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;backward&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Optimizer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;opt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;layers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;back&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;get_loss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;/// Get the serialized layer parameters
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;get_parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;/// Set the layer parameters
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;set_parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;/// Get the serialized derivatives of layer parameters
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;get_derivatives&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;/// Debugging tool to check parameter gradients
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;check_gradient&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n_points&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                      &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;save_parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;load_parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#endif  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// SRC_NETWORK_H_
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这里定义了Network的构造函数和析构函数，在创建Network的对象时将private变量loss设置为null，也就是不设置模型的损失函数，用delete将Network对象析构&lt;/p&gt;
-&lt;p&gt;而 &lt;code&gt;createNetwork_GPU()&lt;/code&gt; 方法在ece408net.cc中实现&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Network&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;createNetwork_GPU&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Network&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;conv1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Conv_Custom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;86&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;86&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pool1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MaxPooling&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;conv2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Conv_Custom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;40&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;40&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pool2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MaxPooling&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;34&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;34&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fc3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FullyConnected&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pool2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;output_dim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fc4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FullyConnected&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;relu1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ReLU&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;relu2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ReLU&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;relu3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ReLU&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;Layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;softmax&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Softmax&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;conv1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;relu1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pool1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;conv2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;relu2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pool2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fc3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;relu3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fc4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;softmax&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// loss
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;Loss&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CrossEntropy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_loss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;//load weights
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;load_parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;./build/weights-86.bin&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dnn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-        </item>
-        <item>
         <title>First_blog</title>
-        <link>http://localhost:1313/p/first_blog/</link>
+        <link>https://blog2.pillar.fun/p/first_blog/</link>
         <pubDate>Tue, 03 Oct 2023 17:54:20 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/first_blog/</guid>
+        <guid>https://blog2.pillar.fun/p/first_blog/</guid>
         <description>&lt;h1 id=&#34;first-take&#34;&gt;First take&lt;/h1&gt;
 &lt;p&gt;旧的博客忘了同步，导致换了电脑之后source找不到了（哭哭
 于是整了个新博客儿，采用小号githubpage+hugo的解决方法
 当成一个新的云笔记吧，不过其实也搞了本地md+github的方案，但是肯定没有静态博客看着爽了，整，都可以整！
 顺便给旧的hexo博客指路&lt;a class=&#34;link&#34; href=&#34;https://blog.pillar.fun&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://blog.pillar.fun&lt;/a&gt;&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title></title>
-        <link>http://localhost:1313/p/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/</guid>
-        <description>&lt;p&gt;.+++
-title = &amp;lsquo;机器学习笔记&amp;rsquo;
-date = 2023-12-27T19:02:35+08:00
-draft = true
-+++&lt;/p&gt;
-&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
-&lt;p&gt;ucas2023秋 周晓飞机器学习课程笔记&lt;/p&gt;
-&lt;p&gt;这门课说是会给题库，但是知识还是学给自己比较好。&lt;/p&gt;
-&lt;h1 id=&#34;笔记&#34;&gt;笔记&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/1704273253086.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1704273253086&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;题库知识点&#34;&gt;题库知识点&lt;/h1&gt;
-&lt;p&gt;分类/回归：x-&amp;gt;y的映射，分类问题y为离散值，回归问题y为连续值&lt;/p&gt;
-&lt;p&gt;分类强调依据类别标签 y 对样本 x 空间的划分，回归强调 x 与回归值的拟合。&lt;/p&gt;
-&lt;p&gt;聚类：学习 x 到类簇 y 的映射&lt;/p&gt;
-&lt;p&gt;&amp;ldquo;类簇&amp;quot;通常指的是一组相似的数据点的集合。这种相似性通常是通过某种度量（例如欧几里得距离或余弦相似性）来确定的。&lt;/p&gt;
-&lt;h1 id=&#34;最后一节课&#34;&gt;最后一节课&lt;/h1&gt;
 </description>
         </item>
         

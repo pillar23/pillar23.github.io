@@ -1,4 +1,4 @@
-baseurl: https://pillar23.github.io
+baseurl: https://blog2.pillar.fun
 languageCode: zh-cn
 theme: hugo-theme-stack
 paginate: 5
