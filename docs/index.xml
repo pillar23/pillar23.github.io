@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Sat, 02 Mar 2024 20:19:11 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 18 Apr 2024 10:51:57 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>MAGIC</title>
         <link>https://blog2.pillar.fun/p/magic/</link>
         <pubDate>Sat, 02 Mar 2024 20:19:11 +0800</pubDate>
@@ -52,16 +52,7 @@
 &lt;h3 id=&#34;攻击场景&#34;&gt;攻击场景&lt;/h3&gt;
 &lt;p&gt;在这里，我们提供了我们在整篇文章中使用的 APT 场景的详细说明。带有 Drakon Dropper 的 Pine 后门是来自 DARPA Engagement 3 Trace 数据集的 APT 攻击 [20]。在攻击过程中，攻击者构建恶意可执行文件 （/tmp/tcexec） 并通过网络钓鱼电子邮件将其发送到目标主机。然后，用户会无意识地下载并打开电子邮件。电子邮件中包含的可执行文件旨在执行用于内部侦测的端口扫描，并在目标主机和攻击者之间建立静默连接。&lt;/p&gt;
 &lt;p&gt;图 1 显示了我们的动机示例的出处图。图中的节点表示系统实体，箭头表示实体之间的定向交互。显示的图是通过删除大多数与攻击无关的实体和交互，从完整的来源图中抽象出来的子图。不同的节点形状对应不同类型的实体。被条纹覆盖的实体被视为恶意实体。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709698742850.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1709698742850&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;![1709698742850](MA G IC1709698742850.png)&lt;/p&gt;
 &lt;h3 id=&#34;prior-research-and-their-limitations&#34;&gt;Prior Research and their Limitations&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;监督方法&lt;/strong&gt;：对于早期作品，需要&lt;strong&gt;构建特殊的启发式规则&lt;/strong&gt;来涵盖所有攻击模式。许多基于深度学习的APT检测方法基于良性和攻击性数据构建来源图，并以分类方式检测APT。这些监督方法可以在学习的攻击模式上获得近乎完美的检测结果，但在&lt;strong&gt;面临概念漂移或看不见的攻击模式时尤其容易受到攻击&lt;/strong&gt;。此外，对于基于规则的方法，启发式&lt;strong&gt;规则的构建和维护可能非常昂贵和耗时&lt;/strong&gt;。对于基于深度学习的方法，包含攻击的数据的稀缺性阻碍了这些监督方法的实际部署。针对上述问题，MAGIC 采用完全自监督的异常检测方式，在有效处理不可见攻击模式的同时，允许不存在包含攻击的数据。&lt;/li&gt;
@@ -78,14 +69,18 @@
 &lt;li&gt;系统实体级检测。在这种粒度的APT检测下，检测任务是给定来自一致来源的审计日志，MAGIC能够在这些审计日志中准确定位恶意系统实体。在APT期间识别关键系统实体对于后续任务（如攻击调查和攻击故事恢复）至关重要，因为它提供了可解释的检测结果，并减少了对领域专家的需求以及冗余的手动工作。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;MAGIC是一种新型的自监督APT检测方法，它利用掩蔽图表示学习和异常值检测方法，能够对海量审计日志进行高效的多粒度检测。MAGIC的流水线由三个主要组件组成：（1）来源图构建，（2）图表示模块和（3）检测模块。它还提供了可选的 （4） 模型适配机制。在训练过程中，MAGIC 用 （1） 转换训练数据，用 （2） 学习图嵌入，用 （3） 记住良性行为。在推理过程中，MAGIC 使用 （1） 转换目标数据，使用训练的 （2） 获得图形嵌入，并通过 （3） 检测异常值。图 2 概述了 MAGIC 架构。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709702251187.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709702251187.png&#34;
+	width=&#34;1736&#34;
+	height=&#34;787&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709702251187&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;529px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;系统审计软件收集的流式审计日志通常以批量方式存储。在来源图构建 （1） 期间，MAGIC 将这些日志转换为静态来源图。系统实体及其之间的交互被提取并分别转换为节点和边。使用几种降低复杂性的技术来删除冗余信息。 	然后，将构建的出处图通过图表示模块（2）馈送，以获得输出嵌入（即对象的综合向量表示）。图表示模块基于图屏蔽自动编码器构建，并集成了基于样本的结构重构，将节点和边属性嵌入、传播和聚合到输出嵌入中，这些嵌入包含节点嵌入和系统状态嵌入。图形表示模块仅使用良性审核日志进行训练，以对良性系统行为进行建模。在对可能包含攻击的审计日志执行 APT 检测时，MAGIC 利用基于输出嵌入的异常值检测方法来检测系统行为中的异常值 （3）。根据任务的粒度，使用不同的嵌入来完成 APT 检测。在批处理日志级任务中，反映整个系统一般行为的系统状态嵌入是检测目标。此类嵌入中的异常值意味着其相应的系统状态是看不见的，并且可能是恶意的，这会显示该批次中的 APT 信号。在系统实体级任务中，检测目标是那些节点嵌入，它们表示系统实体的行为。节点嵌入中的异常值表示可疑的系统实体，并以更精细的粒度检测 APT 威胁。&lt;/p&gt;
@@ -108,14 +103,18 @@
 &lt;p&gt;MAGIC 首先从原始审计日志中构建出处图，然后再执行图表示和 APT 检测。我们遵循三个步骤来构建一致且优化的来源图，为图表示做好准备。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;日志解析&lt;/strong&gt;：第一步是简单地解析每个日志条目，提取系统实体以及它们之间的系统交互。然后，可以构建一个原型出处图，以系统实体为节点，以交互为边。现在，我们提取有关节点和边的分类信息。对于提供实体和交互标签的简单日志格式，我们直接使用这些标签。对于提供这些实体和交互的复杂属性的某种格式，我们应用多标签哈希（例如，xxhash）将属性转换为&lt;strong&gt;标签&lt;/strong&gt;。在这个阶段，来源图是有向多图。我们设计了一个示例来演示如何处理图 3 中日志解析后的原始来源图。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;初始嵌入&lt;/strong&gt;：在这个阶段，我们将节点和边标签转换为维度 d 的固定大小的特征向量（即初始嵌入），其中 d 是图表示模块的隐藏维度。我们应用了查找嵌入，在节点/边标签和 d 维特征向量之间建立了一对一的映射。如图 3（I 和 II）所示，进程 a 和 b 共享相同的标签，因此它们映射到相同的特征向量，而 a 和 c 嵌入到不同的特征向量中，因为它们具有不同的标签。我们注意到，唯一节点/边缘标签的可能数量由数据源（即审计日志格式）决定。因此，查找嵌入在转导设置下工作，不需要学习看不见的标签的嵌入。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709705666067.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709705666067.png&#34;
+	width=&#34;811&#34;
+	height=&#34;975&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709705666067_hucce759ef0e4eecef2a6b3c179664aa0b_123849_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709705666067_hucce759ef0e4eecef2a6b3c179664aa0b_123849_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709705666067&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;83&#34;
+		data-flex-basis=&#34;199px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;降噪&lt;/strong&gt;：我们的图表示模块的预期输入出处图将是简单图。因此，我们需要在节点对之间组合多个边。如果一对节点之间存在同一标签的多个边（也共享相同的初始嵌入），我们将删除多余的边，以便只保留其中一条。然后，我们将剩余的边合并为一条最终边。我们注意到，在一对节点之间，可能会保留几个不同标签的边缘。组合后，通过对剩余边的初始嵌入进行平均来获得所得唯一边的初始嵌入。为了说明这一点，我们在图3（II和III）中展示了我们的降噪如何结合多边，以及它如何影响边的初始嵌入。首先，对于每个标签，将 a 和 c 之间的 3 次读取和 2 次写入交互合并为一个。然后我们将它们组合在一起，形成一个边缘 eac，其初始嵌入等于其余边缘的&lt;strong&gt;平均&lt;/strong&gt;初始嵌入（e′ 2 和 e′ 5）。我们在附录E中提供了我们的降噪步骤与以前工作的比较&lt;/p&gt;
@@ -124,7 +123,7 @@
 &lt;p&gt;MAGIC 采用图表示模块从特色出处图（featured provenance graphs）中获取高质量的嵌入。如图 4 所示，图表示模块由三个阶段组成：用于部分隐藏节点特征（即初始嵌入）以进行重建的掩码过程，通过传播和聚合图特征生成节点和系统状态输出嵌入的图编码器，图解码器通过掩码特征重建和基于样本的结构为图表示模块的训练提供监督信号重建。编码器和解码器形成图形掩码自动编码器，在生成快速且节省资源的嵌入方面表现出色。&lt;/p&gt;
 &lt;h4 id=&#34;feature-masking&#34;&gt;Feature Masking&lt;/h4&gt;
 &lt;p&gt;在训练我们的图表示模块之前，我们对节点执行掩码，以便在重建这些节点时可以训练图掩码自动编码器。屏蔽节点是随机选择的，覆盖所有节点的一定比例。此类屏蔽节点的初始嵌入将替换为特殊的屏蔽令牌 xmask，以涵盖有关这些节点的任何原始信息。但是，边缘不会被屏蔽，因为这些边缘提供了有关系统实体之间关系的宝贵信息。总之，给定节点初始嵌入 $x_n$，我们按如下方式屏蔽节点：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709708984909.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/1709708984909.png&#34;
 	
 	
 	
@@ -139,98 +138,130 @@
 &lt;p&gt;从图构建步骤中获得的初始嵌入仅考虑原始特征。然而，原始特征还远远不足以对系统实体的详细行为进行建模。实体的上下文信息，如其邻域、多跳关系以及与其他系统实体的交互模式，对于获得高质量的实体嵌入起着重要作用。在这里，我们采用并扩展了&lt;strong&gt;图形屏蔽自编码器&lt;/strong&gt;，以自监督的方式生成输出嵌入。图形屏蔽自动编码器由编码器和解码器组成。编码器通过传播和聚合图特征来生成输出嵌入，解码器重建图特征以提供用于训练的监督信号。这种编码器-解码器架构在生成的嵌入中保留了上下文和语义信息，同时通过掩蔽学习显着降低了其计算开销。&lt;/p&gt;
 &lt;p&gt;我们的图表示模块的编码器包含多个堆叠层的图注意力网络（GAT）。GAT层的功能是根据节点本身及其相邻节点的特征（初始嵌入）生成输出节点嵌入。与普通的GNN不同，GAT引入了一种注意力机制来衡量这些邻居的重要性。【GAT加了attention真的还好算吗？训练代价应该也不小吧】&lt;/p&gt;
 &lt;p&gt;为了详细解释，GAT 的一层将前几层生成的节点嵌入作为输入，并将嵌入从源节点传播到目标节点，并沿交互传播到消息中。该消息包含有关源节点以及源节点和目标节点之间交互的信息：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709710234712.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710234712.png&#34;
+	width=&#34;523&#34;
+	height=&#34;97&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710234712_hua36d1db2226ef0c7dab718083c445773_7961_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710234712_hua36d1db2226ef0c7dab718083c445773_7961_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709710234712&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;539&#34;
+		data-flex-basis=&#34;1294px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;并采用注意力机制来计算消息源与其目的地之间的注意力系数：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709710298170.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710298170.png&#34;
+	width=&#34;819&#34;
+	height=&#34;113&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710298170_hu85b48369b6085df9fdcff38080ffe969_17564_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710298170_hu85b48369b6085df9fdcff38080ffe969_17564_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709710298170&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;724&#34;
+		data-flex-basis=&#34;1739px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后，对于目标节点，GAT 聚合来自传入边缘的消息，以通过计算所有传入消息的加权和来更新其节点嵌入。权重正是注意力系数：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709710344097.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710344097.png&#34;
+	width=&#34;763&#34;
+	height=&#34;185&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710344097_hu5c46dd1cd3605c2d547afa478ca5264b_16511_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710344097_hu5c46dd1cd3605c2d547afa478ca5264b_16511_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709710344097&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;412&#34;
+		data-flex-basis=&#34;989px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中 $h^l_n$ 是 GAT 第 l 层节点 n 的隐藏嵌入，$h^{l-1}_n$ 是 l − 1 层的隐藏嵌入，$\mathcal{N}&lt;em&gt;n$ 是 n 的单跳邻域。第一个 GAT 层的输入是初始节点嵌入。Embe 是初始边缘嵌入，在整个图形表示模块中保持不变。$W_as$，$W_am$，$W&lt;/em&gt;{self}$ ，$W{msg}$ 是可训练的参数。更新的节点嵌入构成了节点单跳交互行为的一般抽象。&lt;/p&gt;
 &lt;p&gt;将此类 GAT 的多层堆叠以获得最终的节点嵌入 h，该节点嵌入由原始节点嵌入和所有 GAT 层的输出连接起来：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709710765514.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710765514.png&#34;
+	width=&#34;391&#34;
+	height=&#34;81&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710765514_hud313a304217bb9525bb8ee55275c4f0c_4387_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710765514_hud313a304217bb9525bb8ee55275c4f0c_4387_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709710765514&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;482&#34;
+		data-flex-basis=&#34;1158px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中 ·||·表示串联操作。GAT堆叠的层数越多，相邻范围就越宽，节点的多跳交互模式能够表示的就越远。因此，图编码器有效地结合了节点初始特征和多跳交互行为，将系统实体行为抽象到节点嵌入中。图编码器还对所有节点嵌入应用平均池化，以生成图本身的全面嵌入，它概括了系统的整体状态：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709710804533.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710804533.png&#34;
+	width=&#34;295&#34;
+	height=&#34;117&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710804533_hu18cf87b6386ab6bddc11df307a6c214f_4926_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710804533_hu18cf87b6386ab6bddc11df307a6c214f_4926_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709710804533&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;252&#34;
+		data-flex-basis=&#34;605px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;图编码器生成的节点嵌入和系统状态嵌入被视为图表示模块的输出，用于不同场景下的后续任务。&lt;/p&gt;
 &lt;h4 id=&#34;graph-decoder&#34;&gt;Graph Decoder&lt;/h4&gt;
 &lt;p&gt;图形编码器不提供支持模型训练的监督信号。在典型的图自编码器中，使用图解码器对节点嵌入进行解码，并通过特征重构和结构重构来监督模型训练。然而，图形屏蔽自编码器放弃了结构重建，以减少计算开销。我们的图解码器是两者的混合体，它集成了掩码特征重建和基于样本的结构重建，以构建优化图表示模块的目标函数。&lt;/p&gt;
 &lt;p&gt;给定从图编码器获得的节点嵌入 $h_n$，解码器首先重新屏蔽这些屏蔽节点，并将它们转换为屏蔽特征重建的输入：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709711180082.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711180082.png&#34;
+	width=&#34;433&#34;
+	height=&#34;113&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711180082_hu051c36bc1b5666d451eb10a0eb894d14_9252_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709711180082_hu051c36bc1b5666d451eb10a0eb894d14_9252_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709711180082&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;383&#34;
+		data-flex-basis=&#34;919px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;随后，解码器使用上述类似的GAT层来重建掩码节点的初始嵌入，从而可以计算特征重建损失：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709711206698.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711206698.png&#34;
+	width=&#34;513&#34;
+	height=&#34;187&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711206698_hu77ff8b359efadd2edc7202c3b77a4dc5_14330_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709711206698_hu77ff8b359efadd2edc7202c3b77a4dc5_14330_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709711206698&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;274&#34;
+		data-flex-basis=&#34;658px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;【所以这个掩码节点是拿个seed全局保留的马？】&lt;/p&gt;
 &lt;p&gt;其中 $L_{fr} $是通过计算掩码节点的初始嵌入和重建嵌入之间的缩放余弦损失获得的掩蔽特征重建损失。这种损失在简单样本和困难样本之间急剧增加，从而有效地加快了学习速度。这种缩放的程度由超参数γ控制。&lt;/p&gt;
 &lt;p&gt;与此同时，基于样本的结构重建旨在重建图结构（即预测节点之间的边）。与重建整个邻接矩阵不同，后者具有O(N2)的复杂度，基于样本的结构重建在节点对上应用对比采样，并预测这些节点对之间的边概率。仅非掩蔽节点参与结构重建。正样本是由所有非掩蔽节点之间的所有现有边构建的，负样本则是在那些没有现有边的节点对中进行采样构建的。&lt;/p&gt;
 &lt;p&gt;使用简单的两层 MLP 重建节点对样本之间的边，为每个样本生成一个概率。在这些样本上，重建损失的形式为简单的二元交叉熵损失：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709711513256.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711513256.png&#34;
+	width=&#34;819&#34;
+	height=&#34;185&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711513256_hu32346daf17371ca74b8acb0e42c31b4c_17333_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709711513256_hu32346daf17371ca74b8acb0e42c31b4c_17333_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709711513256&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;442&#34;
+		data-flex-basis=&#34;1062px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中 （n， n−） 和 （n， n+） 分别是负样本和正样本，ˆ N =N− e N 是一组非掩码节点。基于样本的结构重建仅对输出嵌入进行监督。我们没有使用点积，而是使用 MLP 来计算边缘概率，因为交互实体的行为不一定相似。此外，我们并没有强迫模型学习预测边缘概率。这种结构重构的功能是最大化抽象节点嵌入中包含的行为信息，以便一个简单的MLP足以将这些信息合并并解释为边缘概率。&lt;/p&gt;
@@ -238,14 +269,18 @@
 &lt;h3 id=&#34;detection-module&#34;&gt;Detection Module&lt;/h3&gt;
 &lt;p&gt;基于图表示模块生成的输出嵌入，利用异常值检测方法以无监督方式进行APT检测。如前几节所述，此类嵌入以不同的粒度总结了系统行为。我们的检测模型的目标是识别恶意系统实体或状态，前提是仅对良性系统行为有先验的了解。如果通过图表示学习生成的嵌入在图中具有相似的交互行为，则它们的相应实体往往会形成聚类。因此，系统状态嵌入中的异常值表示不常见和可疑的系统行为。基于这样的洞见，我们开发了一种特殊的异常值检测方法来进行APT检测。&lt;/p&gt;
 &lt;p&gt;在训练过程中，首先从训练来源图中抽象出良性输出嵌入。在这个阶段，检测模块所做的只是记住这些嵌入，并将它们组织在一个K-D树中[33]。经过训练后，检测模块通过三个步骤揭示异常值：k-最近邻搜索、相似度计算和过滤。给定目标嵌入，检测模块首先通过 K-D 树搜索获得其 k 最近邻。这样的搜索过程只需要 log（N） 时间，其中 N 是记忆训练嵌入的总数。然后，应用相似性准则来评估目标嵌入与其邻居的接近程度并计算异常分数。如果其异常分数高于超参数 θ，则目标嵌入被视为异常值，其相应的系统实体或系统状态为恶意。检测模块的示例工作流程形式化如下，使用欧几里得距离作为相似性准则：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709711997347.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711997347.png&#34;
+	width=&#34;399&#34;
+	height=&#34;339&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711997347_hu17c2e8d081b68e3a8299bded3e1504fa_23202_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709711997347_hu17c2e8d081b68e3a8299bded3e1504fa_23202_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709711997347&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;117&#34;
+		data-flex-basis=&#34;282px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中 $\overline{dist}$ 是训练嵌入与其 k 最近邻之间的平均距离。在执行批处理日志级别检测时，检测模块会记住反映系统状态的良性系统状态嵌入，并检测新到达的来源图的系统状态嵌入是否为异常值。在执行系统实体级检测时，检测模块会记住指示系统实体行为的良性节点嵌入，并给定一个新到达的来源图，它会检测所有系统实体嵌入中的异常值。&lt;/p&gt;
@@ -260,107 +295,147 @@
 &lt;p&gt;我们评估了MAGIC在三个公共数据集上的有效性：StreamSpot数据集[21]，Unicorn Wget数据集[22]和DARPA Engagement 3数据集[20]。这些数据集在数量、来源和粒度方面各不相同。我们相信，通过在这些数据集上测试MAGIC的性能，我们能够将MAGIC与尽可能多的最先进的APT检测方法进行比较，并探索MAGIC的普遍性和适用性。我们对这三个数据集的详细说明如下。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;StreamSpot 数据集&lt;/strong&gt;：StreamSpot数据集（见表1）是由StreamSpot[34]使用审计系统SystemTap [41]收集并公开的模拟数据集。StreamSpot 数据集包含 600 批次审计日志，用于监控 6 个独特场景下的系统调用。其中五个方案是模拟的良性用户行为，而攻击方案模拟的是偷渡式下载攻击。该数据集被认为是一个相对较小的数据集，由于没有提供日志条目和系统实体的标签，因此我们对 StreamSpot 数据集执行批量日志级别检测，类似于以前的工作 [10， 15， 17]。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Unicorn Wget 数据集&lt;/strong&gt;：Unicorn Wget数据集（见表1）包含Unicorn[10]设计的模拟攻击。具体来说，它包含 Camflow [35] 收集的 150 批日志，其中 125 批是良性的，其中 25 批包含供应链攻击。这些攻击被归类为隐形攻击，经过精心设计，其行为类似于良性系统工作流程，预计很难识别。这个数据集被认为是我们实验数据集中最难的，因为它的体积大，日志格式复杂，而且这些攻击的隐蔽性。与最先进的方法相同，我们在此数据集上执行批处理日志级别检测。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709712995732.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709712995732.png&#34;
+	width=&#34;817&#34;
+	height=&#34;325&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709712995732_hu038a9df923508568e84903c6bd1623d5_49229_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709712995732_hu038a9df923508568e84903c6bd1623d5_49229_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709712995732&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;251&#34;
+		data-flex-basis=&#34;603px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;DARPA E3 数据集&lt;/strong&gt;：DARPA Engagement 3 数据集（见表 2）作为 DARPA 透明计算计划的一部分，在对抗性参与期间在企业网络中收集。利用不同漏洞的 APT 攻击 [20] 由红队进行，以泄露敏感信息。蓝队试图通过审核网络主机并对其执行因果关系分析来识别这些攻击。Trace、THEIA 和 CADETS 子数据集包含在我们的评估中。这三个子数据集总共包含 51.69GB 的审计记录，包含多达 6,539,677 个系统实体和 68,127,444 次交互。因此，我们评估了MAGIC的系统实体级检测能力，并解决了这些数据集的开销问题。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713015449.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713015449.png&#34;
+	width=&#34;831&#34;
+	height=&#34;329&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713015449_hud9843b27b4024551280b826d1d324b03_52173_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713015449_hud9843b27b4024551280b826d1d324b03_52173_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713015449&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;252&#34;
+		data-flex-basis=&#34;606px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;对于不同的数据集，我们采用不同的数据集拆分来评估模型，并且我们仅使用良性样本进行训练。对于 StreamSpot 数据集，我们从 500 个良性日志中随机选择 400 个批次进行训练，其余批次进行测试，从而形成一个平衡的测试集。对于 Unicorn Wget 数据集，选择了 100 批良性日志进行训练，其余用于测试。对于 DARPA E3 数据集，我们使用与 ThreaTrace [17] 相同的真值标签，并根据其出现的顺序拆分日志条目。最早的 80% 日志条目用于训练，其余条目保留用于测试。在评估过程中，MAGIC在100个全局随机种子下的平均性能被报告为最终结果，因此实验结果可能包含系统实体/日志批次的分数。&lt;/p&gt;
 &lt;h3 id=&#34;effectiveness&#34;&gt;Effectiveness&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713083774.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713083774.png&#34;
+	width=&#34;839&#34;
+	height=&#34;521&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713083774_hucc8f575a68082b3edb5e18e57ba59e25_61653_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713083774_hucc8f575a68082b3edb5e18e57ba59e25_61653_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713083774&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;161&#34;
+		data-flex-basis=&#34;386px&#34;
+	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713103510.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713103510.png&#34;
+	width=&#34;1731&#34;
+	height=&#34;383&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713103510_hu0c8ae3e5da56cd76803a95e065c0c69a_103069_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713103510_hu0c8ae3e5da56cd76803a95e065c0c69a_103069_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713103510&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;451&#34;
+		data-flex-basis=&#34;1084px&#34;
+	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713117689.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713117689.png&#34;
+	width=&#34;837&#34;
+	height=&#34;743&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713117689_hu4387d49ca41b8e66fefd80563e191f71_90569_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713117689_hu4387d49ca41b8e66fefd80563e191f71_90569_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713117689&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;112&#34;
+		data-flex-basis=&#34;270px&#34;
+	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713129950.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713129950.png&#34;
+	width=&#34;837&#34;
+	height=&#34;727&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713129950_hu3fa0a3dbdbed859ed7a4be337bec3ab2_156190_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713129950_hu3fa0a3dbdbed859ed7a4be337bec3ab2_156190_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713129950&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;115&#34;
+		data-flex-basis=&#34;276px&#34;
+	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713153070.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713153070.png&#34;
+	width=&#34;885&#34;
+	height=&#34;801&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713153070_hud6612d36fb5c0e22a75c5a5a157aca07_106887_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713153070_hud6612d36fb5c0e22a75c5a5a157aca07_106887_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713153070&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;110&#34;
+		data-flex-basis=&#34;265px&#34;
+	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713173936.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713173936.png&#34;
+	width=&#34;857&#34;
+	height=&#34;509&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713173936_hu8fc3646338be836665a4c5a8db534fea_62888_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713173936_hu8fc3646338be836665a4c5a8db534fea_62888_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713173936&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;168&#34;
+		data-flex-basis=&#34;404px&#34;
+	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713196429.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713196429.png&#34;
+	width=&#34;1561&#34;
+	height=&#34;587&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713196429_hu0fad53adbd08d285dc62c0f6b0e42f51_93870_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713196429_hu0fad53adbd08d285dc62c0f6b0e42f51_93870_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713196429&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;265&#34;
+		data-flex-basis=&#34;638px&#34;
+	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1709713209284.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713209284.png&#34;
+	width=&#34;867&#34;
+	height=&#34;525&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713209284_hud365458e9fec964efcc85d1f686cb918_54083_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713209284_hud365458e9fec964efcc85d1f686cb918_54083_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1709713209284&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;396px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;conclusion&#34;&gt;conclusion&lt;/h2&gt;
@@ -426,6 +501,190 @@
 &lt;p&gt;加了个监督学习的步骤&lt;/p&gt;
 &lt;p&gt;嵌入阶段用了mask和图&lt;strong&gt;注意力&lt;/strong&gt;网络的技术手段，能获得质量更高，多跳敏感的嵌入。&lt;/p&gt;
 &lt;p&gt;通过检测时候通过KD树找到K个临近的embedding，然后通过相似性计算， 设立一个阈值来判断是否具有恶意。再用decoder来还原出embedding所对应的边或者节点&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>ATLAS</title>
+        <link>https://blog2.pillar.fun/p/atlas/</link>
+        <pubDate>Sat, 02 Mar 2024 20:16:17 +0800</pubDate>
+        
+        <guid>https://blog2.pillar.fun/p/atlas/</guid>
+        <description>&lt;p&gt;文章可以在&lt;a class=&#34;link&#34; href=&#34;https://www.usenix.org/conference/usenixsecurity21/presentation/alsaheel&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;获取&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;introduction&lt;/h2&gt;
+&lt;p&gt;APT攻击涉及长期的多个攻击步骤，其调查需要分析大量日志以确定其攻击步骤。因此提出ATLAS从现成的审计日志构建端到端攻击故事的框架。&lt;/p&gt;
+&lt;p&gt;ATLAS基于的观察：&lt;strong&gt;无论利用的漏洞和执行的有效载荷如何，不同的攻击可能具有相似的抽象攻击策略&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;ATLAS利用因果关系分析、自然语言处理和机器学习技术的新颖组合来构建&lt;strong&gt;基于序列&lt;/strong&gt;的模型，该模型从&lt;strong&gt;因果图&lt;/strong&gt;中建立攻击和非攻击行为的关键模式。&lt;/p&gt;
+&lt;p&gt;取证分析从多个主机、应用程序和网络接口收集各种审计日志。海量日志通常被离线分析或实时监控，以调试系统故障并识别复杂的威胁和漏洞。&lt;/p&gt;
+&lt;p&gt;现有方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从审计日志中构建因果依赖关系图，并使用查询系统来定位关键攻击阶段（例如，受损进程或恶意负载）。&lt;/li&gt;
+&lt;li&gt;扩展机器学习（ML）技术，从日志中提取特征/序列，以自动检测入侵和故障。&lt;/li&gt;
+&lt;li&gt;构建了通过事件关联发现不同日志事件之间关联的技术&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些方法在很大程度上无法精确定位关键攻击步骤，从而有效地突出端到端攻击故事。因此我们希望从审计日志中识别关键实体（节点），帮助网络分析师构建 APT 攻击的关键步骤。&lt;/p&gt;
+&lt;p&gt;ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源分析中，以识别攻击和非攻击序列。分为三个阶段&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;处理系统日志并构建自己的优化因果依赖图&lt;/li&gt;
+&lt;li&gt;通过NLP技术从因果图中构建语义增强序列（时间戳事件）&lt;/li&gt;
+&lt;li&gt;学习表示攻击语义的基于序列的模型，这有助于在推理时恢复描述攻击故事的关键攻击实体。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ATLAS不会带来额外开销，不同的审计日志可以很容易地集成到 ATLAS 日志解析器中用来构建因果图并获得精确的序列和模型&lt;/p&gt;
+&lt;p&gt;我们的方法基于：&lt;strong&gt;因果依赖关系图中不同攻击的关键步骤可能具有相似的模式&lt;/strong&gt;。这些模式可以通过NLP技术（即词形还原和词嵌入）转换为序列，将攻击和非攻击实体之间各种变化形式的关系组合在一起。它为模型提供了具有不同因果关系的更深层次的&lt;strong&gt;记忆&lt;/strong&gt;。，进而提高了序列模型从未知审计日志中识别攻击步骤的准确性。&lt;/p&gt;
+&lt;p&gt;但是这样的方法面对以下三个挑战，相应的，ATLAS采取手段来应对：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;因果图通常庞大而复杂，这使得序列构建变得困难&amp;ndash;&amp;gt;采用定制化的图优化算法来降低图的复杂度&lt;/li&gt;
+&lt;li&gt;它需要一种方法来精确构建序列，以有效地模拟合法和可疑的活动&amp;ndash;&amp;gt;提出一种从事件中提取攻击模式序列的新技术&lt;/li&gt;
+&lt;li&gt;需要一种自动化方法来识别给定的攻击症状中的攻击事件&amp;ndash;&amp;gt;通过攻击症状进行攻击调查，以恢复攻击事件，帮助全面构建攻击故事。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总的来说，ATLAS做了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;引入了 ATLAS，这是一个用于攻击故事恢复的框架，它利用自然语言处理和基于序列的模型学习技术来帮助网络分析师从审计日志中恢复攻击步骤.&lt;/li&gt;
+&lt;li&gt;提出了一种新的序列表示，通过词形还原和词嵌入来抽象攻击和非攻击语义模式。这些序列使 ATLAS 能够构建一个有效的基于序列的模型，以识别构成攻击故事的攻击事件&lt;/li&gt;
+&lt;li&gt;我们在受控环境中通过其真实世界报告开发的 10 种现实 APT 攻击中验证了 ATLAS。结果表明，ATLAS能够高精度、最小开销地识别攻击故事的关键攻击条目。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;motivation-and-definitions&#34;&gt;Motivation and Definitions&lt;/h2&gt;
+&lt;p&gt;整篇论文中设定了一种攻击场景：攻击者通过电子邮件向企业中的目标用户发送恶意Microsoft Word文件（contract.doc）。用户被欺骗使用 Firefox 从 Gmail 下载和打开 Word 文件。该文档包含一段恶意代码，该代码利用易受攻击的 Microsoft Word （winword.exe） 并发出 HTTPS 请求以下载恶意 Microsoft HTA 脚本 （template.hta）。此脚本执行恶意 Visual Basic 脚本 （maintenance.vbs），其中包含安装后门以泄露敏感文件的 PowerShell 命令。最后，攻击者横向移动到其他主机。&lt;/p&gt;
+&lt;p&gt;调查这个场景通常从从审核日志中收集有关攻击的数据开始，例如系统事件、DNS 查询和浏览器事件。攻击调查工具通常以因果图（或来源图）的形式表示审核日志，该图用作取证工具，使安全调查人员能够执行根本原因分析，并更好地了解攻击的性质。大多数先前的研究将因果图中的攻击故事恢复为子图，其中该图中的节点和边与攻击症状具有因果关系。图 1 （a） 显示了由这些工具生成的示例攻击场景的因果关系图。红色虚线箭头表示从中启动攻击调查的警报事件（α，可疑网络连接），红色虚线矩形区域表示已恢复的攻击子图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1709629615797.png&#34;
+	width=&#34;1739&#34;
+	height=&#34;810&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1709629615797_hu7294ec030933aa612c8e36d38b404b7e_254270_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1709629615797_hu7294ec030933aa612c8e36d38b404b7e_254270_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709629615797&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;214&#34;
+		data-flex-basis=&#34;515px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;但是即使应用了不同的图优化技术，这样的图仍然非常大，并且在实践中难以解释。这些工作很大程度上依赖于启发式或硬编码&lt;strong&gt;规则&lt;/strong&gt;，这些&lt;strong&gt;规则&lt;/strong&gt;的开发和维护非常耗时。&lt;strong&gt;领域知识专家&lt;/strong&gt;需要不断更新这些规则，以涵盖新开发的攻击。而ATLAS只需要更多的攻击训练数据来学习新的攻击模式。&lt;/p&gt;
+&lt;p&gt;其他人提出了&lt;strong&gt;基于异常的方法&lt;/strong&gt;，该方法可以学习用户行为，并将任何偏离该行为的行为识别为异常。虽然基于异常的方法可以识别未知攻击，但随着用户行为随时间的变化，它们可能会出现许多&lt;strong&gt;误报&lt;/strong&gt;。为了解决这个问题，ATLAS旨在学习攻击模式和用户行为，以确定两者之间的异同。&lt;/p&gt;
+&lt;p&gt;与ATLAS类似，基于学习的方法使用ML算法从日志中对攻击事件进行建模。虽然这些方法可以有效地减少日志条目的数量，但仍需要&lt;strong&gt;大量的手动工作&lt;/strong&gt;才能找到攻击事件的高级视图。为了解决这个问题，ATLAS调查旨在识别攻击&lt;strong&gt;关键实体&lt;/strong&gt;（节点），使其能够自动识别相关攻击事件的子集。&lt;/p&gt;
+&lt;p&gt;APT攻击可以概括为从审计日志中获取的攻击阶段的&lt;strong&gt;时间序列，&lt;/strong&gt; 例如图1（b）中所示的步骤1-14，类似于自然语言中描述的攻击步骤。这些攻击步骤通常适合在特定上下文中作为表示攻击语义的唯一序列，这可以与审核日志中的正常活动区分开来。&lt;/p&gt;
+&lt;p&gt;ATLAS 在推理时给定攻击症状节点（警报事件α包含的恶意 IP 地址），提取一组与症状节点关联的候选序列，并使用基于序列的模型来识别序列中的哪些节点参与了攻击。此后，它使用已识别的攻击节点来构建攻击故事，其中包括已识别的攻击节点的事件，从而使攻击调查更加简洁，更容易被调查人员解读。&lt;/p&gt;
+&lt;p&gt;图 1 （c） 说明了 ATLAS 为激励示例恢复的攻击故事，其中包括示例攻击的完整关键攻击步骤。此过程大大减少了从大型因果图中进行攻击调查的手动工作，该图排除了对攻击没有影响的事件，并减少了调查大型因果图所需的时间。&lt;/p&gt;
+&lt;h3 id=&#34;definition&#34;&gt;definition&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753.png&#34;
+	width=&#34;847&#34;
+	height=&#34;474&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709635161753&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;178&#34;
+		data-flex-basis=&#34;428px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;因果图G：因果图是从审计日志中提取的数据结构，通常用于来源跟踪，指示主题（例如，流程）和对象（例如，文件或连接）之间的因果关系。因果图由节点组成，节点代表主体和客体，边缘连接，边缘代表主体和客体之间的动作（例如，读取或连接）。我们在这里考虑一个有向循环因果图，它的边缘从主体指向对象。&lt;/p&gt;
+&lt;p&gt;实体e：实体是从因果图中提取的唯一系统主体或对象，在其中它表示为节点。我们考虑的实体包括进程、文件和网络连接（即IP地址和域名）&lt;/p&gt;
+&lt;p&gt;邻域图。给定因果图，如果两个节点u和v通过一条边连接，则称它们为邻居。节点 n 的邻域是由节点 n 和连接相邻节点与节点 n 的边组成的 G 子图。类似地，给定一组节点 {n1,n2,&amp;hellip;,nn}，我们提取一个统一的邻域图，其中包括将它们连接到相邻节点的所有节点和边。&lt;/p&gt;
+&lt;p&gt;事件：事件ε是一个四元组（src、action、dest、t），源 （src） 和目标 （dest） 是与动作相关的两个实体。t 是显示事件发生时间的事件时间戳。给定一个实体 e，可以从 e 邻域图中提取其事件，其中包括与 e 的邻居相关的所有操作。例如，给定一个实体Firefox.exe和一个邻域图，其中包含从节点 Firefox.exe 到节点 Word.doc 的操作 open 和时间戳 t，那么 （Firefox.exe， open， Word.doc， t） 是 Firefox 进程在时间 t 打开 Word 文件的事件&lt;/p&gt;
+&lt;p&gt;序列：给定一个实体 e，可以从因果图中提取序列 S。序列 S 按时间顺序包括实体 e 的邻域图的所有事件，使得 S{e} ：= {ε1， ε2， . . . ， εn}。同样，如果给定一组实体，我们可以从它们的统一邻域图中提取一个包含所有事件的序列。&lt;/p&gt;
+&lt;p&gt;图 2 （a） 说明了具有六个实体 {eA， eB， . . . ， eF} 的因果图。图 2 （b） 显示了 eB 的邻域图，其中包括节点 B、相邻节点 {A， C} 及其连接边 {EAB， EBC}。类似地，实体集 {eB， eC} 的邻域图包括节点 {A， B， C， D， E} 和边 {EAB， EBC， ECD， ECE}，如图 2 （b） 所示。实体 eB 的事件为 εAB =&amp;lt; eA， a1， eB， t1 &amp;gt; 和 εBC =&amp;lt; eB， a2， eC， t2 &amp;gt;如图 2 （c） 所示。图 2 （d） 显示了实体集 {eB， eC} 的事件序列。&lt;/p&gt;
+&lt;h2 id=&#34;method&#34;&gt;Method&lt;/h2&gt;
+&lt;h3 id=&#34;序列生成&#34;&gt;序列生成&lt;/h3&gt;
+&lt;p&gt;首先从日志中提取出平台无关的因果图（图缩减）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;消除攻击节点无法访问到的所有节点和边缘【这缩的有点狠啊】&lt;/li&gt;
+&lt;li&gt;从审计日志中构建具有非重复边的因果图，构建的因果图中不包含重复的边（边属性相同且首尾节点相同）&lt;/li&gt;
+&lt;li&gt;如果某些节点和边引用相同类型的事件，则 ATLAS 会合并它们，合成的边的时间戳按原始边中最早的。
+&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716023699194.png&#34;
+	width=&#34;798&#34;
+	height=&#34;322&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716023699194_hud84dbde1e7c0ad0ed8876d9717f7ce09_69072_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1716023699194_hud84dbde1e7c0ad0ed8876d9717f7ce09_69072_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716023699194&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;247&#34;
+		data-flex-basis=&#34;594px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;构造序列：&lt;/p&gt;
+&lt;p&gt;将因果图转换为标记为“攻击”或“非攻击”的序列，并将词形还原和选择性采样扩展到序列构造中，以有效地抽象攻击和非攻击模式，最后，使用词嵌入将序列转换为实数向量，并通过 LSTM 学习基于序列的模型。&lt;/p&gt;
+&lt;p&gt;对于攻击节点：&lt;/p&gt;
+&lt;p&gt;对于一个图中的攻击节点，构建攻击节点子集，子集节点数$\geq$2，因此对于n个攻击节点的集合，有$\sum_{i=2}^k C_n^i$个子集，这个方法在面对攻击节点数量很多的时候复杂度会爆炸，但是攻击者一般会为了隐藏而最小化攻击节点数量【这样每个攻击子图都得比较小才合适，怪不得图缩减缩得这么狠】。&lt;/p&gt;
+&lt;p&gt;1、对于攻击实体中的每个实体，ATLAS提取其在攻击子图中的邻域图，即捕捉与攻击节点节点有因果关系的实体，2、从邻域图中获取按照时间戳排序的攻击事件。如果源节点或目标节点代表攻击实体，则事件被标记为攻击。3、最后，ATLAS 将提取的时间戳排序的攻击事件转换为序列，并在以下情况下将其标记为攻击：（a） 它仅包含攻击事件， （b）它包括实体子集的所有攻击事件。【还是在缩减，这样攻击序列理论上是最小的】&lt;/p&gt;
+&lt;p&gt;对于非攻击节点：&lt;/p&gt;
+&lt;p&gt;意义不是很大，主要学习攻击序列。同时，对于一个有k个攻击节点和k&amp;rsquo;个非攻击节点的因果图，会有$\sum^{k}_{i=1} C^i_k.k&amp;rsquo;$(攻击节点的子集（子集节点数不必$\geq$ 2)+非攻击节点的全集)。提取非攻击序列的方法和提取攻击序列的方法的1、2步骤一样，3、如果序列与任何提取的攻击序列不匹配，则 ATLAS 会将其标记为非攻击，否则，处理后的序列将被丢弃。&lt;/p&gt;
+&lt;p&gt;下面这张图是例子&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716026032629.png&#34;
+	width=&#34;1518&#34;
+	height=&#34;402&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716026032629_hu7fd7b8e71a58997854afb105ce0a1630_114728_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1716026032629_hu7fd7b8e71a58997854afb105ce0a1630_114728_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716026032629&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;377&#34;
+		data-flex-basis=&#34;906px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;序列还原&#34;&gt;序列还原&lt;/h3&gt;
+&lt;p&gt;ATLAS使用&lt;strong&gt;词形还原&lt;/strong&gt;化将序列转换为表示序列模式的广义文本，以便进行语义解释。&lt;/p&gt;
+&lt;p&gt;表1显示了 ATLAS 用于抽象序列中的实体和操作的四种不同的词汇类型以及每种类型中的词汇。词汇表总共包括 30 个单词，能够将单词的&lt;strong&gt;屈折形式&lt;/strong&gt;和&lt;strong&gt;派生形式&lt;/strong&gt;简化为共同的基本形式。词汇根据单词的细粒度语义分为四种类型：进程、文件、网络和动作。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716026181025.png&#34;
+	width=&#34;772&#34;
+	height=&#34;242&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716026181025_hu59fb008fe5d3dbeea8565b3f1ddc5a1c_33371_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1716026181025_hu59fb008fe5d3dbeea8565b3f1ddc5a1c_33371_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716026181025&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;319&#34;
+		data-flex-basis=&#34;765px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ATLAS解析每个序列，查找实体并将每个实体映射到相应的词汇表。词形还原过程后的序列被转换为“类似句子”的中间表示，其中包含广义序列模式的完整语义。&lt;/p&gt;
+&lt;p&gt;我们注意到，在对序列进行词形还原后，可能会发生攻击和非攻击序列的意外重复。为了使用非重复序列训练模型，我们丢弃了所有与攻击序列重叠的非攻击序列，然后再将其传递到&lt;strong&gt;选择性序列采样&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;选择性序列采样&#34;&gt;选择性序列采样&lt;/h3&gt;
+&lt;p&gt;构建的攻击和非攻击序列的数量可能不平衡。原因是日志条目中的攻击实体通常少于非攻击实体。例如，我们在通过分析审计日志进行评估时发现，攻击实体的平均数量为 61，而非攻击实体的平均数量约为 21K。为了平衡训练数据集，ATLAS首先对具有一定相似性阈值的非攻击序列进行&lt;strong&gt;欠采样&lt;/strong&gt;。然后，使用过采样机制随机&lt;strong&gt;变异&lt;/strong&gt;攻击序列，直到它们的总数达到相同数量。不能直接采取复制的过采样因为会造成过拟合。&lt;/p&gt;
+&lt;h4 id=&#34;欠采样&#34;&gt;欠采样&lt;/h4&gt;
+&lt;p&gt;通过Levenshtein Distance计算相似性，用80%作为阈值。复杂度为$O(n^2)$&lt;/p&gt;
+&lt;h4 id=&#34;过采样&#34;&gt;过采样&lt;/h4&gt;
+&lt;p&gt;对于攻击序列，ATLAS会随机将一种词汇类型变异为另一种相同类型的词汇。&lt;/p&gt;
+&lt;h3 id=&#34;序列学习&#34;&gt;序列学习&lt;/h3&gt;
+&lt;p&gt;通过&lt;strong&gt;词表示嵌入&lt;/strong&gt;将词形还原序列转换为表示序列模式的广义文本（30个词-&amp;gt;4type)【对……对吗？】，然后用了多种方法生成嵌入向量并在后文进行了比较。&lt;/p&gt;
+&lt;p&gt;通过LSTM和CNN来进行序列学习&lt;/p&gt;
+&lt;h3 id=&#34;攻击还原&#34;&gt;攻击还原&lt;/h3&gt;
+&lt;p&gt;遍历所有节点，来判断是否是攻击节点，O(n)复杂度。&lt;/p&gt;
+&lt;p&gt;为了了识别未知的攻击实体，ATLAS首先从因果图中获取所有未知实体，构建只包含一个未知实体的子集。然后，ATLAS 将攻击实体附加到每个子集;因此，每个子集包含所有已知的攻击症状实体和一个未知实体。ATLAS 使用这些子集从因果图中提取序列，LSTM 模型用于通过预测分数预测每个序列是攻击还是非攻击。此过程通过检查这两个实体的时间顺序事件是否形成模型先前学习的攻击模式来识别未知实体是否与攻击症状实体密切相关。&lt;/p&gt;
+&lt;p&gt;ATLAS 攻击故事恢复的目标是从攻击调查阶段识别与已识别攻击实体关联的攻击事件。ATLAS提取已识别攻击实体的邻域图，并将所有包含的事件作为攻击事件获取。这些事件按其时间戳进一步排序，作为恢复的攻击故事。ATLAS 的有效性不受跨多个主机执行的攻击的影响，它只需要对来自单个主机的审计日志执行分析即可发现所有攻击实体&lt;/p&gt;
+&lt;h2 id=&#34;工作亮点&#34;&gt;工作亮点&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;新的图缩减方法来构建因果图&lt;/li&gt;
+&lt;li&gt;通过因果图生成序列用于学习（词型还原+词表示嵌入+过采样&amp;amp;欠采样)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;我的想法&#34;&gt;我的想法&lt;/h2&gt;
+&lt;p&gt;图缩减方法是没见过的，按照文章的结果，这种图缩减方法也很值得参考，一顿猛缩减可以导致每个小子图的学习代价比较小（或者说因为序列长度有限制吧？)。把图学习转成序列识别的方法很有意思，这样直接就不用使用图学习了。但是感觉他这个识别是否攻击节点计算量也不小，O(n)是n*100s感觉也没啥用啊？抽时间复现下看看。&lt;/p&gt;
+&lt;h2 id=&#34;补充知识&#34;&gt;补充知识&lt;/h2&gt;
+&lt;h3 id=&#34;屈折形式inflectional-forms和派生形式derivational-forms&#34;&gt;屈折形式（Inflectional Forms）和派生形式（Derivational Forms）&lt;/h3&gt;
+&lt;p&gt;屈折形式是指单词在不同语法环境下的形式变化，这种变化不改变单词的基本词义或词类。屈折形式主要用于表示语法信息，如时态、数、格、性、比较级等。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;walk -&amp;gt; walked -&amp;gt; walking&lt;/li&gt;
+&lt;li&gt;book -&amp;gt; books&lt;/li&gt;
+&lt;li&gt;big -&amp;gt; bigger -&amp;gt; biggest&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;派生形式是通过添加前缀或后缀来改变单词的词性或基本词义，生成新的单词的过程。派生通常会改变单词的基本意义和/或词类。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;clear (清楚的) -&amp;gt; unclear (不清楚的)&lt;/li&gt;
+&lt;li&gt;happy (形容词) -&amp;gt; happiness (名词)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;levenshtein-distance&#34;&gt;Levenshtein Distance&lt;/h3&gt;
+&lt;p&gt;Levenshtein Distance，也称为编辑距离（Edit Distance），是一种衡量两个字符串之间差异的度量方法。它计算将一个字符串转换为另一个字符串所需的最少单字符编辑操作次数，这些操作包括插入（insertion）、删除（deletion）和替换（substitution）。Levenshtein Distance广泛应用于文本处理、拼写检查、语音识别、DNA序列比对等领域。它可以帮助确定两个字符串的相似度，或者在搜索时提供近似匹配。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -544,14 +803,18 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
 &lt;li&gt;引入了一个双嵌入层、一个基于GNN的流量图编码器以及一个交叉门控特征融合机制。[分别嵌入header和payload，然后通过融合实现数据增强]&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;结果：两个真实数据集（WWT和ISCX）优于SOTA&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708314808397.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png&#34;
+	width=&#34;1695&#34;
+	height=&#34;735&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708314808397&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;553px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;introduction&lt;/h1&gt;
@@ -584,14 +847,18 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
 &lt;p&gt;3、 MP-GNN&lt;/p&gt;
 &lt;p&gt;MP-GNN 是 Message Passing Graph Neural Network（消息传递图神经网络）的简称，节点嵌入向量可以通过特定的聚合策略将节点的嵌入向量集成到邻域中，从而迭代更新节点嵌入向量。&lt;/p&gt;
 &lt;p&gt;第l层 MP-GNN 可以形式化为两个过程&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708310294876.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876.png&#34;
+	width=&#34;1025&#34;
+	height=&#34;243&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708310294876&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;421&#34;
+		data-flex-basis=&#34;1012px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中$h^{(l)}_u,h^{(l)}_v$是节点u和v在第l层的嵌入向量，$m^{(l)}_u$是l层中节点u的计算信息，$MSG^{(l)}$是消息计算函数，$AGG^{(l)}$是消息聚合函数，$\theta$是他们对应的参数&lt;/p&gt;
@@ -612,14 +879,18 @@ $$&lt;/p&gt;
 &lt;p&gt;原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用&lt;strong&gt;两个不共享参数的嵌入层&lt;/strong&gt;的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$&lt;/p&gt;
 &lt;h2 id=&#34;交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion&#34;&gt;交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion&lt;/h2&gt;
 &lt;p&gt;因为要double embedding，所以encoder也要两个。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708314903093.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093.png&#34;
+	width=&#34;393&#34;
+	height=&#34;831&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708314903093&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;47&#34;
+		data-flex-basis=&#34;113px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里堆叠了N个GraphSAGE&lt;/p&gt;
@@ -628,77 +899,101 @@ $$&lt;/p&gt;
 &lt;p&gt;通过逐元素均值运算（element-wise mean operation）计算所有相邻节点$N(v)$的整体消息，并通过串联运算聚合整体消息以及节点v的嵌入向量&lt;/p&gt;
 &lt;p&gt;对节点A的嵌入向量进行非线性变换，完成一个GraphSAGE层的正向过程&lt;/p&gt;
 &lt;p&gt;GraphSAGE的消息聚合和计算可以描述为&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708315615539.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539.png&#34;
+	width=&#34;904&#34;
+	height=&#34;265&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708315615539&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;341&#34;
+		data-flex-basis=&#34;818px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;$m^{(l)}_{N(v)}$是将v节点所有临接节点的上一层嵌入向量求平均的结果&lt;/p&gt;
 &lt;p&gt;$h_v^{(l)}$是本层v节点的嵌入向量，$\sigma(\cdot)$是激活函数，$CONCAT(\cdot)$是连接函数。然后通过BatchNorm对h进行批量归一化&lt;/p&gt;
 &lt;p&gt;激活函数选择PReLU，将每个负元素值按不同因子缩放，不但引入了非线性，还由于每个负元素的缩放因子的不同而起到类似于注意力机制的作用。&lt;/p&gt;
 &lt;p&gt;由于深度GNN模型中的过度平滑问题，我们最多只堆叠GraphSAGE4层，并将输出拼接起来。这与跳转知识网络（JKL）相类似&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708316388852.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852.png&#34;
+	width=&#34;774&#34;
+	height=&#34;90&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316388852&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;860&#34;
+		data-flex-basis=&#34;2064px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;最后，通过对每个节点的最终嵌入使用meanpooling来得到图嵌入&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708316889596.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596.png&#34;
+	width=&#34;474&#34;
+	height=&#34;170&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316889596&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;278&#34;
+		data-flex-basis=&#34;669px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;用$g_h,g_p$表示header和payload得到的图嵌入&lt;/p&gt;
 &lt;h2 id=&#34;cross-gated-feature-fusion&#34;&gt;Cross-gated Feature Fusion&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708316997715.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715.png&#34;
+	width=&#34;719&#34;
+	height=&#34;817&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316997715&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;211px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;交叉门控特征融合，这个模块的目标是将$g_h,g_p$融合，获取门控矢量$s_h,s_p$。&lt;/p&gt;
 &lt;p&gt;如上图，我们用了两个filter，每个filter的组成都是线性层、PReLU、线性层、Sigmoid。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708317405446.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446.png&#34;
+	width=&#34;955&#34;
+	height=&#34;260&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708317405446&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;367&#34;
+		data-flex-basis=&#34;881px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中w和b分别是线性层的weight和bias。z 是数据包字节的整体表示向量。&lt;/p&gt;
 &lt;h2 id=&#34;端到端的下游任务训练-end-to-end-training-on-downstream-tasks&#34;&gt;端到端的下游任务训练 End-to-End Training on Downstream Tasks&lt;/h2&gt;
 &lt;p&gt;由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。&lt;/p&gt;
 &lt;p&gt;这里我们使用双层Bi-LSTM作为baseline，他的输出喂给一个带PReLU的两层线性分类器，使用交叉熵作为损失函数&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708318165707.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707.png&#34;
+	width=&#34;1034&#34;
+	height=&#34;86&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708318165707&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;1202&#34;
+		data-flex-basis=&#34;2885px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;n是长度，CE是交叉熵，y是ground truth（标注数据的分类标签）&lt;/p&gt;
@@ -725,37 +1020,49 @@ $$&lt;/p&gt;
 &lt;p&gt;运行了10次实验。&lt;/p&gt;
 &lt;p&gt;用AC、PR、RC和F1做评估&lt;/p&gt;
 &lt;p&gt;和基于传统特征工程的方法（即 AppScanner [31]、CUMUL [23]、K-FP （K-Fingerprinting） [8]、FlowPrint [32]、GRAIN [43]、FAAR [19]、ETC-PS [40]）、基于深度学习的方法（即 FS-Net [18]、 EDC [16]、FFB [44]、MVML [4]、DF [30]、ET-BERT [17]）和基于图神经网络的方法（即 GraphDApp [29]、ECD-GNN [11]）做比较。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708319331300.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300.png&#34;
+	width=&#34;2191&#34;
+	height=&#34;1053&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319331300&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;499px&#34;
+	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708319345719.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719.png&#34;
+	width=&#34;2610&#34;
+	height=&#34;1067&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319345719&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;244&#34;
+		data-flex-basis=&#34;587px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;消融实验&#34;&gt;消融实验&lt;/h2&gt;
 &lt;p&gt;在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &amp;lsquo;H&amp;rsquo;、&amp;lsquo;P&amp;rsquo;、&amp;lsquo;DUAL&amp;rsquo;、&amp;lsquo;JKN&amp;rsquo;、&amp;lsquo;CGFF&amp;rsquo; 和 &amp;lsquo;A&amp;amp;N&amp;rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM&lt;/p&gt;
 &lt;p&gt;（只用H或P就不需要DUAL和CGFF）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708319828833.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833.png&#34;
+	width=&#34;1731&#34;
+	height=&#34;590&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319828833&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;293&#34;
+		data-flex-basis=&#34;704px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;得出结论&lt;/p&gt;
@@ -767,38 +1074,50 @@ $$&lt;/p&gt;
 &lt;li&gt;用GRU替换LSTM导致两个都差10%左右，transformer替换LSTM导致VPN差了40%左右，tor上只差一点&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;换GNN架构为GAT, GIN, GCN and SGC，还是GraphSAGE最好&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708321015036.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036.png&#34;
+	width=&#34;950&#34;
+	height=&#34;475&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321015036&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;200&#34;
+		data-flex-basis=&#34;480px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;此外，通过TFE-GNN可以快捷的拓展一个segment级的全局特征&lt;/p&gt;
 &lt;p&gt;复杂度&lt;/p&gt;
 &lt;p&gt;TFE-GNN 在模型复杂度相对较小的情况下，在公共数据集上实现了最显着的改进。虽然ET-BERT在ISCX-nonVPN数据集上达到了可比的结果，但ET-BERT的FLOP大约是TFEGNN的五倍，模型参数的数量也增加了一倍，这通常表明模型推理时间更长，需要更多的计算资源。此外，ETBERT的预训练阶段非常耗时，由于预训练期间有大量的额外数据，并且模型复杂度高，因此成本很高。相比之下，TFE-GNN可以实现更高的精度，同时降低训练或推理成本。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708321171217.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217.png&#34;
+	width=&#34;843&#34;
+	height=&#34;637&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321171217&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;317px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;双重嵌入维度的影响。为了研究双嵌入层隐藏维度的影响，我们进行了灵敏度实验，结果如图a所示。正如我们所看到的，当嵌入维度低于 100 时，f1 分数会迅速增加。在此之后，随着维度的变化，模型性能趋于稳定。为了减少计算消耗，选取50作为默认维度&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1708321219227.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227.png&#34;
+	width=&#34;1288&#34;
+	height=&#34;417&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321219227&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;308&#34;
+		data-flex-basis=&#34;741px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;PMI窗口大小的影响。从图 b 中可以看出，较小的窗口大小通常会导致更好的 f1 分数。窗口越大图中添加的边就越多，由于图太密集，模型将更难分类。&lt;/p&gt;
@@ -3236,7 +3555,7 @@ $$&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl pkcs12 -export -out cacert.pfx -inkey .\private.pem -in .\cacert.crt
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;openssl&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pkcs12&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cacert&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pfx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inkey&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pem&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;\&lt;span class=&#34;n&#34;&gt;cacert&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;crt&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;接下来是导入助教的证书，首先在outlook里新建一个联系人&lt;/p&gt;
@@ -3351,14 +3670,18 @@ $$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1zj411e7xC/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/video/BV1zj411e7xC/&lt;/a&gt;可以看到复现视频&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/fileName/1698203084469.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469.png&#34;
+	width=&#34;760&#34;
+	height=&#34;377&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698203084469&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;483px&#34;
 	
 &gt;&lt;/p&gt;
 </description>
@@ -3476,44 +3799,44 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Notation        Payload 
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Notation&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;Payload&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;----------------------------------------&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AUTH            Authentication 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;AUTH&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;Authentication&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CERT            Certificate 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CERT&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;Certificate&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CERTREQ         Certificate Request 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CERTREQ&lt;/span&gt;         &lt;span class=&#34;n&#34;&gt;Certificate&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Request&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CP              Configuration 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CP&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Configuration&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D               Delete 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;D&lt;/span&gt;               &lt;span class=&#34;n&#34;&gt;Delete&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;EAP             Extensible Authentication 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;EAP&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Extensible&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Authentication&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HDR             IKE header (not a payload) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;HDR&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;IKE&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;header&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IDi             Identification - Initiator 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;IDi&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Identification&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Initiator&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IDr             Identification - Responder 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;IDr&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Identification&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Responder&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;KE              Key Exchange 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;KE&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Key&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Exchange&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ni, Nr          Nonce 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Ni&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Nr&lt;/span&gt;          &lt;span class=&#34;n&#34;&gt;Nonce&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;N               Notify 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;N&lt;/span&gt;               &lt;span class=&#34;n&#34;&gt;Notify&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SA              Security Association 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;SA&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Security&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Association&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SK              Encrypted and Authenticated
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;SK&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Encrypted&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Authenticated&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TSi             Traffic Selector - Initiator 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;TSi&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Traffic&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Selector&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Initiator&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TSr             Traffic Selector - Responder 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;TSr&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Traffic&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Selector&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Responder&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;V               Vendor ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;               &lt;span class=&#34;n&#34;&gt;Vendor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ID&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;第 3 节介绍了每个有效负载的内容的详细信息。可能选择显示的有效负载将显示在括号中，例如 [CERTREQ];这表示可以选择包含证书请求有效负载。&lt;/p&gt;
@@ -3612,14 +3935,18 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;现有方法&#34;&gt;现有方法&lt;/h2&gt;
 &lt;p&gt;深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测&lt;/p&gt;
 &lt;p&gt;简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1697463380666.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666.png&#34;
+	width=&#34;1715&#34;
+	height=&#34;539&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;img&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;318&#34;
+		data-flex-basis=&#34;763px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;HyperVision，这是一个实时检测系统，旨在通过分析流之间的交互模式来捕获加密恶意流量的足迹。特别是，它可以通过识别异常流交互（即不同于良性的交互模式）来检测具有未知足迹的加密恶意流。&lt;/p&gt;
@@ -3648,14 +3975,18 @@ $$&lt;/p&gt;
 &lt;p&gt;Z3 SMT solver：3（Z3 SMT solver）是由微软研究院开发的一个高性能的SMT（Satisfiability Modulo Theories）求解器。SMT 求解器是一种自动化工具，用于解决布尔公式、一阶逻辑公式和其他数学理论的判定问题。Z3 在各种计算机科学和工程领域都有广泛的应用，包括软件验证、形式化方法、人工智能、编译器优化和硬件验证等。&lt;/p&gt;
 &lt;p&gt;英特尔的数据平面开发套件 （DPDK）：旨在优化数据包处理性能。它专注于高性能网络应用程序和数据平面开发，使开发人员能够在通用服务器硬件上实现高吞吐量和低延迟的数据包处理。它通过绕过操作系统内核，并在用户空间中实现网络协议栈，从而提供极低的延迟和高吞吐量。支持多核处理器，允许并行处理大量数据包。利用支持硬件加速的网络接口卡（NIC）来进一步提高性能。DPDK 是一个开源项目，开发人员可以根据其需求进行自定义和扩展。DPDK 通常用于构建高性能网络应用程序，如网络功能虚拟化（NFV）、防火墙、负载均衡、数据包过滤和路由等。它还用于云计算、边缘计算和网络设备。&lt;/p&gt;
 &lt;h1 id=&#34;hypervision&#34;&gt;HyperVision&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1698218520903.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png&#34;
+	width=&#34;1737&#34;
+	height=&#34;755&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698218520903&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;552px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;首先HyperVision以镜像来的路由器流量作为输入，确保不会干扰流量转发。在识别加密的恶意流量后，它可以与现有的中间恶意流量防御配合，以限制检测到的流量。重点检测使用加密流量构建的主动攻击。不考虑不会为受害者带来流量的被动攻击，例如流量窃听和被动流量分析&lt;/p&gt;
@@ -3670,25 +4001,33 @@ $$&lt;/p&gt;
 &lt;h1 id=&#34;图构造-1&#34;&gt;图构造&lt;/h1&gt;
 &lt;h2 id=&#34;流的分类&#34;&gt;流的分类&lt;/h2&gt;
 &lt;p&gt;为了避免图构建过程中流之间的依赖爆炸，把流分成长流和短流，并且降低密度。下图显示了显示了2020年1月MAWI互联网流量数据集的流完成时间和流长度的分布，纵轴PDF是概率密度函数，可以看到不论是长流还是短流都在分布短时间、长长度更多。
-&lt;img src=&#34;https://blog2.pillar.fun/images/1698331144407.png&#34;
-	
-	
-	
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407.png&#34;
+	width=&#34;862&#34;
+	height=&#34;361&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698331144407&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;238&#34;
+		data-flex-basis=&#34;573px&#34;
+	
 &gt;
 利用短流合并后，图的稠密度显著下降
-&lt;img src=&#34;https://blog2.pillar.fun/images/1698332038326.png&#34;
-	
-	
-	
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326.png&#34;
+	width=&#34;874&#34;
+	height=&#34;355&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698332038326&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;246&#34;
+		data-flex-basis=&#34;590px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;获取每个数据包的信息，并获取其源、目标地址、端口号和每个数据包的功能，包括协议、长度和到达间隔。我们开发了一种流量分类算法来对流量进行分类（附录A中的算法1）简单来说就是维护一个哈希表，键是hash(src,dest,src_post,dest_port)，值是流的所有数据包特征的序列(协议、数据包长度、到达间隔)，然后用一个定时器TIME_NOW，每隔JUDGE_INTERVAL检查一下，如果在这个interval里流发了多个数据包，就算他是长流，否则就说他是短流）【q，这个interval怎么设置？为什么后面说ssh暴力破解都是短流？这不是应该是短期发好多包吗？】&lt;/p&gt;
@@ -3703,14 +4042,18 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;长流的特征分布拟合&#34;&gt;长流的特征分布拟合&lt;/h2&gt;
 &lt;p&gt;由于长流中的特征是集中分布的，我们使用直方图来表示长流中每个数据包特征的频率分布。直方图的每个条目表示一个数据包特征的频率，从而避免保留其长的每个数据包特征序列。具体来说，我们为每个长流中的每个数据包特征序列构建直方图，然后维护一个哈希表，    键为数据包特征序列，值为直方图。我们将数据包长度和到达间隔的桶宽度分别设置为 10 字节和 1 毫秒，以在拟合精度和开销之间进行权衡。
 下图显示了数据集中的长流中已用桶的数量和最大桶的大小，可以看是集中分布的，即长流中的大多数数据包具有相似的包长度和到达间隔。长度拟合平均用11个桶，每个桶平均200个数据包；到达间隔拟合平均用121个桶，每个桶平均71个数据包。
-&lt;img src=&#34;https://blog2.pillar.fun/images/1698336076628.png&#34;
-	
-	
-	
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628.png&#34;
+	width=&#34;859&#34;
+	height=&#34;337&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698336076628&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;254&#34;
+		data-flex-basis=&#34;611px&#34;
 	
 &gt;&lt;/p&gt;
 </description>

@@ -17,7 +17,7 @@ HyperVision，这是一个实时检测系统，旨在通过分析流之间的交
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/'>
 
-<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis'>
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis'>
 <meta property='og:description' content='导语 doi is here
 Abstract 问题引入 目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。
 提出方法 提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。
@@ -46,6 +46,9 @@ HyperVision，这是一个实时检测系统，旨在通过分析流之间的交
 首先，我们通过提取连通分量来分析图的连通性，并通过对高层次统计特征进行聚类来识别异常分量。通过排除良性分量，我们还显著减少了学习开销。 其次，我们根据在边特征中观察到的局部邻接关系对边进行预聚类。预聚类操作显著降低了特征处理开销，并确保了实时检测。 第三，我们使用Z3 SMT solver求解顶点覆盖问题来提取关键顶点，以最大程度地减少聚类的数量。 最后，根据每个临界顶点的连接边进行聚类，这些边位于预聚类产生的簇的中心，从而得到指示加密恶意流量的异常边。 此外，为了量化HyperVision基于图的流量记录相对于现有方法的优势，我们开发了一个流量记录熵模型，这是一个基于信息论的框架，从理论上分析恶意流量检测系统的现有数据源保留的信息量。这个框架表明NetFlow [19]和Zeek [86]无法保留高保真流量信息，而HyperVision中的图捕获了接近最优的流量信息，并且图中维护的信息量接近理想化数据源的理论上界。（这么屌啊？）此外，分析结果表明，HyperVision中的图形实现了比所有现有数据源更高的信息密度（即每单位存储的流量信息量），这是准确高效检测的基础。
 过两天读R. Zamir, “A proof of the fisher information inequality via a data processing argument,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 12461250, 1998.
 平台和数据集 我们使用英特尔的数据平面开发套件 （DPDK） [37] 对 HyperVision进行原型设计。为了广泛评估原型的性能，我们重放了92个攻击数据集，其中包括在我们的虚拟私有云 （VPC）中收集的80个新数据集，其中包含 1,500 多个实例。在 VPC 中，我们收集了 48 个典型的加密恶意流量，包括 （i） 加密泛洪流量，例如泛洪目标链路 [41];（ii） 网络攻击，例如利用网络漏洞 [64];（iii） 恶意软件活动，包括连接测试、依赖项更新和下载。">
+  
+
+
     </head>
     <body class="
     article-page
@@ -259,6 +262,25 @@ HyperVision，这是一个实时检测系统，旨在通过分析流之间的交
         
 
         <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
             
             
                 <li id="dark-mode-toggle">
@@ -416,14 +438,18 @@ HyperVision，这是一个实时检测系统，旨在通过分析流之间的交
 <h2 id="现有方法">现有方法</h2>
 <p>深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测</p>
 <p>简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。</p>
-<p><img src="/images/1697463380666.png"
-	
-	
-	
+<p><img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666.png"
+	width="1715"
+	height="539"
+	srcset="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_480x0_resize_box_3.png 480w, /p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="img"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="318"
+		data-flex-basis="763px"
 	
 ></p>
 <p>HyperVision，这是一个实时检测系统，旨在通过分析流之间的交互模式来捕获加密恶意流量的足迹。特别是，它可以通过识别异常流交互（即不同于良性的交互模式）来检测具有未知足迹的加密恶意流。</p>
@@ -452,14 +478,18 @@ HyperVision，这是一个实时检测系统，旨在通过分析流之间的交
 <p>Z3 SMT solver：3（Z3 SMT solver）是由微软研究院开发的一个高性能的SMT（Satisfiability Modulo Theories）求解器。SMT 求解器是一种自动化工具，用于解决布尔公式、一阶逻辑公式和其他数学理论的判定问题。Z3 在各种计算机科学和工程领域都有广泛的应用，包括软件验证、形式化方法、人工智能、编译器优化和硬件验证等。</p>
 <p>英特尔的数据平面开发套件 （DPDK）：旨在优化数据包处理性能。它专注于高性能网络应用程序和数据平面开发，使开发人员能够在通用服务器硬件上实现高吞吐量和低延迟的数据包处理。它通过绕过操作系统内核，并在用户空间中实现网络协议栈，从而提供极低的延迟和高吞吐量。支持多核处理器，允许并行处理大量数据包。利用支持硬件加速的网络接口卡（NIC）来进一步提高性能。DPDK 是一个开源项目，开发人员可以根据其需求进行自定义和扩展。DPDK 通常用于构建高性能网络应用程序，如网络功能虚拟化（NFV）、防火墙、负载均衡、数据包过滤和路由等。它还用于云计算、边缘计算和网络设备。</p>
 <h1 id="hypervision">HyperVision</h1>
-<p><img src="/images/1698218520903.png"
-	
-	
-	
+<p><img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png"
+	width="1737"
+	height="755"
+	srcset="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_480x0_resize_box_3.png 480w, /p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1698218520903"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="230"
+		data-flex-basis="552px"
 	
 ></p>
 <p>首先HyperVision以镜像来的路由器流量作为输入，确保不会干扰流量转发。在识别加密的恶意流量后，它可以与现有的中间恶意流量防御配合，以限制检测到的流量。重点检测使用加密流量构建的主动攻击。不考虑不会为受害者带来流量的被动攻击，例如流量窃听和被动流量分析</p>
@@ -474,25 +504,33 @@ HyperVision，这是一个实时检测系统，旨在通过分析流之间的交
 <h1 id="图构造-1">图构造</h1>
 <h2 id="流的分类">流的分类</h2>
 <p>为了避免图构建过程中流之间的依赖爆炸，把流分成长流和短流，并且降低密度。下图显示了显示了2020年1月MAWI互联网流量数据集的流完成时间和流长度的分布，纵轴PDF是概率密度函数，可以看到不论是长流还是短流都在分布短时间、长长度更多。
-<img src="/images/1698331144407.png"
-	
-	
-	
+<img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407.png"
+	width="862"
+	height="361"
+	srcset="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_480x0_resize_box_3.png 480w, /p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1698331144407"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="238"
+		data-flex-basis="573px"
+	
 >
 利用短流合并后，图的稠密度显著下降
-<img src="/images/1698332038326.png"
-	
-	
-	
+<img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326.png"
+	width="874"
+	height="355"
+	srcset="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_480x0_resize_box_3.png 480w, /p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1698332038326"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="246"
+		data-flex-basis="590px"
 	
 ></p>
 <p>获取每个数据包的信息，并获取其源、目标地址、端口号和每个数据包的功能，包括协议、长度和到达间隔。我们开发了一种流量分类算法来对流量进行分类（附录A中的算法1）简单来说就是维护一个哈希表，键是hash(src,dest,src_post,dest_port)，值是流的所有数据包特征的序列(协议、数据包长度、到达间隔)，然后用一个定时器TIME_NOW，每隔JUDGE_INTERVAL检查一下，如果在这个interval里流发了多个数据包，就算他是长流，否则就说他是短流）【q，这个interval怎么设置？为什么后面说ssh暴力破解都是短流？这不是应该是短期发好多包吗？】</p>
@@ -507,14 +545,18 @@ HyperVision，这是一个实时检测系统，旨在通过分析流之间的交
 <h2 id="长流的特征分布拟合">长流的特征分布拟合</h2>
 <p>由于长流中的特征是集中分布的，我们使用直方图来表示长流中每个数据包特征的频率分布。直方图的每个条目表示一个数据包特征的频率，从而避免保留其长的每个数据包特征序列。具体来说，我们为每个长流中的每个数据包特征序列构建直方图，然后维护一个哈希表，    键为数据包特征序列，值为直方图。我们将数据包长度和到达间隔的桶宽度分别设置为 10 字节和 1 毫秒，以在拟合精度和开销之间进行权衡。
 下图显示了数据集中的长流中已用桶的数量和最大桶的大小，可以看是集中分布的，即长流中的大多数数据包具有相似的包长度和到达间隔。长度拟合平均用11个桶，每个桶平均200个数据包；到达间隔拟合平均用121个桶，每个桶平均71个数据包。
-<img src="/images/1698336076628.png"
-	
-	
-	
+<img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628.png"
+	width="859"
+	height="337"
+	srcset="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_480x0_resize_box_3.png 480w, /p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1698336076628"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="254"
+		data-flex-basis="611px"
 	
 ></p>
 

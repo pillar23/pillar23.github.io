@@ -20,7 +20,7 @@ TGN对边的嵌入主要涉及以下步骤：'>
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/kairos/'>
 
-<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='KAIROS'>
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='KAIROS'>
 <meta property='og:description' content='导语 SP24
 doi is here
 Abstract 溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。
@@ -55,6 +55,9 @@ challenge 不可知性：有没见过的攻击，需要模型具有泛化性 攻
 分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。
 TGN TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。
 TGN对边的嵌入主要涉及以下步骤：">
+  
+
+
     </head>
     <body class="
     article-page
@@ -268,6 +271,25 @@ TGN对边的嵌入主要涉及以下步骤：">
         
 
         <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
             
             
                 <li id="dark-mode-toggle">

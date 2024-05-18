@@ -19,7 +19,7 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/magic/'>
 
-<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='MAGIC'>
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='MAGIC'>
 <meta property='og:description' content='文章可以在这里获取
 Abstract APT攻击越来越成为普遍的威胁，然而，以前的工作表现出几个缺点：
 需要包含攻击的数据和APT的先验知识 无法提取隐藏在来源图中的丰富上下文信息 由于其令人望而却步的计算开销和内存消耗而变得不切实际。 本文介绍一种自监督APT检测方法MAGIC，能够在不同级别的监督下进行多粒度检测。利用掩码图表示学习对良性系统实体和行为进行建模，对来源图进行高效的深度特征提取和结构抽象。通过异常值检测方法检测异常系统行为，MAGIC 能够执行系统实体级和批处理日志级 APT 检测。
@@ -52,6 +52,9 @@ Introduction 高级持续性威胁（APTs）是由熟练的攻击者进行的蓄
 MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。
 MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行多粒度检测，即检测批处理日志中是否存在 APT 或定位实体级对手。虽然 MAGIC 旨在执行 APT 检测而不会受到攻击包含数据，但它非常适合半监督和完全监督的情况。此外，MAGIC还包含一个可选的模型适配机制，为其用户提供反馈渠道。这样的反馈对于MAGIC进一步提高性能、对抗概念漂移和减少误报非常重要。
 我们在三个不同的 APT 攻击数据集上评估了MAGIC的性能和开销：DARPA Transparent Computing E3 数据集、StreamSpot 数据集和 Unicorn Wget 数据集。DARPA 数据集包含真实世界的攻击，而 StreamSpot 和 Unicorn Wget 数据集则在受控环境中完全模拟。评估结果表明，MAGIC 能够以 97.">
+  
+
+
     </head>
     <body class="
     article-page
@@ -265,6 +268,25 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
         
 
         <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
             
             
                 <li id="dark-mode-toggle">
@@ -470,16 +492,7 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 <h3 id="攻击场景">攻击场景</h3>
 <p>在这里，我们提供了我们在整篇文章中使用的 APT 场景的详细说明。带有 Drakon Dropper 的 Pine 后门是来自 DARPA Engagement 3 Trace 数据集的 APT 攻击 [20]。在攻击过程中，攻击者构建恶意可执行文件 （/tmp/tcexec） 并通过网络钓鱼电子邮件将其发送到目标主机。然后，用户会无意识地下载并打开电子邮件。电子邮件中包含的可执行文件旨在执行用于内部侦测的端口扫描，并在目标主机和攻击者之间建立静默连接。</p>
 <p>图 1 显示了我们的动机示例的出处图。图中的节点表示系统实体，箭头表示实体之间的定向交互。显示的图是通过删除大多数与攻击无关的实体和交互，从完整的来源图中抽象出来的子图。不同的节点形状对应不同类型的实体。被条纹覆盖的实体被视为恶意实体。</p>
-<p><img src="/images/1709698742850.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="1709698742850"
-	
-	
-></p>
+<p>![1709698742850](MA G IC1709698742850.png)</p>
 <h3 id="prior-research-and-their-limitations">Prior Research and their Limitations</h3>
 <ul>
 <li><strong>监督方法</strong>：对于早期作品，需要<strong>构建特殊的启发式规则</strong>来涵盖所有攻击模式。许多基于深度学习的APT检测方法基于良性和攻击性数据构建来源图，并以分类方式检测APT。这些监督方法可以在学习的攻击模式上获得近乎完美的检测结果，但在<strong>面临概念漂移或看不见的攻击模式时尤其容易受到攻击</strong>。此外，对于基于规则的方法，启发式<strong>规则的构建和维护可能非常昂贵和耗时</strong>。对于基于深度学习的方法，包含攻击的数据的稀缺性阻碍了这些监督方法的实际部署。针对上述问题，MAGIC 采用完全自监督的异常检测方式，在有效处理不可见攻击模式的同时，允许不存在包含攻击的数据。</li>
@@ -496,14 +509,18 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 <li>系统实体级检测。在这种粒度的APT检测下，检测任务是给定来自一致来源的审计日志，MAGIC能够在这些审计日志中准确定位恶意系统实体。在APT期间识别关键系统实体对于后续任务（如攻击调查和攻击故事恢复）至关重要，因为它提供了可解释的检测结果，并减少了对领域专家的需求以及冗余的手动工作。</li>
 </ul>
 <p>MAGIC是一种新型的自监督APT检测方法，它利用掩蔽图表示学习和异常值检测方法，能够对海量审计日志进行高效的多粒度检测。MAGIC的流水线由三个主要组件组成：（1）来源图构建，（2）图表示模块和（3）检测模块。它还提供了可选的 （4） 模型适配机制。在训练过程中，MAGIC 用 （1） 转换训练数据，用 （2） 学习图嵌入，用 （3） 记住良性行为。在推理过程中，MAGIC 使用 （1） 转换目标数据，使用训练的 （2） 获得图形嵌入，并通过 （3） 检测异常值。图 2 概述了 MAGIC 架构。</p>
-<p><img src="/images/1709702251187.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709702251187.png"
+	width="1736"
+	height="787"
+	srcset="/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709702251187"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="220"
+		data-flex-basis="529px"
 	
 ></p>
 <p>系统审计软件收集的流式审计日志通常以批量方式存储。在来源图构建 （1） 期间，MAGIC 将这些日志转换为静态来源图。系统实体及其之间的交互被提取并分别转换为节点和边。使用几种降低复杂性的技术来删除冗余信息。 	然后，将构建的出处图通过图表示模块（2）馈送，以获得输出嵌入（即对象的综合向量表示）。图表示模块基于图屏蔽自动编码器构建，并集成了基于样本的结构重构，将节点和边属性嵌入、传播和聚合到输出嵌入中，这些嵌入包含节点嵌入和系统状态嵌入。图形表示模块仅使用良性审核日志进行训练，以对良性系统行为进行建模。在对可能包含攻击的审计日志执行 APT 检测时，MAGIC 利用基于输出嵌入的异常值检测方法来检测系统行为中的异常值 （3）。根据任务的粒度，使用不同的嵌入来完成 APT 检测。在批处理日志级任务中，反映整个系统一般行为的系统状态嵌入是检测目标。此类嵌入中的异常值意味着其相应的系统状态是看不见的，并且可能是恶意的，这会显示该批次中的 APT 信号。在系统实体级任务中，检测目标是那些节点嵌入，它们表示系统实体的行为。节点嵌入中的异常值表示可疑的系统实体，并以更精细的粒度检测 APT 威胁。</p>
@@ -526,14 +543,18 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 <p>MAGIC 首先从原始审计日志中构建出处图，然后再执行图表示和 APT 检测。我们遵循三个步骤来构建一致且优化的来源图，为图表示做好准备。</p>
 <p><strong>日志解析</strong>：第一步是简单地解析每个日志条目，提取系统实体以及它们之间的系统交互。然后，可以构建一个原型出处图，以系统实体为节点，以交互为边。现在，我们提取有关节点和边的分类信息。对于提供实体和交互标签的简单日志格式，我们直接使用这些标签。对于提供这些实体和交互的复杂属性的某种格式，我们应用多标签哈希（例如，xxhash）将属性转换为<strong>标签</strong>。在这个阶段，来源图是有向多图。我们设计了一个示例来演示如何处理图 3 中日志解析后的原始来源图。</p>
 <p><strong>初始嵌入</strong>：在这个阶段，我们将节点和边标签转换为维度 d 的固定大小的特征向量（即初始嵌入），其中 d 是图表示模块的隐藏维度。我们应用了查找嵌入，在节点/边标签和 d 维特征向量之间建立了一对一的映射。如图 3（I 和 II）所示，进程 a 和 b 共享相同的标签，因此它们映射到相同的特征向量，而 a 和 c 嵌入到不同的特征向量中，因为它们具有不同的标签。我们注意到，唯一节点/边缘标签的可能数量由数据源（即审计日志格式）决定。因此，查找嵌入在转导设置下工作，不需要学习看不见的标签的嵌入。</p>
-<p><img src="/images/1709705666067.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709705666067.png"
+	width="811"
+	height="975"
+	srcset="/p/magic/MAGIC/1709705666067_hucce759ef0e4eecef2a6b3c179664aa0b_123849_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709705666067_hucce759ef0e4eecef2a6b3c179664aa0b_123849_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709705666067"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="83"
+		data-flex-basis="199px"
 	
 ></p>
 <p><strong>降噪</strong>：我们的图表示模块的预期输入出处图将是简单图。因此，我们需要在节点对之间组合多个边。如果一对节点之间存在同一标签的多个边（也共享相同的初始嵌入），我们将删除多余的边，以便只保留其中一条。然后，我们将剩余的边合并为一条最终边。我们注意到，在一对节点之间，可能会保留几个不同标签的边缘。组合后，通过对剩余边的初始嵌入进行平均来获得所得唯一边的初始嵌入。为了说明这一点，我们在图3（II和III）中展示了我们的降噪如何结合多边，以及它如何影响边的初始嵌入。首先，对于每个标签，将 a 和 c 之间的 3 次读取和 2 次写入交互合并为一个。然后我们将它们组合在一起，形成一个边缘 eac，其初始嵌入等于其余边缘的<strong>平均</strong>初始嵌入（e′ 2 和 e′ 5）。我们在附录E中提供了我们的降噪步骤与以前工作的比较</p>
@@ -542,7 +563,7 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 <p>MAGIC 采用图表示模块从特色出处图（featured provenance graphs）中获取高质量的嵌入。如图 4 所示，图表示模块由三个阶段组成：用于部分隐藏节点特征（即初始嵌入）以进行重建的掩码过程，通过传播和聚合图特征生成节点和系统状态输出嵌入的图编码器，图解码器通过掩码特征重建和基于样本的结构为图表示模块的训练提供监督信号重建。编码器和解码器形成图形掩码自动编码器，在生成快速且节省资源的嵌入方面表现出色。</p>
 <h4 id="feature-masking">Feature Masking</h4>
 <p>在训练我们的图表示模块之前，我们对节点执行掩码，以便在重建这些节点时可以训练图掩码自动编码器。屏蔽节点是随机选择的，覆盖所有节点的一定比例。此类屏蔽节点的初始嵌入将替换为特殊的屏蔽令牌 xmask，以涵盖有关这些节点的任何原始信息。但是，边缘不会被屏蔽，因为这些边缘提供了有关系统实体之间关系的宝贵信息。总之，给定节点初始嵌入 $x_n$，我们按如下方式屏蔽节点：</p>
-<p><img src="/images/1709708984909.png"
+<p><img src="/1709708984909.png"
 	
 	
 	
@@ -557,98 +578,130 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 <p>从图构建步骤中获得的初始嵌入仅考虑原始特征。然而，原始特征还远远不足以对系统实体的详细行为进行建模。实体的上下文信息，如其邻域、多跳关系以及与其他系统实体的交互模式，对于获得高质量的实体嵌入起着重要作用。在这里，我们采用并扩展了<strong>图形屏蔽自编码器</strong>，以自监督的方式生成输出嵌入。图形屏蔽自动编码器由编码器和解码器组成。编码器通过传播和聚合图特征来生成输出嵌入，解码器重建图特征以提供用于训练的监督信号。这种编码器-解码器架构在生成的嵌入中保留了上下文和语义信息，同时通过掩蔽学习显着降低了其计算开销。</p>
 <p>我们的图表示模块的编码器包含多个堆叠层的图注意力网络（GAT）。GAT层的功能是根据节点本身及其相邻节点的特征（初始嵌入）生成输出节点嵌入。与普通的GNN不同，GAT引入了一种注意力机制来衡量这些邻居的重要性。【GAT加了attention真的还好算吗？训练代价应该也不小吧】</p>
 <p>为了详细解释，GAT 的一层将前几层生成的节点嵌入作为输入，并将嵌入从源节点传播到目标节点，并沿交互传播到消息中。该消息包含有关源节点以及源节点和目标节点之间交互的信息：</p>
-<p><img src="/images/1709710234712.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709710234712.png"
+	width="523"
+	height="97"
+	srcset="/p/magic/MAGIC/1709710234712_hua36d1db2226ef0c7dab718083c445773_7961_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710234712_hua36d1db2226ef0c7dab718083c445773_7961_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709710234712"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="539"
+		data-flex-basis="1294px"
+	
 ></p>
 <p>并采用注意力机制来计算消息源与其目的地之间的注意力系数：</p>
-<p><img src="/images/1709710298170.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709710298170.png"
+	width="819"
+	height="113"
+	srcset="/p/magic/MAGIC/1709710298170_hu85b48369b6085df9fdcff38080ffe969_17564_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710298170_hu85b48369b6085df9fdcff38080ffe969_17564_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709710298170"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="724"
+		data-flex-basis="1739px"
+	
 ></p>
 <p>然后，对于目标节点，GAT 聚合来自传入边缘的消息，以通过计算所有传入消息的加权和来更新其节点嵌入。权重正是注意力系数：</p>
-<p><img src="/images/1709710344097.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709710344097.png"
+	width="763"
+	height="185"
+	srcset="/p/magic/MAGIC/1709710344097_hu5c46dd1cd3605c2d547afa478ca5264b_16511_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710344097_hu5c46dd1cd3605c2d547afa478ca5264b_16511_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709710344097"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="412"
+		data-flex-basis="989px"
+	
 ></p>
 <p>其中 $h^l_n$ 是 GAT 第 l 层节点 n 的隐藏嵌入，$h^{l-1}_n$ 是 l − 1 层的隐藏嵌入，$\mathcal{N}<em>n$ 是 n 的单跳邻域。第一个 GAT 层的输入是初始节点嵌入。Embe 是初始边缘嵌入，在整个图形表示模块中保持不变。$W_as$，$W_am$，$W</em>{self}$ ，$W{msg}$ 是可训练的参数。更新的节点嵌入构成了节点单跳交互行为的一般抽象。</p>
 <p>将此类 GAT 的多层堆叠以获得最终的节点嵌入 h，该节点嵌入由原始节点嵌入和所有 GAT 层的输出连接起来：</p>
-<p><img src="/images/1709710765514.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709710765514.png"
+	width="391"
+	height="81"
+	srcset="/p/magic/MAGIC/1709710765514_hud313a304217bb9525bb8ee55275c4f0c_4387_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710765514_hud313a304217bb9525bb8ee55275c4f0c_4387_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709710765514"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="482"
+		data-flex-basis="1158px"
+	
 ></p>
 <p>其中 ·||·表示串联操作。GAT堆叠的层数越多，相邻范围就越宽，节点的多跳交互模式能够表示的就越远。因此，图编码器有效地结合了节点初始特征和多跳交互行为，将系统实体行为抽象到节点嵌入中。图编码器还对所有节点嵌入应用平均池化，以生成图本身的全面嵌入，它概括了系统的整体状态：</p>
-<p><img src="/images/1709710804533.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709710804533.png"
+	width="295"
+	height="117"
+	srcset="/p/magic/MAGIC/1709710804533_hu18cf87b6386ab6bddc11df307a6c214f_4926_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710804533_hu18cf87b6386ab6bddc11df307a6c214f_4926_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709710804533"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="252"
+		data-flex-basis="605px"
 	
 ></p>
 <p>图编码器生成的节点嵌入和系统状态嵌入被视为图表示模块的输出，用于不同场景下的后续任务。</p>
 <h4 id="graph-decoder">Graph Decoder</h4>
 <p>图形编码器不提供支持模型训练的监督信号。在典型的图自编码器中，使用图解码器对节点嵌入进行解码，并通过特征重构和结构重构来监督模型训练。然而，图形屏蔽自编码器放弃了结构重建，以减少计算开销。我们的图解码器是两者的混合体，它集成了掩码特征重建和基于样本的结构重建，以构建优化图表示模块的目标函数。</p>
 <p>给定从图编码器获得的节点嵌入 $h_n$，解码器首先重新屏蔽这些屏蔽节点，并将它们转换为屏蔽特征重建的输入：</p>
-<p><img src="/images/1709711180082.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709711180082.png"
+	width="433"
+	height="113"
+	srcset="/p/magic/MAGIC/1709711180082_hu051c36bc1b5666d451eb10a0eb894d14_9252_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709711180082_hu051c36bc1b5666d451eb10a0eb894d14_9252_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709711180082"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="383"
+		data-flex-basis="919px"
+	
 ></p>
 <p>随后，解码器使用上述类似的GAT层来重建掩码节点的初始嵌入，从而可以计算特征重建损失：</p>
-<p><img src="/images/1709711206698.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709711206698.png"
+	width="513"
+	height="187"
+	srcset="/p/magic/MAGIC/1709711206698_hu77ff8b359efadd2edc7202c3b77a4dc5_14330_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709711206698_hu77ff8b359efadd2edc7202c3b77a4dc5_14330_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709711206698"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="274"
+		data-flex-basis="658px"
 	
 ></p>
 <p>【所以这个掩码节点是拿个seed全局保留的马？】</p>
 <p>其中 $L_{fr} $是通过计算掩码节点的初始嵌入和重建嵌入之间的缩放余弦损失获得的掩蔽特征重建损失。这种损失在简单样本和困难样本之间急剧增加，从而有效地加快了学习速度。这种缩放的程度由超参数γ控制。</p>
 <p>与此同时，基于样本的结构重建旨在重建图结构（即预测节点之间的边）。与重建整个邻接矩阵不同，后者具有O(N2)的复杂度，基于样本的结构重建在节点对上应用对比采样，并预测这些节点对之间的边概率。仅非掩蔽节点参与结构重建。正样本是由所有非掩蔽节点之间的所有现有边构建的，负样本则是在那些没有现有边的节点对中进行采样构建的。</p>
 <p>使用简单的两层 MLP 重建节点对样本之间的边，为每个样本生成一个概率。在这些样本上，重建损失的形式为简单的二元交叉熵损失：</p>
-<p><img src="/images/1709711513256.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709711513256.png"
+	width="819"
+	height="185"
+	srcset="/p/magic/MAGIC/1709711513256_hu32346daf17371ca74b8acb0e42c31b4c_17333_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709711513256_hu32346daf17371ca74b8acb0e42c31b4c_17333_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709711513256"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="442"
+		data-flex-basis="1062px"
 	
 ></p>
 <p>其中 （n， n−） 和 （n， n+） 分别是负样本和正样本，ˆ N =N− e N 是一组非掩码节点。基于样本的结构重建仅对输出嵌入进行监督。我们没有使用点积，而是使用 MLP 来计算边缘概率，因为交互实体的行为不一定相似。此外，我们并没有强迫模型学习预测边缘概率。这种结构重构的功能是最大化抽象节点嵌入中包含的行为信息，以便一个简单的MLP足以将这些信息合并并解释为边缘概率。</p>
@@ -656,14 +709,18 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 <h3 id="detection-module">Detection Module</h3>
 <p>基于图表示模块生成的输出嵌入，利用异常值检测方法以无监督方式进行APT检测。如前几节所述，此类嵌入以不同的粒度总结了系统行为。我们的检测模型的目标是识别恶意系统实体或状态，前提是仅对良性系统行为有先验的了解。如果通过图表示学习生成的嵌入在图中具有相似的交互行为，则它们的相应实体往往会形成聚类。因此，系统状态嵌入中的异常值表示不常见和可疑的系统行为。基于这样的洞见，我们开发了一种特殊的异常值检测方法来进行APT检测。</p>
 <p>在训练过程中，首先从训练来源图中抽象出良性输出嵌入。在这个阶段，检测模块所做的只是记住这些嵌入，并将它们组织在一个K-D树中[33]。经过训练后，检测模块通过三个步骤揭示异常值：k-最近邻搜索、相似度计算和过滤。给定目标嵌入，检测模块首先通过 K-D 树搜索获得其 k 最近邻。这样的搜索过程只需要 log（N） 时间，其中 N 是记忆训练嵌入的总数。然后，应用相似性准则来评估目标嵌入与其邻居的接近程度并计算异常分数。如果其异常分数高于超参数 θ，则目标嵌入被视为异常值，其相应的系统实体或系统状态为恶意。检测模块的示例工作流程形式化如下，使用欧几里得距离作为相似性准则：</p>
-<p><img src="/images/1709711997347.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709711997347.png"
+	width="399"
+	height="339"
+	srcset="/p/magic/MAGIC/1709711997347_hu17c2e8d081b68e3a8299bded3e1504fa_23202_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709711997347_hu17c2e8d081b68e3a8299bded3e1504fa_23202_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709711997347"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="117"
+		data-flex-basis="282px"
 	
 ></p>
 <p>其中 $\overline{dist}$ 是训练嵌入与其 k 最近邻之间的平均距离。在执行批处理日志级别检测时，检测模块会记住反映系统状态的良性系统状态嵌入，并检测新到达的来源图的系统状态嵌入是否为异常值。在执行系统实体级检测时，检测模块会记住指示系统实体行为的良性节点嵌入，并给定一个新到达的来源图，它会检测所有系统实体嵌入中的异常值。</p>
@@ -678,107 +735,147 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 <p>我们评估了MAGIC在三个公共数据集上的有效性：StreamSpot数据集[21]，Unicorn Wget数据集[22]和DARPA Engagement 3数据集[20]。这些数据集在数量、来源和粒度方面各不相同。我们相信，通过在这些数据集上测试MAGIC的性能，我们能够将MAGIC与尽可能多的最先进的APT检测方法进行比较，并探索MAGIC的普遍性和适用性。我们对这三个数据集的详细说明如下。</p>
 <p><strong>StreamSpot 数据集</strong>：StreamSpot数据集（见表1）是由StreamSpot[34]使用审计系统SystemTap [41]收集并公开的模拟数据集。StreamSpot 数据集包含 600 批次审计日志，用于监控 6 个独特场景下的系统调用。其中五个方案是模拟的良性用户行为，而攻击方案模拟的是偷渡式下载攻击。该数据集被认为是一个相对较小的数据集，由于没有提供日志条目和系统实体的标签，因此我们对 StreamSpot 数据集执行批量日志级别检测，类似于以前的工作 [10， 15， 17]。</p>
 <p><strong>Unicorn Wget 数据集</strong>：Unicorn Wget数据集（见表1）包含Unicorn[10]设计的模拟攻击。具体来说，它包含 Camflow [35] 收集的 150 批日志，其中 125 批是良性的，其中 25 批包含供应链攻击。这些攻击被归类为隐形攻击，经过精心设计，其行为类似于良性系统工作流程，预计很难识别。这个数据集被认为是我们实验数据集中最难的，因为它的体积大，日志格式复杂，而且这些攻击的隐蔽性。与最先进的方法相同，我们在此数据集上执行批处理日志级别检测。</p>
-<p><img src="/images/1709712995732.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709712995732.png"
+	width="817"
+	height="325"
+	srcset="/p/magic/MAGIC/1709712995732_hu038a9df923508568e84903c6bd1623d5_49229_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709712995732_hu038a9df923508568e84903c6bd1623d5_49229_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709712995732"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="251"
+		data-flex-basis="603px"
+	
 ></p>
 <p><strong>DARPA E3 数据集</strong>：DARPA Engagement 3 数据集（见表 2）作为 DARPA 透明计算计划的一部分，在对抗性参与期间在企业网络中收集。利用不同漏洞的 APT 攻击 [20] 由红队进行，以泄露敏感信息。蓝队试图通过审核网络主机并对其执行因果关系分析来识别这些攻击。Trace、THEIA 和 CADETS 子数据集包含在我们的评估中。这三个子数据集总共包含 51.69GB 的审计记录，包含多达 6,539,677 个系统实体和 68,127,444 次交互。因此，我们评估了MAGIC的系统实体级检测能力，并解决了这些数据集的开销问题。</p>
-<p><img src="/images/1709713015449.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713015449.png"
+	width="831"
+	height="329"
+	srcset="/p/magic/MAGIC/1709713015449_hud9843b27b4024551280b826d1d324b03_52173_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713015449_hud9843b27b4024551280b826d1d324b03_52173_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713015449"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="252"
+		data-flex-basis="606px"
+	
 ></p>
 <p>对于不同的数据集，我们采用不同的数据集拆分来评估模型，并且我们仅使用良性样本进行训练。对于 StreamSpot 数据集，我们从 500 个良性日志中随机选择 400 个批次进行训练，其余批次进行测试，从而形成一个平衡的测试集。对于 Unicorn Wget 数据集，选择了 100 批良性日志进行训练，其余用于测试。对于 DARPA E3 数据集，我们使用与 ThreaTrace [17] 相同的真值标签，并根据其出现的顺序拆分日志条目。最早的 80% 日志条目用于训练，其余条目保留用于测试。在评估过程中，MAGIC在100个全局随机种子下的平均性能被报告为最终结果，因此实验结果可能包含系统实体/日志批次的分数。</p>
 <h3 id="effectiveness">Effectiveness</h3>
-<p><img src="/images/1709713083774.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713083774.png"
+	width="839"
+	height="521"
+	srcset="/p/magic/MAGIC/1709713083774_hucc8f575a68082b3edb5e18e57ba59e25_61653_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713083774_hucc8f575a68082b3edb5e18e57ba59e25_61653_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713083774"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="161"
+		data-flex-basis="386px"
+	
 ></p>
-<p><img src="/images/1709713103510.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713103510.png"
+	width="1731"
+	height="383"
+	srcset="/p/magic/MAGIC/1709713103510_hu0c8ae3e5da56cd76803a95e065c0c69a_103069_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713103510_hu0c8ae3e5da56cd76803a95e065c0c69a_103069_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713103510"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="451"
+		data-flex-basis="1084px"
+	
 ></p>
-<p><img src="/images/1709713117689.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713117689.png"
+	width="837"
+	height="743"
+	srcset="/p/magic/MAGIC/1709713117689_hu4387d49ca41b8e66fefd80563e191f71_90569_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713117689_hu4387d49ca41b8e66fefd80563e191f71_90569_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713117689"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="112"
+		data-flex-basis="270px"
+	
 ></p>
-<p><img src="/images/1709713129950.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713129950.png"
+	width="837"
+	height="727"
+	srcset="/p/magic/MAGIC/1709713129950_hu3fa0a3dbdbed859ed7a4be337bec3ab2_156190_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713129950_hu3fa0a3dbdbed859ed7a4be337bec3ab2_156190_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713129950"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
 ></p>
-<p><img src="/images/1709713153070.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713153070.png"
+	width="885"
+	height="801"
+	srcset="/p/magic/MAGIC/1709713153070_hud6612d36fb5c0e22a75c5a5a157aca07_106887_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713153070_hud6612d36fb5c0e22a75c5a5a157aca07_106887_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713153070"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="110"
+		data-flex-basis="265px"
+	
 ></p>
-<p><img src="/images/1709713173936.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713173936.png"
+	width="857"
+	height="509"
+	srcset="/p/magic/MAGIC/1709713173936_hu8fc3646338be836665a4c5a8db534fea_62888_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713173936_hu8fc3646338be836665a4c5a8db534fea_62888_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713173936"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="404px"
+	
 ></p>
-<p><img src="/images/1709713196429.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713196429.png"
+	width="1561"
+	height="587"
+	srcset="/p/magic/MAGIC/1709713196429_hu0fad53adbd08d285dc62c0f6b0e42f51_93870_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713196429_hu0fad53adbd08d285dc62c0f6b0e42f51_93870_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713196429"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="265"
+		data-flex-basis="638px"
+	
 ></p>
-<p><img src="/images/1709713209284.png"
-	
-	
-	
+<p><img src="/p/magic/MAGIC/1709713209284.png"
+	width="867"
+	height="525"
+	srcset="/p/magic/MAGIC/1709713209284_hud365458e9fec964efcc85d1f686cb918_54083_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713209284_hud365458e9fec964efcc85d1f686cb918_54083_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709713209284"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="165"
+		data-flex-basis="396px"
 	
 ></p>
 <h2 id="conclusion">conclusion</h2>

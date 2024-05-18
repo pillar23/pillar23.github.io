@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='文章可以在这里获取
 introduction APT攻击涉及长期的多个攻击步骤，其调查需要分析大量日志以确定其攻击步骤。因此提出ATLAS从现成的审计日志构建端到端攻击故事的框架。
 ATLAS基于的观察：无论利用的漏洞和执行的有效载荷如何，不同的攻击可能具有相似的抽象攻击策略。
@@ -17,7 +17,7 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 调查这个场景通常从从审核日志中收集有关攻击的数据开始，例如系统事件、DNS 查询和浏览器事件。攻击调查工具通常以因果图（或来源图）的形式表示审核日志，该图用作取证工具，使安全调查人员能够执行根本原因分析，并更好地了解攻击的性质。大多数先前的研究将因果图中的攻击故事恢复为子图，其中该图中的节点和边与攻击症状具有因果关系。图 1 （a） 显示了由这些工具生成的示例攻击场景的因果关系图。红色虚线箭头表示从中启动攻击调查的警报事件（α，可疑网络连接），红色虚线矩形区域表示已恢复的攻击子图。'>
 <title>ATLAS</title>
 
-<link rel='canonical' href='http://localhost:1313/p/atlas/'>
+<link rel='canonical' href='https://blog2.pillar.fun/p/atlas/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='ATLAS'>
 <meta property='og:description' content='文章可以在这里获取
@@ -34,7 +34,7 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 因果图通常庞大而复杂，这使得序列构建变得困难&amp;ndash;&amp;gt;采用定制化的图优化算法来降低图的复杂度 它需要一种方法来精确构建序列，以有效地模拟合法和可疑的活动&amp;ndash;&amp;gt;提出一种从事件中提取攻击模式序列的新技术 需要一种自动化方法来识别给定的攻击症状中的攻击事件&amp;ndash;&amp;gt;通过攻击症状进行攻击调查，以恢复攻击事件，帮助全面构建攻击故事。 总的来说，ATLAS做了
 引入了 ATLAS，这是一个用于攻击故事恢复的框架，它利用自然语言处理和基于序列的模型学习技术来帮助网络分析师从审计日志中恢复攻击步骤. 提出了一种新的序列表示，通过词形还原和词嵌入来抽象攻击和非攻击语义模式。这些序列使 ATLAS 能够构建一个有效的基于序列的模型，以识别构成攻击故事的攻击事件 我们在受控环境中通过其真实世界报告开发的 10 种现实 APT 攻击中验证了 ATLAS。结果表明，ATLAS能够高精度、最小开销地识别攻击故事的关键攻击条目。 Motivation and Definitions 整篇论文中设定了一种攻击场景：攻击者通过电子邮件向企业中的目标用户发送恶意Microsoft Word文件（contract.doc）。用户被欺骗使用 Firefox 从 Gmail 下载和打开 Word 文件。该文档包含一段恶意代码，该代码利用易受攻击的 Microsoft Word （winword.exe） 并发出 HTTPS 请求以下载恶意 Microsoft HTA 脚本 （template.hta）。此脚本执行恶意 Visual Basic 脚本 （maintenance.vbs），其中包含安装后门以泄露敏感文件的 PowerShell 命令。最后，攻击者横向移动到其他主机。
 调查这个场景通常从从审核日志中收集有关攻击的数据开始，例如系统事件、DNS 查询和浏览器事件。攻击调查工具通常以因果图（或来源图）的形式表示审核日志，该图用作取证工具，使安全调查人员能够执行根本原因分析，并更好地了解攻击的性质。大多数先前的研究将因果图中的攻击故事恢复为子图，其中该图中的节点和边与攻击症状具有因果关系。图 1 （a） 显示了由这些工具生成的示例攻击场景的因果关系图。红色虚线箭头表示从中启动攻击调查的警报事件（α，可疑网络连接），红色虚线矩形区域表示已恢复的攻击子图。'>
-<meta property='og:url' content='http://localhost:1313/p/atlas/'>
+<meta property='og:url' content='https://blog2.pillar.fun/p/atlas/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-03-02T20:16:17&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:16:17&#43;08:00'/>
 <meta name="twitter:title" content="ATLAS">
@@ -52,6 +52,9 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 因果图通常庞大而复杂，这使得序列构建变得困难&amp;ndash;&amp;gt;采用定制化的图优化算法来降低图的复杂度 它需要一种方法来精确构建序列，以有效地模拟合法和可疑的活动&amp;ndash;&amp;gt;提出一种从事件中提取攻击模式序列的新技术 需要一种自动化方法来识别给定的攻击症状中的攻击事件&amp;ndash;&amp;gt;通过攻击症状进行攻击调查，以恢复攻击事件，帮助全面构建攻击故事。 总的来说，ATLAS做了
 引入了 ATLAS，这是一个用于攻击故事恢复的框架，它利用自然语言处理和基于序列的模型学习技术来帮助网络分析师从审计日志中恢复攻击步骤. 提出了一种新的序列表示，通过词形还原和词嵌入来抽象攻击和非攻击语义模式。这些序列使 ATLAS 能够构建一个有效的基于序列的模型，以识别构成攻击故事的攻击事件 我们在受控环境中通过其真实世界报告开发的 10 种现实 APT 攻击中验证了 ATLAS。结果表明，ATLAS能够高精度、最小开销地识别攻击故事的关键攻击条目。 Motivation and Definitions 整篇论文中设定了一种攻击场景：攻击者通过电子邮件向企业中的目标用户发送恶意Microsoft Word文件（contract.doc）。用户被欺骗使用 Firefox 从 Gmail 下载和打开 Word 文件。该文档包含一段恶意代码，该代码利用易受攻击的 Microsoft Word （winword.exe） 并发出 HTTPS 请求以下载恶意 Microsoft HTA 脚本 （template.hta）。此脚本执行恶意 Visual Basic 脚本 （maintenance.vbs），其中包含安装后门以泄露敏感文件的 PowerShell 命令。最后，攻击者横向移动到其他主机。
 调查这个场景通常从从审核日志中收集有关攻击的数据开始，例如系统事件、DNS 查询和浏览器事件。攻击调查工具通常以因果图（或来源图）的形式表示审核日志，该图用作取证工具，使安全调查人员能够执行根本原因分析，并更好地了解攻击的性质。大多数先前的研究将因果图中的攻击故事恢复为子图，其中该图中的节点和边与攻击症状具有因果关系。图 1 （a） 显示了由这些工具生成的示例攻击场景的因果关系图。红色虚线箭头表示从中启动攻击调查的警报事件（α，可疑网络连接），红色虚线矩形区域表示已恢复的攻击子图。">
+  
+
+
     </head>
     <body class="
     article-page
@@ -279,7 +282,7 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="http://localhost:1313/" selected>中文</option>
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
                         
                     </select>
                 </li>
@@ -338,7 +341,28 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
         <li><a href="#definition">definition</a></li>
       </ol>
     </li>
+    <li><a href="#method">Method</a>
+      <ol>
+        <li><a href="#序列生成">序列生成</a></li>
+        <li><a href="#序列还原">序列还原</a></li>
+        <li><a href="#选择性序列采样">选择性序列采样</a>
+          <ol>
+            <li><a href="#欠采样">欠采样</a></li>
+            <li><a href="#过采样">过采样</a></li>
+          </ol>
+        </li>
+        <li><a href="#序列学习">序列学习</a></li>
+        <li><a href="#攻击还原">攻击还原</a></li>
+      </ol>
+    </li>
+    <li><a href="#工作亮点">工作亮点</a></li>
     <li><a href="#我的想法">我的想法</a></li>
+    <li><a href="#补充知识">补充知识</a>
+      <ol>
+        <li><a href="#屈折形式inflectional-forms和派生形式derivational-forms">屈折形式（Inflectional Forms）和派生形式（Derivational Forms）</a></li>
+        <li><a href="#levenshtein-distance">Levenshtein Distance</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -395,7 +419,7 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -414,7 +438,7 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
     >这里</a>获取</p>
 <h2 id="introduction">introduction</h2>
 <p>APT攻击涉及长期的多个攻击步骤，其调查需要分析大量日志以确定其攻击步骤。因此提出ATLAS从现成的审计日志构建端到端攻击故事的框架。</p>
-<p>ATLAS基于的观察：<em><strong>无论利用的漏洞和执行的有效载荷如何，不同的攻击可能具有相似的抽象攻击策略</strong></em>。</p>
+<p>ATLAS基于的观察：<strong>无论利用的漏洞和执行的有效载荷如何，不同的攻击可能具有相似的抽象攻击策略</strong>。</p>
 <p>ATLAS利用因果关系分析、自然语言处理和机器学习技术的新颖组合来构建<strong>基于序列</strong>的模型，该模型从<strong>因果图</strong>中建立攻击和非攻击行为的关键模式。</p>
 <p>取证分析从多个主机、应用程序和网络接口收集各种审计日志。海量日志通常被离线分析或实时监控，以调试系统故障并识别复杂的威胁和漏洞。</p>
 <p>现有方法：</p>
@@ -431,7 +455,7 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 <li>学习表示攻击语义的基于序列的模型，这有助于在推理时恢复描述攻击故事的关键攻击实体。</li>
 </ol>
 <p>ATLAS不会带来额外开销，不同的审计日志可以很容易地集成到 ATLAS 日志解析器中用来构建因果图并获得精确的序列和模型</p>
-<p>我们的方法基于：<em><strong>因果依赖关系图中不同攻击的关键步骤可能具有相似的模式</strong></em>。这些模式可以通过NLP技术（即词形还原和词嵌入）转换为序列，将攻击和非攻击实体之间各种变化形式的关系组合在一起。它为模型提供了具有不同因果关系的更深层次的<strong>记忆</strong>。，进而提高了序列模型从未知审计日志中识别攻击步骤的准确性。</p>
+<p>我们的方法基于：<strong>因果依赖关系图中不同攻击的关键步骤可能具有相似的模式</strong>。这些模式可以通过NLP技术（即词形还原和词嵌入）转换为序列，将攻击和非攻击实体之间各种变化形式的关系组合在一起。它为模型提供了具有不同因果关系的更深层次的<strong>记忆</strong>。，进而提高了序列模型从未知审计日志中识别攻击步骤的准确性。</p>
 <p>但是这样的方法面对以下三个挑战，相应的，ATLAS采取手段来应对：</p>
 <ol>
 <li>因果图通常庞大而复杂，这使得序列构建变得困难&ndash;&gt;采用定制化的图优化算法来降低图的复杂度</li>
@@ -447,14 +471,18 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 <h2 id="motivation-and-definitions">Motivation and Definitions</h2>
 <p>整篇论文中设定了一种攻击场景：攻击者通过电子邮件向企业中的目标用户发送恶意Microsoft Word文件（contract.doc）。用户被欺骗使用 Firefox 从 Gmail 下载和打开 Word 文件。该文档包含一段恶意代码，该代码利用易受攻击的 Microsoft Word （winword.exe） 并发出 HTTPS 请求以下载恶意 Microsoft HTA 脚本 （template.hta）。此脚本执行恶意 Visual Basic 脚本 （maintenance.vbs），其中包含安装后门以泄露敏感文件的 PowerShell 命令。最后，攻击者横向移动到其他主机。</p>
 <p>调查这个场景通常从从审核日志中收集有关攻击的数据开始，例如系统事件、DNS 查询和浏览器事件。攻击调查工具通常以因果图（或来源图）的形式表示审核日志，该图用作取证工具，使安全调查人员能够执行根本原因分析，并更好地了解攻击的性质。大多数先前的研究将因果图中的攻击故事恢复为子图，其中该图中的节点和边与攻击症状具有因果关系。图 1 （a） 显示了由这些工具生成的示例攻击场景的因果关系图。红色虚线箭头表示从中启动攻击调查的警报事件（α，可疑网络连接），红色虚线矩形区域表示已恢复的攻击子图。</p>
-<p><img src="/ATLAS/1709629615797.png"
-	
-	
-	
+<p><img src="/p/atlas/ATLAS/1709629615797.png"
+	width="1739"
+	height="810"
+	srcset="/p/atlas/ATLAS/1709629615797_hu7294ec030933aa612c8e36d38b404b7e_254270_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1709629615797_hu7294ec030933aa612c8e36d38b404b7e_254270_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709629615797"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="214"
+		data-flex-basis="515px"
 	
 ></p>
 <p>但是即使应用了不同的图优化技术，这样的图仍然非常大，并且在实践中难以解释。这些工作很大程度上依赖于启发式或硬编码<strong>规则</strong>，这些<strong>规则</strong>的开发和维护非常耗时。<strong>领域知识专家</strong>需要不断更新这些规则，以涵盖新开发的攻击。而ATLAS只需要更多的攻击训练数据来学习新的攻击模式。</p>
@@ -464,14 +492,18 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 <p>ATLAS 在推理时给定攻击症状节点（警报事件α包含的恶意 IP 地址），提取一组与症状节点关联的候选序列，并使用基于序列的模型来识别序列中的哪些节点参与了攻击。此后，它使用已识别的攻击节点来构建攻击故事，其中包括已识别的攻击节点的事件，从而使攻击调查更加简洁，更容易被调查人员解读。</p>
 <p>图 1 （c） 说明了 ATLAS 为激励示例恢复的攻击故事，其中包括示例攻击的完整关键攻击步骤。此过程大大减少了从大型因果图中进行攻击调查的手动工作，该图排除了对攻击没有影响的事件，并减少了调查大型因果图所需的时间。</p>
 <h3 id="definition">definition</h3>
-<p><img src="/ATLAS/1709635161753.png"
-	
-	
-	
+<p><img src="/p/atlas/ATLAS/1709635161753.png"
+	width="847"
+	height="474"
+	srcset="/p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1709635161753"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="428px"
 	
 ></p>
 <p>因果图G：因果图是从审计日志中提取的数据结构，通常用于来源跟踪，指示主题（例如，流程）和对象（例如，文件或连接）之间的因果关系。因果图由节点组成，节点代表主体和客体，边缘连接，边缘代表主体和客体之间的动作（例如，读取或连接）。我们在这里考虑一个有向循环因果图，它的边缘从主体指向对象。</p>
@@ -480,8 +512,104 @@ ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源�
 <p>事件：事件ε是一个四元组（src、action、dest、t），源 （src） 和目标 （dest） 是与动作相关的两个实体。t 是显示事件发生时间的事件时间戳。给定一个实体 e，可以从 e 邻域图中提取其事件，其中包括与 e 的邻居相关的所有操作。例如，给定一个实体Firefox.exe和一个邻域图，其中包含从节点 Firefox.exe 到节点 Word.doc 的操作 open 和时间戳 t，那么 （Firefox.exe， open， Word.doc， t） 是 Firefox 进程在时间 t 打开 Word 文件的事件</p>
 <p>序列：给定一个实体 e，可以从因果图中提取序列 S。序列 S 按时间顺序包括实体 e 的邻域图的所有事件，使得 S{e} ：= {ε1， ε2， . . . ， εn}。同样，如果给定一组实体，我们可以从它们的统一邻域图中提取一个包含所有事件的序列。</p>
 <p>图 2 （a） 说明了具有六个实体 {eA， eB， . . . ， eF} 的因果图。图 2 （b） 显示了 eB 的邻域图，其中包括节点 B、相邻节点 {A， C} 及其连接边 {EAB， EBC}。类似地，实体集 {eB， eC} 的邻域图包括节点 {A， B， C， D， E} 和边 {EAB， EBC， ECD， ECE}，如图 2 （b） 所示。实体 eB 的事件为 εAB =&lt; eA， a1， eB， t1 &gt; 和 εBC =&lt; eB， a2， eC， t2 &gt;如图 2 （c） 所示。图 2 （d） 显示了实体集 {eB， eC} 的事件序列。</p>
+<h2 id="method">Method</h2>
+<h3 id="序列生成">序列生成</h3>
+<p>首先从日志中提取出平台无关的因果图（图缩减）：</p>
+<ol>
+<li>消除攻击节点无法访问到的所有节点和边缘【这缩的有点狠啊】</li>
+<li>从审计日志中构建具有非重复边的因果图，构建的因果图中不包含重复的边（边属性相同且首尾节点相同）</li>
+<li>如果某些节点和边引用相同类型的事件，则 ATLAS 会合并它们，合成的边的时间戳按原始边中最早的。
+<img src="/p/atlas/ATLAS/1716023699194.png"
+	width="798"
+	height="322"
+	srcset="/p/atlas/ATLAS/1716023699194_hud84dbde1e7c0ad0ed8876d9717f7ce09_69072_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1716023699194_hud84dbde1e7c0ad0ed8876d9717f7ce09_69072_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1716023699194"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="247"
+		data-flex-basis="594px"
+	
+></li>
+</ol>
+<p>构造序列：</p>
+<p>将因果图转换为标记为“攻击”或“非攻击”的序列，并将词形还原和选择性采样扩展到序列构造中，以有效地抽象攻击和非攻击模式，最后，使用词嵌入将序列转换为实数向量，并通过 LSTM 学习基于序列的模型。</p>
+<p>对于攻击节点：</p>
+<p>对于一个图中的攻击节点，构建攻击节点子集，子集节点数$\geq$2，因此对于n个攻击节点的集合，有$\sum_{i=2}^k C_n^i$个子集，这个方法在面对攻击节点数量很多的时候复杂度会爆炸，但是攻击者一般会为了隐藏而最小化攻击节点数量【这样每个攻击子图都得比较小才合适，怪不得图缩减缩得这么狠】。</p>
+<p>1、对于攻击实体中的每个实体，ATLAS提取其在攻击子图中的邻域图，即捕捉与攻击节点节点有因果关系的实体，2、从邻域图中获取按照时间戳排序的攻击事件。如果源节点或目标节点代表攻击实体，则事件被标记为攻击。3、最后，ATLAS 将提取的时间戳排序的攻击事件转换为序列，并在以下情况下将其标记为攻击：（a） 它仅包含攻击事件， （b）它包括实体子集的所有攻击事件。【还是在缩减，这样攻击序列理论上是最小的】</p>
+<p>对于非攻击节点：</p>
+<p>意义不是很大，主要学习攻击序列。同时，对于一个有k个攻击节点和k&rsquo;个非攻击节点的因果图，会有$\sum^{k}_{i=1} C^i_k.k&rsquo;$(攻击节点的子集（子集节点数不必$\geq$ 2)+非攻击节点的全集)。提取非攻击序列的方法和提取攻击序列的方法的1、2步骤一样，3、如果序列与任何提取的攻击序列不匹配，则 ATLAS 会将其标记为非攻击，否则，处理后的序列将被丢弃。</p>
+<p>下面这张图是例子</p>
+<p><img src="/p/atlas/ATLAS/1716026032629.png"
+	width="1518"
+	height="402"
+	srcset="/p/atlas/ATLAS/1716026032629_hu7fd7b8e71a58997854afb105ce0a1630_114728_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1716026032629_hu7fd7b8e71a58997854afb105ce0a1630_114728_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1716026032629"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="377"
+		data-flex-basis="906px"
+	
+></p>
+<h3 id="序列还原">序列还原</h3>
+<p>ATLAS使用<strong>词形还原</strong>化将序列转换为表示序列模式的广义文本，以便进行语义解释。</p>
+<p>表1显示了 ATLAS 用于抽象序列中的实体和操作的四种不同的词汇类型以及每种类型中的词汇。词汇表总共包括 30 个单词，能够将单词的<strong>屈折形式</strong>和<strong>派生形式</strong>简化为共同的基本形式。词汇根据单词的细粒度语义分为四种类型：进程、文件、网络和动作。</p>
+<p><img src="/p/atlas/ATLAS/1716026181025.png"
+	width="772"
+	height="242"
+	srcset="/p/atlas/ATLAS/1716026181025_hu59fb008fe5d3dbeea8565b3f1ddc5a1c_33371_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1716026181025_hu59fb008fe5d3dbeea8565b3f1ddc5a1c_33371_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1716026181025"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="319"
+		data-flex-basis="765px"
+	
+></p>
+<p>ATLAS解析每个序列，查找实体并将每个实体映射到相应的词汇表。词形还原过程后的序列被转换为“类似句子”的中间表示，其中包含广义序列模式的完整语义。</p>
+<p>我们注意到，在对序列进行词形还原后，可能会发生攻击和非攻击序列的意外重复。为了使用非重复序列训练模型，我们丢弃了所有与攻击序列重叠的非攻击序列，然后再将其传递到<strong>选择性序列采样</strong></p>
+<h3 id="选择性序列采样">选择性序列采样</h3>
+<p>构建的攻击和非攻击序列的数量可能不平衡。原因是日志条目中的攻击实体通常少于非攻击实体。例如，我们在通过分析审计日志进行评估时发现，攻击实体的平均数量为 61，而非攻击实体的平均数量约为 21K。为了平衡训练数据集，ATLAS首先对具有一定相似性阈值的非攻击序列进行<strong>欠采样</strong>。然后，使用过采样机制随机<strong>变异</strong>攻击序列，直到它们的总数达到相同数量。不能直接采取复制的过采样因为会造成过拟合。</p>
+<h4 id="欠采样">欠采样</h4>
+<p>通过Levenshtein Distance计算相似性，用80%作为阈值。复杂度为$O(n^2)$</p>
+<h4 id="过采样">过采样</h4>
+<p>对于攻击序列，ATLAS会随机将一种词汇类型变异为另一种相同类型的词汇。</p>
+<h3 id="序列学习">序列学习</h3>
+<p>通过<strong>词表示嵌入</strong>将词形还原序列转换为表示序列模式的广义文本（30个词-&gt;4type)【对……对吗？】，然后用了多种方法生成嵌入向量并在后文进行了比较。</p>
+<p>通过LSTM和CNN来进行序列学习</p>
+<h3 id="攻击还原">攻击还原</h3>
+<p>遍历所有节点，来判断是否是攻击节点，O(n)复杂度。</p>
+<p>为了了识别未知的攻击实体，ATLAS首先从因果图中获取所有未知实体，构建只包含一个未知实体的子集。然后，ATLAS 将攻击实体附加到每个子集;因此，每个子集包含所有已知的攻击症状实体和一个未知实体。ATLAS 使用这些子集从因果图中提取序列，LSTM 模型用于通过预测分数预测每个序列是攻击还是非攻击。此过程通过检查这两个实体的时间顺序事件是否形成模型先前学习的攻击模式来识别未知实体是否与攻击症状实体密切相关。</p>
+<p>ATLAS 攻击故事恢复的目标是从攻击调查阶段识别与已识别攻击实体关联的攻击事件。ATLAS提取已识别攻击实体的邻域图，并将所有包含的事件作为攻击事件获取。这些事件按其时间戳进一步排序，作为恢复的攻击故事。ATLAS 的有效性不受跨多个主机执行的攻击的影响，它只需要对来自单个主机的审计日志执行分析即可发现所有攻击实体</p>
+<h2 id="工作亮点">工作亮点</h2>
+<ol>
+<li>新的图缩减方法来构建因果图</li>
+<li>通过因果图生成序列用于学习（词型还原+词表示嵌入+过采样&amp;欠采样)</li>
+</ol>
 <h2 id="我的想法">我的想法</h2>
-<p>利用NLP的方法，将问题转为序列识别问题。使用了新颖的数据增强方法。</p>
+<p>图缩减方法是没见过的，按照文章的结果，这种图缩减方法也很值得参考，一顿猛缩减可以导致每个小子图的学习代价比较小（或者说因为序列长度有限制吧？)。把图学习转成序列识别的方法很有意思，这样直接就不用使用图学习了。但是感觉他这个识别是否攻击节点计算量也不小，O(n)是n*100s感觉也没啥用啊？抽时间复现下看看。</p>
+<h2 id="补充知识">补充知识</h2>
+<h3 id="屈折形式inflectional-forms和派生形式derivational-forms">屈折形式（Inflectional Forms）和派生形式（Derivational Forms）</h3>
+<p>屈折形式是指单词在不同语法环境下的形式变化，这种变化不改变单词的基本词义或词类。屈折形式主要用于表示语法信息，如时态、数、格、性、比较级等。</p>
+<ul>
+<li>walk -&gt; walked -&gt; walking</li>
+<li>book -&gt; books</li>
+<li>big -&gt; bigger -&gt; biggest</li>
+</ul>
+<p>派生形式是通过添加前缀或后缀来改变单词的词性或基本词义，生成新的单词的过程。派生通常会改变单词的基本意义和/或词类。</p>
+<ul>
+<li>clear (清楚的) -&gt; unclear (不清楚的)</li>
+<li>happy (形容词) -&gt; happiness (名词)</li>
+</ul>
+<h3 id="levenshtein-distance">Levenshtein Distance</h3>
+<p>Levenshtein Distance，也称为编辑距离（Edit Distance），是一种衡量两个字符串之间差异的度量方法。它计算将一个字符串转换为另一个字符串所需的最少单字符编辑操作次数，这些操作包括插入（insertion）、删除（deletion）和替换（substitution）。Levenshtein Distance广泛应用于文本处理、拼写检查、语音识别、DNA序列比对等领域。它可以帮助确定两个字符串的相似度，或者在搜索时提供近似匹配。</p>
 
 </section>
 

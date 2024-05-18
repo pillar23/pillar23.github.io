@@ -40,7 +40,7 @@ PMI PMI：是一种用于衡量两个事件之间相关性的统计量。'>
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/tfe-gnn/'>
 
-<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='TFE GNN'>
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='TFE GNN'>
 <meta property='og:description' content='abstract 目的：实现加密流量[VPN、tor]的分类
 现有局限性：只能提取低级别特征，基于统计的方法对短流无效，对header和payload采取不平等的处理，难以挖掘字节之间的潜在相关性。
 提出方法：
@@ -115,6 +115,9 @@ methodology 字节级流量图构造 Byte-level Traffic Graph Construction 节�
 节点特征：每个节点的初始特征为字节的值，维度为1，范围为[0,255]
 图构建：由于$PMI(i,j)=PMI(j,i)$，因此该图是个无向图。
 PMI PMI：是一种用于衡量两个事件之间相关性的统计量。">
+  
+
+
     </head>
     <body class="
     article-page
@@ -328,6 +331,25 @@ PMI PMI：是一种用于衡量两个事件之间相关性的统计量。">
         
 
         <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
             
             
                 <li id="dark-mode-toggle">
@@ -475,14 +497,18 @@ PMI PMI：是一种用于衡量两个事件之间相关性的统计量。">
 <li>引入了一个双嵌入层、一个基于GNN的流量图编码器以及一个交叉门控特征融合机制。[分别嵌入header和payload，然后通过融合实现数据增强]</li>
 </ol>
 <p>结果：两个真实数据集（WWT和ISCX）优于SOTA</p>
-<p><img src="/images/1708314808397.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708314808397.png"
+	width="1695"
+	height="735"
+	srcset="/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708314808397"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="230"
+		data-flex-basis="553px"
 	
 ></p>
 <h1 id="introduction">introduction</h1>
@@ -515,14 +541,18 @@ PMI PMI：是一种用于衡量两个事件之间相关性的统计量。">
 <p>3、 MP-GNN</p>
 <p>MP-GNN 是 Message Passing Graph Neural Network（消息传递图神经网络）的简称，节点嵌入向量可以通过特定的聚合策略将节点的嵌入向量集成到邻域中，从而迭代更新节点嵌入向量。</p>
 <p>第l层 MP-GNN 可以形式化为两个过程</p>
-<p><img src="/images/1708310294876.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708310294876.png"
+	width="1025"
+	height="243"
+	srcset="/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708310294876"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="421"
+		data-flex-basis="1012px"
 	
 ></p>
 <p>其中$h^{(l)}_u,h^{(l)}_v$是节点u和v在第l层的嵌入向量，$m^{(l)}_u$是l层中节点u的计算信息，$MSG^{(l)}$是消息计算函数，$AGG^{(l)}$是消息聚合函数，$\theta$是他们对应的参数</p>
@@ -543,14 +573,18 @@ $$</p>
 <p>原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用<strong>两个不共享参数的嵌入层</strong>的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$</p>
 <h2 id="交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion">交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion</h2>
 <p>因为要double embedding，所以encoder也要两个。</p>
-<p><img src="/images/1708314903093.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708314903093.png"
+	width="393"
+	height="831"
+	srcset="/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708314903093"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="47"
+		data-flex-basis="113px"
 	
 ></p>
 <p>这里堆叠了N个GraphSAGE</p>
@@ -559,77 +593,101 @@ $$</p>
 <p>通过逐元素均值运算（element-wise mean operation）计算所有相邻节点$N(v)$的整体消息，并通过串联运算聚合整体消息以及节点v的嵌入向量</p>
 <p>对节点A的嵌入向量进行非线性变换，完成一个GraphSAGE层的正向过程</p>
 <p>GraphSAGE的消息聚合和计算可以描述为</p>
-<p><img src="/images/1708315615539.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708315615539.png"
+	width="904"
+	height="265"
+	srcset="/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708315615539"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="341"
+		data-flex-basis="818px"
 	
 ></p>
 <p>$m^{(l)}_{N(v)}$是将v节点所有临接节点的上一层嵌入向量求平均的结果</p>
 <p>$h_v^{(l)}$是本层v节点的嵌入向量，$\sigma(\cdot)$是激活函数，$CONCAT(\cdot)$是连接函数。然后通过BatchNorm对h进行批量归一化</p>
 <p>激活函数选择PReLU，将每个负元素值按不同因子缩放，不但引入了非线性，还由于每个负元素的缩放因子的不同而起到类似于注意力机制的作用。</p>
 <p>由于深度GNN模型中的过度平滑问题，我们最多只堆叠GraphSAGE4层，并将输出拼接起来。这与跳转知识网络（JKL）相类似</p>
-<p><img src="/images/1708316388852.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708316388852.png"
+	width="774"
+	height="90"
+	srcset="/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708316388852"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="860"
+		data-flex-basis="2064px"
+	
 ></p>
 <p>最后，通过对每个节点的最终嵌入使用meanpooling来得到图嵌入</p>
-<p><img src="/images/1708316889596.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708316889596.png"
+	width="474"
+	height="170"
+	srcset="/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708316889596"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="278"
+		data-flex-basis="669px"
+	
 ></p>
 <p>用$g_h,g_p$表示header和payload得到的图嵌入</p>
 <h2 id="cross-gated-feature-fusion">Cross-gated Feature Fusion</h2>
-<p><img src="/images/1708316997715.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708316997715.png"
+	width="719"
+	height="817"
+	srcset="/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708316997715"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="88"
+		data-flex-basis="211px"
+	
 ></p>
 <p>交叉门控特征融合，这个模块的目标是将$g_h,g_p$融合，获取门控矢量$s_h,s_p$。</p>
 <p>如上图，我们用了两个filter，每个filter的组成都是线性层、PReLU、线性层、Sigmoid。</p>
-<p><img src="/images/1708317405446.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708317405446.png"
+	width="955"
+	height="260"
+	srcset="/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708317405446"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="367"
+		data-flex-basis="881px"
 	
 ></p>
 <p>其中w和b分别是线性层的weight和bias。z 是数据包字节的整体表示向量。</p>
 <h2 id="端到端的下游任务训练-end-to-end-training-on-downstream-tasks">端到端的下游任务训练 End-to-End Training on Downstream Tasks</h2>
 <p>由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。</p>
 <p>这里我们使用双层Bi-LSTM作为baseline，他的输出喂给一个带PReLU的两层线性分类器，使用交叉熵作为损失函数</p>
-<p><img src="/images/1708318165707.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708318165707.png"
+	width="1034"
+	height="86"
+	srcset="/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708318165707"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="1202"
+		data-flex-basis="2885px"
 	
 ></p>
 <p>n是长度，CE是交叉熵，y是ground truth（标注数据的分类标签）</p>
@@ -656,37 +714,49 @@ $$</p>
 <p>运行了10次实验。</p>
 <p>用AC、PR、RC和F1做评估</p>
 <p>和基于传统特征工程的方法（即 AppScanner [31]、CUMUL [23]、K-FP （K-Fingerprinting） [8]、FlowPrint [32]、GRAIN [43]、FAAR [19]、ETC-PS [40]）、基于深度学习的方法（即 FS-Net [18]、 EDC [16]、FFB [44]、MVML [4]、DF [30]、ET-BERT [17]）和基于图神经网络的方法（即 GraphDApp [29]、ECD-GNN [11]）做比较。</p>
-<p><img src="/images/1708319331300.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708319331300.png"
+	width="2191"
+	height="1053"
+	srcset="/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708319331300"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="499px"
+	
 ></p>
-<p><img src="/images/1708319345719.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708319345719.png"
+	width="2610"
+	height="1067"
+	srcset="/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708319345719"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="244"
+		data-flex-basis="587px"
+	
 ></p>
 <h2 id="消融实验">消融实验</h2>
 <p>在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &lsquo;H&rsquo;、&lsquo;P&rsquo;、&lsquo;DUAL&rsquo;、&lsquo;JKN&rsquo;、&lsquo;CGFF&rsquo; 和 &lsquo;A&amp;N&rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM</p>
 <p>（只用H或P就不需要DUAL和CGFF）</p>
-<p><img src="/images/1708319828833.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708319828833.png"
+	width="1731"
+	height="590"
+	srcset="/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708319828833"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="293"
+		data-flex-basis="704px"
 	
 ></p>
 <p>得出结论</p>
@@ -698,38 +768,50 @@ $$</p>
 <li>用GRU替换LSTM导致两个都差10%左右，transformer替换LSTM导致VPN差了40%左右，tor上只差一点</li>
 </ol>
 <p>换GNN架构为GAT, GIN, GCN and SGC，还是GraphSAGE最好</p>
-<p><img src="/images/1708321015036.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708321015036.png"
+	width="950"
+	height="475"
+	srcset="/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708321015036"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="200"
+		data-flex-basis="480px"
+	
 ></p>
 <p>此外，通过TFE-GNN可以快捷的拓展一个segment级的全局特征</p>
 <p>复杂度</p>
 <p>TFE-GNN 在模型复杂度相对较小的情况下，在公共数据集上实现了最显着的改进。虽然ET-BERT在ISCX-nonVPN数据集上达到了可比的结果，但ET-BERT的FLOP大约是TFEGNN的五倍，模型参数的数量也增加了一倍，这通常表明模型推理时间更长，需要更多的计算资源。此外，ETBERT的预训练阶段非常耗时，由于预训练期间有大量的额外数据，并且模型复杂度高，因此成本很高。相比之下，TFE-GNN可以实现更高的精度，同时降低训练或推理成本。</p>
-<p><img src="/images/1708321171217.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708321171217.png"
+	width="843"
+	height="637"
+	srcset="/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708321171217"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="317px"
+	
 ></p>
 <p>双重嵌入维度的影响。为了研究双嵌入层隐藏维度的影响，我们进行了灵敏度实验，结果如图a所示。正如我们所看到的，当嵌入维度低于 100 时，f1 分数会迅速增加。在此之后，随着维度的变化，模型性能趋于稳定。为了减少计算消耗，选取50作为默认维度</p>
-<p><img src="/images/1708321219227.png"
-	
-	
-	
+<p><img src="/p/tfe-gnn/pic/1708321219227.png"
+	width="1288"
+	height="417"
+	srcset="/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1708321219227"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="308"
+		data-flex-basis="741px"
 	
 ></p>
 <p>PMI窗口大小的影响。从图 b 中可以看出，较小的窗口大小通常会导致更好的 f1 分数。窗口越大图中添加的边就越多，由于图太密集，模型将更难分类。</p>
