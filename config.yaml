@@ -203,7 +203,7 @@ params:
 menu:
     main:
         - name: 📕课程
-          url: /post/note
+          url: /post/class
           weight: 1
 
         - name: 📚论文
