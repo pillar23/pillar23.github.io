@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 果壳的校园网不给直接内网连远程桌面，感觉是因为划的子网之间不能互相通信，不知道是深澜故意的还是不小心的。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 果壳的校园网不给直接内网连远程桌面，应该是因为vlan之间不能互相通信导致的，经典避免病毒在内网渗透。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。
 操作 实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。
 去github下载frp的releas
 服务端 在你的服务器上装frps，并且配置toml文件，下载的frps.toml已经基本上写好了，基本啥也不用改，只要把最后的插件注释掉（或者你也可以把插件装了用）
@@ -11,10 +11,10 @@
 客户端 这里使用了xtcp的代理协议来进行p2p的内网穿透，如果想用其他方法可以参考官方文档（？是吗）'>
 <title>Frp实现隧道穿透远程桌面</title>
 
-<link rel='canonical' href='https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/'>
+<link rel='canonical' href='http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Frp实现隧道穿透远程桌面'>
-<meta property='og:description' content='导语 果壳的校园网不给直接内网连远程桌面，感觉是因为划的子网之间不能互相通信，不知道是深澜故意的还是不小心的。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。
+<link rel="stylesheet" href="/scss/style.min.a38f4a1f6c1fd7c80b11d5812e9078b237c7cef12b17dca1fde8a6091a83da56.css"><meta property='og:title' content='Frp实现隧道穿透远程桌面'>
+<meta property='og:description' content='导语 果壳的校园网不给直接内网连远程桌面，应该是因为vlan之间不能互相通信导致的，经典避免病毒在内网渗透。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。
 操作 实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。
 去github下载frp的releas
 服务端 在你的服务器上装frps，并且配置toml文件，下载的frps.toml已经基本上写好了，基本啥也不用改，只要把最后的插件注释掉（或者你也可以把插件装了用）
@@ -22,11 +22,11 @@
 1 auth.token = &amp;#34;hsijdfhsjdhf&amp;#34; # 这个感觉可以随便写，多复杂都行，反正你能连上你的服务器就能查 然后再改一改web界面的用户名密码端口啥的或者直接把web也注释了
 1 2 3 4 webServer.addr = &amp;#34;0.0.0.0&amp;#34; webServer.port = 7500 webServer.user = &amp;#34;dgsdgfsdfs&amp;#34; webServer.password = &amp;#34;dweqweas&amp;#34; 然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件
 客户端 这里使用了xtcp的代理协议来进行p2p的内网穿透，如果想用其他方法可以参考官方文档（？是吗）'>
-<meta property='og:url' content='https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/'>
+<meta property='og:url' content='http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-10-16T14:10:06&#43;08:00'/><meta property='article:modified_time' content='2023-10-16T14:10:06&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='实用工具' /><meta property='article:published_time' content='2023-10-16T14:10:06&#43;08:00'/><meta property='article:modified_time' content='2023-10-16T14:10:06&#43;08:00'/>
 <meta name="twitter:title" content="Frp实现隧道穿透远程桌面">
-<meta name="twitter:description" content="导语 果壳的校园网不给直接内网连远程桌面，感觉是因为划的子网之间不能互相通信，不知道是深澜故意的还是不小心的。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。
+<meta name="twitter:description" content="导语 果壳的校园网不给直接内网连远程桌面，应该是因为vlan之间不能互相通信导致的，经典避免病毒在内网渗透。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。
 操作 实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。
 去github下载frp的releas
 服务端 在你的服务器上装frps，并且配置toml文件，下载的frps.toml已经基本上写好了，基本啥也不用改，只要把最后的插件注释掉（或者你也可以把插件装了用）
@@ -264,7 +264,7 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="https://blog2.pillar.fun/" selected>中文</option>
+                            <option value="http://localhost:1313/" selected>中文</option>
                         
                     </select>
                 </li>
@@ -392,7 +392,7 @@
     
     
     <h1 id="导语">导语</h1>
-<p>果壳的校园网不给直接内网连远程桌面，感觉是因为划的子网之间不能互相通信，不知道是深澜故意的还是不小心的。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。</p>
+<p>果壳的校园网不给直接内网连远程桌面，应该是因为vlan之间不能互相通信导致的，经典避免病毒在内网渗透。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。</p>
 <h1 id="操作">操作</h1>
 <p>实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。</p>
 <p>去<a class="link" href="https://github.com/fatedier/frp/releases/"  target="_blank" rel="noopener"
@@ -452,14 +452,18 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件</p>
-<p><img src="/images/1697438389080.png"
-	
-	
-	
+<p><img src="/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080.png"
+	width="801"
+	height="146"
+	srcset="/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu7a6f63dccf257a58cb26e04e09ad67d0_41896_480x0_resize_box_3.png 480w, /p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu7a6f63dccf257a58cb26e04e09ad67d0_41896_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1697438389080"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="548"
+		data-flex-basis="1316px"
 	
 ></p>
 <h2 id="客户端">客户端</h2>
@@ -501,14 +505,18 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果你的被控端的frpc设置开了web，那你应该可以再web界面看到你的xtcp的连接</p>
-<p><img src="/images/1697439827539.png"
-	
-	
-	
+<p><img src="/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539.png"
+	width="1789"
+	height="127"
+	srcset="/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu6228474f3b9ce24d585df963ba5935f6_12333_480x0_resize_box_3.png 480w, /p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu6228474f3b9ce24d585df963ba5935f6_12333_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1697439827539"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="1408"
+		data-flex-basis="3380px"
 	
 ></p>
 <p>对了你还可以再你的frps和frpc里都指定一个user，这样你的proxy的name就会变成user.name的形式，这也就使你可以在server端配置多用户（指直接管name叫做aaa.xxx而不配置frps的user）</p>
@@ -550,14 +558,18 @@
 <p><code>./frpc.exe -c ./frpc.toml</code></p>
 <p>visitors是在web里看不见的，看不到不要觉得奇怪。</p>
 <p>如果在server上可以看到都连上了，直接mstsc连就行了，连127.0.0.1:8000（也就是你在visitor里设置的地址端口）（这里是把log指向了console，所以可以直接看）</p>
-<p><img src="/images/1697440033017.png"
-	
-	
-	
+<p><img src="/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017.png"
+	width="982"
+	height="141"
+	srcset="/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu58dc8a8095ef75afb6e2b44aaba560eb_41787_480x0_resize_box_3.png 480w, /p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu58dc8a8095ef75afb6e2b44aaba560eb_41787_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1697440033017"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="696"
+		data-flex-basis="1671px"
 	
 ></p>
 <p>windwos防火墙会弹，同意了就完事了</p>
@@ -569,6 +581,12 @@
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -654,6 +672,55 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
+
+<section class="totalcount">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    发表了17篇文章 ·
+    总计6.05k字
+</section>
 
 
     

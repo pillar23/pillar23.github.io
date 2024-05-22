@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>👨🏻‍💻技术 on π1l4r_のblog</title>
-        <link>https://blog2.pillar.fun/post/tech/</link>
+        <link>http://localhost:1313/post/tech/</link>
         <description>Recent content in 👨🏻‍💻技术 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Tue, 21 May 2024 14:41:04 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/post/tech/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 21 May 2024 14:41:04 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/tech/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>CVE 2023 2480</title>
-        <link>https://blog2.pillar.fun/p/cve-2023-2480/</link>
+        <link>http://localhost:1313/p/cve-2023-2480/</link>
         <pubDate>Tue, 21 May 2024 14:41:04 +0800</pubDate>
         
-        <guid>https://blog2.pillar.fun/p/cve-2023-2480/</guid>
+        <guid>http://localhost:1313/p/cve-2023-2480/</guid>
         <description>&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
 &lt;p&gt;JumpServer是使用 Python / Django 进行开发，遵循 Web 2.0 规范的全球首款完全开源的堡垒机软件。因其开源，无插件，Web界面美观，操作方便，分布式，符合4A规范等特点，被很多企业广泛用于内部资产（物理机，云主机等）的管理。
 CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，计算出重置密码后的验证码，从而实现任意账号密码重置。&lt;/p&gt;
 &lt;h2 id=&#34;环境搭建&#34;&gt;环境搭建&lt;/h2&gt;
 &lt;p&gt;下载https://github.com/vulhub/vulhub/blob/master/jumpserver/CVE-2023-42820/，修改config.env的DOMAINS=[你的ip:端口]&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716274683038.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716274683038.png&#34;
 	width=&#34;728&#34;
 	height=&#34;202&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716274683038_hu65267be70ffd855c4fdcadc5ef06706e_36936_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716274683038_hu65267be70ffd855c4fdcadc5ef06706e_36936_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716274683038_hu65267be70ffd855c4fdcadc5ef06706e_36936_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716274683038_hu65267be70ffd855c4fdcadc5ef06706e_36936_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716274683038&#34;
@@ -42,10 +42,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这里我虽然写了8888还是在8080，感觉并不用写端口，因为我看docker也没做映射&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716275391597.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716275391597.png&#34;
 	width=&#34;2820&#34;
 	height=&#34;246&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716275391597_hu10ceba52b406140537768bd48dac77b0_68211_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716275391597_hu10ceba52b406140537768bd48dac77b0_68211_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716275391597_hu10ceba52b406140537768bd48dac77b0_68211_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716275391597_hu10ceba52b406140537768bd48dac77b0_68211_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716275391597&#34;
@@ -62,10 +62,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &lt;p&gt;可以看到&lt;/p&gt;
 &lt;p&gt;Patched versions&amp;gt;= v2.28.19, &amp;gt;= v3.6.5&lt;/p&gt;
 &lt;p&gt;在3.6.5和2.28.19都有一个叫做fix: 修复 random error的commit&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716277497141.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716277497141.png&#34;
 	width=&#34;1738&#34;
 	height=&#34;364&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716277497141_hu5ae06972e70d5dccdd5fef399ba67fca_74621_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716277497141_hu5ae06972e70d5dccdd5fef399ba67fca_74621_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716277497141_hu5ae06972e70d5dccdd5fef399ba67fca_74621_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716277497141_hu5ae06972e70d5dccdd5fef399ba67fca_74621_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716277497141&#34;
@@ -77,10 +77,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;在jumpserver中，按照下图逻辑进行验证&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716278166625.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716278166625.png&#34;
 	width=&#34;1116&#34;
 	height=&#34;1098&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716278166625_hu50d1f0e3fa1f0dd3c7523beaf1ad4edc_359154_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716278166625_hu50d1f0e3fa1f0dd3c7523beaf1ad4edc_359154_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716278166625_hu50d1f0e3fa1f0dd3c7523beaf1ad4edc_359154_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716278166625_hu50d1f0e3fa1f0dd3c7523beaf1ad4edc_359154_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716278166625&#34;
@@ -93,10 +93,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;&lt;/p&gt;
 &lt;p&gt;这里使用了django-simple-captcha实现验证码部分，&lt;/p&gt;
 &lt;p&gt;可以看到用了一个key，而且还提示了其他用这个部分的同学不要用同一个key来生成图片。
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279091529.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279091529.png&#34;
 	width=&#34;1404&#34;
 	height=&#34;756&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279091529_hubd305e987a4ba82786744631f82cb5c2_129582_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279091529_hubd305e987a4ba82786744631f82cb5c2_129582_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279091529_hubd305e987a4ba82786744631f82cb5c2_129582_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279091529_hubd305e987a4ba82786744631f82cb5c2_129582_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279091529&#34;
@@ -108,10 +108,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;
 在url.py里可以看到这个key就是跟在后面的字符串
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279175872.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279175872.png&#34;
 	width=&#34;1408&#34;
 	height=&#34;1136&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279175872_hub38ae13af64770ab3396f7256cf0010b_168893_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279175872_hub38ae13af64770ab3396f7256cf0010b_168893_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279175872_hub38ae13af64770ab3396f7256cf0010b_168893_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279175872_hub38ae13af64770ab3396f7256cf0010b_168893_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279175872&#34;
@@ -124,10 +124,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;这个key在url里，是可控的，类似这样。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;http://10.207.139.20:8080/core/auth/captcha/image/4cbbebb2305a4ef0d0e1242c352e288073537a7d/&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;在网络服务中，接收用户交互的线程并不唯一，而random.seed()的作用只在当前线程，因此需要将我们控制的key作用在所有线程，所以exp的第一步为重放爆破，将我们控制的key大量发送get请求，使得所有服务器接收的线程均设置random.seed()。然后通过api调用，定位到忘记密码流程。
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279507847.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279507847.png&#34;
 	width=&#34;1396&#34;
 	height=&#34;998&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279507847_hu052bbcb088ef976e892acf3da20aa28d_210066_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279507847_hu052bbcb088ef976e892acf3da20aa28d_210066_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279507847_hu052bbcb088ef976e892acf3da20aa28d_210066_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279507847_hu052bbcb088ef976e892acf3da20aa28d_210066_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279507847&#34;
@@ -140,10 +140,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;&lt;/p&gt;
 &lt;p&gt;使用form_invalid方法对用户名是否存在进行验证，并通过random_string方法生成一个长度为36的token，带着token跳转到forgot-password页面。&lt;/p&gt;
 &lt;p&gt;再通过api定位发送验证码的调用函数&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279819826.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279819826.png&#34;
 	width=&#34;1488&#34;
 	height=&#34;1190&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279819826_hu1ac86b2893860367c2edd890d0e7e184_213266_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279819826_hu1ac86b2893860367c2edd890d0e7e184_213266_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279819826_hu1ac86b2893860367c2edd890d0e7e184_213266_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279819826_hu1ac86b2893860367c2edd890d0e7e184_213266_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279819826&#34;
@@ -156,10 +156,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;&lt;/p&gt;
 &lt;p&gt;使用该类下create函数，通过random_string方法生成一个长度为6的验证码并进行发送&lt;/p&gt;
 &lt;p&gt;看下来这个random.seed()是作用于全流程的，所以我们需要考虑的是&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279923737.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279923737.png&#34;
 	width=&#34;1466&#34;
 	height=&#34;382&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279923737_hu886047276978f139a228eec20b973daa_248298_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279923737_hu886047276978f139a228eec20b973daa_248298_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279923737_hu886047276978f139a228eec20b973daa_248298_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279923737_hu886047276978f139a228eec20b973daa_248298_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279923737&#34;
@@ -172,10 +172,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;&lt;/p&gt;
 &lt;p&gt;返回一开始分析的captcha_image函数，该函数控制图片验证码生成，渲染，在每次的忘记密码找回时，均先调用该函数生成图片验证码，用户输入正确的用户名和验证码，才能跳转下一步，我们需要明确在该函数部分调用了几次random类的函数。&lt;/p&gt;
 &lt;p&gt;从头梳理，在django-simple-captcha里直接搜索random,可以找到&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280301856.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280301856.png&#34;
 	width=&#34;1142&#34;
 	height=&#34;418&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280301856_hu85006d3922f9197fa384b9aec193a634_85429_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280301856_hu85006d3922f9197fa384b9aec193a634_85429_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280301856_hu85006d3922f9197fa384b9aec193a634_85429_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280301856_hu85006d3922f9197fa384b9aec193a634_85429_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280301856&#34;
@@ -187,10 +187,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;是旋转字符的，因为生成的captcha都是4个字符（8、*、3、=）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280428846.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280428846.png&#34;
 	width=&#34;180&#34;
 	height=&#34;38&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280428846_hu5be4647b7eebb4761517265257a179d9_5537_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280428846_hu5be4647b7eebb4761517265257a179d9_5537_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280428846_hu5be4647b7eebb4761517265257a179d9_5537_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280428846_hu5be4647b7eebb4761517265257a179d9_5537_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280428846&#34;
@@ -202,10 +202,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;所以调用4次random.randrange(),在settings.py里也可以找到对应的定义，range是（-35，35）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280712311.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280712311.png&#34;
 	width=&#34;1400&#34;
 	height=&#34;1022&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280712311_hucf13fd737cd98c8ae3b7e6faa54b09ff_196816_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280712311_hucf13fd737cd98c8ae3b7e6faa54b09ff_196816_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280712311_hucf13fd737cd98c8ae3b7e6faa54b09ff_196816_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280712311_hucf13fd737cd98c8ae3b7e6faa54b09ff_196816_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280712311&#34;
@@ -217,10 +217,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;还有noisy_function中
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280971009.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280971009.png&#34;
 	width=&#34;658&#34;
 	height=&#34;202&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280971009_hu6306f6ae72060a17319f4a99b370a90f_25323_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280971009_hu6306f6ae72060a17319f4a99b370a90f_25323_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280971009_hu6306f6ae72060a17319f4a99b370a90f_25323_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280971009_hu6306f6ae72060a17319f4a99b370a90f_25323_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280971009&#34;
@@ -231,10 +231,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 		data-flex-basis=&#34;781px&#34;
 	
 &gt;
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280949744.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280949744.png&#34;
 	width=&#34;968&#34;
 	height=&#34;210&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280949744_hu839a3ba1eadd9c5f4481e036daf198ff_28905_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280949744_hu839a3ba1eadd9c5f4481e036daf198ff_28905_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280949744_hu839a3ba1eadd9c5f4481e036daf198ff_28905_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280949744_hu839a3ba1eadd9c5f4481e036daf198ff_28905_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280949744&#34;
@@ -245,10 +245,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 		data-flex-basis=&#34;1106px&#34;
 	
 &gt;
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716281019286.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716281019286.png&#34;
 	width=&#34;1256&#34;
 	height=&#34;730&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716281019286_hu7b47342e66bc655acfbf420645fbc108_118527_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716281019286_hu7b47342e66bc655acfbf420645fbc108_118527_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716281019286_hu7b47342e66bc655acfbf420645fbc108_118527_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716281019286_hu7b47342e66bc655acfbf420645fbc108_118527_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716281019286&#34;
@@ -260,10 +260,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;
 noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))&lt;/code&gt;次，
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716281197925.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716281197925.png&#34;
 	width=&#34;1040&#34;
 	height=&#34;92&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716281197925_hu6e19e0ba442970dc7f6b65f0768c8762_28682_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716281197925_hu6e19e0ba442970dc7f6b65f0768c8762_28682_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716281197925_hu6e19e0ba442970dc7f6b65f0768c8762_28682_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716281197925_hu6e19e0ba442970dc7f6b65f0768c8762_28682_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716281197925&#34;
@@ -275,10 +275,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 	
 &gt;
 在jumpserver中可以看到capcha的大小是180*38，采用noise_dot的噪声算法&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716359299723.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716359299723.png&#34;
 	width=&#34;1598&#34;
 	height=&#34;912&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716359299723_huee84c076d6356cb2aabb35b180e72c90_162380_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716359299723_huee84c076d6356cb2aabb35b180e72c90_162380_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716359299723_huee84c076d6356cb2aabb35b180e72c90_162380_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716359299723_huee84c076d6356cb2aabb35b180e72c90_162380_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716359299723&#34;
@@ -508,10 +508,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;具体来说，就是通过发送30个都发送带有对应seed的验证码生成请求来使每个线程的seed都为我们所设定的seed,此时服务端每个线程的random函数都是经过了一轮之前分析过得random操作后的状态，通过调用nop_random，我们本地的random状态和服务端的random状态是一致的，send_code方法和jumpserver的UserResetPasswordSendCodeApi中的code一致，由于我们本地和服务端状态一致，所以我们本地与运行send_code和服务端运行send_code也是一样的，生成的code也就是一样的了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716361614012.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716361614012.png&#34;
 	width=&#34;2846&#34;
 	height=&#34;1122&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716361614012_hu931351cd714fd35b92c2411fba1957c1_935403_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716361614012_hu931351cd714fd35b92c2411fba1957c1_935403_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716361614012_hu931351cd714fd35b92c2411fba1957c1_935403_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716361614012_hu931351cd714fd35b92c2411fba1957c1_935403_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716361614012&#34;
@@ -522,10 +522,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 		data-flex-basis=&#34;608px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716361642462.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716361642462.png&#34;
 	width=&#34;1168&#34;
 	height=&#34;1038&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716361642462_hu72cbac0235f43f1b950af78565969772_97636_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716361642462_hu72cbac0235f43f1b950af78565969772_97636_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716361642462_hu72cbac0235f43f1b950af78565969772_97636_480x0_resize_box_3.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716361642462_hu72cbac0235f43f1b950af78565969772_97636_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716361642462&#34;
@@ -543,12 +543,12 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
         </item>
         <item>
         <title>Frp实现隧道穿透远程桌面</title>
-        <link>https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
+        <link>http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
         <pubDate>Mon, 16 Oct 2023 14:10:06 +0800</pubDate>
         
-        <guid>https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</guid>
+        <guid>http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</guid>
         <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
-&lt;p&gt;果壳的校园网不给直接内网连远程桌面，感觉是因为划的子网之间不能互相通信，不知道是深澜故意的还是不小心的。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。&lt;/p&gt;
+&lt;p&gt;果壳的校园网不给直接内网连远程桌面，应该是因为vlan之间不能互相通信导致的，经典避免病毒在内网渗透。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。&lt;/p&gt;
 &lt;h1 id=&#34;操作&#34;&gt;操作&lt;/h1&gt;
 &lt;p&gt;实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。&lt;/p&gt;
 &lt;p&gt;去&lt;a class=&#34;link&#34; href=&#34;https://github.com/fatedier/frp/releases/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -608,14 +608,18 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1697438389080.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080.png&#34;
+	width=&#34;801&#34;
+	height=&#34;146&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu7a6f63dccf257a58cb26e04e09ad67d0_41896_480x0_resize_box_3.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu7a6f63dccf257a58cb26e04e09ad67d0_41896_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697438389080&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;548&#34;
+		data-flex-basis=&#34;1316px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;客户端&#34;&gt;客户端&lt;/h2&gt;
@@ -657,14 +661,18 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果你的被控端的frpc设置开了web，那你应该可以再web界面看到你的xtcp的连接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1697439827539.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539.png&#34;
+	width=&#34;1789&#34;
+	height=&#34;127&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu6228474f3b9ce24d585df963ba5935f6_12333_480x0_resize_box_3.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu6228474f3b9ce24d585df963ba5935f6_12333_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697439827539&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;1408&#34;
+		data-flex-basis=&#34;3380px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;对了你还可以再你的frps和frpc里都指定一个user，这样你的proxy的name就会变成user.name的形式，这也就使你可以在server端配置多用户（指直接管name叫做aaa.xxx而不配置frps的user）&lt;/p&gt;
@@ -706,14 +714,18 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 &lt;p&gt;&lt;code&gt;./frpc.exe -c ./frpc.toml&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;visitors是在web里看不见的，看不到不要觉得奇怪。&lt;/p&gt;
 &lt;p&gt;如果在server上可以看到都连上了，直接mstsc连就行了，连127.0.0.1:8000（也就是你在visitor里设置的地址端口）（这里是把log指向了console，所以可以直接看）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/images/1697440033017.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017.png&#34;
+	width=&#34;982&#34;
+	height=&#34;141&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu58dc8a8095ef75afb6e2b44aaba560eb_41787_480x0_resize_box_3.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu58dc8a8095ef75afb6e2b44aaba560eb_41787_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697440033017&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;696&#34;
+		data-flex-basis=&#34;1671px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;windwos防火墙会弹，同意了就完事了&lt;/p&gt;

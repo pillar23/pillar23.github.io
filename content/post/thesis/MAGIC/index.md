@@ -3,6 +3,7 @@ title = 'MAGIC'
 date = 2024-03-02T20:19:11+08:00
 draft = false
 math=true
+tags = ["溯源图", "论文笔记"]
 +++
 
 文章可以在[这里](https://doi.org/10.48550/arXiv.2310.09831)获取

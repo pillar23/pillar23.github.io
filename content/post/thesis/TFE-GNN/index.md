@@ -3,6 +3,7 @@ title = 'TFE GNN'
 date = 2024-02-16T16:28:03+08:00
 draft = false
 math = true
+tags = ["流量检测", "论文笔记"]
 +++
 
 # abstract

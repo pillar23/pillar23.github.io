@@ -2,6 +2,7 @@
 title = 'Cuda实现CNN推理与卷积'
 date = 2023-10-17T10:31:05+08:00
 draft = true
+tags = ["课程作业"]
 +++
 
 # 导语

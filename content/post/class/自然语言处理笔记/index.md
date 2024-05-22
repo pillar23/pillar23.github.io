@@ -3,6 +3,7 @@ title = '自然语言处理笔记'
 date = 2023-12-27T19:07:00+08:00
 draft = false
 math = true
+tags = ["课程笔记"]
 +++
 
 # 导语

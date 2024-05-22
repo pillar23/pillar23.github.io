@@ -2,6 +2,7 @@
 title = 'FLASH'
 date = 2024-04-18T10:51:57+08:00
 draft = false
+tags = ["溯源图", "论文笔记"]
 +++
 
 ## 导语

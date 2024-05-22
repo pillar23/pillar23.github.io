@@ -2,6 +2,7 @@
 title = 'Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis'
 date = 2023-10-16T20:34:22+08:00
 draft = false
+tags = ["论文笔记", "流量检测"]
 +++
 
 # 导语
