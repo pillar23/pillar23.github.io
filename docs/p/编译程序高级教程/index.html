@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 本笔记是ucas李炼编译程序高级教程课程的笔记。属于知识点碎碎念，不知道对作业、考试有没有作用。
+文法 文法：终结符、非终结符、产生式、开始符号（或者识别符号）的四元组
+产生式：可以理解为推导规则
+终结符、非终结符：
+非终结符：能出现在推导左边的就是非终结符 终结符：不能出现在推导左边的局势终结符 即能否进一步推导细分是区分终结符和非终结符的关键
+句型、句子：
+句型：符号串x是从开始符号S推导出来的，则x是文法G[S]的句型 句子：若推导出的符号串x仅由终结符号组成，则x为G[S]的句子 语言：从S推导出的所有句子的集合，也就是从S开始推导出的只有终结符的东西 G产生的语言记作L（G）
+文法的等价： 如果L(G)==L(G2)，则G1等价于G2
+3型文法==有限自动机： 如果文法的产生式P都有A→aB或A→a的形式，其中A、B∈$V_N$，a∈$V_T$。3型文法的许多性质是可判定的常用于编译器的词法分析程序的构造
+左右线性文法：
+右线性文法：形如A→aB或A→a 左线性文法：形如A→Ba或A→a 词法 字母表Σ
+正规式==3型文法（感觉正规式就是正则表达式）
+正规式和正规集：
+正规集可以用正规式表示 正规式是表示正规集一种方法 一个字集合是正规集当且仅当它能用正规式表示 正规集是正规式表示的语言 正规式可以递归定义
+且正规式有运算优先级
+感觉正规式和正则表达式没啥区别
+（这他妈不就是正则表达式吗）
+有限状态自动机
+五元式M = (S, ∑, δ, s0, F)，其中
+S是状态集合 ∑是字母表 s0为开始状态，属于S F是接受（或终止）状态的集合，属于S δ是转换函数 只有转换函数的表示稍微难理解一点，下面是一个例子
+也可以转成转换表
+只要有从s0到F内元素的路径，NFA就接受这个串（串也被称为语言）
+根据是否有ε转换细分成两种
+二型文法 设G=(VN,Vt,P,S)，如果它的每个产生式有如下形式，A→β，A∈VN，β∈(VN∪VT)*，则G是二型文法【即，所有的产生式都是非终结符推别的】
+二型文法==下推自动机（PDA）
+最右（左）推导：推导的每一步都是替代最右（左）边非终结符的推导
+二义性文法：一个文法，如果存在某个句子有不止一棵分析树与之对应，则称这个文法是二义的
+一个二义性的文法是可能将其改写，得到一个等价的无二义性的文法的。这种变换不总是可行的，具体看看第三章ppt吧
+自上而下、自下而上：
+对任何输入串，试图用一切可能的方法，从文法开始符号出发，自上而下、从左到右地为输入串建立分析树，即为输入串寻找最左推导。 消除左递归 左递归的分类 直接左递归：直接见诸于产生式的左递 一般的左递归：如S→Aa|b A→Ac|Sd| 直接左递归消除： 一般左递归消除： 文法G满足一定条件可以唯一的选择产生式继续推导
+FIRST集：令文法G是不含左递归的文法，对G的非终结符的候选α，定义它的开始符号（终结首符）集合
+求FIRST集：
+直接收取：对形如U－a…的产生式（其中a是终结符），把a收入到First(U)中 反复传送：对形入U－P…的产生式（其中P是非终结符），应把First(P)中的全部内容传送到First(U)中。 在不含左递归且每个非终结符所有选择的FIRST集都两两不相交的条件下（互相求∩为空集），存在可能构造专门的递归下降分析器'>
+<title>编译程序高级教程</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='编译程序高级教程'>
+<meta property='og:description' content='导语 本笔记是ucas李炼编译程序高级教程课程的笔记。属于知识点碎碎念，不知道对作业、考试有没有作用。
+文法 文法：终结符、非终结符、产生式、开始符号（或者识别符号）的四元组
+产生式：可以理解为推导规则
+终结符、非终结符：
+非终结符：能出现在推导左边的就是非终结符 终结符：不能出现在推导左边的局势终结符 即能否进一步推导细分是区分终结符和非终结符的关键
+句型、句子：
+句型：符号串x是从开始符号S推导出来的，则x是文法G[S]的句型 句子：若推导出的符号串x仅由终结符号组成，则x为G[S]的句子 语言：从S推导出的所有句子的集合，也就是从S开始推导出的只有终结符的东西 G产生的语言记作L（G）
+文法的等价： 如果L(G)==L(G2)，则G1等价于G2
+3型文法==有限自动机： 如果文法的产生式P都有A→aB或A→a的形式，其中A、B∈$V_N$，a∈$V_T$。3型文法的许多性质是可判定的常用于编译器的词法分析程序的构造
+左右线性文法：
+右线性文法：形如A→aB或A→a 左线性文法：形如A→Ba或A→a 词法 字母表Σ
+正规式==3型文法（感觉正规式就是正则表达式）
+正规式和正规集：
+正规集可以用正规式表示 正规式是表示正规集一种方法 一个字集合是正规集当且仅当它能用正规式表示 正规集是正规式表示的语言 正规式可以递归定义
+且正规式有运算优先级
+感觉正规式和正则表达式没啥区别
+（这他妈不就是正则表达式吗）
+有限状态自动机
+五元式M = (S, ∑, δ, s0, F)，其中
+S是状态集合 ∑是字母表 s0为开始状态，属于S F是接受（或终止）状态的集合，属于S δ是转换函数 只有转换函数的表示稍微难理解一点，下面是一个例子
+也可以转成转换表
+只要有从s0到F内元素的路径，NFA就接受这个串（串也被称为语言）
+根据是否有ε转换细分成两种
+二型文法 设G=(VN,Vt,P,S)，如果它的每个产生式有如下形式，A→β，A∈VN，β∈(VN∪VT)*，则G是二型文法【即，所有的产生式都是非终结符推别的】
+二型文法==下推自动机（PDA）
+最右（左）推导：推导的每一步都是替代最右（左）边非终结符的推导
+二义性文法：一个文法，如果存在某个句子有不止一棵分析树与之对应，则称这个文法是二义的
+一个二义性的文法是可能将其改写，得到一个等价的无二义性的文法的。这种变换不总是可行的，具体看看第三章ppt吧
+自上而下、自下而上：
+对任何输入串，试图用一切可能的方法，从文法开始符号出发，自上而下、从左到右地为输入串建立分析树，即为输入串寻找最左推导。 消除左递归 左递归的分类 直接左递归：直接见诸于产生式的左递 一般的左递归：如S→Aa|b A→Ac|Sd| 直接左递归消除： 一般左递归消除： 文法G满足一定条件可以唯一的选择产生式继续推导
+FIRST集：令文法G是不含左递归的文法，对G的非终结符的候选α，定义它的开始符号（终结首符）集合
+求FIRST集：
+直接收取：对形如U－a…的产生式（其中a是终结符），把a收入到First(U)中 反复传送：对形入U－P…的产生式（其中P是非终结符），应把First(P)中的全部内容传送到First(U)中。 在不含左递归且每个非终结符所有选择的FIRST集都两两不相交的条件下（互相求∩为空集），存在可能构造专门的递归下降分析器'>
+<meta property='og:url' content='http://localhost:1313/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/'>
+<meta property='og:site_name' content='π1l4r_のblog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-12-15T17:37:48&#43;08:00'/><meta property='article:modified_time' content='2023-12-15T17:37:48&#43;08:00'/>
+<meta name="twitter:title" content="编译程序高级教程">
+<meta name="twitter:description" content="导语 本笔记是ucas李炼编译程序高级教程课程的笔记。属于知识点碎碎念，不知道对作业、考试有没有作用。
+文法 文法：终结符、非终结符、产生式、开始符号（或者识别符号）的四元组
+产生式：可以理解为推导规则
+终结符、非终结符：
+非终结符：能出现在推导左边的就是非终结符 终结符：不能出现在推导左边的局势终结符 即能否进一步推导细分是区分终结符和非终结符的关键
+句型、句子：
+句型：符号串x是从开始符号S推导出来的，则x是文法G[S]的句型 句子：若推导出的符号串x仅由终结符号组成，则x为G[S]的句子 语言：从S推导出的所有句子的集合，也就是从S开始推导出的只有终结符的东西 G产生的语言记作L（G）
+文法的等价： 如果L(G)==L(G2)，则G1等价于G2
+3型文法==有限自动机： 如果文法的产生式P都有A→aB或A→a的形式，其中A、B∈$V_N$，a∈$V_T$。3型文法的许多性质是可判定的常用于编译器的词法分析程序的构造
+左右线性文法：
+右线性文法：形如A→aB或A→a 左线性文法：形如A→Ba或A→a 词法 字母表Σ
+正规式==3型文法（感觉正规式就是正则表达式）
+正规式和正规集：
+正规集可以用正规式表示 正规式是表示正规集一种方法 一个字集合是正规集当且仅当它能用正规式表示 正规集是正规式表示的语言 正规式可以递归定义
+且正规式有运算优先级
+感觉正规式和正则表达式没啥区别
+（这他妈不就是正则表达式吗）
+有限状态自动机
+五元式M = (S, ∑, δ, s0, F)，其中
+S是状态集合 ∑是字母表 s0为开始状态，属于S F是接受（或终止）状态的集合，属于S δ是转换函数 只有转换函数的表示稍微难理解一点，下面是一个例子
+也可以转成转换表
+只要有从s0到F内元素的路径，NFA就接受这个串（串也被称为语言）
+根据是否有ε转换细分成两种
+二型文法 设G=(VN,Vt,P,S)，如果它的每个产生式有如下形式，A→β，A∈VN，β∈(VN∪VT)*，则G是二型文法【即，所有的产生式都是非终结符推别的】
+二型文法==下推自动机（PDA）
+最右（左）推导：推导的每一步都是替代最右（左）边非终结符的推导
+二义性文法：一个文法，如果存在某个句子有不止一棵分析树与之对应，则称这个文法是二义的
+一个二义性的文法是可能将其改写，得到一个等价的无二义性的文法的。这种变换不总是可行的，具体看看第三章ppt吧
+自上而下、自下而上：
+对任何输入串，试图用一切可能的方法，从文法开始符号出发，自上而下、从左到右地为输入串建立分析树，即为输入串寻找最左推导。 消除左递归 左递归的分类 直接左递归：直接见诸于产生式的左递 一般的左递归：如S→Aa|b A→Ac|Sd| 直接左递归消除： 一般左递归消除： 文法G满足一定条件可以唯一的选择产生式继续推导
+FIRST集：令文法G是不含左递归的文法，对G的非终结符的候选α，定义它的开始符号（终结首符）集合
+求FIRST集：
+直接收取：对形如U－a…的产生式（其中a是终结符），把a收入到First(U)中 反复传送：对形入U－P…的产生式（其中P是非终结符），应把First(P)中的全部内容传送到First(U)中。 在不含左递归且每个非终结符所有选择的FIRST集都两两不相交的条件下（互相求∩为空集），存在可能构造专门的递归下降分析器">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
+            <h2 class="site-description">Like tears in rain.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/such-stupid6'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/class' >
+                
+                
+                
+                <span>📕课程</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/thesis' >
+                
+                
+                
+                <span>📚论文</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/tech' >
+                
+                
+                
+                <span>👨🏻‍💻技术</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#文法">文法</a></li>
+    <li><a href="#词法">词法</a>
+      <ol>
+        <li><a href="#二型文法">二型文法</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/">编译程序高级教程</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 15, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="导语">导语</h1>
+<p>本笔记是ucas李炼编译程序高级教程课程的笔记。属于知识点碎碎念，不知道对作业、考试有没有作用。</p>
+<h2 id="文法">文法</h2>
+<p>文法：终结符、非终结符、产生式、开始符号（或者识别符号）的四元组</p>
+<p>产生式：可以理解为推导规则</p>
+<p>终结符、非终结符：</p>
+<ul>
+<li>非终结符：能出现在推导左边的就是非终结符</li>
+<li>终结符：不能出现在推导左边的局势终结符</li>
+</ul>
+<p>即能否进一步推导细分是区分终结符和非终结符的关键</p>
+<p>句型、句子：</p>
+<ul>
+<li>句型：符号串x是从开始符号S推导出来的，则x是文法G[S]的句型</li>
+<li>句子：若推导出的符号串x仅由终结符号组成，则x为G[S]的句子</li>
+</ul>
+<p>语言：从S推导出的所有句子的集合，也就是从S开始推导出的只有终结符的东西 G产生的语言记作L（G）</p>
+<p>文法的等价： 如果L(G)==L(G2)，则G1等价于G2<img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702825475406.png"
+	width="1074"
+	height="461"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702825475406_huc960bf9f225332d4678f0acfd23f6870_138462_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702825475406_huc960bf9f225332d4678f0acfd23f6870_138462_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702825475406"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="232"
+		data-flex-basis="559px"
+	
+></p>
+<p>3型文法==有限自动机： 如果文法的产生式P都有A→aB或A→a的形式，其中A、B∈$V_N$，a∈$V_T$。3型文法的许多性质是可判定的常用于编译器的词法分析程序的构造</p>
+<p>左右线性文法：</p>
+<ul>
+<li>右线性文法：形如A→aB或A→a</li>
+<li>左线性文法：形如A→Ba或A→a</li>
+</ul>
+<h2 id="词法">词法</h2>
+<p>字母表Σ</p>
+<p>正规式==3型文法（感觉正规式就是正则表达式）</p>
+<p>正规式和正规集：</p>
+<ul>
+<li><strong>正规集</strong>可以用<strong>正规式</strong>表示</li>
+<li><strong>正规式</strong>是表示<strong>正规集</strong>一种方法</li>
+<li>一个字集合是<strong>正规集</strong>当且仅当它能用<strong>正规式</strong>表示</li>
+<li>正规集是正规式表示的语言</li>
+</ul>
+<p>正规式可以递归定义</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702827890746.png"
+	width="1201"
+	height="926"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702827890746_huca1ba8e568894a292204bf3d0b16837c_304465_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702827890746_huca1ba8e568894a292204bf3d0b16837c_304465_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702827890746"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="129"
+		data-flex-basis="311px"
+	
+></p>
+<p>且正规式有运算优先级</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702827940374.png"
+	width="1002"
+	height="644"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702827940374_hud27780fef2315572898edbac4dab2dec_173998_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702827940374_hud27780fef2315572898edbac4dab2dec_173998_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702827940374"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="155"
+		data-flex-basis="373px"
+	
+></p>
+<p>感觉正规式和正则表达式没啥区别</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828036529.png"
+	width="1171"
+	height="724"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828036529_hu37b56b73c7d727fae5affd976cf976bd_252563_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828036529_hu37b56b73c7d727fae5affd976cf976bd_252563_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702828036529"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="161"
+		data-flex-basis="388px"
+	
+></p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828089523.png"
+	width="1230"
+	height="716"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828089523_hue7fbdf6f3b0ade5a39b9657091fed573_242509_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828089523_hue7fbdf6f3b0ade5a39b9657091fed573_242509_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702828089523"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="412px"
+	
+></p>
+<p>（这他妈不就是正则表达式吗）</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828125607.png"
+	width="1111"
+	height="332"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828125607_hu3696144e7300760f30fdea0a653550b6_77549_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702828125607_hu3696144e7300760f30fdea0a653550b6_77549_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702828125607"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="334"
+		data-flex-basis="803px"
+	
+></p>
+<p>有限状态自动机</p>
+<p>五元式M = (S, ∑, δ, s0, F)，其中</p>
+<ul>
+<li>S是状态集合</li>
+<li>∑是字母表</li>
+<li>s0为开始状态，属于S</li>
+<li>F是接受（或终止）状态的集合，属于S</li>
+<li>δ是转换函数</li>
+</ul>
+<p>只有转换函数的表示稍微难理解一点，下面是一个例子</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830079847.png"
+	width="907"
+	height="392"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830079847_hu0255dd7851ff5daebd2df3c9705829d7_27769_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830079847_hu0255dd7851ff5daebd2df3c9705829d7_27769_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702830079847"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="231"
+		data-flex-basis="555px"
+	
+></p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830092290.png"
+	width="806"
+	height="209"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830092290_huff4eb5cf54054dc803ace983d1e42431_41930_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830092290_huff4eb5cf54054dc803ace983d1e42431_41930_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702830092290"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="385"
+		data-flex-basis="925px"
+	
+></p>
+<p>也可以转成转换表</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830424900.png"
+	width="907"
+	height="765"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830424900_hu8f2344db5a5e38bd170c3cb9751fbac7_155463_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702830424900_hu8f2344db5a5e38bd170c3cb9751fbac7_155463_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702830424900"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="118"
+		data-flex-basis="284px"
+	
+></p>
+<p>只要有从s0到F内元素的路径，NFA就接受这个串（串也被称为语言）</p>
+<p>根据是否有ε转换细分成两种</p>
+<h3 id="二型文法">二型文法</h3>
+<p>设G=(VN,Vt,P,S)，如果它的每个产生式有如下形式，A→β，A∈VN，β∈(VN∪VT)*，则G是二型文法【即，所有的产生式都是非终结符推别的】</p>
+<p>二型文法==下推自动机（PDA）</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837305466.png"
+	width="1260"
+	height="810"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837305466_hu8d12bd20535ceb9e3b15a10f3d7ad65b_291242_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837305466_hu8d12bd20535ceb9e3b15a10f3d7ad65b_291242_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702837305466"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="155"
+		data-flex-basis="373px"
+	
+></p>
+<p>最右（左）推导：推导的每一步都是替代最右（左）边非终结符的推导</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837388134.png"
+	width="1004"
+	height="324"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837388134_hu138cadba2e77521c275696d2683b2742_78407_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837388134_hu138cadba2e77521c275696d2683b2742_78407_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702837388134"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="309"
+		data-flex-basis="743px"
+	
+></p>
+<p>二义性文法：一个文法，如果存在某个句子有不止一棵分析树与之对应，则称这个文法是二义的</p>
+<p>一个二义性的文法是<strong>可能</strong>将其改写，得到一个等价的无二义性的文法的。这种变换不总是可行的，具体看看第三章ppt吧</p>
+<p>自上而下、自下而上：</p>
+<ul>
+<li>对任何输入串，试图用一切可能的方法，从文法开始符号出发，自上而下、从左到右地为输入串建立分析树，<strong>即为输入串寻找最左推导</strong>。
+<ul>
+<li>消除左递归</li>
+<li><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837838455.png"
+	width="1000"
+	height="229"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837838455_hue0a43b86e431ca8435d0f206a4439f84_47295_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837838455_hue0a43b86e431ca8435d0f206a4439f84_47295_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702837838455"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="436"
+		data-flex-basis="1048px"
+	
+></li>
+<li>左递归的分类
+<ul>
+<li>直接左递归：直接见诸于产生式的左递</li>
+<li>一般的左递归：如S→Aa|b  A→Ac|Sd|
+<ul>
+<li>直接左递归消除：
+<ul>
+<li><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837997032.png"
+	width="1129"
+	height="784"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837997032_hu8ecaed72f24dffcad4ce6f4541bd4e4e_174870_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702837997032_hu8ecaed72f24dffcad4ce6f4541bd4e4e_174870_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702837997032"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="345px"
+	
+></li>
+</ul>
+</li>
+<li>一般左递归消除：
+<ul>
+<li><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702838049872.png"
+	width="1075"
+	height="707"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702838049872_hu6aa9daa1f7d8d186cba343e50a485079_136532_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702838049872_hu6aa9daa1f7d8d186cba343e50a485079_136532_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702838049872"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="152"
+		data-flex-basis="364px"
+	
+></li>
+<li><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702866138165.png"
+	width="1199"
+	height="773"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702866138165_hu21592243c8ec6f57c27ce8ef9e91eaff_214265_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702866138165_hu21592243c8ec6f57c27ce8ef9e91eaff_214265_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702866138165"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="155"
+		data-flex-basis="372px"
+	
+></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>文法G满足一定条件可以唯一的选择产生式继续推导</p>
+<p>FIRST集：令文法G是不含左递归的文法，对G的非终结符的候选α，定义它的开始符号（终结首符）集合</p>
+<p>求FIRST集：</p>
+<ol>
+<li>直接收取：对形如U－a…的产生式（其中a是终结符），把a收入到First(U)中</li>
+<li>反复传送：对形入U－P…的产生式（其中P是非终结符），应把First(P)中的全部内容传送到First(U)中。</li>
+</ol>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869172762.png"
+	width="800"
+	height="450"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869172762_huecf6bb31e9eb2e3d03e913e837e8cc50_26684_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869172762_huecf6bb31e9eb2e3d03e913e837e8cc50_26684_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702869172762"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869180028.png"
+	width="800"
+	height="450"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869180028_hu358685dbbf9c27e827686de543f7ab3c_34516_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869180028_hu358685dbbf9c27e827686de543f7ab3c_34516_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702869180028"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>在不含左递归且每个非终结符所有选择的FIRST集都两两不相交的条件下（互相求∩为空集），存在可能构造专门的递归下降分析器</p>
+<p>FOLLOW集合：Follow集合是针对非终结符而言的，Follow(U)所表达的是句型中非终结符U所有可能的后随终结符号的集合（U后面可能跟着的终结符的集合）</p>
+<p>求FOLLOW集：例，求FOLLOW(U)</p>
+<p>（1）将 $ 放到follow（S）中，其中S是文法的开始符号。</p>
+<p>（2）如果存、A→αBβ，那么first（β）中除ε之外加入follow（B）中。 【 follow(B)是求跟在B后的终结符或$组成的集合，因此对于跟在B后的β，它的first集合就是follow(B)的子集 】</p>
+<p>（3）如果存在A→αB，或A→αBβ， 且first（β）包含ε， follow（A）加入follow（B）中。 【 对于A→αBβ,且β多步推导出ε ，那么可以用αB替换A, B后面紧跟的字符就是A后面紧跟的字符】</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869910505.png"
+	width="1115"
+	height="738"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869910505_hu880a5005ef9b85d896c44bd4b1c0018d_105922_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869910505_hu880a5005ef9b85d896c44bd4b1c0018d_105922_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702869910505"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="362px"
+	
+></p>
+<p>预测分析表</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869980264.png"
+	width="1067"
+	height="425"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869980264_hue1185cedcd3f4f4b43ed7c9a39078293_147405_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702869980264_hue1185cedcd3f4f4b43ed7c9a39078293_147405_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702869980264"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="251"
+		data-flex-basis="602px"
+	
+></p>
+<p>例，上面那个的预测分析表：</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702870003296.png"
+	width="1023"
+	height="536"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702870003296_hu6e3f8ed4297ef09d249cdd88e188fcbf_50286_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702870003296_hu6e3f8ed4297ef09d249cdd88e188fcbf_50286_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702870003296"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="190"
+		data-flex-basis="458px"
+	
+></p>
+<p>非递归预测分析</p>
+<p><img src="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702870062669.png"
+	width="1187"
+	height="817"
+	srcset="/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702870062669_huff513cad428c328c5e7d1acd0e07eafa_204364_480x0_resize_box_3.png 480w, /p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/1702870062669_huff513cad428c328c5e7d1acd0e07eafa_204364_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1702870062669"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="145"
+		data-flex-basis="348px"
+	
+></p>
+<p>LL(1)文法：</p>
+<p><a class="link" href="https://leiblog.wang/%E7%BC%96%E8%AF%91%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"  target="_blank" rel="noopener"
+    >https://leiblog.wang/%E7%BC%96%E8%AF%91%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+<a class="link" href="https://blog.csdn.net/m0_67877471/article/details/124776449"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/m0_67877471/article/details/124776449</a></p>
+<p><a class="link" href="http://www.cnblogs.com/acgoto/"  target="_blank" rel="noopener"
+    >https://www.cnblogs.com/henuliulei/</a></p>
+<p><a class="link" href="https://blog.csdn.net/qq_43319080/article/details/106379883#:~:text=%EF%BC%881%EF%BC%89%E5%B0%86%20%24%20%E6%94%BE%E5%88%B0follow%EF%BC%88S%EF%BC%89%E4%B8%AD%EF%BC%8C%E5%85%B6%E4%B8%ADS%E6%98%AF%E6%96%87%E6%B3%95%E7%9A%84%E5%BC%80%E5%A7%8B%E7%AC%A6%E5%8F%B7%E3%80%82%20%EF%BC%882%EF%BC%89%E5%A6%82%E6%9E%9C%E5%AD%98%E5%9C%A8%E4%B8%80%E4%B8%AA%E4%BA%A7%E7%94%9F%E5%BC%8FA%E2%86%92%CE%B1B%CE%B2%EF%BC%8C%E9%82%A3%E4%B9%88first%EF%BC%88%CE%B2%EF%BC%89%E4%B8%AD%20%E9%99%A4%CE%B5%E4%B9%8B%E5%A4%96%20%E7%9A%84%E6%89%80%E6%9C%89%E7%AC%A6%E5%8F%B7%E9%83%BD%E5%9C%A8follow%EF%BC%88B%EF%BC%89%E4%B8%AD%E3%80%82,%E3%80%90%20follow%20%28B%29%E6%98%AF%E6%B1%82%E8%B7%9F%E5%9C%A8B%E5%90%8E%E7%9A%84%E7%BB%88%E7%BB%93%E7%AC%A6%E6%88%96%24%E7%BB%84%E6%88%90%E7%9A%84%E9%9B%86%E5%90%88%EF%BC%8C%E5%9B%A0%E6%AD%A4%E5%AF%B9%E4%BA%8E%E8%B7%9F%E5%9C%A8B%E5%90%8E%E7%9A%84%CE%B2%EF%BC%8C%E5%AE%83%E7%9A%84first%E9%9B%86%E5%90%88%E5%B0%B1%E6%98%AFfollow%20%28B%29%E7%9A%84%E5%AD%90%E9%9B%86%20%E3%80%91%20%EF%BC%883%EF%BC%89%E5%A6%82%E6%9E%9C%E5%AD%98%E5%9C%A8%E4%B8%80%E4%B8%AA%E4%BA%A7%E7%94%9F%E5%BC%8FA%E2%86%92%CE%B1B%EF%BC%8C%E6%88%96%E5%AD%98%E5%9C%A8%E4%BA%A7%E7%94%9F%E5%BC%8FA%E2%86%92%CE%B1B%CE%B2%E4%B8%94first%EF%BC%88%CE%B2%EF%BC%89%E5%8C%85%E5%90%AB%CE%B5%EF%BC%8C%E9%82%A3%E4%B9%88follow%EF%BC%88A%EF%BC%89%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AC%A6%E5%8F%B7%E9%83%BD%E5%9C%A8follow%EF%BC%88B%EF%BC%89%E4%B8%AD%E3%80%82"  target="_blank" rel="noopener"
+    >编译原理FOLLOW集的求法_follow集合怎么求-CSDN博客</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus"],"lang":"zh-cn","locale":{"admin":"管理员","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神","placeholder":"有什么想说的请留言，建议登录后再留言，可以获得best-effort的回复喔。"},"pageview":true,"serverURL":"https://waline.pillar.fun","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 pill4r
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
