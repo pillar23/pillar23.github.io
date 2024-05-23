@@ -4,6 +4,9 @@ date = 2024-02-16T16:28:03+08:00
 draft = false
 math = true
 tags = ["流量检测", "论文笔记"]
+categories = ["论文"]
+description = "使用TFE-GNN对流量使用字节级方法实现恶意流量检测"
+image="pic/1708314808397.png"
 +++
 
 # abstract

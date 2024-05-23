@@ -3,6 +3,9 @@ title = 'Frp实现隧道穿透远程桌面'
 date = 2023-10-16T14:10:06+08:00
 draft = false
 tags = ["实用工具"]
+categories = ["工具"]
+description = "使用frp内网穿透进行远程桌面"
+image = "/img/placeholder.jpeg"
 +++
 
 # 导语

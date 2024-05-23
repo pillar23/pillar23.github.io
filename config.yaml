@@ -46,7 +46,7 @@ params:
     favicon:  # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
 
     footer:
-        since: 2020
+        since: 2023
         customText:
 
     dateFormat:
@@ -160,7 +160,7 @@ params:
             - type: search
             - type: archives
               params:
-                  limit: 5
+                  limit: 10
             - type: categories
               params:
                   limit: 10

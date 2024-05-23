@@ -4,17 +4,18 @@ date = 2023-12-27T19:07:00+08:00
 draft = false
 math = true
 tags = ["课程笔记"]
+categories = ["课业"]
+description = "ucas 2023秋 自然语言处理基础 胡玥、曹亚男"
+image = "自然语言处理笔记/nlp.png"
 +++
 
 # 导语
-
-ucas 2023秋 自然语言处理基础 胡玥、曹亚男
 
 期末全是开放问题，因此弄清楚各种模型的优劣非常有必要。
 
 # 笔记
 
-![nlp.png](https://github.com/aialgorithm/AiPy/blob/master/Ai%E7%9F%A5%E8%AF%86%E5%9B%BE%E5%86%8C/Ai_Roadmap/nlp.png?raw=true)
+![nlp.png](自然语言处理笔记/nlp.png)
 
 ## model
 

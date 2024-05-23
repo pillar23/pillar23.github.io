@@ -127,7 +127,26 @@
     }
 }
 
-.article-category,
+.article-category {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        a {
+            background: var(--card-background);
+            box-shadow: var(--shadow-l1);
+            border-radius: var(--category-border-radius);
+            padding: 8px 20px;
+            color: var(--card-text-color-main);
+            font-size: 1.4rem;
+            transition: box-shadow 0.3s ease;
+
+            &:hover {
+                box-shadow: var(--shadow-l2);
+            }
+        }
+    }
+
 .article-tags {
     display: flex;
     gap: 10px;
@@ -205,6 +224,15 @@
             margin-top: 10px;
             line-height: 1.5;
         }
+        .article-subtitle {
+            margin-top: -5px;
+            font-size: 1rem;
+
+            @include respond(md) {
+                font-size: 1.6rem;
+            }
+        }
+
     }
 }
 
@@ -275,3 +303,10 @@
         }
     }
 }
+
+code {
+    border-radius: var(--tag-border-radius);
+    font-size: 14px; // Add font size setting for code block
+    font-family: var(--code-font-family);
+}
+

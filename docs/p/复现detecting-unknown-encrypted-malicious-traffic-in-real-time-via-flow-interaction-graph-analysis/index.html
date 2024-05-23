@@ -1,33 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 复现这篇2023NDSS论文，他大开源在https://github.com/fuchuanpu/HyperVision
-环境配置 我是在home下做的，如果想在别的地方搞稍微换下路径就行
-先拉git的代码 git clone https://github.com/fuchuanpu/HyperVision.git
-依照作者在readme里说，在纯净的ubuntu22.04上运行他的脚本即可。用docker装一个纯净的ubuntu22.04
-1 2 3 4 5 6 # 下载镜像 docker pull homebrew/ubuntu22.04:latest # 启动，并且把~/HyperVision 和容器内的/root/HyperVision连起来 docker run -td --name hypervision -v &amp;#34;$HOME/HyperVision&amp;#34;:/root/HyperVision homebrew/ubuntu22.04:latest # 进入 docker exec hypervision -it bash 接下来的操作在docker里了
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 sudo su cd /root/HyperVision sudo ./env/install_all.sh # 这里最好先换个国内的源，会把需要装的都装了 wget https://hypervision-publish.s3.cn-north-1.amazonaws.com.cn/hypervision-dataset.tar.gz # 下载数据集，有6G，走的cdn，裸连速度就还不错 tar -xzf hypervision-dataset.tar.gz # 我也不知道为什么他写了个-xxf 如果想删掉原来的就删吧，不删也没关系 .'>
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='简单复现论文效果，没看代码'>
 <title>复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/'>
+<link rel='canonical' href='https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/'>
 
-<link rel="stylesheet" href="/scss/style.min.a38f4a1f6c1fd7c80b11d5812e9078b237c7cef12b17dca1fde8a6091a83da56.css"><meta property='og:title' content='复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis'>
-<meta property='og:description' content='导语 复现这篇2023NDSS论文，他大开源在https://github.com/fuchuanpu/HyperVision
-环境配置 我是在home下做的，如果想在别的地方搞稍微换下路径就行
-先拉git的代码 git clone https://github.com/fuchuanpu/HyperVision.git
-依照作者在readme里说，在纯净的ubuntu22.04上运行他的脚本即可。用docker装一个纯净的ubuntu22.04
-1 2 3 4 5 6 # 下载镜像 docker pull homebrew/ubuntu22.04:latest # 启动，并且把~/HyperVision 和容器内的/root/HyperVision连起来 docker run -td --name hypervision -v &amp;#34;$HOME/HyperVision&amp;#34;:/root/HyperVision homebrew/ubuntu22.04:latest # 进入 docker exec hypervision -it bash 接下来的操作在docker里了
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 sudo su cd /root/HyperVision sudo ./env/install_all.sh # 这里最好先换个国内的源，会把需要装的都装了 wget https://hypervision-publish.s3.cn-north-1.amazonaws.com.cn/hypervision-dataset.tar.gz # 下载数据集，有6G，走的cdn，裸连速度就还不错 tar -xzf hypervision-dataset.tar.gz # 我也不知道为什么他写了个-xxf 如果想删掉原来的就删吧，不删也没关系 .'>
-<meta property='og:url' content='http://localhost:1313/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/'>
+<link rel="stylesheet" href="/scss/style.min.abbf77341b31aeb03b715c2ff883328ae7f3889f992cf736e2ffb8d1bd491c50.css"><meta property='og:title' content='复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis'>
+<meta property='og:description' content='简单复现论文效果，没看代码'>
+<meta property='og:url' content='https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='流量检测' /><meta property='article:tag' content='论文复现' /><meta property='article:published_time' content='2023-10-25T10:25:43&#43;08:00'/><meta property='article:modified_time' content='2023-10-25T10:25:43&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='流量检测' /><meta property='article:tag' content='论文复现' /><meta property='article:published_time' content='2023-10-25T10:25:43&#43;08:00'/><meta property='article:modified_time' content='2023-10-25T10:25:43&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/img/placeholder.jpeg' />
 <meta name="twitter:title" content="复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis">
-<meta name="twitter:description" content="导语 复现这篇2023NDSS论文，他大开源在https://github.com/fuchuanpu/HyperVision
-环境配置 我是在home下做的，如果想在别的地方搞稍微换下路径就行
-先拉git的代码 git clone https://github.com/fuchuanpu/HyperVision.git
-依照作者在readme里说，在纯净的ubuntu22.04上运行他的脚本即可。用docker装一个纯净的ubuntu22.04
-1 2 3 4 5 6 # 下载镜像 docker pull homebrew/ubuntu22.04:latest # 启动，并且把~/HyperVision 和容器内的/root/HyperVision连起来 docker run -td --name hypervision -v &amp;#34;$HOME/HyperVision&amp;#34;:/root/HyperVision homebrew/ubuntu22.04:latest # 进入 docker exec hypervision -it bash 接下来的操作在docker里了
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 sudo su cd /root/HyperVision sudo ./env/install_all.sh # 这里最好先换个国内的源，会把需要装的都装了 wget https://hypervision-publish.s3.cn-north-1.amazonaws.com.cn/hypervision-dataset.tar.gz # 下载数据集，有6G，走的cdn，裸连速度就还不错 tar -xzf hypervision-dataset.tar.gz # 我也不知道为什么他写了个-xxf 如果想删掉原来的就删吧，不删也没关系 .">
+<meta name="twitter:description" content="简单复现论文效果，没看代码"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog2.pillar.fun/img/placeholder.jpeg' />
   
 
 
@@ -170,7 +156,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -189,13 +175,13 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/links/' >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
                 
                 
                 
@@ -208,7 +194,7 @@
 
 
                 
-                <span>Links</span>
+                <span>链接</span>
             </a>
         </li>
         
@@ -258,7 +244,7 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="http://localhost:1313/" selected>中文</option>
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
                         
                     </select>
                 </li>
@@ -292,10 +278,26 @@
     
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" alt="Featured image of post 复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%BA%E6%96%87/" >
+                论文
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -303,6 +305,10 @@
             <a href="/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/">复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            简单复现论文效果，没看代码
+        </h3>
         
     </div>
 
@@ -412,7 +418,16 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在<a class="link" href="https://www.bilibili.com/video/BV1zj411e7xC/"  target="_blank" rel="noopener"
-    >https://www.bilibili.com/video/BV1zj411e7xC/</a>可以看到复现视频</p>
+    >https://www.bilibili.com/video/BV1zj411e7xC/</a>
+
+<span style="white-space: nowrap;"><svg width=".7em"
+    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+        fill="currentColor">
+</svg></span>
+
+    可以看到复现视频</p>
 <p><img src="/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469.png"
 	width="760"
 	height="377"
@@ -488,6 +503,135 @@
 
     
 
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/tfe-gnn/">
+        
+        
+            <div class="article-image">
+                <img src="/p/tfe-gnn/pic/1708314808397.7170dbc8ee3236d7df65bfbc5de3eafc_hu2454b6a4f42e67d1ef9df24f58be9406_460521_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post TFE GNN"
+                        
+                        data-hash="md5-cXDbyO4yNtffZb&#43;8XePq/A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">TFE GNN</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/">
+        
+        
+            <div class="article-image">
+                <img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.47a8bb27abaed161063e75e9a73add3f_hu5782aa90e2830d7e2b9710b9167608e2_253472_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis"
+                        
+                        data-hash="md5-R6i7J6uu0WEGPnXppzrdPw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/flash/">
+        
+        
+            <div class="article-image">
+                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_huf8d1b81f197ed97f0307a2b1035badd9_647016_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post FLASH"
+                        
+                        data-hash="md5-oANxbhPbrDGCaKnIV8oT&#43;g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FLASH</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/magic/">
+        
+        
+            <div class="article-image">
+                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MAGIC"
+                        
+                        data-hash="md5-TnPA5ZfQ3LAX&#43;x&#43;B2liZpg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MAGIC</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/atlas/">
+        
+        
+            <div class="article-image">
+                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hua3897747c65368fc3b388dfc773651dc_99107_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post ATLAS"
+                        
+                        data-hash="md5-H4HrFfoActBcMamdj/ca1g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ATLAS</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
      
     
         
@@ -516,7 +660,7 @@
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
         2024 pill4r
     </section>
@@ -525,56 +669,54 @@
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了13篇文章 ·
+        总计4.65k字
+    </section>
+    
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
+    </section>
 </footer>
 
-<section class="totalcount">
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    发表了17篇文章 ·
-    总计6.05k字
-</section>
 
 
     
@@ -672,6 +814,20 @@
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<script>
+    let s1 = '2023-10-03'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

@@ -3,6 +3,9 @@ title = 'Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Int
 date = 2023-10-16T20:34:22+08:00
 draft = false
 tags = ["论文笔记", "流量检测"]
+categories = ["论文"]
+description = "图学习方法进行恶意流量检测"
+image = "pic/1698218520903.png"
 +++
 
 # 导语

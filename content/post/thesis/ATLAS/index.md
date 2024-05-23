@@ -3,6 +3,9 @@ title = 'ATLAS'
 date = 2024-03-02T20:16:17+08:00
 draft = false
 tags = ["溯源图", "论文笔记"]
+categories = ["论文"]
+description = "将溯源图转为序列的方法"
+image = "ATLAS/1709635161753.png"
 +++
 
 文章可以在[这里](https://www.usenix.org/conference/usenixsecurity21/presentation/alsaheel)获取
@@ -177,3 +180,5 @@ ATLAS 攻击故事恢复的目标是从攻击调查阶段识别与已识别攻�
 ### Levenshtein Distance
 
 Levenshtein Distance，也称为编辑距离（Edit Distance），是一种衡量两个字符串之间差异的度量方法。它计算将一个字符串转换为另一个字符串所需的最少单字符编辑操作次数，这些操作包括插入（insertion）、删除（deletion）和替换（substitution）。Levenshtein Distance广泛应用于文本处理、拼写检查、语音识别、DNA序列比对等领域。它可以帮助确定两个字符串的相似度，或者在搜索时提供近似匹配。
+
+{{ `<heatmap>` }}

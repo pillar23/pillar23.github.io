@@ -4,11 +4,12 @@ date = 2023-12-27T19:07:10+08:00
 draft = false
 math = true
 tags = ["课程笔记"]
+categories = ["课业"]
+description = "ucas2023秋 林璟锵、马存庆 网络认证技术笔记"
+image = "/img/placeholder.jpeg"
 +++
 
 # 导语
-
-ucas2023秋 林璟锵、马存庆 网络认证技术笔记
 
 说是开课以来从未有过挂科选手，但是想得不错的分数还是要努努力，进自己脑子的知识才是最好的知识
 

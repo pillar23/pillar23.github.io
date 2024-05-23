@@ -1,60 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 SP24
-doi is here
-Abstract 溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。
-senario 来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。
-challenge 不可知性：有没见过的攻击，需要模型具有泛化性 攻击重建：很难通过溯源图得到并重现完整的攻击流程 及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高 Method KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的深度图学习和社区发现， 可以做到
-在事先不了解任何特定攻击特征的情况下检测异常系统行为。 根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。 下图描述了KAIROS的架构，由四个主要组件组成：
-图的构建和表示。 KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑三种类型的内核对象和九种类型的交互（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用基于节点属性的分层特征哈希技术对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)
-图学习。 当图中出现新的边缘，KAIROS 使用编码器-解码器架构来重建边缘。编码器将边缘周围的邻域结构和邻域中节点的状态作为输入。节点的状态是与每个节点关联的特征向量，描述节点邻域的变化历史。然后，解码器根据编码器输出的边缘嵌入重建边缘。原始边缘和重建边缘之间的差异称为重建误差。在训练阶段，KAIROS同时训练编码器和解码器，以最大限度地减少良性边缘的重建误差。在部署过程中，各个边缘的重建误差被用作异常检测和调查的基础。此外，KAIROS更新新边的源节点和目标节点的状态。在encoder-decoder结构中，使用基于节点属性的分层特征哈希技术对节点的特征进行编码，利用时间图网络（TGN）对边进行嵌入，通过新的边（事件）动态更新节点特征，可以有效地将时序特征保存在节点特征中，同时边的嵌入也基于邻域内节点的特征向量。这样可以有效地保存事件的时序信息（感觉这个想法还挺常见的，就是要获取时间相关的特征)。
-异常检测。 KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，KAIROS根据边的重建误差在每个时间窗口中识别一组可疑节点。具有重叠可疑节点的两个时间窗口被排在一起。当新的时间窗口添加到队列时，KAIROS 也会根据重建错误更新队列的异常分数。如果分数超过阈值，KAIROS会认为队列异常并触发警报。因此，KAIROS以时间窗口的间隔定期执行异常检测。在图中，KAIROS 检测到由时间窗口 1、2 和 4 组成的异常队列。
-异常调查。 为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。
-补充知识 分层特征哈希 在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。
-分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。
-分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。
-TGN TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。
-TGN对边的嵌入主要涉及以下步骤：'>
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题'>
 <title>KAIROS</title>
 
-<link rel='canonical' href='http://localhost:1313/p/kairos/'>
+<link rel='canonical' href='https://blog2.pillar.fun/p/kairos/'>
 
-<link rel="stylesheet" href="/scss/style.min.a38f4a1f6c1fd7c80b11d5812e9078b237c7cef12b17dca1fde8a6091a83da56.css"><meta property='og:title' content='KAIROS'>
-<meta property='og:description' content='导语 SP24
-doi is here
-Abstract 溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。
-senario 来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。
-challenge 不可知性：有没见过的攻击，需要模型具有泛化性 攻击重建：很难通过溯源图得到并重现完整的攻击流程 及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高 Method KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的深度图学习和社区发现， 可以做到
-在事先不了解任何特定攻击特征的情况下检测异常系统行为。 根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。 下图描述了KAIROS的架构，由四个主要组件组成：
-图的构建和表示。 KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑三种类型的内核对象和九种类型的交互（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用基于节点属性的分层特征哈希技术对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)
-图学习。 当图中出现新的边缘，KAIROS 使用编码器-解码器架构来重建边缘。编码器将边缘周围的邻域结构和邻域中节点的状态作为输入。节点的状态是与每个节点关联的特征向量，描述节点邻域的变化历史。然后，解码器根据编码器输出的边缘嵌入重建边缘。原始边缘和重建边缘之间的差异称为重建误差。在训练阶段，KAIROS同时训练编码器和解码器，以最大限度地减少良性边缘的重建误差。在部署过程中，各个边缘的重建误差被用作异常检测和调查的基础。此外，KAIROS更新新边的源节点和目标节点的状态。在encoder-decoder结构中，使用基于节点属性的分层特征哈希技术对节点的特征进行编码，利用时间图网络（TGN）对边进行嵌入，通过新的边（事件）动态更新节点特征，可以有效地将时序特征保存在节点特征中，同时边的嵌入也基于邻域内节点的特征向量。这样可以有效地保存事件的时序信息（感觉这个想法还挺常见的，就是要获取时间相关的特征)。
-异常检测。 KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，KAIROS根据边的重建误差在每个时间窗口中识别一组可疑节点。具有重叠可疑节点的两个时间窗口被排在一起。当新的时间窗口添加到队列时，KAIROS 也会根据重建错误更新队列的异常分数。如果分数超过阈值，KAIROS会认为队列异常并触发警报。因此，KAIROS以时间窗口的间隔定期执行异常检测。在图中，KAIROS 检测到由时间窗口 1、2 和 4 组成的异常队列。
-异常调查。 为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。
-补充知识 分层特征哈希 在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。
-分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。
-分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。
-TGN TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。
-TGN对边的嵌入主要涉及以下步骤：'>
-<meta property='og:url' content='http://localhost:1313/p/kairos/'>
+<link rel="stylesheet" href="/scss/style.min.abbf77341b31aeb03b715c2ff883328ae7f3889f992cf736e2ffb8d1bd491c50.css"><meta property='og:title' content='KAIROS'>
+<meta property='og:description' content='使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题'>
+<meta property='og:url' content='https://blog2.pillar.fun/p/kairos/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-03-02T20:15:55&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:15:55&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-03-02T20:15:55&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:15:55&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/kairos/KAIROS/1715250405508.png' />
 <meta name="twitter:title" content="KAIROS">
-<meta name="twitter:description" content="导语 SP24
-doi is here
-Abstract 溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。
-senario 来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。
-challenge 不可知性：有没见过的攻击，需要模型具有泛化性 攻击重建：很难通过溯源图得到并重现完整的攻击流程 及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高 Method KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的深度图学习和社区发现， 可以做到
-在事先不了解任何特定攻击特征的情况下检测异常系统行为。 根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。 下图描述了KAIROS的架构，由四个主要组件组成：
-图的构建和表示。 KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑三种类型的内核对象和九种类型的交互（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用基于节点属性的分层特征哈希技术对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)
-图学习。 当图中出现新的边缘，KAIROS 使用编码器-解码器架构来重建边缘。编码器将边缘周围的邻域结构和邻域中节点的状态作为输入。节点的状态是与每个节点关联的特征向量，描述节点邻域的变化历史。然后，解码器根据编码器输出的边缘嵌入重建边缘。原始边缘和重建边缘之间的差异称为重建误差。在训练阶段，KAIROS同时训练编码器和解码器，以最大限度地减少良性边缘的重建误差。在部署过程中，各个边缘的重建误差被用作异常检测和调查的基础。此外，KAIROS更新新边的源节点和目标节点的状态。在encoder-decoder结构中，使用基于节点属性的分层特征哈希技术对节点的特征进行编码，利用时间图网络（TGN）对边进行嵌入，通过新的边（事件）动态更新节点特征，可以有效地将时序特征保存在节点特征中，同时边的嵌入也基于邻域内节点的特征向量。这样可以有效地保存事件的时序信息（感觉这个想法还挺常见的，就是要获取时间相关的特征)。
-异常检测。 KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，KAIROS根据边的重建误差在每个时间窗口中识别一组可疑节点。具有重叠可疑节点的两个时间窗口被排在一起。当新的时间窗口添加到队列时，KAIROS 也会根据重建错误更新队列的异常分数。如果分数超过阈值，KAIROS会认为队列异常并触发警报。因此，KAIROS以时间窗口的间隔定期执行异常检测。在图中，KAIROS 检测到由时间窗口 1、2 和 4 组成的异常队列。
-异常调查。 为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。
-补充知识 分层特征哈希 在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。
-分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。
-分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。
-TGN TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。
-TGN对边的嵌入主要涉及以下步骤：">
+<meta name="twitter:description" content="使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog2.pillar.fun/p/kairos/KAIROS/1715250405508.png' />
   
 
 
@@ -197,7 +156,7 @@ TGN对边的嵌入主要涉及以下步骤：">
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -216,13 +175,13 @@ TGN对边的嵌入主要涉及以下步骤：">
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/links/' >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
                 
                 
                 
@@ -235,7 +194,7 @@ TGN对边的嵌入主要涉及以下步骤：">
 
 
                 
-                <span>Links</span>
+                <span>链接</span>
             </a>
         </li>
         
@@ -285,7 +244,7 @@ TGN对边的嵌入主要涉及以下步骤：">
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="http://localhost:1313/" selected>中文</option>
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
                         
                     </select>
                 </li>
@@ -361,10 +320,30 @@ TGN对边的嵌入主要涉及以下步骤：">
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/kairos/">
+                <img src="/p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_800x0_resize_box_3.png"
+                        srcset="/p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_800x0_resize_box_3.png 800w, /p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="194" 
+                        loading="lazy"
+                        alt="Featured image of post KAIROS" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%BA%E6%96%87/" >
+                论文
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -372,6 +351,10 @@ TGN对边的嵌入主要涉及以下步骤：">
             <a href="/p/kairos/">KAIROS</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题
+        </h3>
         
     </div>
 
@@ -424,18 +407,31 @@ TGN对边的嵌入主要涉及以下步骤：">
     <h2 id="导语">导语</h2>
 <p>SP24</p>
 <p>doi is <a class="link" href="https://doi.org/10.48550/arXiv.2308.05034"  target="_blank" rel="noopener"
-    >here</a></p>
+    >here</a>
+
+<span style="white-space: nowrap;"><svg width=".7em"
+    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+        fill="currentColor">
+</svg></span>
+
+    </p>
 <h2 id="abstract">Abstract</h2>
 <p>溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。</p>
 <h2 id="senario">senario</h2>
-<p><img src="/images/1715250405508.png"
-	
-	
-	
+<p><img src="/p/kairos/KAIROS/1715250405508.png"
+	width="1756"
+	height="426"
+	srcset="/p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_480x0_resize_box_3.png 480w, /p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1715250405508"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="412"
+		data-flex-basis="989px"
 	
 ></p>
 <p>来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。</p>
@@ -452,28 +448,36 @@ TGN对边的嵌入主要涉及以下步骤：">
 <li>根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。</li>
 </ol>
 <p>下图描述了KAIROS的架构，由四个主要组件组成：</p>
-<p><img src="/images/1715251388567.png"
-	
-	
-	
+<p><img src="/p/kairos/KAIROS/1715251388567.png"
+	width="1732"
+	height="786"
+	srcset="/p/kairos/KAIROS/1715251388567_hua06a32d18c9f2c33ed34385a24464937_264162_480x0_resize_box_3.png 480w, /p/kairos/KAIROS/1715251388567_hua06a32d18c9f2c33ed34385a24464937_264162_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1715251388567"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="220"
+		data-flex-basis="528px"
 	
 ></p>
 <ol>
 <li>
 <p>图的构建和表示。
 KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑<strong>三种类型的内核对象和九种类型的交互</strong>（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用<strong>基于节点属性的分层特征哈希技术</strong>对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)</p>
-<p><img src="/images/1715253831664.png"
-	
-	
-	
+<p><img src="/p/kairos/KAIROS/1715253831664.png"
+	width="930"
+	height="186"
+	srcset="/p/kairos/KAIROS/1715253831664_hu38a6058028f39050fdcd8295286cf12f_31842_480x0_resize_box_3.png 480w, /p/kairos/KAIROS/1715253831664_hu38a6058028f39050fdcd8295286cf12f_31842_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="1715253831664"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="500"
+		data-flex-basis="1200px"
 	
 ></p>
 </li>
@@ -566,6 +570,130 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
 
     
 
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/flash/">
+        
+        
+            <div class="article-image">
+                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_huf8d1b81f197ed97f0307a2b1035badd9_647016_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post FLASH"
+                        
+                        data-hash="md5-oANxbhPbrDGCaKnIV8oT&#43;g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FLASH</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/magic/">
+        
+        
+            <div class="article-image">
+                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MAGIC"
+                        
+                        data-hash="md5-TnPA5ZfQ3LAX&#43;x&#43;B2liZpg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MAGIC</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/atlas/">
+        
+        
+            <div class="article-image">
+                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hua3897747c65368fc3b388dfc773651dc_99107_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post ATLAS"
+                        
+                        data-hash="md5-H4HrFfoActBcMamdj/ca1g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ATLAS</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/tfe-gnn/">
+        
+        
+            <div class="article-image">
+                <img src="/p/tfe-gnn/pic/1708314808397.7170dbc8ee3236d7df65bfbc5de3eafc_hu2454b6a4f42e67d1ef9df24f58be9406_460521_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post TFE GNN"
+                        
+                        data-hash="md5-cXDbyO4yNtffZb&#43;8XePq/A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">TFE GNN</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" data-key="" data-hash="/img/placeholder.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
      
     
         
@@ -594,7 +722,7 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
         2024 pill4r
     </section>
@@ -603,56 +731,54 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了13篇文章 ·
+        总计4.65k字
+    </section>
+    
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
+    </section>
 </footer>
 
-<section class="totalcount">
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    发表了17篇文章 ·
-    总计6.05k字
-</section>
 
 
     
@@ -750,6 +876,20 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<script>
+    let s1 = '2023-10-03'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

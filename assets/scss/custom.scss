@@ -1,0 +1,74 @@
+//------------------------------------------------
+//将滚动条修改为圆角样式
+//菜单滚动条美化
+.menu::-webkit-scrollbar {
+  display: none;
+}
+
+// 全局滚动条美化
+html {
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+}
+
+//--------------------------------------------------
+//归档页面双栏
+/* 归档页面两栏 */
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      border-radius: 16px;
+    }
+  }
+}
+
+//--------------------------------------------------
+//链接三栏
+@media (min-width: 1024px) {
+  .article-list--compact.links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; //三个1fr即为三栏,两个1fr则为双栏,以此类推即可.
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      border-radius: var(--card-border-radius);
+
+      &:nth-child(odd) {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+

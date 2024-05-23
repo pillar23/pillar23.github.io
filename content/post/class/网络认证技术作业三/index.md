@@ -2,6 +2,9 @@
 title = '网络认证技术作业三'
 date = 2023-11-29T19:56:28+08:00
 tags = ["课程作业"]
+categories = ["课业"]
+description = "发送带有签名的邮件"
+image = "网络认证技术作业三/1701255501352.png"
 +++
 
 为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1

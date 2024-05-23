@@ -1,102 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 ucas 2023秋 自然语言处理基础 胡玥、曹亚男
-期末全是开放问题，因此弄清楚各种模型的优劣非常有必要。
-笔记 model 常见的模型有DNN、CNN、RNN、GNN、LSTM、
-task NLP的经典问题有
-在课程中，我们主要学习了
-属性抽取（AE） opinion target和aspect的区别：opinion target是被评价对象，aspect是对象的属性
-eg&amp;quot;这个手机的摄像头很出色，但电池寿命较短。&amp;ldquo;手机是opinion target，而摄像头和电池寿命是手机的两个aspect。
-目标：抽取对象。eg：华为技术遥遥领先！-&amp;gt; 抽取出“华为”
-Aspect Term Extraction 论文阅读（一） - 知乎 (zhihu.com)
-THA是用了attention机制的LSTM，用于获得上文（单向）已经标注过的aspect的信息，来指导当前aspect标注。
-STN是LSTM，用于获得opinion的摘要信息。首先，STN单元获得基于给定aspect的opinion的表示，接下来利用attention机制来获得基于全局的opinion的表示。自此就可以获得基于当前aspect的opinion摘要。将aspect的表示和opinion摘要拼接作为特征，用于标注。
-（表示就是一个框里三个圆圆）
-将ATE形式化为一个seq2seq的学习任务。在这个任务中，源序列和目标序列分别由单词和标签组成。为了使Seq2Seq学习更适合ATE,作者设计了门控单元网络和位置感知注意力机制。门控单元网络用于将相应的单词表示融入解码器，而位置感知注意力机制则用于更多地关注目标词的相邻词。
-decoder包含一个门控单元，用于控制编码器和解码器产生的隐状态。当解码标签时，这个门控单元可以自动的整合来自编码器和解码器隐状态的信息。
-masked seq2seq。首先，对输入句子的连续几个词进行掩码处理。然后，encoder接收部分掩码的句子及其标签序列作为输入，decoder尝试根据编码上下文和标签信息重建句子原文。要求保持opinion target位置不变
-观点抽取（OE） 一般都是先抽取aspect，在对aspect进行情感预测的流水线方式
-IMN使用非流水线方式。与传统的多任务学习方法依赖于学习不同任务的共同特征不同，IMN引入了一种消息传递体系结构，通过一组共享的潜在变量将信息迭代地传递给不同的任务
-它接受一系列tokens{x1，…，xn}作为特征提取组件fθs的输入，该组件在所有任务之间共享。该组件由单词嵌入层和几个特征提取层（好多个CNN）组成。输出所有任务共享的潜在向量{hs1，hs2，…，hsn}的序列。该潜在向量序列会根据来自不同任务组件传播来的信息来更新。
-$hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
-共享潜在向量序列用作不同任务特定组件的输入。每个特定于任务的组件都有自己的潜在变量和输出变量集。输出变量对应于序列标签任务中的标签序列；在AE中，我们为每个令牌分配一个标签，表明它是否属于任何aspect或opinion，而在AS中，我们为每个单词加上它的情感标签。在分类任务中，输出对应于输入实例的标签：情感分类任务(DS)的文档的情感，以及领域分类任务(DD)的文档域。在每次迭代中，适当的信息被传递回共享的潜在向量以进行组合；这可以是输出变量的值，也可以是潜在变量的值，具体取决于任务。 此外，我们还允许在每次迭代中在组件之间传递消息（opinion transmission）。
-感觉有点训练词向量的感觉，像是预处理一下得到向量序列来方便其他任务。
-【超，好像这些都不是考试重点】
-属性级情感分类 For exam 试卷题型：简答题 40 分（5*8）好多个问号（内容为胡老师讲的基础部分）&#43; 综合题 60 分（内容为曹老师讲的核心应用部分）
-简答题重点章节：
-什么是语言模型、神经网络语言模型、几种、特点（优点）
-概念性的简答题， 不难&#43;
-第4章 语言模型&#43;词向量 （要求掌握：语言模型概念，神经网络语言模型 ）
-第 5章 NLP中的注意力机制 （全部要求掌握）概念、用处
-第 7 章 预训练语言模型（全部要求掌握）[主要掌握GPT，BERT 是 怎么训练的，与下游任务是如何对接的]prompt，inconcert learning，思维链【建模的几种范式】'>
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ucas 2023秋 自然语言处理基础 胡玥、曹亚男'>
 <title>自然语言处理笔记</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/'>
+<link rel='canonical' href='https://blog2.pillar.fun/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/'>
 
-<link rel="stylesheet" href="/scss/style.min.a38f4a1f6c1fd7c80b11d5812e9078b237c7cef12b17dca1fde8a6091a83da56.css"><meta property='og:title' content='自然语言处理笔记'>
-<meta property='og:description' content='导语 ucas 2023秋 自然语言处理基础 胡玥、曹亚男
-期末全是开放问题，因此弄清楚各种模型的优劣非常有必要。
-笔记 model 常见的模型有DNN、CNN、RNN、GNN、LSTM、
-task NLP的经典问题有
-在课程中，我们主要学习了
-属性抽取（AE） opinion target和aspect的区别：opinion target是被评价对象，aspect是对象的属性
-eg&amp;quot;这个手机的摄像头很出色，但电池寿命较短。&amp;ldquo;手机是opinion target，而摄像头和电池寿命是手机的两个aspect。
-目标：抽取对象。eg：华为技术遥遥领先！-&amp;gt; 抽取出“华为”
-Aspect Term Extraction 论文阅读（一） - 知乎 (zhihu.com)
-THA是用了attention机制的LSTM，用于获得上文（单向）已经标注过的aspect的信息，来指导当前aspect标注。
-STN是LSTM，用于获得opinion的摘要信息。首先，STN单元获得基于给定aspect的opinion的表示，接下来利用attention机制来获得基于全局的opinion的表示。自此就可以获得基于当前aspect的opinion摘要。将aspect的表示和opinion摘要拼接作为特征，用于标注。
-（表示就是一个框里三个圆圆）
-将ATE形式化为一个seq2seq的学习任务。在这个任务中，源序列和目标序列分别由单词和标签组成。为了使Seq2Seq学习更适合ATE,作者设计了门控单元网络和位置感知注意力机制。门控单元网络用于将相应的单词表示融入解码器，而位置感知注意力机制则用于更多地关注目标词的相邻词。
-decoder包含一个门控单元，用于控制编码器和解码器产生的隐状态。当解码标签时，这个门控单元可以自动的整合来自编码器和解码器隐状态的信息。
-masked seq2seq。首先，对输入句子的连续几个词进行掩码处理。然后，encoder接收部分掩码的句子及其标签序列作为输入，decoder尝试根据编码上下文和标签信息重建句子原文。要求保持opinion target位置不变
-观点抽取（OE） 一般都是先抽取aspect，在对aspect进行情感预测的流水线方式
-IMN使用非流水线方式。与传统的多任务学习方法依赖于学习不同任务的共同特征不同，IMN引入了一种消息传递体系结构，通过一组共享的潜在变量将信息迭代地传递给不同的任务
-它接受一系列tokens{x1，…，xn}作为特征提取组件fθs的输入，该组件在所有任务之间共享。该组件由单词嵌入层和几个特征提取层（好多个CNN）组成。输出所有任务共享的潜在向量{hs1，hs2，…，hsn}的序列。该潜在向量序列会根据来自不同任务组件传播来的信息来更新。
-$hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
-共享潜在向量序列用作不同任务特定组件的输入。每个特定于任务的组件都有自己的潜在变量和输出变量集。输出变量对应于序列标签任务中的标签序列；在AE中，我们为每个令牌分配一个标签，表明它是否属于任何aspect或opinion，而在AS中，我们为每个单词加上它的情感标签。在分类任务中，输出对应于输入实例的标签：情感分类任务(DS)的文档的情感，以及领域分类任务(DD)的文档域。在每次迭代中，适当的信息被传递回共享的潜在向量以进行组合；这可以是输出变量的值，也可以是潜在变量的值，具体取决于任务。 此外，我们还允许在每次迭代中在组件之间传递消息（opinion transmission）。
-感觉有点训练词向量的感觉，像是预处理一下得到向量序列来方便其他任务。
-【超，好像这些都不是考试重点】
-属性级情感分类 For exam 试卷题型：简答题 40 分（5*8）好多个问号（内容为胡老师讲的基础部分）&#43; 综合题 60 分（内容为曹老师讲的核心应用部分）
-简答题重点章节：
-什么是语言模型、神经网络语言模型、几种、特点（优点）
-概念性的简答题， 不难&#43;
-第4章 语言模型&#43;词向量 （要求掌握：语言模型概念，神经网络语言模型 ）
-第 5章 NLP中的注意力机制 （全部要求掌握）概念、用处
-第 7 章 预训练语言模型（全部要求掌握）[主要掌握GPT，BERT 是 怎么训练的，与下游任务是如何对接的]prompt，inconcert learning，思维链【建模的几种范式】'>
-<meta property='og:url' content='http://localhost:1313/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/'>
+<link rel="stylesheet" href="/scss/style.min.abbf77341b31aeb03b715c2ff883328ae7f3889f992cf736e2ffb8d1bd491c50.css"><meta property='og:title' content='自然语言处理笔记'>
+<meta property='og:description' content='ucas 2023秋 自然语言处理基础 胡玥、曹亚男'>
+<meta property='og:url' content='https://blog2.pillar.fun/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='课程笔记' /><meta property='article:published_time' content='2023-12-27T19:07:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-27T19:07:00&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='课程笔记' /><meta property='article:published_time' content='2023-12-27T19:07:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-27T19:07:00&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp.png' />
 <meta name="twitter:title" content="自然语言处理笔记">
-<meta name="twitter:description" content="导语 ucas 2023秋 自然语言处理基础 胡玥、曹亚男
-期末全是开放问题，因此弄清楚各种模型的优劣非常有必要。
-笔记 model 常见的模型有DNN、CNN、RNN、GNN、LSTM、
-task NLP的经典问题有
-在课程中，我们主要学习了
-属性抽取（AE） opinion target和aspect的区别：opinion target是被评价对象，aspect是对象的属性
-eg&amp;quot;这个手机的摄像头很出色，但电池寿命较短。&amp;ldquo;手机是opinion target，而摄像头和电池寿命是手机的两个aspect。
-目标：抽取对象。eg：华为技术遥遥领先！-&amp;gt; 抽取出“华为”
-Aspect Term Extraction 论文阅读（一） - 知乎 (zhihu.com)
-THA是用了attention机制的LSTM，用于获得上文（单向）已经标注过的aspect的信息，来指导当前aspect标注。
-STN是LSTM，用于获得opinion的摘要信息。首先，STN单元获得基于给定aspect的opinion的表示，接下来利用attention机制来获得基于全局的opinion的表示。自此就可以获得基于当前aspect的opinion摘要。将aspect的表示和opinion摘要拼接作为特征，用于标注。
-（表示就是一个框里三个圆圆）
-将ATE形式化为一个seq2seq的学习任务。在这个任务中，源序列和目标序列分别由单词和标签组成。为了使Seq2Seq学习更适合ATE,作者设计了门控单元网络和位置感知注意力机制。门控单元网络用于将相应的单词表示融入解码器，而位置感知注意力机制则用于更多地关注目标词的相邻词。
-decoder包含一个门控单元，用于控制编码器和解码器产生的隐状态。当解码标签时，这个门控单元可以自动的整合来自编码器和解码器隐状态的信息。
-masked seq2seq。首先，对输入句子的连续几个词进行掩码处理。然后，encoder接收部分掩码的句子及其标签序列作为输入，decoder尝试根据编码上下文和标签信息重建句子原文。要求保持opinion target位置不变
-观点抽取（OE） 一般都是先抽取aspect，在对aspect进行情感预测的流水线方式
-IMN使用非流水线方式。与传统的多任务学习方法依赖于学习不同任务的共同特征不同，IMN引入了一种消息传递体系结构，通过一组共享的潜在变量将信息迭代地传递给不同的任务
-它接受一系列tokens{x1，…，xn}作为特征提取组件fθs的输入，该组件在所有任务之间共享。该组件由单词嵌入层和几个特征提取层（好多个CNN）组成。输出所有任务共享的潜在向量{hs1，hs2，…，hsn}的序列。该潜在向量序列会根据来自不同任务组件传播来的信息来更新。
-$hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
-共享潜在向量序列用作不同任务特定组件的输入。每个特定于任务的组件都有自己的潜在变量和输出变量集。输出变量对应于序列标签任务中的标签序列；在AE中，我们为每个令牌分配一个标签，表明它是否属于任何aspect或opinion，而在AS中，我们为每个单词加上它的情感标签。在分类任务中，输出对应于输入实例的标签：情感分类任务(DS)的文档的情感，以及领域分类任务(DD)的文档域。在每次迭代中，适当的信息被传递回共享的潜在向量以进行组合；这可以是输出变量的值，也可以是潜在变量的值，具体取决于任务。 此外，我们还允许在每次迭代中在组件之间传递消息（opinion transmission）。
-感觉有点训练词向量的感觉，像是预处理一下得到向量序列来方便其他任务。
-【超，好像这些都不是考试重点】
-属性级情感分类 For exam 试卷题型：简答题 40 分（5*8）好多个问号（内容为胡老师讲的基础部分）&#43; 综合题 60 分（内容为曹老师讲的核心应用部分）
-简答题重点章节：
-什么是语言模型、神经网络语言模型、几种、特点（优点）
-概念性的简答题， 不难&#43;
-第4章 语言模型&#43;词向量 （要求掌握：语言模型概念，神经网络语言模型 ）
-第 5章 NLP中的注意力机制 （全部要求掌握）概念、用处
-第 7 章 预训练语言模型（全部要求掌握）[主要掌握GPT，BERT 是 怎么训练的，与下游任务是如何对接的]prompt，inconcert learning，思维链【建模的几种范式】">
+<meta name="twitter:description" content="ucas 2023秋 自然语言处理基础 胡玥、曹亚男"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog2.pillar.fun/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp.png' />
   
 
 
@@ -239,7 +156,7 @@ $hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -258,13 +175,13 @@ $hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/links/' >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
                 
                 
                 
@@ -277,7 +194,7 @@ $hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
 
 
                 
-                <span>Links</span>
+                <span>链接</span>
             </a>
         </li>
         
@@ -327,7 +244,7 @@ $hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="http://localhost:1313/" selected>中文</option>
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
                         
                     </select>
                 </li>
@@ -499,10 +416,30 @@ $hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/">
+                <img src="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp_hudb173f042648ce2e35cf0194087f2335_506623_800x0_resize_box_3.png"
+                        srcset="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp_hudb173f042648ce2e35cf0194087f2335_506623_800x0_resize_box_3.png 800w, /p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp_hudb173f042648ce2e35cf0194087f2335_506623_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="572" 
+                        loading="lazy"
+                        alt="Featured image of post 自然语言处理笔记" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AF%BE%E4%B8%9A/" >
+                课业
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -510,6 +447,10 @@ $hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
             <a href="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/">自然语言处理笔记</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            ucas 2023秋 自然语言处理基础 胡玥、曹亚男
+        </h3>
         
     </div>
 
@@ -560,17 +501,20 @@ $hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
     
     
     <h1 id="导语">导语</h1>
-<p>ucas 2023秋 自然语言处理基础 胡玥、曹亚男</p>
 <p>期末全是开放问题，因此弄清楚各种模型的优劣非常有必要。</p>
 <h1 id="笔记">笔记</h1>
-<p><img src="https://github.com/aialgorithm/AiPy/blob/master/Ai%E7%9F%A5%E8%AF%86%E5%9B%BE%E5%86%8C/Ai_Roadmap/nlp.png?raw=true"
-	
-	
-	
+<p><img src="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp.png"
+	width="1780"
+	height="1273"
+	srcset="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp_hudb173f042648ce2e35cf0194087f2335_506623_480x0_resize_box_3.png 480w, /p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp_hudb173f042648ce2e35cf0194087f2335_506623_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="nlp.png"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="335px"
 	
 ></p>
 <h2 id="model">model</h2>
@@ -597,7 +541,16 @@ $hi^{s(T)}$ 表示为t轮消息传递后Xi对应的共享潜在向量的值。
 <p>eg&quot;这个手机的摄像头很出色，但电池寿命较短。&ldquo;手机是opinion target，而摄像头和电池寿命是手机的两个aspect。</p>
 <p>目标：抽取对象。eg：华为技术遥遥领先！-&gt; 抽取出“华为”</p>
 <p><a class="link" href="https://zhuanlan.zhihu.com/p/51189078"  target="_blank" rel="noopener"
-    >Aspect Term Extraction 论文阅读（一） - 知乎 (zhihu.com)</a></p>
+    >Aspect Term Extraction 论文阅读（一） - 知乎 (zhihu.com)</a>
+
+<span style="white-space: nowrap;"><svg width=".7em"
+    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+        fill="currentColor">
+</svg></span>
+
+    </p>
 <p><img src="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/1704948448294.png"
 	width="1843"
 	height="1053"
@@ -1173,9 +1126,27 @@ $$</p>
 <p>W是权重，都是学来的。</p>
 <p>参考</p>
 <p>KQV矩阵： <a class="link" href="https://www.bilibili.com/video/BV1dt4y1J7ov/?share_source=copy_web&amp;vd_source=2fbfeabcc6cdd857dcd6247eb0154d83"  target="_blank" rel="noopener"
-    >https://www.bilibili.com/video/BV1dt4y1J7ov/?share_source=copy_web&vd_source=2fbfeabcc6cdd857dcd6247eb0154d83</a></p>
+    >https://www.bilibili.com/video/BV1dt4y1J7ov/?share_source=copy_web&vd_source=2fbfeabcc6cdd857dcd6247eb0154d83</a>
+
+<span style="white-space: nowrap;"><svg width=".7em"
+    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+        fill="currentColor">
+</svg></span>
+
+    </p>
 <p>Attention机制： <a class="link" href="https://www.bilibili.com/video/BV1YA411G7Ep"  target="_blank" rel="noopener"
-    >https://www.bilibili.com/video/BV1YA411G7Ep</a></p>
+    >https://www.bilibili.com/video/BV1YA411G7Ep</a>
+
+<span style="white-space: nowrap;"><svg width=".7em"
+    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+        fill="currentColor">
+</svg></span>
+
+    </p>
 <p><img src="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/1704455161185.png"
 	width="1261"
 	height="844"
@@ -3007,6 +2978,77 @@ $$</p>
 
     
 
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" data-key="" data-hash="/img/placeholder.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络认证技术笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.9434aa87045727e2091d6d276d38fc7a_huef27e5727017564e1ce50cb4180e51e4_19943_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 网络认证技术作业三"
+                        
+                        data-hash="md5-lDSqhwRXJ&#43;IJHW0nbTj8eg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络认证技术作业三</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" data-key="" data-hash="/img/placeholder.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">IKEv2标准阅读</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
      
     
         
@@ -3035,7 +3077,7 @@ $$</p>
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
         2024 pill4r
     </section>
@@ -3044,56 +3086,54 @@ $$</p>
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了13篇文章 ·
+        总计4.65k字
+    </section>
+    
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
+    </section>
 </footer>
 
-<section class="totalcount">
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    发表了17篇文章 ·
-    总计6.05k字
-</section>
 
 
     
@@ -3191,6 +3231,20 @@ $$</p>
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<script>
+    let s1 = '2023-10-03'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

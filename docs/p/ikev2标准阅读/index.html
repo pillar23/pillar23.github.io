@@ -1,39 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='导语 ucas 2023秋 网络认证技术
-作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。
-概述 我选择阅读RFC 7296，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。
-解决了什么问题 IKEv2（Internet Key Exchange version 2）是一种用于建立虚拟专用网络（VPN）连接的协议，它解决了许多与安全通信和远程访问有关的问题。包括：
-安全性：IKEv2提供了强大的安全性，通过使用加密算法来保护数据的机密性和完整性。它还允许身份验证，以确保通信双方是合法的，并可以抵御各种网络攻击，如中间人攻击和数据篡改。 移动性：IKEv2支持移动设备的连接，允许用户从一个网络切换到另一个网络时保持连接的连续性。这对于移动工作人员或在不同网络环境中工作的人员非常有用。 多平台兼容性：IKEv2是一种通用的VPN协议，支持多种操作系统和设备，包括Windows、macOS、iOS、Android和Linux。这使得它成为广泛使用的VPN协议，能够在不同平台之间建立安全的连接。 快速重新连接：IKEv2具有快速重新连接的能力，可以在断开连接后快速重新建立连接，而不需要用户手动干预。这对于移动设备或不稳定的网络连接非常有用。 支持IPv6：随着IPv6的推广，IKEv2也提供了对IPv6的良好支持，使其适用于新一代互联网协议。 NAT穿透：IKEv2能够穿越网络地址转换（NAT）设备，这使得它在各种网络环境中都能够正常工作，包括家庭网络和企业网络。 在基本原理-1.1节也简述了IKEv2在特定场景下解决了什么问题。
-基本原理 1.1 使用场景 IP 安全性 （IPsec） 为 IP 数据报提供机密性、数据完整性、访问控制和数据源身份验证，这些服务是通过维护 IP 数据报的源和接收方之间的共享状态来提供的。以手动方式建立此共享状态不能很好地扩展。IKEv2正是这样一个动态建立此状态的协议。IKE 在双方之间执行相互身份验证，并建立 IKE 安全关联 （SA），该关联包含共享机密信息，可用于高效建立用于封装安全有效负载 （ESP） [ESP] 或身份验证标头 （AH） [AH] 的 SA，以及一组加密算法，供 SA 用于保护其承载的流量。IKE 用于在许多不同的场景中协商 ESP 或 AH SA，每种方案都有自己的特殊要求。
-1.1.1 隧道模式下的安全网关到安全网关 在此方案中，IP 连接的两个endpoint都不实现 IPsec，但它们之间的网络节点会保护部分方式的流量。保护对endpoint是透明的，并且依赖于普通路由通过隧道终结点发送数据包进行处理。每个endpoint将宣布其后subnet的地址集，数据包将以隧道模式发送，其中内部 IP 标头将包含实际端点的 IP 地址。
-1.1.2 端点到端点传输模式 在此方案中，IP 连接的两个终结点都实现 IPsec，这是 [IPSECARCH] 中主机的要求。该模式通常使用没有内部 IP 标头。将协商一对地址，以便此 SA 保护数据包。这些endpoint可以根据参与者的 IPsec 身份验证身份实现应用层访问控制。此方案实现了端到端安全性。虽然此场景可能不完全适用于 IPv4 公网，但已在使用 IKEv1 的内网内的特定场景中成功部署。在向 IPv6 过渡期间和采用 IKEv2 期间，应该更广泛地启用它。'>
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='任选一个标准（口令鉴别协议），书写阅读报告'>
 <title>IKEv2标准阅读</title>
 
-<link rel='canonical' href='http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
+<link rel='canonical' href='https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
 
-<link rel="stylesheet" href="/scss/style.min.a38f4a1f6c1fd7c80b11d5812e9078b237c7cef12b17dca1fde8a6091a83da56.css"><meta property='og:title' content='IKEv2标准阅读'>
-<meta property='og:description' content='导语 ucas 2023秋 网络认证技术
-作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。
-概述 我选择阅读RFC 7296，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。
-解决了什么问题 IKEv2（Internet Key Exchange version 2）是一种用于建立虚拟专用网络（VPN）连接的协议，它解决了许多与安全通信和远程访问有关的问题。包括：
-安全性：IKEv2提供了强大的安全性，通过使用加密算法来保护数据的机密性和完整性。它还允许身份验证，以确保通信双方是合法的，并可以抵御各种网络攻击，如中间人攻击和数据篡改。 移动性：IKEv2支持移动设备的连接，允许用户从一个网络切换到另一个网络时保持连接的连续性。这对于移动工作人员或在不同网络环境中工作的人员非常有用。 多平台兼容性：IKEv2是一种通用的VPN协议，支持多种操作系统和设备，包括Windows、macOS、iOS、Android和Linux。这使得它成为广泛使用的VPN协议，能够在不同平台之间建立安全的连接。 快速重新连接：IKEv2具有快速重新连接的能力，可以在断开连接后快速重新建立连接，而不需要用户手动干预。这对于移动设备或不稳定的网络连接非常有用。 支持IPv6：随着IPv6的推广，IKEv2也提供了对IPv6的良好支持，使其适用于新一代互联网协议。 NAT穿透：IKEv2能够穿越网络地址转换（NAT）设备，这使得它在各种网络环境中都能够正常工作，包括家庭网络和企业网络。 在基本原理-1.1节也简述了IKEv2在特定场景下解决了什么问题。
-基本原理 1.1 使用场景 IP 安全性 （IPsec） 为 IP 数据报提供机密性、数据完整性、访问控制和数据源身份验证，这些服务是通过维护 IP 数据报的源和接收方之间的共享状态来提供的。以手动方式建立此共享状态不能很好地扩展。IKEv2正是这样一个动态建立此状态的协议。IKE 在双方之间执行相互身份验证，并建立 IKE 安全关联 （SA），该关联包含共享机密信息，可用于高效建立用于封装安全有效负载 （ESP） [ESP] 或身份验证标头 （AH） [AH] 的 SA，以及一组加密算法，供 SA 用于保护其承载的流量。IKE 用于在许多不同的场景中协商 ESP 或 AH SA，每种方案都有自己的特殊要求。
-1.1.1 隧道模式下的安全网关到安全网关 在此方案中，IP 连接的两个endpoint都不实现 IPsec，但它们之间的网络节点会保护部分方式的流量。保护对endpoint是透明的，并且依赖于普通路由通过隧道终结点发送数据包进行处理。每个endpoint将宣布其后subnet的地址集，数据包将以隧道模式发送，其中内部 IP 标头将包含实际端点的 IP 地址。
-1.1.2 端点到端点传输模式 在此方案中，IP 连接的两个终结点都实现 IPsec，这是 [IPSECARCH] 中主机的要求。该模式通常使用没有内部 IP 标头。将协商一对地址，以便此 SA 保护数据包。这些endpoint可以根据参与者的 IPsec 身份验证身份实现应用层访问控制。此方案实现了端到端安全性。虽然此场景可能不完全适用于 IPv4 公网，但已在使用 IKEv1 的内网内的特定场景中成功部署。在向 IPv6 过渡期间和采用 IKEv2 期间，应该更广泛地启用它。'>
-<meta property='og:url' content='http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
+<link rel="stylesheet" href="/scss/style.min.abbf77341b31aeb03b715c2ff883328ae7f3889f992cf736e2ffb8d1bd491c50.css"><meta property='og:title' content='IKEv2标准阅读'>
+<meta property='og:description' content='任选一个标准（口令鉴别协议），书写阅读报告'>
+<meta property='og:url' content='https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='课程作业' /><meta property='article:published_time' content='2023-10-19T16:31:55&#43;08:00'/><meta property='article:modified_time' content='2023-10-19T16:31:55&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='课程作业' /><meta property='article:published_time' content='2023-10-19T16:31:55&#43;08:00'/><meta property='article:modified_time' content='2023-10-19T16:31:55&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/img/placeholder.jpeg' />
 <meta name="twitter:title" content="IKEv2标准阅读">
-<meta name="twitter:description" content="导语 ucas 2023秋 网络认证技术
-作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。
-概述 我选择阅读RFC 7296，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。
-解决了什么问题 IKEv2（Internet Key Exchange version 2）是一种用于建立虚拟专用网络（VPN）连接的协议，它解决了许多与安全通信和远程访问有关的问题。包括：
-安全性：IKEv2提供了强大的安全性，通过使用加密算法来保护数据的机密性和完整性。它还允许身份验证，以确保通信双方是合法的，并可以抵御各种网络攻击，如中间人攻击和数据篡改。 移动性：IKEv2支持移动设备的连接，允许用户从一个网络切换到另一个网络时保持连接的连续性。这对于移动工作人员或在不同网络环境中工作的人员非常有用。 多平台兼容性：IKEv2是一种通用的VPN协议，支持多种操作系统和设备，包括Windows、macOS、iOS、Android和Linux。这使得它成为广泛使用的VPN协议，能够在不同平台之间建立安全的连接。 快速重新连接：IKEv2具有快速重新连接的能力，可以在断开连接后快速重新建立连接，而不需要用户手动干预。这对于移动设备或不稳定的网络连接非常有用。 支持IPv6：随着IPv6的推广，IKEv2也提供了对IPv6的良好支持，使其适用于新一代互联网协议。 NAT穿透：IKEv2能够穿越网络地址转换（NAT）设备，这使得它在各种网络环境中都能够正常工作，包括家庭网络和企业网络。 在基本原理-1.1节也简述了IKEv2在特定场景下解决了什么问题。
-基本原理 1.1 使用场景 IP 安全性 （IPsec） 为 IP 数据报提供机密性、数据完整性、访问控制和数据源身份验证，这些服务是通过维护 IP 数据报的源和接收方之间的共享状态来提供的。以手动方式建立此共享状态不能很好地扩展。IKEv2正是这样一个动态建立此状态的协议。IKE 在双方之间执行相互身份验证，并建立 IKE 安全关联 （SA），该关联包含共享机密信息，可用于高效建立用于封装安全有效负载 （ESP） [ESP] 或身份验证标头 （AH） [AH] 的 SA，以及一组加密算法，供 SA 用于保护其承载的流量。IKE 用于在许多不同的场景中协商 ESP 或 AH SA，每种方案都有自己的特殊要求。
-1.1.1 隧道模式下的安全网关到安全网关 在此方案中，IP 连接的两个endpoint都不实现 IPsec，但它们之间的网络节点会保护部分方式的流量。保护对endpoint是透明的，并且依赖于普通路由通过隧道终结点发送数据包进行处理。每个endpoint将宣布其后subnet的地址集，数据包将以隧道模式发送，其中内部 IP 标头将包含实际端点的 IP 地址。
-1.1.2 端点到端点传输模式 在此方案中，IP 连接的两个终结点都实现 IPsec，这是 [IPSECARCH] 中主机的要求。该模式通常使用没有内部 IP 标头。将协商一对地址，以便此 SA 保护数据包。这些endpoint可以根据参与者的 IPsec 身份验证身份实现应用层访问控制。此方案实现了端到端安全性。虽然此场景可能不完全适用于 IPv4 公网，但已在使用 IKEv1 的内网内的特定场景中成功部署。在向 IPv6 过渡期间和采用 IKEv2 期间，应该更广泛地启用它。">
+<meta name="twitter:description" content="任选一个标准（口令鉴别协议），书写阅读报告"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog2.pillar.fun/img/placeholder.jpeg' />
   
 
 
@@ -176,7 +156,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -195,13 +175,13 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/links/' >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
                 
                 
                 
@@ -214,7 +194,7 @@
 
 
                 
-                <span>Links</span>
+                <span>链接</span>
             </a>
         </li>
         
@@ -264,7 +244,7 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="http://localhost:1313/" selected>中文</option>
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
                         
                     </select>
                 </li>
@@ -349,10 +329,26 @@
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" alt="Featured image of post IKEv2标准阅读" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AF%BE%E4%B8%9A/" >
+                课业
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -360,6 +356,10 @@
             <a href="/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/">IKEv2标准阅读</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            任选一个标准（口令鉴别协议），书写阅读报告
+        </h3>
         
     </div>
 
@@ -414,7 +414,16 @@
 <p>作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。</p>
 <h1 id="概述">概述</h1>
 <p>我选择阅读<a class="link" href="https://www.rfc-editor.org/rfc/rfc7296.html"  target="_blank" rel="noopener"
-    >RFC 7296</a>，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。</p>
+    >RFC 7296</a>
+
+<span style="white-space: nowrap;"><svg width=".7em"
+    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+        fill="currentColor">
+</svg></span>
+
+    ，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。</p>
 <h1 id="解决了什么问题">解决了什么问题</h1>
 <p>IKEv2（Internet Key Exchange version 2）是一种用于建立虚拟专用网络（VPN）连接的协议，它解决了许多与安全通信和远程访问有关的问题。包括：</p>
 <ol>
@@ -638,7 +647,16 @@
 <p>在第两种和第三种情况下，消息始终在没有加密保护的情况下发送（在 IKE SA 外部），并且包括INVALID_IKE_SPI或INVALID_MAJOR_VERSION通知（没有通知数据）。该消息是响应消息，因此它被发送到带有相同 IKE SPI 的 IP 地址和端口，并且消息 ID 和交换类型是从请求中复制的。响应标志设置为 1，版本标志以正常方式设置。</p>
 <h1 id="可能存在的问题">可能存在的问题</h1>
 <p>参考发表在27th USENIX Security Symposium (USENIX Security 18), 2018的<a class="link" href="https://usenix.org/conference/usenixsecurity18/presentation/felsch"  target="_blank" rel="noopener"
-    >The Dangers of Key Reuse: Practical Attacks on IPsec IKE</a>可IKEv1、v2如果重用密钥可能导致跨协议身份验证绕过，从而使攻击者能够冒充受害者主机或网络。在IKEv1模式下利用Bleichenbacher预言机，其中RSA加密的随机数用于身份验证。利用此漏洞打破了基于 RSA 加密的模式，此外还破坏了 IKEv1 和 IKEv2 中基于 RSA 签名的身份验证。此外，还存在针对基于 PSK（预共享密钥）的 IKE 模式的离线字典攻击，从而涵盖了 IKE 的所有可用身份验证机制。在思科（CVE-2018-0131）、华为（CVE2017-17305）、Clavister（CVE-2018-8753）和合勤科技（CVE-2018-9129）的IKEv1实现中找到了Bleichenbacher预言机。</p>
+    >The Dangers of Key Reuse: Practical Attacks on IPsec IKE</a>
+
+<span style="white-space: nowrap;"><svg width=".7em"
+    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+        fill="currentColor">
+</svg></span>
+
+    可IKEv1、v2如果重用密钥可能导致跨协议身份验证绕过，从而使攻击者能够冒充受害者主机或网络。在IKEv1模式下利用Bleichenbacher预言机，其中RSA加密的随机数用于身份验证。利用此漏洞打破了基于 RSA 加密的模式，此外还破坏了 IKEv1 和 IKEv2 中基于 RSA 签名的身份验证。此外，还存在针对基于 PSK（预共享密钥）的 IKE 模式的离线字典攻击，从而涵盖了 IKE 的所有可用身份验证机制。在思科（CVE-2018-0131）、华为（CVE2017-17305）、Clavister（CVE-2018-8753）和合勤科技（CVE-2018-9129）的IKEv1实现中找到了Bleichenbacher预言机。</p>
 
 </section>
 
@@ -698,6 +716,82 @@
 
     
 
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.9434aa87045727e2091d6d276d38fc7a_huef27e5727017564e1ce50cb4180e51e4_19943_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 网络认证技术作业三"
+                        
+                        data-hash="md5-lDSqhwRXJ&#43;IJHW0nbTj8eg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络认证技术作业三</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" data-key="" data-hash="/img/placeholder.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络认证技术笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp.999d6f0763b13c59ed4e1fd561a261fa_hudb173f042648ce2e35cf0194087f2335_506623_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 自然语言处理笔记"
+                        
+                        data-hash="md5-mZ1vB2OxPFntTh/VYaJh&#43;g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">自然语言处理笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
      
     
         
@@ -726,7 +820,7 @@
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
         2024 pill4r
     </section>
@@ -735,56 +829,54 @@
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了13篇文章 ·
+        总计4.65k字
+    </section>
+    
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
+    </section>
 </footer>
 
-<section class="totalcount">
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    发表了17篇文章 ·
-    总计6.05k字
-</section>
 
 
     
@@ -882,6 +974,20 @@
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<script>
+    let s1 = '2023-10-03'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

@@ -29,5 +29,10 @@
         发表了{{ len (where .Site.RegularPages "Section" "post") }}篇文章 ·
         总计{{ div ($scratch.Get "total") 1000.0 | lang.FormatNumber 2 }}k字
     </section>
+    <!-- Add blog running time -->
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
+    </section>
 </footer>
 

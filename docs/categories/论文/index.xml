@@ -1,0 +1,1627 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>论文 on π1l4r_のblog</title>
+        <link>https://blog2.pillar.fun/categories/%E8%AE%BA%E6%96%87/</link>
+        <description>Recent content in 论文 on π1l4r_のblog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>pill4r</copyright>
+        <lastBuildDate>Thu, 18 Apr 2024 10:51:57 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/categories/%E8%AE%BA%E6%96%87/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>FLASH</title>
+        <link>https://blog2.pillar.fun/p/flash/</link>
+        <pubDate>Thu, 18 Apr 2024 10:51:57 +0800</pubDate>
+        
+        <guid>https://blog2.pillar.fun/p/flash/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/flash/index/1716374966746.png" alt="Featured image of post FLASH" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语&lt;/h2&gt;
+&lt;p&gt;IEEE S&amp;amp;P 2024, doi is &lt;a class=&#34;link&#34; href=&#34;https://doi.ieeecomputersociety.org/10.1109/SP54263.2024.00139&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;here&lt;/a&gt;
+
+&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+        fill=&#34;currentColor&#34;&gt;
+&lt;/svg&gt;&lt;/span&gt;
+
+    &lt;/p&gt;
+&lt;h2 id=&#34;motivation&#34;&gt;motivation&lt;/h2&gt;
+&lt;p&gt;简单来说还是对效率问题提出了一个解，针对大的溯源图，开发了一个嵌入回收数据库来&lt;strong&gt;存储&lt;/strong&gt;在训练阶段生成的节点嵌入，检测的时候读嵌入数据库即可，不用重新算嵌入&lt;/p&gt;
+&lt;p&gt;Q:为什么训练阶段的节点嵌入在检测时能用到，覆盖率怎么搞？&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;现有的溯源图IDS的存在局限&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通常会忽略有价值的语义数据，例如来源图中的进程名称、命令行参数、文件路径和 IP 地址。【Q：但是不是说这些内容容易造成混淆吗？把这些通过word2vec编码成向量不是还是容易造成混淆吗？】（A：意思是不带这些可以提升泛化性，对于没见过的攻击比较管用，但是可能因为学的不够多而有误报，我觉得还是泛化性更重要一点。差评)&lt;/li&gt;
+&lt;li&gt;一些IDS忽略了系统事件的时间顺序和因果顺序的重要性。&lt;/li&gt;
+&lt;li&gt;可扩展性问题，尤其是在处理大型来源图时。&lt;/li&gt;
+&lt;li&gt;粗粒度检测：许多 IDS 识别恶意子图而不是单个恶意节点，这使得警报验证和攻击重建对安全分析师来说既耗时又容易出错。&lt;/li&gt;
+&lt;li&gt;GNN技术不可扩展，而且速度非常慢&lt;/li&gt;
+&lt;li&gt;现有方法都是学习良性行为&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/flash/FLASH/1713703958031.png&#34;
+	width=&#34;894&#34;
+	height=&#34;496&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/flash/FLASH/1713703958031_hu309cf4843cd94553ffc9c25bbf74bd10_70966_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/flash/FLASH/1713703958031_hu309cf4843cd94553ffc9c25bbf74bd10_70966_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1713703958031&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;432px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;因此，这篇文章&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;采用基于Word2Vec的嵌入技术，将来源图中存在的各种节点属性（如进程名称、命令行参数、文件路径和IP地址）编码为语义丰富的特征向量。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;修改了 Word2Vec 技术以获得时间敏感的嵌入，解决了忽略事件之间时间顺序的问题。(咋修改的？)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;通过仅选择与威胁识别相关的边来提高图表示学习中图遍历的效率，设计了一个GNN嵌入数据库，该数据库的灵感来自以前应用于&lt;strong&gt;语言模型的嵌入回收技术（2022)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;报告危险节点（node)而非危险子图（graph)，能够对adversarial mimicry attacks on provenance-based IDSes【Q：这是啥？】（A：http://dx.doi.org/10.1145/586110.586145)鲁棒。根据检测生成的演变图（AEG)来帮助溯源。说是检测危险边（edge)的消耗太大，node是最好的trade off&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这篇文章首次（2024年以来)在Darpa OpTC数据集上进行了评估，该数据集是DARPA迄今为止发布的最大的系统日志数据集。这些数据集涵盖了广泛的攻击场景和系统行为。说是比SOTA快三倍&lt;/p&gt;
+&lt;p&gt;作者的小结：&lt;/p&gt;
+&lt;p&gt;• 我们提出了一种基于来源的IDS，即FLASH，它利用来源图中的上下文和结构信息来增强其检测能力。&lt;/p&gt;
+&lt;p&gt;• 我们引入了一个两步过程，分别使用 Word2Vec 和 GNN 生成语义和上下文嵌入。在此过程之后，通过轻量级分类器模型进行实时异常检测，确保系统的可扩展性和效率。&lt;/p&gt;
+&lt;p&gt;• 我们提供两种方案——选择性图遍历和嵌入回收数据库——使图表示学习在 IDS 设置中变得实用。&lt;/p&gt;
+&lt;p&gt;• 我们在真实世界的数据集上对我们的技术进行全面评估。结果突出了FLASH在识别恶意活动方面的有效性，其对对抗性模拟攻击的弹性，以及加速警报验证过程的能力&lt;/p&gt;
+&lt;h2 id=&#34;motivation-1&#34;&gt;Motivation&lt;/h2&gt;
+&lt;h3 id=&#34;optc的攻击场景&#34;&gt;OpTC的攻击场景&lt;/h3&gt;
+&lt;p&gt;攻击者会向目标受害者发送网络钓鱼电子邮件。这些电子邮件包含恶意的 PowerShell Empire 暂存器。打开电子邮件附件后，攻击者将获得对受害者系统的访问权限。然后，攻击代理与命令和控制 （C&amp;amp;C） 服务器建立连接，并秘密地在系统中停留数天。代理的目标是检查系统配置并搜索敏感数据。为了保持隐身性，攻击者执行最少的系统活动并模仿良性系统实体的行为。代理找到所需文件后，会从命令服务器下载有效负载，并将数据泄露到服务器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/flash/index/1716372896940.png&#34;
+	width=&#34;2746&#34;
+	height=&#34;728&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/flash/index/1716372896940_hu317dbaddf180456aa7acfb703b20839d_342945_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/flash/index/1716372896940_hu317dbaddf180456aa7acfb703b20839d_342945_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716372896940&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;377&#34;
+		data-flex-basis=&#34;905px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在数据收集过程中，这种特殊的攻击是作为 DAPRA 红队演习的一部分执行的。红队在系统上安装了 C&amp;amp;C 代理，该代理使用find.exe搜索关键文件并收集系统信息。然后，攻击代理通过Chrome.exe从 news.com:8080 下载了一个名为fileTransfer1000.exe的程序。该程序压缩文档目录中的文件并将它们泄露到 news.com:9999。这是数据泄露攻击的典型示例，攻击者旨在从目标系统中窃取敏感信息，同时通过模拟良性系统进程来保持未被发现。&lt;/p&gt;
+&lt;h3 id=&#34;现有方法缺陷&#34;&gt;现有方法缺陷&lt;/h3&gt;
+&lt;p&gt;主要通过学习良性方法&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/flash/index/1716373026697.png&#34;
+	width=&#34;1340&#34;
+	height=&#34;914&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/flash/index/1716373026697_hu62b6fee0b0c876dbff500c3c93f92fbd_147645_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/flash/index/1716373026697_hu62b6fee0b0c876dbff500c3c93f92fbd_147645_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716373026697&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;146&#34;
+		data-flex-basis=&#34;351px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Semantic Encoding（语义编码)：在节点编码过程中是否考虑了语义信息如进程名称、命令行或文件路径。&lt;/li&gt;
+&lt;li&gt;Temporal Encoding（时间编码)：是否考虑系统事件的时间顺序&lt;/li&gt;
+&lt;li&gt;Scalability（可拓展性)：GNN的高计算需求会阻碍系统的可扩展性，是否通过方法降了GNN计算开销&lt;/li&gt;
+&lt;li&gt;Detection Granularity（检测粒度)：是否有粗细粒度的区分（检测出异常子图、检测出异常节点/边)&lt;/li&gt;
+&lt;li&gt;Contextual Alerts（上下文警报)：按照他原文还是子图粒度和节点/边粒度的问题，他意思是能检测出节点/边的就能更好重建攻击（那为啥要分两条？多少沾点)&lt;/li&gt;
+&lt;li&gt;Robustness Against Mimicry Attacks（对模仿攻击的鲁棒性)：对抗溯源图检测的模仿攻击指操纵分布图编码，修改攻击图中的节点邻域以模仿良性起源图中的节点邻域。归根接地还是要节点粒度/边粒度的检测（嗯是让你凑了三条啊？)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;flash-design&#34;&gt;FLASH design&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/flash/index/1716374966746.png&#34;
+	width=&#34;1684&#34;
+	height=&#34;1474&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/flash/index/1716374966746_huf8d1b81f197ed97f0307a2b1035badd9_647016_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/flash/index/1716374966746_huf8d1b81f197ed97f0307a2b1035badd9_647016_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716374966746&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;114&#34;
+		data-flex-basis=&#34;274px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;五个关键模块组成：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;来源图构造函数
+流式读，节点分为进程节点和对象节点，对象节点包括文件、网络流、模块和其他系统对象，节点包含属性，例如进程名称、命令行、文件路径、IP 地址、端口号和模块路径。边带有指定事件类型（系统调用）的标签，标签代表连接节点与事件时间戳之间的因果关系&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于 Word2Vec 的语义编码器
+系统日志包含与各种系统实体相关的丰富属性。独热、词袋转换的向量过于稀疏，采用Word2Vec模型，将属性转换到密集的向量空间。考虑节点的以下属性：进程节点的进程名称和命令行参数、文件节点的文件路径、套接字节点的网络 IP 地址和端口以及模块节点的模块名称。通过结合语义属性和节点与其 1-hop 邻居之间的因果事件类型（系统调用）来为每个节点形成摘要句子。系统事件按时间戳排序，以保持时间顺序。每个句子都通过在良性系统日志上训练的 Word2Vec 模型编码为固定长度的向量。【就是说将节点的属性和对应1hop邻居的系统事件关系形成一个长句子在word2vec到固定长度】
+标准的Word2Vec 模型不保留句子中单词的顺序，我们设计了一种为每个单词嵌入分配单独的权重的时间编码方案，为每个单词嵌入分配单独的权重。这些权重累积在一个句子上，产生一个富含时间信息的嵌入。我们通过根据时间戳按时间顺序排列系统事件来启动这种方法，从而促进将时间顺序整合到我们的句子中。我们将从Transformers[65]借来的概念位置编码合并到输入嵌入中，以传达有关序列中每个标记位置的信息。Word2Vec 缺乏内置的顺序概念，因此位置编码允许模型根据其序列位置来区分标记。
+通过将Word2Vec嵌入与位置编码相结合，我们的模型不仅可以捕获单词之间的语义关联，还可以捕获摘要句子中单词的顺序。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于 GNN 的上下文编码器
+通过GNN需要通过对节点周围k-hop邻域结构进行编码可以有效识别溯源图中的隐蔽攻击节点，但开销巨大。基于上一部分的word2vec的嵌入的图表示学习则加雪上加霜。
+我们的GNN模型学习GraphSage的图遍历算法。我们设计了一系列图遍历原则。这些原则指导GraphSage在应用GNN之前有选择地聚合来自特定边缘的信息。我们用以下遍历原则：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;唯一边采样：我们仅对两个节点之间相同类型的单个边进行采样，确保在遍历过程中只包含一次此类边。【不还是图缩减吗……说的好像很屌的样子】&lt;/li&gt;
+&lt;li&gt;低优先级事件排除：排除事件优先级的边和取证无关的系统事件的边。此类事件可能包括由进程临时创建且在系统执行期间从未与其他进程交互的文件的删除事件，以及表示为进程节点的自循环的退出事件。以前的工作也采用了类似的方法来减少系统日志中的噪声。&lt;/li&gt;
+&lt;li&gt;特定于执行的信息过滤：仅包含一次具有相同执行特定信息的节点和边。溯源图中的许多相邻节点可能仅因特定于执行的属性而有所不同，但在其他方面是相同的。比如具有相同4元组但开始和结束时间不同的网络流&lt;/li&gt;
+&lt;li&gt;用户特定属性处理：将仅在用户特定属性上不同的节点或边视为相同，例如，如果两个模块具有相同的模块路径，但不同的用户ID不同，则它们可能会有所不同。对于此类节点，我们忽略特定于用户的属性，仅选择其中一个。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们采用半监督节点分类方法来训练我们的新GNN模型。我们的模型使用节点的输入特征和图形结构来对其类型进行分类。GNN模型使用标记数据进行训练，学习识别良性节点的类型【你他妈不还是学的良性吗？你在这说什么p话呢？】。使用加权交叉熵来解决数据不平衡的问题，&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;嵌入数据库
+我们的系统利用训练好的图神经网络（GNN）模型为存在于我们良性数据集中的所有节点生成结构化嵌入。为了在实时威胁检测期间高效检索和存储这些GNN输出向量，我们设计了一个专门的键值存储结构。&lt;strong&gt;键&lt;/strong&gt;被设计为&lt;strong&gt;持久节点标识符&lt;/strong&gt;（PNI），它与节点属性相关联，这些属性在不同的系统执行过程中保持不变。这些属性包括进程名称、文件路径、模块路径和网络流IP地址。相应的&lt;strong&gt;值&lt;/strong&gt;则包含了由GNN导出的嵌入，以及与该特定节点相关联的一组邻居节点。
+我们利用属性抽象技术来&lt;strong&gt;删除特定于用户和执行的信息&lt;/strong&gt;。这确保了存储的嵌入是可通用的。具体来说，有以下几种抽象模式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用户抽象模式：针对进程和文件节点类型实现，该模式从进程名称和文件路径中省略&lt;strong&gt;用户ID&lt;/strong&gt;，实现高度泛化。例如，文件路径 /Users/john/.bashrc 被抽象为 /Users/*/.bashrc。&lt;/li&gt;
+&lt;li&gt;网络连接抽象架构：应用于套接字节点类型，此架构消除了&lt;strong&gt;开始和结束时间&lt;/strong&gt;，从而增强了不同系统执行的通用性&lt;/li&gt;
+&lt;li&gt;模块路径抽象架构：模块节点具有路径和基址属性。当基址更改时，路径在不同的执行中保持不变。此架构仅保留模块路径，确保模块节点的一致和可泛化表示。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过对具有稳定邻域结构的节点进行预计算和存储GNN嵌入，可以优化实时异常检测和减少计算开销。其中，邻域集起着关键作用。它有助于确定实时分析期间节点的邻域结构是否与良性阶段观察到的邻域结构相匹配。如果匹配就直接拿数据库里的嵌入，不需要再通过邻域关系进行图表示计算。如果不匹配则默认为实时生成的 Word2Vec 特征进行异常检测。【Q：对吗？是特征？不是应该是GNN算出来的节点嵌入吗？】我们使用 &lt;strong&gt;Jaccard 索引&lt;/strong&gt;来比较节点的存储邻域和当前邻域。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;异常检测器
+我们选择了 XGBoost 作为我们的异常检测任务的分类器。XGBoost 最小化正则化目标函数 $J = L(y， f (x))+Ω(f)$，使用梯度提升以迭代方式向集合添加新树。每个新树都旨在最小化损失函数相对于当前集成预测的梯度。XGBoost 模型使用每个节点的串联 Word2Vec 编码向量和 GNN 嵌入向量。它从预训练的键值存储中检索 GNN 嵌入，实时生成 Word2Vec 特征，执行推理，并保存输出以供下一管道阶段使用。这种强大的流程巩固了我们IDS的性能和可扩展性。
+FLASH通过比较预测节点类型和实际节点类型来检测异常节点。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;还有个攻击演化图的构造，用于更直观的溯源&lt;/p&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;从FLASH生成的大型来源图和警报中构建紧凑的攻击演化图（AEG）。中心概念是在来源图中相互链接因果相关的警报，从而构建一系列简洁的 AEG。这些 AEG 仅封装警报节点及其因果链接，从而提供警报节点交互的简化和清晰视图。这种减少大大简化了原始图形，使分析师更容易快速有效地掌握攻击进展。
+&lt;img src=&#34;https://blog2.pillar.fun/p/flash/index/1716380160194.png&#34;
+	width=&#34;890&#34;
+	height=&#34;792&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/flash/index/1716380160194_hu937ddd0d45b066d7f519c0c9c14817c4_114837_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/flash/index/1716380160194_hu937ddd0d45b066d7f519c0c9c14817c4_114837_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716380160194&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;112&#34;
+		data-flex-basis=&#34;269px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;evaluation&#34;&gt;Evaluation&lt;/h2&gt;
+&lt;p&gt;懒得写了&lt;/p&gt;
+&lt;h2 id=&#34;主要贡献&#34;&gt;主要贡献&lt;/h2&gt;
+&lt;p&gt;嵌入回收数据库存储在训练阶段生成的节点嵌入&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过图神经网络（GNN）在数据溯源图上利用图表示学习&lt;/li&gt;
+&lt;li&gt;使用基于Word2Vec的语义编码器来捕获基本的语义属性和时间顺序&lt;/li&gt;
+&lt;li&gt;采用了基于GNN的上下文编码器，可以有效地将局部和全局图结构编码为富有表现力的节点嵌入。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;补充知识&#34;&gt;补充知识&lt;/h2&gt;
+&lt;h3 id=&#34;加权交叉熵&#34;&gt;加权交叉熵&lt;/h3&gt;
+&lt;p&gt;加权交叉熵（Weighted Cross-Entropy）是一种改进的交叉熵损失函数，它通过为不同类别的样本分配不同的权重来调整损失的计算。在标准的交叉熵损失函数中，所有类别的样本对损失的贡献是相同的。然而，在实际应用中，数据集往往存在类别不平衡的问题，即某些类别的样本数量远多于其他类别。这种不平衡会导致模型在训练时偏向于预测样本数量多的类别，从而忽视了样本数量少的类别。&lt;/p&gt;
+&lt;p&gt;加权交叉熵通过引入权重系数来解决这个问题。对于样本数量较少的类别，可以为其分配一个较大的权重，而对于样本数量较多的类别，则分配一个较小的权重。这样，在计算损失时，样本数量少的类别对损失的贡献会更大，从而促使模型更加关注这些类别的样本，提高模型对这些类别的预测能力。&lt;/p&gt;
+&lt;h3 id=&#34;jaccard-索引&#34;&gt;Jaccard 索引&lt;/h3&gt;
+&lt;p&gt;Jaccard 索引，也称为 Jaccard 相似系数或 Jaccard 系数，是一种衡量两个集合相似度的统计量。它定义为两个集合的交集大小与它们的并集大小的比值。Jaccard 索引的取值范围在 0 到 1 之间，其中 1 表示两个集合完全相同，0 表示两个集合没有共同元素。&lt;/p&gt;
+&lt;p&gt;Jaccard 索引的数学表达式如下：&lt;/p&gt;
+&lt;p&gt;J(A, B) = |A ∩ B| / |A ∪ B|&lt;/p&gt;
+&lt;h3 id=&#34;xgboost&#34;&gt;XGBoost&lt;/h3&gt;
+&lt;p&gt;XGBoost（eXtreme Gradient Boosting）是一种基于决策树的集成机器学习算法，它以梯度提升（Gradient Boosting）框架为基础，通过优化目标函数和高效地处理大规模数据集而广受欢迎&lt;/p&gt;
+&lt;p&gt;XGBoost 在各种机器学习任务中都有广泛的应用，如分类、回归、排序等。由于其优异的性能和灵活性，XGBoost 成为了数据科学家和机器学习工程师的常用工具之一。&lt;/p&gt;
+&lt;p&gt;XGBoost有以下优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;XGBoost 在传统的梯度提升框架基础上，引入了一个正则化项，用于控制模型的复杂度，从而减少过拟合的风险。这使得 XGBoost 在训练过程中能够生成更加稳健和泛化能力更强的模型。&lt;/li&gt;
+&lt;li&gt;XGBoost 采用了一些优化技巧，如近似算法、特征分位点、缓存优化等，以提高算法的计算效率。这使得 XGBoost 能够处理大规模数据集，并在较短的时间内完成训练。&lt;/li&gt;
+&lt;li&gt;XGBoost 提供了丰富的参数设置，用户可以根据具体问题的需求调整模型的性能。这些参数包括树的深度、学习率、子采样比例等，通过合理地设置这些参数，可以进一步提高模型的性能。&lt;/li&gt;
+&lt;li&gt;XGBoost 可以处理多种类型的数据，包括数值型、类别型和缺失值等。这使得 XGBoost 在实际应用中具有很高的灵活性&lt;/li&gt;
+&lt;li&gt;XGBoost 支持在多线程环境下进行并行计算，以及在分布式系统中进行计算，这使得 XGBoost 能够处理更大规模的数据集，并在更短的时间内完成训练。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;我的评价&#34;&gt;我的评价&lt;/h2&gt;
+&lt;p&gt;感觉没啥特别的，就一个嵌入数据库比较有意思，抽空把嵌入回收那篇的原文读了吧。&lt;/p&gt;
+&lt;p&gt;学到了用加权交叉熵来解决数据不平衡，但是我觉得KAIROS的欠采样和过采样更好一点。&lt;/p&gt;
+&lt;p&gt;剩下的图缩减的优化算法其实感觉也都大差不差，都是尽可能缩就完了……&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>MAGIC</title>
+        <link>https://blog2.pillar.fun/p/magic/</link>
+        <pubDate>Sat, 02 Mar 2024 20:19:11 +0800</pubDate>
+        
+        <guid>https://blog2.pillar.fun/p/magic/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/magic/MAGIC/1709702251187.png" alt="Featured image of post MAGIC" /&gt;&lt;p&gt;文章可以在&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2310.09831&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;
+
+&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+        fill=&#34;currentColor&#34;&gt;
+&lt;/svg&gt;&lt;/span&gt;
+
+    获取&lt;/p&gt;
+&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
+&lt;p&gt;APT攻击越来越成为普遍的威胁，然而，以前的工作表现出几个缺点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;需要包含攻击的数据和APT的先验知识&lt;/li&gt;
+&lt;li&gt;无法提取隐藏在来源图中的丰富上下文信息&lt;/li&gt;
+&lt;li&gt;由于其令人望而却步的计算开销和内存消耗而变得不切实际。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本文介绍一种自监督APT检测方法MAGIC，能够在不同级别的监督下进行多粒度检测。利用掩码图表示学习对良性系统实体和行为进行建模，对来源图进行高效的深度特征提取和结构抽象。通过异常值检测方法检测异常系统行为，MAGIC 能够执行系统实体级和批处理日志级 APT 检测。&lt;/p&gt;
+&lt;p&gt;MAGIC是专门为处理概念漂移而设计的，具有模型适配机制，并成功应用于通用条件和检测场景。我们在三个广泛使用的数据集上评估了MAGIC，包括真实世界和模拟攻击。评估结果表明，MAGIC在所有场景中都取得了令人鼓舞的检测结果，并且在性能开销方面比最先进的APT检测方法具有巨大的优势。&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;高级持续性威胁（APTs）是由熟练的攻击者进行的蓄意和复杂的网络攻击，对企业和机构都构成巨大威胁。大多数 APT 都涉及零日漏洞，并且由于其隐蔽性和多变性而特别难以检测。&lt;/p&gt;
+&lt;p&gt;最近关于APT检测的工作利用数据来源进行APT检测。数据来源将审计日志转换为来源图，从审计日志中提取丰富的上下文信息，为细粒度的因果关系分析和 APT 检测提供完美的平台。&lt;/p&gt;
+&lt;p&gt;早期工作基于典型或特定的 APT 模式&lt;strong&gt;构建规则&lt;/strong&gt;，并将审计日志与这些规则进行匹配，以检测潜在的 APT。&lt;/p&gt;
+&lt;p&gt;最近的一些工作采用&lt;strong&gt;统计异常检测&lt;/strong&gt;方法来检测APT，这些APT侧重于不同的来源图元素，例如系统实体、交互和社区。&lt;/p&gt;
+&lt;p&gt;最近的研究基于&lt;strong&gt;深度学习的方法&lt;/strong&gt;。他们利用各种深度学习 （DL） 技术对 APT 模式或系统行为进行建模，并以分类或异常检测方式执行 APT 检测。&lt;/p&gt;
+&lt;p&gt;虽然这些现有方法已经证明了它们能够以合理的准确性检测 APT，但它们遇到了以下挑战的各种组合：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;监督方法存在缺乏数据 （LOD） 问题，因为它们需要有关 APT 的先验知识（即攻击模式或包含攻击的日志）。此外，当面对他们没有接受过处理培训的新型 APT 时，这些方法特别容易受到攻击。&lt;/li&gt;
+&lt;li&gt;基于统计的方法只需要良性数据即可发挥作用，但无法提取审计日志中埋藏的复杂良性活动的深层语义和相关性，导致&lt;strong&gt;误报率高。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;基于深度学习的方法，特别是基于序列和基于图的方法，以&lt;strong&gt;沉重的计算开销&lt;/strong&gt;为代价，取得了可观的有效性，使其在实际检测场景中不切实际&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在本文中，我们通过引入MAGIC来解决上述三个问题，MAGIC是一种新颖的自监督APT检测方法，它利用掩码图表示学习和简单的异常值检测方法从海量审计日志中识别关键攻击系统实体。MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器[19]之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。&lt;/p&gt;
+&lt;p&gt;MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。&lt;/p&gt;
+&lt;p&gt;MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行多粒度检测，即检测批处理日志中是否存在 APT 或定位实体级对手。虽然 MAGIC 旨在执行 APT 检测而不会受到攻击包含数据，但它非常适合半监督和完全监督的情况。此外，MAGIC还包含一个可选的模型适配机制，为其用户提供反馈渠道。这样的反馈对于MAGIC进一步提高性能、对抗概念漂移和减少误报非常重要。&lt;/p&gt;
+&lt;p&gt;我们在三个不同的 APT 攻击数据集上评估了MAGIC的性能和开销：DARPA Transparent Computing E3 数据集、StreamSpot 数据集和 Unicorn Wget 数据集。DARPA 数据集包含真实世界的攻击，而 StreamSpot 和 Unicorn Wget 数据集则在受控环境中完全模拟。评估结果表明，MAGIC 能够以 97.26% 的准确率和 99.91% 的召回率执行实体级 APT 检测，并且开销最小，对内存的要求更低，并且比最先进的方法快得多&lt;/p&gt;
+&lt;p&gt;contribution总结&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;提出了MAGIC，这是一种基于掩码图表示学习和异常值检测方法的通用APT检测方法，能够对海量审计日志进行多粒度检测。&lt;/li&gt;
+&lt;li&gt;通过扩展的图形掩码自动编码器将计算开销降至最低，从而确保 MAGIC 的实用性，即使在狭小的条件下，也能在可接受的时间内完成训练和检测。&lt;/li&gt;
+&lt;li&gt;通过各种努力确保MAGIC的普遍性。我们利用掩码图表示学习和异常值检测方法，使 MAGIC 能够在不同的监管级别、不同的检测粒度和来自不同来源的审计日志下进行精确检测。&lt;/li&gt;
+&lt;li&gt;在三个广泛使用的数据集上评估了 MAGIC，涉及真实世界和模拟的 APT 攻击。评估结果表明，MAGIC检测的APTs具有良好的结果和最小的计算开销。&lt;/li&gt;
+&lt;li&gt;提供 MAGIC 的开源实现，以造福社区未来的研究，并鼓励进一步改进我们的方法。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;h3 id=&#34;攻击场景&#34;&gt;攻击场景&lt;/h3&gt;
+&lt;p&gt;在这里，我们提供了我们在整篇文章中使用的 APT 场景的详细说明。带有 Drakon Dropper 的 Pine 后门是来自 DARPA Engagement 3 Trace 数据集的 APT 攻击 [20]。在攻击过程中，攻击者构建恶意可执行文件 （/tmp/tcexec） 并通过网络钓鱼电子邮件将其发送到目标主机。然后，用户会无意识地下载并打开电子邮件。电子邮件中包含的可执行文件旨在执行用于内部侦测的端口扫描，并在目标主机和攻击者之间建立静默连接。&lt;/p&gt;
+&lt;p&gt;图 1 显示了我们的动机示例的出处图。图中的节点表示系统实体，箭头表示实体之间的定向交互。显示的图是通过删除大多数与攻击无关的实体和交互，从完整的来源图中抽象出来的子图。不同的节点形状对应不同类型的实体。被条纹覆盖的实体被视为恶意实体。&lt;/p&gt;
+&lt;p&gt;![1709698742850](MA G IC1709698742850.png)&lt;/p&gt;
+&lt;h3 id=&#34;prior-research-and-their-limitations&#34;&gt;Prior Research and their Limitations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;监督方法&lt;/strong&gt;：对于早期作品，需要&lt;strong&gt;构建特殊的启发式规则&lt;/strong&gt;来涵盖所有攻击模式。许多基于深度学习的APT检测方法基于良性和攻击性数据构建来源图，并以分类方式检测APT。这些监督方法可以在学习的攻击模式上获得近乎完美的检测结果，但在&lt;strong&gt;面临概念漂移或看不见的攻击模式时尤其容易受到攻击&lt;/strong&gt;。此外，对于基于规则的方法，启发式&lt;strong&gt;规则的构建和维护可能非常昂贵和耗时&lt;/strong&gt;。对于基于深度学习的方法，包含攻击的数据的稀缺性阻碍了这些监督方法的实际部署。针对上述问题，MAGIC 采用完全自监督的异常检测方式，在有效处理不可见攻击模式的同时，允许不存在包含攻击的数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;基于统计的方法&lt;/strong&gt;：最新的基于统计学的方法通过识别系统实体、交互和社区的稀有性或异常分数来检测APT信号。然而，系统实&lt;strong&gt;体的稀有性并不一定表明它们的异常&lt;/strong&gt;，通过因果分析或标签传播获得的异常评分是来源图上的浅层特征提取。为了说明这一点，在我们的攻击示例中，进程 tcexec 对不同的 IP 地址执行多个端口扫描操作（参见图 1），这可以被视为正常的系统行为。但是，考虑到源自外部网络的进程 tcexec 也会读取敏感的系统信息 （uname） 并与公共 IP 地址 （162.66.239.75） 建立连接，我们可以很容易地将 tcexec 识别为恶意实体。由于无法提取系统实体之间的深层语义和相关性，通常会导致基于统计的方法检测性能低下和误报率高。然而，MAGIC采用图表示模块对来源图进行深度图特征提取，从而产生高质量的嵌入。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;基于 DL 的方法&lt;/strong&gt;：最近，基于DL的APT检测方法，无论是有监督还是无监督，都产生了非常有希望的检测结果。然而，在现实中，中型企业每天会产生数百GB的审计日志。因此，基于深度学习的方法，特别是基于序列的和基于图形的方法，由于其&lt;strong&gt;计算开销&lt;/strong&gt;而不可行。例如，ATLAS平均需要 1 小时才能在 676MB 的审计日志上进行训练，而 ShadeWatcher在具有 GPU 的 DARPA E3 Trace 数据集上训练平均需要 1 天。此外，一些基于图自编码器的方法在来源图规模扩大时会遇到爆炸性内存开销问题。MAGIC 通过&lt;strong&gt;引入图形掩码自动编码器避免了计算要求高&lt;/strong&gt;，并在短短几分钟内完成了对 DARPA E3 Trace 数据集的训练。第 6.4 节中详细介绍了 MAGIC 的性能开销。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;端到端方法&lt;/strong&gt;：除了上面讨论的三个主要局限性之外，还值得一提的是，最新的APT检测方法是端到端检测器，并且专注于一个特定的检测任务。例如，ATLAS专注于端到端的攻击重建，而 Unicorn则从流日志中生成系统级警报。相反，MAGIC的方法是通用的，可以在各种检测场景下执行多粒度APT检测，也可以应用于从不同来源收集的审计日志。&lt;strong&gt;（什么叫通用的？预训练精调？还是知识说能检测多场景多力度就算通用了？）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;threat-model-and-definitions&#34;&gt;Threat Model and Definitions&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;威胁模型&lt;/strong&gt;：我们假设攻击者来自系统外部，并以系统内的有价值信息为目标。攻击者可能会执行复杂的步骤来实现其目标，但在日志中留下可追踪的证据。系统硬件、操作系统和系统审计软件的组合是我们值得信赖的计算基础。在我们的威胁模型中不考虑毒物攻击和逃避攻击。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;出处图&lt;/strong&gt;：来源图是从原始审计日志中提取的有向循环图。构建来源图是数据来源的常见做法，因为它连接系统实体并呈现它们之间的交互关系。来源图包含代表不同系统实体（例如，进程、文件和套接字）的节点，以及代表系统实体之间交互（例如，执行和连接）的边缘，并标有它们的类型。例如，/tmp/tcexec 是一个 FileObject 系统实体，而 /tmp/tcexec 和 tcexec 之间的边缘是 FileObject 面向 Process 的执行操作（参见图 1）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;多粒度检测&lt;/strong&gt;：MAGIC 能够执行&lt;strong&gt;两个粒度&lt;/strong&gt;的 APT 检测：批处理日志级别和系统实体级别。MAGIC的多粒度检测能力催生了两阶段检测方法：首先对流式日志进行批量日志级检测，然后对正批次进行系统实体级检测，以识别详细的检测结果。将这种方法应用于实际环境将有效减少工作量、资源消耗和误报，同时产生详细的结果。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;批处理日志级别检测。在这种粒度的 APT 检测下，主要任务是给定来自一致来源的批量审核日志，如果在一批日志中检测到潜在的 APT，MAGIC 会发出警报。与Unicorn类似，MAGIC无法在这种检测粒度下准确定位恶意系统实体和交互。&lt;/li&gt;
+&lt;li&gt;系统实体级检测。在这种粒度的APT检测下，检测任务是给定来自一致来源的审计日志，MAGIC能够在这些审计日志中准确定位恶意系统实体。在APT期间识别关键系统实体对于后续任务（如攻击调查和攻击故事恢复）至关重要，因为它提供了可解释的检测结果，并减少了对领域专家的需求以及冗余的手动工作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MAGIC是一种新型的自监督APT检测方法，它利用掩蔽图表示学习和异常值检测方法，能够对海量审计日志进行高效的多粒度检测。MAGIC的流水线由三个主要组件组成：（1）来源图构建，（2）图表示模块和（3）检测模块。它还提供了可选的 （4） 模型适配机制。在训练过程中，MAGIC 用 （1） 转换训练数据，用 （2） 学习图嵌入，用 （3） 记住良性行为。在推理过程中，MAGIC 使用 （1） 转换目标数据，使用训练的 （2） 获得图形嵌入，并通过 （3） 检测异常值。图 2 概述了 MAGIC 架构。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709702251187.png&#34;
+	width=&#34;1736&#34;
+	height=&#34;787&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709702251187&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;529px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;系统审计软件收集的流式审计日志通常以批量方式存储。在来源图构建 （1） 期间，MAGIC 将这些日志转换为静态来源图。系统实体及其之间的交互被提取并分别转换为节点和边。使用几种降低复杂性的技术来删除冗余信息。 	然后，将构建的出处图通过图表示模块（2）馈送，以获得输出嵌入（即对象的综合向量表示）。图表示模块基于图屏蔽自动编码器构建，并集成了基于样本的结构重构，将节点和边属性嵌入、传播和聚合到输出嵌入中，这些嵌入包含节点嵌入和系统状态嵌入。图形表示模块仅使用良性审核日志进行训练，以对良性系统行为进行建模。在对可能包含攻击的审计日志执行 APT 检测时，MAGIC 利用基于输出嵌入的异常值检测方法来检测系统行为中的异常值 （3）。根据任务的粒度，使用不同的嵌入来完成 APT 检测。在批处理日志级任务中，反映整个系统一般行为的系统状态嵌入是检测目标。此类嵌入中的异常值意味着其相应的系统状态是看不见的，并且可能是恶意的，这会显示该批次中的 APT 信号。在系统实体级任务中，检测目标是那些节点嵌入，它们表示系统实体的行为。节点嵌入中的异常值表示可疑的系统实体，并以更精细的粒度检测 APT 威胁。&lt;/p&gt;
+&lt;p&gt;在实际检测设置中，MAGIC 有两个预先设计的应用程序。对于系统审计软件收集的每批日志，可以直接利用MAGIC的实体级检测来准确识别批次中的恶意实体，也可以按照第2.3节的规定进行两阶段检测。在这种情况下，MAGIC 首先扫描批次并查看批次中是否存在恶意信号（批处理日志级别检测）。如果警报为阳性，则 MAGIC 将执行实体级检测，以更精细的粒度识别恶意系统实体。与实体级检测相比，批量日志级别检测的计算要求要低得多。因此，这样的两阶段例程可以帮助MAGIC的用户节省计算资源，避免误报，同时不影响MAGIC的检测细度。但是，如果用户喜欢对所有系统实体进行细粒度检测，则前一个例程仍然是一个可访问的选项。&lt;/p&gt;
+&lt;p&gt;为了应对概念漂移和看不见的攻击（unseen attack），采用了可选的模型适配机制为其用户提供反馈渠道（4）。由安全分析师检查和确认的检测结果将反馈给 MAGIC，帮助其以半监督的方式适应良性系统行为变化。在这种情况下，MAGIC获得了更有希望的检测结果，这将在第6.3节中讨论。此外，MAGIC 可以很容易地应用于现实世界的在线 APT 检测，这要归功于它能够适应概念漂移和最小的计算开销。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1用的啥？2用的基于图屏蔽自动编码器，3用的啥？KNN? &lt;del&gt;（4）是干啥的？&lt;/del&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;（4）是靠人工标注进行监督学习的。&lt;/p&gt;
+&lt;h3 id=&#34;unseen-attack&#34;&gt;unseen attack&lt;/h3&gt;
+&lt;p&gt;&amp;ldquo;Unseen attack&amp;rdquo;（不可见攻击）是一种高级持续性威胁（Advanced Persistent Threat，APT）攻击中的一种策略。这种攻击手段的目标是使攻击者的活动对受害者尽可能地不可见，让受害者很难察觉到自己受到了攻击。&lt;/p&gt;
+&lt;p&gt;这种类型的攻击通常采取了多种隐蔽的方法，旨在规避传统安全监控和检测工具的检测。一些常见的不可见攻击技术包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;无文件攻击（Fileless Attacks）&lt;/strong&gt;：这种攻击方式不会在受害者系统上留下可被传统防病毒软件等检测到的文件。攻击者通过利用系统内置的工具或脚本语言，例如 PowerShell 或 WMI (Windows Management Instrumentation)，在内存中执行恶意代码。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;隐蔽通信&lt;/strong&gt;：攻击者会使用加密或隐藏的通信渠道，以避免被网络监控和入侵检测系统检测到。这可能包括使用加密协议、隐蔽通信端口或者隐藏在合法网络流量中的恶意数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;低频攻击&lt;/strong&gt;：攻击者会在较长时间间隔内执行活动，以减少被检测到的风险。这种攻击方式通常不会引起系统管理员的注意，因为攻击活动没有频繁发生。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;持续访问&lt;/strong&gt;：攻击者在成功进入受害者网络后，会尽可能长时间地保持对系统的访问，以获取更多的信息和权限。他们可能会隐藏在系统的深层次，并悄悄地窃取数据或监视受害者的活动。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;动态改变攻击模式&lt;/strong&gt;：攻击者会不断地改变他们的攻击方式和工具，以规避传统的安全防御措施。这种变化性可以使传统的签名检测和规则检测方法失效。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;design-details&#34;&gt;Design Details&lt;/h2&gt;
+&lt;h3 id=&#34;provenance-graph-construction&#34;&gt;Provenance Graph Construction&lt;/h3&gt;
+&lt;p&gt;MAGIC 首先从原始审计日志中构建出处图，然后再执行图表示和 APT 检测。我们遵循三个步骤来构建一致且优化的来源图，为图表示做好准备。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;日志解析&lt;/strong&gt;：第一步是简单地解析每个日志条目，提取系统实体以及它们之间的系统交互。然后，可以构建一个原型出处图，以系统实体为节点，以交互为边。现在，我们提取有关节点和边的分类信息。对于提供实体和交互标签的简单日志格式，我们直接使用这些标签。对于提供这些实体和交互的复杂属性的某种格式，我们应用多标签哈希（例如，xxhash）将属性转换为&lt;strong&gt;标签&lt;/strong&gt;。在这个阶段，来源图是有向多图。我们设计了一个示例来演示如何处理图 3 中日志解析后的原始来源图。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;初始嵌入&lt;/strong&gt;：在这个阶段，我们将节点和边标签转换为维度 d 的固定大小的特征向量（即初始嵌入），其中 d 是图表示模块的隐藏维度。我们应用了查找嵌入，在节点/边标签和 d 维特征向量之间建立了一对一的映射。如图 3（I 和 II）所示，进程 a 和 b 共享相同的标签，因此它们映射到相同的特征向量，而 a 和 c 嵌入到不同的特征向量中，因为它们具有不同的标签。我们注意到，唯一节点/边缘标签的可能数量由数据源（即审计日志格式）决定。因此，查找嵌入在转导设置下工作，不需要学习看不见的标签的嵌入。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709705666067.png&#34;
+	width=&#34;811&#34;
+	height=&#34;975&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709705666067_hucce759ef0e4eecef2a6b3c179664aa0b_123849_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709705666067_hucce759ef0e4eecef2a6b3c179664aa0b_123849_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709705666067&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;83&#34;
+		data-flex-basis=&#34;199px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;降噪&lt;/strong&gt;：我们的图表示模块的预期输入出处图将是简单图。因此，我们需要在节点对之间组合多个边。如果一对节点之间存在同一标签的多个边（也共享相同的初始嵌入），我们将删除多余的边，以便只保留其中一条。然后，我们将剩余的边合并为一条最终边。我们注意到，在一对节点之间，可能会保留几个不同标签的边缘。组合后，通过对剩余边的初始嵌入进行平均来获得所得唯一边的初始嵌入。为了说明这一点，我们在图3（II和III）中展示了我们的降噪如何结合多边，以及它如何影响边的初始嵌入。首先，对于每个标签，将 a 和 c 之间的 3 次读取和 2 次写入交互合并为一个。然后我们将它们组合在一起，形成一个边缘 eac，其初始嵌入等于其余边缘的&lt;strong&gt;平均&lt;/strong&gt;初始嵌入（e′ 2 和 e′ 5）。我们在附录E中提供了我们的降噪步骤与以前工作的比较&lt;/p&gt;
+&lt;p&gt;简单来说就是先对边和节点进行多标签哈希，目的是将多个类别标签映射到设计的那几个标签上（如果是有标签的日志格式则不需要这一步），这样每个边都有标签，标签就是边的含义（read,write等)。然后将节点和标签转为d维的初始嵌入，再将节点对之间嵌入值相同的边合并成一个边。&lt;/p&gt;
+&lt;h3 id=&#34;graph-representation-module&#34;&gt;Graph Representation Module&lt;/h3&gt;
+&lt;p&gt;MAGIC 采用图表示模块从特色出处图（featured provenance graphs）中获取高质量的嵌入。如图 4 所示，图表示模块由三个阶段组成：用于部分隐藏节点特征（即初始嵌入）以进行重建的掩码过程，通过传播和聚合图特征生成节点和系统状态输出嵌入的图编码器，图解码器通过掩码特征重建和基于样本的结构为图表示模块的训练提供监督信号重建。编码器和解码器形成图形掩码自动编码器，在生成快速且节省资源的嵌入方面表现出色。&lt;/p&gt;
+&lt;h4 id=&#34;feature-masking&#34;&gt;Feature Masking&lt;/h4&gt;
+&lt;p&gt;在训练我们的图表示模块之前，我们对节点执行掩码，以便在重建这些节点时可以训练图掩码自动编码器。屏蔽节点是随机选择的，覆盖所有节点的一定比例。此类屏蔽节点的初始嵌入将替换为特殊的屏蔽令牌 xmask，以涵盖有关这些节点的任何原始信息。但是，边缘不会被屏蔽，因为这些边缘提供了有关系统实体之间关系的宝贵信息。总之，给定节点初始嵌入 $x_n$，我们按如下方式屏蔽节点：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/1709708984909.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709708984909&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中 $\tilde{N}$ 是随机选择的掩码节点，$emb_n$ 是节点 n 的嵌入，准备训练图表示模块。此掩蔽过程仅在训练期间发生。在检测过程中，我们不会屏蔽任何节点。&lt;/p&gt;
+&lt;h4 id=&#34;graph-encoder&#34;&gt;Graph Encoder&lt;/h4&gt;
+&lt;p&gt;从图构建步骤中获得的初始嵌入仅考虑原始特征。然而，原始特征还远远不足以对系统实体的详细行为进行建模。实体的上下文信息，如其邻域、多跳关系以及与其他系统实体的交互模式，对于获得高质量的实体嵌入起着重要作用。在这里，我们采用并扩展了&lt;strong&gt;图形屏蔽自编码器&lt;/strong&gt;，以自监督的方式生成输出嵌入。图形屏蔽自动编码器由编码器和解码器组成。编码器通过传播和聚合图特征来生成输出嵌入，解码器重建图特征以提供用于训练的监督信号。这种编码器-解码器架构在生成的嵌入中保留了上下文和语义信息，同时通过掩蔽学习显着降低了其计算开销。&lt;/p&gt;
+&lt;p&gt;我们的图表示模块的编码器包含多个堆叠层的图注意力网络（GAT）。GAT层的功能是根据节点本身及其相邻节点的特征（初始嵌入）生成输出节点嵌入。与普通的GNN不同，GAT引入了一种注意力机制来衡量这些邻居的重要性。【GAT加了attention真的还好算吗？训练代价应该也不小吧】&lt;/p&gt;
+&lt;p&gt;为了详细解释，GAT 的一层将前几层生成的节点嵌入作为输入，并将嵌入从源节点传播到目标节点，并沿交互传播到消息中。该消息包含有关源节点以及源节点和目标节点之间交互的信息：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710234712.png&#34;
+	width=&#34;523&#34;
+	height=&#34;97&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710234712_hua36d1db2226ef0c7dab718083c445773_7961_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710234712_hua36d1db2226ef0c7dab718083c445773_7961_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709710234712&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;539&#34;
+		data-flex-basis=&#34;1294px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;并采用注意力机制来计算消息源与其目的地之间的注意力系数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710298170.png&#34;
+	width=&#34;819&#34;
+	height=&#34;113&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710298170_hu85b48369b6085df9fdcff38080ffe969_17564_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710298170_hu85b48369b6085df9fdcff38080ffe969_17564_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709710298170&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;724&#34;
+		data-flex-basis=&#34;1739px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后，对于目标节点，GAT 聚合来自传入边缘的消息，以通过计算所有传入消息的加权和来更新其节点嵌入。权重正是注意力系数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710344097.png&#34;
+	width=&#34;763&#34;
+	height=&#34;185&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710344097_hu5c46dd1cd3605c2d547afa478ca5264b_16511_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710344097_hu5c46dd1cd3605c2d547afa478ca5264b_16511_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709710344097&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;412&#34;
+		data-flex-basis=&#34;989px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中 $h^l_n$ 是 GAT 第 l 层节点 n 的隐藏嵌入，$h^{l-1}_n$ 是 l − 1 层的隐藏嵌入，$\mathcal{N}&lt;em&gt;n$ 是 n 的单跳邻域。第一个 GAT 层的输入是初始节点嵌入。Embe 是初始边缘嵌入，在整个图形表示模块中保持不变。$W_as$，$W_am$，$W&lt;/em&gt;{self}$ ，$W{msg}$ 是可训练的参数。更新的节点嵌入构成了节点单跳交互行为的一般抽象。&lt;/p&gt;
+&lt;p&gt;将此类 GAT 的多层堆叠以获得最终的节点嵌入 h，该节点嵌入由原始节点嵌入和所有 GAT 层的输出连接起来：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710765514.png&#34;
+	width=&#34;391&#34;
+	height=&#34;81&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710765514_hud313a304217bb9525bb8ee55275c4f0c_4387_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710765514_hud313a304217bb9525bb8ee55275c4f0c_4387_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709710765514&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;482&#34;
+		data-flex-basis=&#34;1158px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中 ·||·表示串联操作。GAT堆叠的层数越多，相邻范围就越宽，节点的多跳交互模式能够表示的就越远。因此，图编码器有效地结合了节点初始特征和多跳交互行为，将系统实体行为抽象到节点嵌入中。图编码器还对所有节点嵌入应用平均池化，以生成图本身的全面嵌入，它概括了系统的整体状态：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710804533.png&#34;
+	width=&#34;295&#34;
+	height=&#34;117&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709710804533_hu18cf87b6386ab6bddc11df307a6c214f_4926_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709710804533_hu18cf87b6386ab6bddc11df307a6c214f_4926_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709710804533&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;252&#34;
+		data-flex-basis=&#34;605px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;图编码器生成的节点嵌入和系统状态嵌入被视为图表示模块的输出，用于不同场景下的后续任务。&lt;/p&gt;
+&lt;h4 id=&#34;graph-decoder&#34;&gt;Graph Decoder&lt;/h4&gt;
+&lt;p&gt;图形编码器不提供支持模型训练的监督信号。在典型的图自编码器中，使用图解码器对节点嵌入进行解码，并通过特征重构和结构重构来监督模型训练。然而，图形屏蔽自编码器放弃了结构重建，以减少计算开销。我们的图解码器是两者的混合体，它集成了掩码特征重建和基于样本的结构重建，以构建优化图表示模块的目标函数。&lt;/p&gt;
+&lt;p&gt;给定从图编码器获得的节点嵌入 $h_n$，解码器首先重新屏蔽这些屏蔽节点，并将它们转换为屏蔽特征重建的输入：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711180082.png&#34;
+	width=&#34;433&#34;
+	height=&#34;113&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711180082_hu051c36bc1b5666d451eb10a0eb894d14_9252_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709711180082_hu051c36bc1b5666d451eb10a0eb894d14_9252_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709711180082&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;383&#34;
+		data-flex-basis=&#34;919px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;随后，解码器使用上述类似的GAT层来重建掩码节点的初始嵌入，从而可以计算特征重建损失：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711206698.png&#34;
+	width=&#34;513&#34;
+	height=&#34;187&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711206698_hu77ff8b359efadd2edc7202c3b77a4dc5_14330_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709711206698_hu77ff8b359efadd2edc7202c3b77a4dc5_14330_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709711206698&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;274&#34;
+		data-flex-basis=&#34;658px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;【所以这个掩码节点是拿个seed全局保留的马？】&lt;/p&gt;
+&lt;p&gt;其中 $L_{fr} $是通过计算掩码节点的初始嵌入和重建嵌入之间的缩放余弦损失获得的掩蔽特征重建损失。这种损失在简单样本和困难样本之间急剧增加，从而有效地加快了学习速度。这种缩放的程度由超参数γ控制。&lt;/p&gt;
+&lt;p&gt;与此同时，基于样本的结构重建旨在重建图结构（即预测节点之间的边）。与重建整个邻接矩阵不同，后者具有O(N2)的复杂度，基于样本的结构重建在节点对上应用对比采样，并预测这些节点对之间的边概率。仅非掩蔽节点参与结构重建。正样本是由所有非掩蔽节点之间的所有现有边构建的，负样本则是在那些没有现有边的节点对中进行采样构建的。&lt;/p&gt;
+&lt;p&gt;使用简单的两层 MLP 重建节点对样本之间的边，为每个样本生成一个概率。在这些样本上，重建损失的形式为简单的二元交叉熵损失：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711513256.png&#34;
+	width=&#34;819&#34;
+	height=&#34;185&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711513256_hu32346daf17371ca74b8acb0e42c31b4c_17333_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709711513256_hu32346daf17371ca74b8acb0e42c31b4c_17333_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709711513256&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;442&#34;
+		data-flex-basis=&#34;1062px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中 （n， n−） 和 （n， n+） 分别是负样本和正样本，ˆ N =N− e N 是一组非掩码节点。基于样本的结构重建仅对输出嵌入进行监督。我们没有使用点积，而是使用 MLP 来计算边缘概率，因为交互实体的行为不一定相似。此外，我们并没有强迫模型学习预测边缘概率。这种结构重构的功能是最大化抽象节点嵌入中包含的行为信息，以便一个简单的MLP足以将这些信息合并并解释为边缘概率。&lt;/p&gt;
+&lt;p&gt;最终的目标函数 L = $L_fr$ + $L_sr$ 结合了 $L_fr$ 和 $L_sr$，并为图表示模块提供监督信号，使其能够以自监督的方式学习参数。&lt;/p&gt;
+&lt;h3 id=&#34;detection-module&#34;&gt;Detection Module&lt;/h3&gt;
+&lt;p&gt;基于图表示模块生成的输出嵌入，利用异常值检测方法以无监督方式进行APT检测。如前几节所述，此类嵌入以不同的粒度总结了系统行为。我们的检测模型的目标是识别恶意系统实体或状态，前提是仅对良性系统行为有先验的了解。如果通过图表示学习生成的嵌入在图中具有相似的交互行为，则它们的相应实体往往会形成聚类。因此，系统状态嵌入中的异常值表示不常见和可疑的系统行为。基于这样的洞见，我们开发了一种特殊的异常值检测方法来进行APT检测。&lt;/p&gt;
+&lt;p&gt;在训练过程中，首先从训练来源图中抽象出良性输出嵌入。在这个阶段，检测模块所做的只是记住这些嵌入，并将它们组织在一个K-D树中[33]。经过训练后，检测模块通过三个步骤揭示异常值：k-最近邻搜索、相似度计算和过滤。给定目标嵌入，检测模块首先通过 K-D 树搜索获得其 k 最近邻。这样的搜索过程只需要 log（N） 时间，其中 N 是记忆训练嵌入的总数。然后，应用相似性准则来评估目标嵌入与其邻居的接近程度并计算异常分数。如果其异常分数高于超参数 θ，则目标嵌入被视为异常值，其相应的系统实体或系统状态为恶意。检测模块的示例工作流程形式化如下，使用欧几里得距离作为相似性准则：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711997347.png&#34;
+	width=&#34;399&#34;
+	height=&#34;339&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709711997347_hu17c2e8d081b68e3a8299bded3e1504fa_23202_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709711997347_hu17c2e8d081b68e3a8299bded3e1504fa_23202_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709711997347&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;117&#34;
+		data-flex-basis=&#34;282px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中 $\overline{dist}$ 是训练嵌入与其 k 最近邻之间的平均距离。在执行批处理日志级别检测时，检测模块会记住反映系统状态的良性系统状态嵌入，并检测新到达的来源图的系统状态嵌入是否为异常值。在执行系统实体级检测时，检测模块会记住指示系统实体行为的良性节点嵌入，并给定一个新到达的来源图，它会检测所有系统实体嵌入中的异常值。&lt;/p&gt;
+&lt;h3 id=&#34;model-adaption&#34;&gt;Model Adaption&lt;/h3&gt;
+&lt;p&gt;为了使APT检测器在实际检测场景中有效运行，必须考虑概念漂移。当面对良性但以前未见过的系统行为时，MAGIC 会产生误报检测结果，这可能会误导后续应用程序（例如攻击调查和故事恢复）。最近的工作通过忘记过时的数据[10]或通过模型适应机制[18]将他们的模型拟合到良性系统变化来解决这个问题。MAGIC还集成了模型适应机制，以对抗概念漂移，并从安全分析师识别的误报中学习。与其他仅使用误报来重新训练模型的作品略有不同，MAGIC可以使用所有反馈进行重新训练。如前几节所述，MAGIC 中的图形表示模块以自监督的方式将系统实体编码为嵌入，而无需知道其标签。任何看不见的数据，包括那些true negative，都是图表示模块的宝贵训练数据，以增强其对看不见的系统行为的表示能力。&lt;/p&gt;
+&lt;p&gt;检测模块只能通过良性反馈进行重新训练，以跟上系统行为的变化。而且随着它记住越来越多的良性反馈，它的检测效率会降低。为了解决这个问题，我们还在检测模块上实现了折扣机制。当记忆嵌入的数量超过一定数量时，随着新到达的嵌入被学习，最早的嵌入被简单地删除。我们提供模型适配机制作为概念漂移和看不见的系统行为的可选解决方案。建议通过将确认的假阳性样本提供给 MAGIC 的模型适应机制来使 MAGIC 适应系统变化。&lt;/p&gt;
+&lt;h2 id=&#34;implementation&#34;&gt;Implementation&lt;/h2&gt;
+&lt;p&gt;我们在 Python 3.8 中使用了大约 3,500 行代码实现了 MAGIC。我们开发了几个日志解析器来应对不同格式的审计日志，包括 StreamSpot [34]、Camflow [35] 和 CDM [36]。来源图是使用图处理库 Networkx [37] 构建的，并以 JSON 格式存储。图形表示模块是通过 PyTorch [38] 和 DGL [39] 实现的。该检测模块是用Scikit-learn[40]开发的。对于MAGIC的超参数，特征重建损失中的比例因子γ设置为3，相邻变量k设置为10，学习率为0.001，权重衰减因子等于5×10−4。我们在实验中使用了 3 层图形编码器和 0.5 的掩码率。在批处理日志级别检测和实体级检测两种检测方案中，输出嵌入维度 d 是不同的。我们在批处理日志级别检测中使用 d 等于 256，在实体级检测中使用 和 an 等于 64 以减少资源消耗。检测阈值 θ 是通过对每个数据集分别进行的简单线性搜索来选择的。超参数可能有其他选择。我们将在稍后的评估部分演示这些超参数对 MAGIC 的影响。在我们的超参数分析中，d 是从 {16， 32， 64， 128， 256} 中选出的，l 是从 {1， 2， 3， 4} 中选出的，r 是从 {0.3， 0.5， 0.7} 中选出的。对于阈值 θ，在批处理日志级别检测中选择介于 1 和 10 之间。有关实体级检测，请参阅附录 D。&lt;/p&gt;
+&lt;h2 id=&#34;evaluation&#34;&gt;Evaluation&lt;/h2&gt;
+&lt;p&gt;我们使用来自各种系统审计软件的 131GB 审计日志来评估 MAGIC 的有效性和效率。我们首先描述了我们的实验设置（第 6.1 节），然后详细说明了 MAGIC 在不同场景中的有效性（第 6.2 节），进行误报分析并评估模型适应机制的有用性（第 6.3 节），并分析了 MAGIC 的运行时性能开销（第 6.4 节）。MAGIC的不同组件和超参数的影响在第6.5节中进行了分析。此外，附录 C 中还对我们的动机示例进行了详细的案例研究，以说明 MAGIC 的管道如何用于 APT 检测。这些实验在相同的设备设置下进行。&lt;/p&gt;
+&lt;h3 id=&#34;experimental-settings&#34;&gt;Experimental Settings&lt;/h3&gt;
+&lt;p&gt;我们评估了MAGIC在三个公共数据集上的有效性：StreamSpot数据集[21]，Unicorn Wget数据集[22]和DARPA Engagement 3数据集[20]。这些数据集在数量、来源和粒度方面各不相同。我们相信，通过在这些数据集上测试MAGIC的性能，我们能够将MAGIC与尽可能多的最先进的APT检测方法进行比较，并探索MAGIC的普遍性和适用性。我们对这三个数据集的详细说明如下。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;StreamSpot 数据集&lt;/strong&gt;：StreamSpot数据集（见表1）是由StreamSpot[34]使用审计系统SystemTap [41]收集并公开的模拟数据集。StreamSpot 数据集包含 600 批次审计日志，用于监控 6 个独特场景下的系统调用。其中五个方案是模拟的良性用户行为，而攻击方案模拟的是偷渡式下载攻击。该数据集被认为是一个相对较小的数据集，由于没有提供日志条目和系统实体的标签，因此我们对 StreamSpot 数据集执行批量日志级别检测，类似于以前的工作 [10， 15， 17]。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Unicorn Wget 数据集&lt;/strong&gt;：Unicorn Wget数据集（见表1）包含Unicorn[10]设计的模拟攻击。具体来说，它包含 Camflow [35] 收集的 150 批日志，其中 125 批是良性的，其中 25 批包含供应链攻击。这些攻击被归类为隐形攻击，经过精心设计，其行为类似于良性系统工作流程，预计很难识别。这个数据集被认为是我们实验数据集中最难的，因为它的体积大，日志格式复杂，而且这些攻击的隐蔽性。与最先进的方法相同，我们在此数据集上执行批处理日志级别检测。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709712995732.png&#34;
+	width=&#34;817&#34;
+	height=&#34;325&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709712995732_hu038a9df923508568e84903c6bd1623d5_49229_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709712995732_hu038a9df923508568e84903c6bd1623d5_49229_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709712995732&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;251&#34;
+		data-flex-basis=&#34;603px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DARPA E3 数据集&lt;/strong&gt;：DARPA Engagement 3 数据集（见表 2）作为 DARPA 透明计算计划的一部分，在对抗性参与期间在企业网络中收集。利用不同漏洞的 APT 攻击 [20] 由红队进行，以泄露敏感信息。蓝队试图通过审核网络主机并对其执行因果关系分析来识别这些攻击。Trace、THEIA 和 CADETS 子数据集包含在我们的评估中。这三个子数据集总共包含 51.69GB 的审计记录，包含多达 6,539,677 个系统实体和 68,127,444 次交互。因此，我们评估了MAGIC的系统实体级检测能力，并解决了这些数据集的开销问题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713015449.png&#34;
+	width=&#34;831&#34;
+	height=&#34;329&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713015449_hud9843b27b4024551280b826d1d324b03_52173_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713015449_hud9843b27b4024551280b826d1d324b03_52173_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713015449&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;252&#34;
+		data-flex-basis=&#34;606px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;对于不同的数据集，我们采用不同的数据集拆分来评估模型，并且我们仅使用良性样本进行训练。对于 StreamSpot 数据集，我们从 500 个良性日志中随机选择 400 个批次进行训练，其余批次进行测试，从而形成一个平衡的测试集。对于 Unicorn Wget 数据集，选择了 100 批良性日志进行训练，其余用于测试。对于 DARPA E3 数据集，我们使用与 ThreaTrace [17] 相同的真值标签，并根据其出现的顺序拆分日志条目。最早的 80% 日志条目用于训练，其余条目保留用于测试。在评估过程中，MAGIC在100个全局随机种子下的平均性能被报告为最终结果，因此实验结果可能包含系统实体/日志批次的分数。&lt;/p&gt;
+&lt;h3 id=&#34;effectiveness&#34;&gt;Effectiveness&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713083774.png&#34;
+	width=&#34;839&#34;
+	height=&#34;521&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713083774_hucc8f575a68082b3edb5e18e57ba59e25_61653_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713083774_hucc8f575a68082b3edb5e18e57ba59e25_61653_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713083774&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;161&#34;
+		data-flex-basis=&#34;386px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713103510.png&#34;
+	width=&#34;1731&#34;
+	height=&#34;383&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713103510_hu0c8ae3e5da56cd76803a95e065c0c69a_103069_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713103510_hu0c8ae3e5da56cd76803a95e065c0c69a_103069_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713103510&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;451&#34;
+		data-flex-basis=&#34;1084px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713117689.png&#34;
+	width=&#34;837&#34;
+	height=&#34;743&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713117689_hu4387d49ca41b8e66fefd80563e191f71_90569_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713117689_hu4387d49ca41b8e66fefd80563e191f71_90569_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713117689&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;112&#34;
+		data-flex-basis=&#34;270px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713129950.png&#34;
+	width=&#34;837&#34;
+	height=&#34;727&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713129950_hu3fa0a3dbdbed859ed7a4be337bec3ab2_156190_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713129950_hu3fa0a3dbdbed859ed7a4be337bec3ab2_156190_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713129950&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;115&#34;
+		data-flex-basis=&#34;276px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713153070.png&#34;
+	width=&#34;885&#34;
+	height=&#34;801&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713153070_hud6612d36fb5c0e22a75c5a5a157aca07_106887_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713153070_hud6612d36fb5c0e22a75c5a5a157aca07_106887_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713153070&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;110&#34;
+		data-flex-basis=&#34;265px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713173936.png&#34;
+	width=&#34;857&#34;
+	height=&#34;509&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713173936_hu8fc3646338be836665a4c5a8db534fea_62888_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713173936_hu8fc3646338be836665a4c5a8db534fea_62888_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713173936&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;168&#34;
+		data-flex-basis=&#34;404px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713196429.png&#34;
+	width=&#34;1561&#34;
+	height=&#34;587&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713196429_hu0fad53adbd08d285dc62c0f6b0e42f51_93870_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713196429_hu0fad53adbd08d285dc62c0f6b0e42f51_93870_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713196429&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;265&#34;
+		data-flex-basis=&#34;638px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713209284.png&#34;
+	width=&#34;867&#34;
+	height=&#34;525&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/magic/MAGIC/1709713209284_hud365458e9fec964efcc85d1f686cb918_54083_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/magic/MAGIC/1709713209284_hud365458e9fec964efcc85d1f686cb918_54083_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709713209284&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;396px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;conclusion&lt;/h2&gt;
+&lt;p&gt;我们推出了 MAGIC，这是一种普遍适用的 APT 检测方法，它以最高的效率运行，开销很小。MAGIC 利用掩码图表示学习从原始审计日志中对良性系统行为进行建模，并通过异常值检测方法执行多粒度 APT 检测。在各种检测场景下对三个广泛使用的数据集进行评估表明，MAGIC以低误报率和最小的计算开销取得了良好的检测结果。&lt;/p&gt;
+&lt;h2 id=&#34;知识补充&#34;&gt;知识补充&lt;/h2&gt;
+&lt;h3 id=&#34;多标签哈希&#34;&gt;多标签哈希&lt;/h3&gt;
+&lt;p&gt;多标签哈希（Multi-Label Hashing）是一种用于解决多标签分类问题的技术。在多标签分类问题中，每个样本可以属于一个或多个类别，而不是单一的类别。&lt;/p&gt;
+&lt;p&gt;哈希是一种将数据映射到固定长度的二进制编码的方法。多标签哈希技术将这种哈希方法应用于多标签分类问题，将样本的多个标签映射为固定长度的二进制编码，从而方便快速的类别检索和处理。&lt;/p&gt;
+&lt;p&gt;以下是多标签哈希的一些关键思想和方法：&lt;/p&gt;
+&lt;h4 id=&#34;1-单一哈希方法&#34;&gt;1. 单一哈希方法&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Bit-Vector Hashing&lt;/strong&gt;：最简单的多标签哈希方法之一是将每个标签映射为二进制编码的位向量。例如，如果有5个类别，则可以用5位二进制编码来表示每个标签，如 &lt;code&gt;[1, 0, 1, 1, 0]&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-多哈希方法&#34;&gt;2. 多哈希方法&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Binary Relevance&lt;/strong&gt;：这种方法将每个标签独立地进行哈希处理。对于每个标签，都使用一个单独的哈希函数，将其映射为固定长度的二进制编码。这种方法简单直观，但可能导致标签之间的相关性被忽略。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multiple Hashing&lt;/strong&gt;：这种方法使用多个哈希函数，将每个标签映射为多个不同的二进制编码。这可以捕捉到标签之间的一些相关性，提高多标签哈希的性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-哈希函数的选择&#34;&gt;3. 哈希函数的选择&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;局部敏感哈希（Locality Sensitive Hashing，LSH）&lt;/strong&gt;：LSH 是一种常用的哈希方法，它能够使相似的样本在哈希空间中映射为相邻的编码。这有助于快速的近似最近邻（ANN）搜索，对于多标签分类中的相似性检索很有用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deep Learning Hashing&lt;/strong&gt;：使用深度学习模型学习哈希函数也是一种常见的方法。例如，可以使用卷积神经网络（CNN）或循环神经网络（RNN）来学习将标签映射为二进制编码的函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;4-检索和评估&#34;&gt;4. 检索和评估&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;哈希编码检索&lt;/strong&gt;：一旦对样本进行了哈希处理，可以使用快速的哈希编码检索技术来查找与查询标签最相似的样本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;评估指标&lt;/strong&gt;：对于多标签哈希，常用的评估指标包括 Hamming Loss、Hamming Distance、Precision、Recall、F1 Score 等，用于衡量模型的分类准确性和性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;多标签哈希方法可以提高对于多标签数据的处理效率和准确性，尤其在大规模的多标签数据集中具有很好的应用前景。&lt;/p&gt;
+&lt;h3 id=&#34;图形掩蔽自编码器&#34;&gt;图形掩蔽自编码器&lt;/h3&gt;
+&lt;p&gt;&amp;ldquo;Graph Masked Autoencoders&amp;rdquo; 是一种用于图形数据的自编码器模型，旨在学习图形数据的低维度表示。&lt;/p&gt;
+&lt;p&gt;这个模型的主要思想是结合了自编码器（Autoencoder）的概念和图形数据的结构。自编码器是一种无监督学习算法，用于学习数据的紧凑表示，并在重建时最大程度地保留原始数据的信息。&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Graph Masked Autoencoders&amp;rdquo; 在这个基础上加入了一种“掩蔽”机制，用于处理图形数据。这个“掩蔽”机制的目的是在训练过程中限制模型只能看到部分图形数据，从而强制模型学习到更加泛化的图形特征表示。&lt;/p&gt;
+&lt;p&gt;具体来说，训练过程包含以下步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;掩蔽图形数据（Masking Graph Data）&lt;/strong&gt;：模型会随机地将一些节点或边从输入图中“掩蔽”（即隐藏），使得模型在训练时只能看到部分图形数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;编码器（Encoder）&lt;/strong&gt;：掩蔽后的图形数据通过编码器部分进行编码，将其映射到一个低维度的特征表示空间。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;解码器（Decoder）&lt;/strong&gt;：然后，模型尝试从这个低维度表示中重构原始的图形数据。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过这个过程，模型被迫学习到不同节点和边之间的潜在关系，以及如何在只看到部分数据时对图形数据进行有效的编码和解码。&lt;/p&gt;
+&lt;p&gt;这种方法的优势在于它能够提高模型对图形数据的泛化能力。因为模型只能看到部分数据，它不会过度依赖于特定的节点或边，从而可以更好地处理未见过的图形数据。&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Graph Masked Autoencoders&amp;rdquo; 的应用包括图形节点分类、图形重构、图形生成等任务。它是图神经网络（Graph Neural Networks）领域中的一种重要技术，用于学习和处理复杂的图形结构数据。&lt;/p&gt;
+&lt;h3 id=&#34;概念漂移&#34;&gt;概念漂移&lt;/h3&gt;
+&lt;p&gt;概念漂移是指机器学习模型在应用于新数据时性能下降的现象。这种现象通常发生在训练模型的数据分布与新数据的分布不同时。具体来说，概念漂移可能会导致模型在新数据上的预测准确性降低。&lt;/p&gt;
+&lt;p&gt;概念漂移可以分为几种不同类型：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;特征漂移（Feature Drift）&lt;/strong&gt;：特征漂移是指输入特征的分布在训练数据和测试数据中不同的情况。例如，训练数据中的特征范围可能与测试数据中的范围不同，这会导致模型无法准确地泛化到新数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;标签漂移（Label Drift）&lt;/strong&gt;：标签漂移是指目标变量的分布在训练数据和测试数据中不同的情况。换句话说，模型在训练数据中学到的标签分布可能与实际数据中的标签分布不同，从而影响模型的性能。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;概念漂移（Concept Drift）&lt;/strong&gt;：概念漂移是指预测变量和目标变量之间的关系在时间或数据分布上发生变化。这种情况下，模型在训练时学到的规律可能在应用到新数据时不再适用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;概念漂移是机器学习应用中一个重要的挑战，因为它可能导致模型的预测性能下降，需要采取一些方法来处理。一些应对概念漂移的方法包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;在线学习（Online Learning）&lt;/strong&gt;：使用新数据不断更新模型，使其能够适应新的数据分布。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;监督漂移检测（Supervised Drift Detection）&lt;/strong&gt;：监测模型在新数据上的表现，当性能下降时触发模型的重新训练。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;集成学习（Ensemble Learning）&lt;/strong&gt;：结合多个模型的预测结果，以减少概念漂移对整体性能的影响。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;领域适应（Domain Adaptation）&lt;/strong&gt;：通过调整模型或数据来使其适应新的数据分布。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;处理概念漂移是一个活跃的研究领域，因为许多现实世界的应用场景中数据分布经常发生变化。&lt;/p&gt;
+&lt;h3 id=&#34;k-d-tree&#34;&gt;K-D tree&lt;/h3&gt;
+&lt;p&gt;K-D 树（K-Dimensional Tree，K-Dimensional Binary Tree）是一种用于高效处理k维空间的数据结构，用于解决近似最近邻搜索（Approximate Nearest Neighbor Search）等问题。它是一种二叉树结构，用于对 k 维数据进行分割和组织，以便快速地搜索最近的邻居。&lt;/p&gt;
+&lt;h1 id=&#34;我的想法&#34;&gt;我的想法&lt;/h1&gt;
+&lt;p&gt;和之前看的ATLAS比较起来，通过mask和减小模型复杂度来实现降低开销，并且没有造成结果的损失。好像就没啥更吊的地方了吧？&lt;/p&gt;
+&lt;p&gt;加了个监督学习的步骤&lt;/p&gt;
+&lt;p&gt;嵌入阶段用了mask和图&lt;strong&gt;注意力&lt;/strong&gt;网络的技术手段，能获得质量更高，多跳敏感的嵌入。&lt;/p&gt;
+&lt;p&gt;通过检测时候通过KD树找到K个临近的embedding，然后通过相似性计算， 设立一个阈值来判断是否具有恶意。再用decoder来还原出embedding所对应的边或者节点&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>ATLAS</title>
+        <link>https://blog2.pillar.fun/p/atlas/</link>
+        <pubDate>Sat, 02 Mar 2024 20:16:17 +0800</pubDate>
+        
+        <guid>https://blog2.pillar.fun/p/atlas/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753.png" alt="Featured image of post ATLAS" /&gt;&lt;p&gt;文章可以在&lt;a class=&#34;link&#34; href=&#34;https://www.usenix.org/conference/usenixsecurity21/presentation/alsaheel&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;
+
+&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+        fill=&#34;currentColor&#34;&gt;
+&lt;/svg&gt;&lt;/span&gt;
+
+    获取&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;introduction&lt;/h2&gt;
+&lt;p&gt;APT攻击涉及长期的多个攻击步骤，其调查需要分析大量日志以确定其攻击步骤。因此提出ATLAS从现成的审计日志构建端到端攻击故事的框架。&lt;/p&gt;
+&lt;p&gt;ATLAS基于的观察：&lt;strong&gt;无论利用的漏洞和执行的有效载荷如何，不同的攻击可能具有相似的抽象攻击策略&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;ATLAS利用因果关系分析、自然语言处理和机器学习技术的新颖组合来构建&lt;strong&gt;基于序列&lt;/strong&gt;的模型，该模型从&lt;strong&gt;因果图&lt;/strong&gt;中建立攻击和非攻击行为的关键模式。&lt;/p&gt;
+&lt;p&gt;取证分析从多个主机、应用程序和网络接口收集各种审计日志。海量日志通常被离线分析或实时监控，以调试系统故障并识别复杂的威胁和漏洞。&lt;/p&gt;
+&lt;p&gt;现有方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从审计日志中构建因果依赖关系图，并使用查询系统来定位关键攻击阶段（例如，受损进程或恶意负载）。&lt;/li&gt;
+&lt;li&gt;扩展机器学习（ML）技术，从日志中提取特征/序列，以自动检测入侵和故障。&lt;/li&gt;
+&lt;li&gt;构建了通过事件关联发现不同日志事件之间关联的技术&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些方法在很大程度上无法精确定位关键攻击步骤，从而有效地突出端到端攻击故事。因此我们希望从审计日志中识别关键实体（节点），帮助网络分析师构建 APT 攻击的关键步骤。&lt;/p&gt;
+&lt;p&gt;ATLAS将自然语言处理 （NLP） 和深度学习技术集成到数据来源分析中，以识别攻击和非攻击序列。分为三个阶段&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;处理系统日志并构建自己的优化因果依赖图&lt;/li&gt;
+&lt;li&gt;通过NLP技术从因果图中构建语义增强序列（时间戳事件）&lt;/li&gt;
+&lt;li&gt;学习表示攻击语义的基于序列的模型，这有助于在推理时恢复描述攻击故事的关键攻击实体。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ATLAS不会带来额外开销，不同的审计日志可以很容易地集成到 ATLAS 日志解析器中用来构建因果图并获得精确的序列和模型&lt;/p&gt;
+&lt;p&gt;我们的方法基于：&lt;strong&gt;因果依赖关系图中不同攻击的关键步骤可能具有相似的模式&lt;/strong&gt;。这些模式可以通过NLP技术（即词形还原和词嵌入）转换为序列，将攻击和非攻击实体之间各种变化形式的关系组合在一起。它为模型提供了具有不同因果关系的更深层次的&lt;strong&gt;记忆&lt;/strong&gt;。，进而提高了序列模型从未知审计日志中识别攻击步骤的准确性。&lt;/p&gt;
+&lt;p&gt;但是这样的方法面对以下三个挑战，相应的，ATLAS采取手段来应对：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;因果图通常庞大而复杂，这使得序列构建变得困难&amp;ndash;&amp;gt;采用定制化的图优化算法来降低图的复杂度&lt;/li&gt;
+&lt;li&gt;它需要一种方法来精确构建序列，以有效地模拟合法和可疑的活动&amp;ndash;&amp;gt;提出一种从事件中提取攻击模式序列的新技术&lt;/li&gt;
+&lt;li&gt;需要一种自动化方法来识别给定的攻击症状中的攻击事件&amp;ndash;&amp;gt;通过攻击症状进行攻击调查，以恢复攻击事件，帮助全面构建攻击故事。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总的来说，ATLAS做了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;引入了 ATLAS，这是一个用于攻击故事恢复的框架，它利用自然语言处理和基于序列的模型学习技术来帮助网络分析师从审计日志中恢复攻击步骤.&lt;/li&gt;
+&lt;li&gt;提出了一种新的序列表示，通过词形还原和词嵌入来抽象攻击和非攻击语义模式。这些序列使 ATLAS 能够构建一个有效的基于序列的模型，以识别构成攻击故事的攻击事件&lt;/li&gt;
+&lt;li&gt;我们在受控环境中通过其真实世界报告开发的 10 种现实 APT 攻击中验证了 ATLAS。结果表明，ATLAS能够高精度、最小开销地识别攻击故事的关键攻击条目。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;motivation-and-definitions&#34;&gt;Motivation and Definitions&lt;/h2&gt;
+&lt;p&gt;整篇论文中设定了一种攻击场景：攻击者通过电子邮件向企业中的目标用户发送恶意Microsoft Word文件（contract.doc）。用户被欺骗使用 Firefox 从 Gmail 下载和打开 Word 文件。该文档包含一段恶意代码，该代码利用易受攻击的 Microsoft Word （winword.exe） 并发出 HTTPS 请求以下载恶意 Microsoft HTA 脚本 （template.hta）。此脚本执行恶意 Visual Basic 脚本 （maintenance.vbs），其中包含安装后门以泄露敏感文件的 PowerShell 命令。最后，攻击者横向移动到其他主机。&lt;/p&gt;
+&lt;p&gt;调查这个场景通常从从审核日志中收集有关攻击的数据开始，例如系统事件、DNS 查询和浏览器事件。攻击调查工具通常以因果图（或来源图）的形式表示审核日志，该图用作取证工具，使安全调查人员能够执行根本原因分析，并更好地了解攻击的性质。大多数先前的研究将因果图中的攻击故事恢复为子图，其中该图中的节点和边与攻击症状具有因果关系。图 1 （a） 显示了由这些工具生成的示例攻击场景的因果关系图。红色虚线箭头表示从中启动攻击调查的警报事件（α，可疑网络连接），红色虚线矩形区域表示已恢复的攻击子图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1709629615797.png&#34;
+	width=&#34;1739&#34;
+	height=&#34;810&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1709629615797_hu7294ec030933aa612c8e36d38b404b7e_254270_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1709629615797_hu7294ec030933aa612c8e36d38b404b7e_254270_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709629615797&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;214&#34;
+		data-flex-basis=&#34;515px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;但是即使应用了不同的图优化技术，这样的图仍然非常大，并且在实践中难以解释。这些工作很大程度上依赖于启发式或硬编码&lt;strong&gt;规则&lt;/strong&gt;，这些&lt;strong&gt;规则&lt;/strong&gt;的开发和维护非常耗时。&lt;strong&gt;领域知识专家&lt;/strong&gt;需要不断更新这些规则，以涵盖新开发的攻击。而ATLAS只需要更多的攻击训练数据来学习新的攻击模式。&lt;/p&gt;
+&lt;p&gt;其他人提出了&lt;strong&gt;基于异常的方法&lt;/strong&gt;，该方法可以学习用户行为，并将任何偏离该行为的行为识别为异常。虽然基于异常的方法可以识别未知攻击，但随着用户行为随时间的变化，它们可能会出现许多&lt;strong&gt;误报&lt;/strong&gt;。为了解决这个问题，ATLAS旨在学习攻击模式和用户行为，以确定两者之间的异同。&lt;/p&gt;
+&lt;p&gt;与ATLAS类似，基于学习的方法使用ML算法从日志中对攻击事件进行建模。虽然这些方法可以有效地减少日志条目的数量，但仍需要&lt;strong&gt;大量的手动工作&lt;/strong&gt;才能找到攻击事件的高级视图。为了解决这个问题，ATLAS调查旨在识别攻击&lt;strong&gt;关键实体&lt;/strong&gt;（节点），使其能够自动识别相关攻击事件的子集。&lt;/p&gt;
+&lt;p&gt;APT攻击可以概括为从审计日志中获取的攻击阶段的&lt;strong&gt;时间序列，&lt;/strong&gt; 例如图1（b）中所示的步骤1-14，类似于自然语言中描述的攻击步骤。这些攻击步骤通常适合在特定上下文中作为表示攻击语义的唯一序列，这可以与审核日志中的正常活动区分开来。&lt;/p&gt;
+&lt;p&gt;ATLAS 在推理时给定攻击症状节点（警报事件α包含的恶意 IP 地址），提取一组与症状节点关联的候选序列，并使用基于序列的模型来识别序列中的哪些节点参与了攻击。此后，它使用已识别的攻击节点来构建攻击故事，其中包括已识别的攻击节点的事件，从而使攻击调查更加简洁，更容易被调查人员解读。&lt;/p&gt;
+&lt;p&gt;图 1 （c） 说明了 ATLAS 为激励示例恢复的攻击故事，其中包括示例攻击的完整关键攻击步骤。此过程大大减少了从大型因果图中进行攻击调查的手动工作，该图排除了对攻击没有影响的事件，并减少了调查大型因果图所需的时间。&lt;/p&gt;
+&lt;h3 id=&#34;definition&#34;&gt;definition&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753.png&#34;
+	width=&#34;847&#34;
+	height=&#34;474&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1709635161753&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;178&#34;
+		data-flex-basis=&#34;428px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;因果图G：因果图是从审计日志中提取的数据结构，通常用于来源跟踪，指示主题（例如，流程）和对象（例如，文件或连接）之间的因果关系。因果图由节点组成，节点代表主体和客体，边缘连接，边缘代表主体和客体之间的动作（例如，读取或连接）。我们在这里考虑一个有向循环因果图，它的边缘从主体指向对象。&lt;/p&gt;
+&lt;p&gt;实体e：实体是从因果图中提取的唯一系统主体或对象，在其中它表示为节点。我们考虑的实体包括进程、文件和网络连接（即IP地址和域名）&lt;/p&gt;
+&lt;p&gt;邻域图。给定因果图，如果两个节点u和v通过一条边连接，则称它们为邻居。节点 n 的邻域是由节点 n 和连接相邻节点与节点 n 的边组成的 G 子图。类似地，给定一组节点 {n1,n2,&amp;hellip;,nn}，我们提取一个统一的邻域图，其中包括将它们连接到相邻节点的所有节点和边。&lt;/p&gt;
+&lt;p&gt;事件：事件ε是一个四元组（src、action、dest、t），源 （src） 和目标 （dest） 是与动作相关的两个实体。t 是显示事件发生时间的事件时间戳。给定一个实体 e，可以从 e 邻域图中提取其事件，其中包括与 e 的邻居相关的所有操作。例如，给定一个实体Firefox.exe和一个邻域图，其中包含从节点 Firefox.exe 到节点 Word.doc 的操作 open 和时间戳 t，那么 （Firefox.exe， open， Word.doc， t） 是 Firefox 进程在时间 t 打开 Word 文件的事件&lt;/p&gt;
+&lt;p&gt;序列：给定一个实体 e，可以从因果图中提取序列 S。序列 S 按时间顺序包括实体 e 的邻域图的所有事件，使得 S{e} ：= {ε1， ε2， . . . ， εn}。同样，如果给定一组实体，我们可以从它们的统一邻域图中提取一个包含所有事件的序列。&lt;/p&gt;
+&lt;p&gt;图 2 （a） 说明了具有六个实体 {eA， eB， . . . ， eF} 的因果图。图 2 （b） 显示了 eB 的邻域图，其中包括节点 B、相邻节点 {A， C} 及其连接边 {EAB， EBC}。类似地，实体集 {eB， eC} 的邻域图包括节点 {A， B， C， D， E} 和边 {EAB， EBC， ECD， ECE}，如图 2 （b） 所示。实体 eB 的事件为 εAB =&amp;lt; eA， a1， eB， t1 &amp;gt; 和 εBC =&amp;lt; eB， a2， eC， t2 &amp;gt;如图 2 （c） 所示。图 2 （d） 显示了实体集 {eB， eC} 的事件序列。&lt;/p&gt;
+&lt;h2 id=&#34;method&#34;&gt;Method&lt;/h2&gt;
+&lt;h3 id=&#34;序列生成&#34;&gt;序列生成&lt;/h3&gt;
+&lt;p&gt;首先从日志中提取出平台无关的因果图（图缩减）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;消除攻击节点无法访问到的所有节点和边缘【这缩的有点狠啊】&lt;/li&gt;
+&lt;li&gt;从审计日志中构建具有非重复边的因果图，构建的因果图中不包含重复的边（边属性相同且首尾节点相同）&lt;/li&gt;
+&lt;li&gt;如果某些节点和边引用相同类型的事件，则 ATLAS 会合并它们，合成的边的时间戳按原始边中最早的。
+&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716023699194.png&#34;
+	width=&#34;798&#34;
+	height=&#34;322&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716023699194_hud84dbde1e7c0ad0ed8876d9717f7ce09_69072_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1716023699194_hud84dbde1e7c0ad0ed8876d9717f7ce09_69072_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716023699194&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;247&#34;
+		data-flex-basis=&#34;594px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;构造序列：&lt;/p&gt;
+&lt;p&gt;将因果图转换为标记为“攻击”或“非攻击”的序列，并将词形还原和选择性采样扩展到序列构造中，以有效地抽象攻击和非攻击模式，最后，使用词嵌入将序列转换为实数向量，并通过 LSTM 学习基于序列的模型。&lt;/p&gt;
+&lt;p&gt;对于攻击节点：&lt;/p&gt;
+&lt;p&gt;对于一个图中的攻击节点，构建攻击节点子集，子集节点数$\geq$2，因此对于n个攻击节点的集合，有$\sum_{i=2}^k C_n^i$个子集，这个方法在面对攻击节点数量很多的时候复杂度会爆炸，但是攻击者一般会为了隐藏而最小化攻击节点数量【这样每个攻击子图都得比较小才合适，怪不得图缩减缩得这么狠】。&lt;/p&gt;
+&lt;p&gt;1、对于攻击实体中的每个实体，ATLAS提取其在攻击子图中的邻域图，即捕捉与攻击节点节点有因果关系的实体，2、从邻域图中获取按照时间戳排序的攻击事件。如果源节点或目标节点代表攻击实体，则事件被标记为攻击。3、最后，ATLAS 将提取的时间戳排序的攻击事件转换为序列，并在以下情况下将其标记为攻击：（a） 它仅包含攻击事件， （b）它包括实体子集的所有攻击事件。【还是在缩减，这样攻击序列理论上是最小的】&lt;/p&gt;
+&lt;p&gt;对于非攻击节点：&lt;/p&gt;
+&lt;p&gt;意义不是很大，主要学习攻击序列。同时，对于一个有k个攻击节点和k&amp;rsquo;个非攻击节点的因果图，会有$\sum^{k}_{i=1} C^i_k.k&amp;rsquo;$(攻击节点的子集（子集节点数不必$\geq$ 2)+非攻击节点的全集)。提取非攻击序列的方法和提取攻击序列的方法的1、2步骤一样，3、如果序列与任何提取的攻击序列不匹配，则 ATLAS 会将其标记为非攻击，否则，处理后的序列将被丢弃。&lt;/p&gt;
+&lt;p&gt;下面这张图是例子&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716026032629.png&#34;
+	width=&#34;1518&#34;
+	height=&#34;402&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716026032629_hu7fd7b8e71a58997854afb105ce0a1630_114728_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1716026032629_hu7fd7b8e71a58997854afb105ce0a1630_114728_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716026032629&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;377&#34;
+		data-flex-basis=&#34;906px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;序列还原&#34;&gt;序列还原&lt;/h3&gt;
+&lt;p&gt;ATLAS使用&lt;strong&gt;词形还原&lt;/strong&gt;化将序列转换为表示序列模式的广义文本，以便进行语义解释。&lt;/p&gt;
+&lt;p&gt;表1显示了 ATLAS 用于抽象序列中的实体和操作的四种不同的词汇类型以及每种类型中的词汇。词汇表总共包括 30 个单词，能够将单词的&lt;strong&gt;屈折形式&lt;/strong&gt;和&lt;strong&gt;派生形式&lt;/strong&gt;简化为共同的基本形式。词汇根据单词的细粒度语义分为四种类型：进程、文件、网络和动作。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716026181025.png&#34;
+	width=&#34;772&#34;
+	height=&#34;242&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/atlas/ATLAS/1716026181025_hu59fb008fe5d3dbeea8565b3f1ddc5a1c_33371_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/atlas/ATLAS/1716026181025_hu59fb008fe5d3dbeea8565b3f1ddc5a1c_33371_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1716026181025&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;319&#34;
+		data-flex-basis=&#34;765px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ATLAS解析每个序列，查找实体并将每个实体映射到相应的词汇表。词形还原过程后的序列被转换为“类似句子”的中间表示，其中包含广义序列模式的完整语义。&lt;/p&gt;
+&lt;p&gt;我们注意到，在对序列进行词形还原后，可能会发生攻击和非攻击序列的意外重复。为了使用非重复序列训练模型，我们丢弃了所有与攻击序列重叠的非攻击序列，然后再将其传递到&lt;strong&gt;选择性序列采样&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;选择性序列采样&#34;&gt;选择性序列采样&lt;/h3&gt;
+&lt;p&gt;构建的攻击和非攻击序列的数量可能不平衡。原因是日志条目中的攻击实体通常少于非攻击实体。例如，我们在通过分析审计日志进行评估时发现，攻击实体的平均数量为 61，而非攻击实体的平均数量约为 21K。为了平衡训练数据集，ATLAS首先对具有一定相似性阈值的非攻击序列进行&lt;strong&gt;欠采样&lt;/strong&gt;。然后，使用过采样机制随机&lt;strong&gt;变异&lt;/strong&gt;攻击序列，直到它们的总数达到相同数量。不能直接采取复制的过采样因为会造成过拟合。&lt;/p&gt;
+&lt;h4 id=&#34;欠采样&#34;&gt;欠采样&lt;/h4&gt;
+&lt;p&gt;通过Levenshtein Distance计算相似性，用80%作为阈值。复杂度为$O(n^2)$&lt;/p&gt;
+&lt;h4 id=&#34;过采样&#34;&gt;过采样&lt;/h4&gt;
+&lt;p&gt;对于攻击序列，ATLAS会随机将一种词汇类型变异为另一种相同类型的词汇。&lt;/p&gt;
+&lt;h3 id=&#34;序列学习&#34;&gt;序列学习&lt;/h3&gt;
+&lt;p&gt;通过&lt;strong&gt;词表示嵌入&lt;/strong&gt;将词形还原序列转换为表示序列模式的广义文本（30个词-&amp;gt;4type)【对……对吗？】，然后用了多种方法生成嵌入向量并在后文进行了比较。&lt;/p&gt;
+&lt;p&gt;通过LSTM和CNN来进行序列学习&lt;/p&gt;
+&lt;h3 id=&#34;攻击还原&#34;&gt;攻击还原&lt;/h3&gt;
+&lt;p&gt;遍历所有节点，来判断是否是攻击节点，O(n)复杂度。&lt;/p&gt;
+&lt;p&gt;为了了识别未知的攻击实体，ATLAS首先从因果图中获取所有未知实体，构建只包含一个未知实体的子集。然后，ATLAS 将攻击实体附加到每个子集;因此，每个子集包含所有已知的攻击症状实体和一个未知实体。ATLAS 使用这些子集从因果图中提取序列，LSTM 模型用于通过预测分数预测每个序列是攻击还是非攻击。此过程通过检查这两个实体的时间顺序事件是否形成模型先前学习的攻击模式来识别未知实体是否与攻击症状实体密切相关。&lt;/p&gt;
+&lt;p&gt;ATLAS 攻击故事恢复的目标是从攻击调查阶段识别与已识别攻击实体关联的攻击事件。ATLAS提取已识别攻击实体的邻域图，并将所有包含的事件作为攻击事件获取。这些事件按其时间戳进一步排序，作为恢复的攻击故事。ATLAS 的有效性不受跨多个主机执行的攻击的影响，它只需要对来自单个主机的审计日志执行分析即可发现所有攻击实体&lt;/p&gt;
+&lt;h2 id=&#34;工作亮点&#34;&gt;工作亮点&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;新的图缩减方法来构建因果图&lt;/li&gt;
+&lt;li&gt;通过因果图生成序列用于学习（词型还原+词表示嵌入+过采样&amp;amp;欠采样)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;我的想法&#34;&gt;我的想法&lt;/h2&gt;
+&lt;p&gt;图缩减方法是没见过的，按照文章的结果，这种图缩减方法也很值得参考，一顿猛缩减可以导致每个小子图的学习代价比较小（或者说因为序列长度有限制吧？)。把图学习转成序列识别的方法很有意思，这样直接就不用使用图学习了。但是感觉他这个识别是否攻击节点计算量也不小，O(n)是n*100s感觉也没啥用啊？抽时间复现下看看。&lt;/p&gt;
+&lt;h2 id=&#34;补充知识&#34;&gt;补充知识&lt;/h2&gt;
+&lt;h3 id=&#34;屈折形式inflectional-forms和派生形式derivational-forms&#34;&gt;屈折形式（Inflectional Forms）和派生形式（Derivational Forms）&lt;/h3&gt;
+&lt;p&gt;屈折形式是指单词在不同语法环境下的形式变化，这种变化不改变单词的基本词义或词类。屈折形式主要用于表示语法信息，如时态、数、格、性、比较级等。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;walk -&amp;gt; walked -&amp;gt; walking&lt;/li&gt;
+&lt;li&gt;book -&amp;gt; books&lt;/li&gt;
+&lt;li&gt;big -&amp;gt; bigger -&amp;gt; biggest&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;派生形式是通过添加前缀或后缀来改变单词的词性或基本词义，生成新的单词的过程。派生通常会改变单词的基本意义和/或词类。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;clear (清楚的) -&amp;gt; unclear (不清楚的)&lt;/li&gt;
+&lt;li&gt;happy (形容词) -&amp;gt; happiness (名词)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;levenshtein-distance&#34;&gt;Levenshtein Distance&lt;/h3&gt;
+&lt;p&gt;Levenshtein Distance，也称为编辑距离（Edit Distance），是一种衡量两个字符串之间差异的度量方法。它计算将一个字符串转换为另一个字符串所需的最少单字符编辑操作次数，这些操作包括插入（insertion）、删除（deletion）和替换（substitution）。Levenshtein Distance广泛应用于文本处理、拼写检查、语音识别、DNA序列比对等领域。它可以帮助确定两个字符串的相似度，或者在搜索时提供近似匹配。&lt;/p&gt;
+&lt;p&gt;{{ &lt;code&gt;&amp;lt;heatmap&amp;gt;&lt;/code&gt; }}&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>KAIROS</title>
+        <link>https://blog2.pillar.fun/p/kairos/</link>
+        <pubDate>Sat, 02 Mar 2024 20:15:55 +0800</pubDate>
+        
+        <guid>https://blog2.pillar.fun/p/kairos/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/kairos/KAIROS/1715250405508.png" alt="Featured image of post KAIROS" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语&lt;/h2&gt;
+&lt;p&gt;SP24&lt;/p&gt;
+&lt;p&gt;doi is &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2308.05034&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;here&lt;/a&gt;
+
+&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+        fill=&#34;currentColor&#34;&gt;
+&lt;/svg&gt;&lt;/span&gt;
+
+    &lt;/p&gt;
+&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
+&lt;p&gt;溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。&lt;/p&gt;
+&lt;h2 id=&#34;senario&#34;&gt;senario&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/kairos/KAIROS/1715250405508.png&#34;
+	width=&#34;1756&#34;
+	height=&#34;426&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1715250405508&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;412&#34;
+		data-flex-basis=&#34;989px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。&lt;/p&gt;
+&lt;h2 id=&#34;challenge&#34;&gt;challenge&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;不可知性：有没见过的攻击，需要模型具有泛化性&lt;/li&gt;
+&lt;li&gt;攻击重建：很难通过溯源图得到并重现完整的攻击流程&lt;/li&gt;
+&lt;li&gt;及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;method&#34;&gt;Method&lt;/h2&gt;
+&lt;p&gt;KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的&lt;strong&gt;深度图学习&lt;/strong&gt;和&lt;strong&gt;社区发现&lt;/strong&gt;， 可以做到&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在事先不了解任何特定攻击特征的情况下检测异常系统行为。&lt;/li&gt;
+&lt;li&gt;根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;下图描述了KAIROS的架构，由四个主要组件组成：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/kairos/KAIROS/1715251388567.png&#34;
+	width=&#34;1732&#34;
+	height=&#34;786&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/kairos/KAIROS/1715251388567_hua06a32d18c9f2c33ed34385a24464937_264162_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/kairos/KAIROS/1715251388567_hua06a32d18c9f2c33ed34385a24464937_264162_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1715251388567&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;528px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;图的构建和表示。
+KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现的边。KAIROS 考虑&lt;strong&gt;三种类型的内核对象和九种类型的交互&lt;/strong&gt;（即系统事件）。 KAIROS 将每个事件转换为有向、带时间戳的边，其中源节点代表事件的主体，目标节点代表所作用的对象。使用&lt;strong&gt;基于节点属性的分层特征哈希技术&lt;/strong&gt;对节点的特征进行编码（但是感觉是先层次花，再用FeatureHasher，感觉也没有多次hash，而且他的形式化表达里映射正负的$\mathcal{H}$也没看到啊。)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/kairos/KAIROS/1715253831664.png&#34;
+	width=&#34;930&#34;
+	height=&#34;186&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/kairos/KAIROS/1715253831664_hu38a6058028f39050fdcd8295286cf12f_31842_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/kairos/KAIROS/1715253831664_hu38a6058028f39050fdcd8295286cf12f_31842_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1715253831664&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;500&#34;
+		data-flex-basis=&#34;1200px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;图学习。
+当图中出现新的边缘，KAIROS 使用编码器-解码器架构来重建边缘。编码器将边缘周围的邻域结构和邻域中节点的状态作为输入。节点的状态是与每个节点关联的特征向量，描述节点邻域的变化历史。然后，解码器根据编码器输出的边缘嵌入重建边缘。原始边缘和重建边缘之间的差异称为重建误差。在训练阶段，KAIROS同时训练编码器和解码器，以最大限度地减少良性边缘的重建误差。在部署过程中，各个边缘的重建误差被用作异常检测和调查的基础。此外，KAIROS更新新边的源节点和目标节点的状态。在encoder-decoder结构中，使用基于节点属性的分层特征哈希技术对节点的特征进行编码，利用时间图网络（TGN）对边进行嵌入，通过新的边（事件）动态更新节点特征，可以有效地将时序特征保存在节点特征中，同时边的嵌入也基于邻域内节点的特征向量。这样可以有效地保存事件的时序信息（感觉这个想法还挺常见的，就是要获取时间相关的特征)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;异常检测。
+KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，KAIROS根据边的重建误差在每个时间窗口中识别一组可疑节点。具有重叠可疑节点的两个时间窗口被排在一起。当新的时间窗口添加到队列时，KAIROS 也会根据重建错误更新队列的异常分数。如果分数超过阈值，KAIROS会认为队列异常并触发警报。因此，KAIROS以时间窗口的间隔定期执行异常检测。在图中，KAIROS 检测到由时间窗口 1、2 和 4 组成的异常队列。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;异常调查。
+为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;补充知识&#34;&gt;补充知识&lt;/h2&gt;
+&lt;h3 id=&#34;分层特征哈希&#34;&gt;分层特征哈希&lt;/h3&gt;
+&lt;p&gt;在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。&lt;/p&gt;
+&lt;p&gt;分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。&lt;/p&gt;
+&lt;p&gt;分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。&lt;/p&gt;
+&lt;h3 id=&#34;tgn&#34;&gt;TGN&lt;/h3&gt;
+&lt;p&gt;TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。&lt;/p&gt;
+&lt;p&gt;TGN对边的嵌入主要涉及以下步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;节点嵌入更新&lt;/strong&gt;：当新的边事件（如用户间的交互）发生时，TGN会根据新的边事件信息更新对应节点的嵌入。具体来说，TGN采用了记忆化的节点嵌入更新机制，即根据节点的历史嵌入和新的边事件信息共同决定节点的新的嵌入。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;边嵌入生成&lt;/strong&gt;：在节点嵌入更新后，TGN会生成新的边的嵌入。具体来说，边的嵌入是由连接该边的两个节点的嵌入和边事件的时间信息共同决定的。例如，一种简单的方法是将两个节点的嵌入和边事件的时间信息拼接起来，然后通过一个全连接网络生成边的嵌入。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;时间编码器&lt;/strong&gt;：为了捕获边事件的时间信息，TGN引入了一个时间编码器，它可以将边事件的时间戳编码为一个连续的向量。在生成边的嵌入时，会将这个时间向量和节点的嵌入一起考虑。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过以上步骤，TGN能够处理时间图中的边事件，并为每个边事件生成一个嵌入向量，这个嵌入向量同时考虑了边事件的拓扑结构信息和时间信息。这使得TGN能够适应图的动态变化，并进行各种预测任务。&lt;/p&gt;
+&lt;h2 id=&#34;我的评价&#34;&gt;我的评价&lt;/h2&gt;
+&lt;p&gt;贡献主要有：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;提出了PIDS的四个重要指标&lt;/li&gt;
+&lt;li&gt;提出了新的三对象九交互的建图模式（但是没怎么证明有效性)&lt;/li&gt;
+&lt;li&gt;提出了时间窗口的社区发现的攻击重建方法，比较紧凑，会更方便溯源人员重建攻击。&lt;/li&gt;
+&lt;li&gt;实验做的很丰富，包括对不同数据集的分析，以及在相应的数据集上和其他的现有方法的对比做的很好。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我的评价是，这篇文章最厉害的是实验部分，他把DARPA的数据集都做了检测，其他的感觉中规中矩也就，但是他能发SP你有意见吗？&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>TFE GNN</title>
+        <link>https://blog2.pillar.fun/p/tfe-gnn/</link>
+        <pubDate>Fri, 16 Feb 2024 16:28:03 +0800</pubDate>
+        
+        <guid>https://blog2.pillar.fun/p/tfe-gnn/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png" alt="Featured image of post TFE GNN" /&gt;&lt;h1 id=&#34;abstract&#34;&gt;abstract&lt;/h1&gt;
+&lt;p&gt;目的：实现加密流量[VPN、tor]的分类&lt;/p&gt;
+&lt;p&gt;现有局限性：只能提取低级别特征，基于统计的方法对&lt;strong&gt;短流&lt;/strong&gt;无效，对header和payload采取&lt;strong&gt;不平等&lt;/strong&gt;的处理，难以挖掘字节之间的潜在相关性。&lt;/p&gt;
+&lt;p&gt;提出方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;基于逐点互信息(PMI)的字节级流量图构建方法&lt;/li&gt;
+&lt;li&gt;基于图神经网络(TFE-GNN)进行特征提取的时序融合编码器模型&lt;/li&gt;
+&lt;li&gt;引入了一个双嵌入层、一个基于GNN的流量图编码器以及一个交叉门控特征融合机制。[分别嵌入header和payload，然后通过融合实现数据增强]&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;结果：两个真实数据集（WWT和ISCX）优于SOTA&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png&#34;
+	width=&#34;1695&#34;
+	height=&#34;735&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708314808397&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;553px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;introduction&lt;/h1&gt;
+&lt;p&gt;加密流量保存用户隐私同时也给了攻击者藏身的机会。&lt;/p&gt;
+&lt;p&gt;传统的数据包检测（DPI）挖掘数据包中的潜在模式或关键词，面对加密数据包时&lt;strong&gt;耗时&lt;/strong&gt;且准确性低。&lt;/p&gt;
+&lt;p&gt;由于动态端口的应用，基于端口的工作不再有效。&lt;/p&gt;
+&lt;p&gt;通过数据流的统计特征（e.g.数据包长度的平均值）采用机器学习分类器（e.g.随机森林）来实现分类的方法，需要手工制作的特征工程，并且在某些情况下可能会由于不可靠/不稳定的fow级统计信息而失败。与长流相比，短流的统计特征有更大的偏差（e.g.长度通常服从长尾分布）意味着不可靠的统计特征普遍存在。我们使用&lt;strong&gt;数据包字节&lt;/strong&gt;而非统计特征。&lt;/p&gt;
+&lt;p&gt;GNN 可以识别图中隐含的特定拓扑模式，以便我们可以用预测标签对每个图进行分类。目前大多数GNN根据数据包之间的相关性来构建图，这实际上是统计特征的另一种使用形式，导致上述问题。&lt;/p&gt;
+&lt;p&gt;用了数据包字节的方法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;平等地对待header和payload，忽略了它们之间的含义差异。&lt;/li&gt;
+&lt;li&gt;原始字节利用不足，只是将数据包视为节点，将原始字节作为节点特征，不能充分利用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本文提出了一种基于逐点互信息（PMI）的字节级图构建方法，一种基于图神经网络(TFE-GNN)进行特征提取的时序融合编码器模型。通过挖掘字节之间的相关性来构建流量图，用作TFE-GNN的输入。&lt;/p&gt;
+&lt;p&gt;TFE-GNN由三大子模块组成（即双嵌入、流量图编码器和交叉门控特征融合机制）。双嵌入层分别嵌入header和payload；图编码器将图编码为高维图向量；交叉门控特征融合机制对header和payload的图向量融合，得到数据包的整体表示向量。&lt;/p&gt;
+&lt;p&gt;使用端到端训练（从输入数据到最终输出直接进行训练，而无需将任务分解为多个独立的阶段或模块），采用时间序列模型，获得下游任务的预测结果。&lt;/p&gt;
+&lt;p&gt;实验使用了自收集的WWT（WhatsApp、WeChat、Telegram）和公开的ISCX数据集，与十几个baseline比较得出TFE-GNN效果最好。&lt;/p&gt;
+&lt;h1 id=&#34;preliminary&#34;&gt;preliminary&lt;/h1&gt;
+&lt;p&gt;1、图的定义&lt;/p&gt;
+&lt;p&gt;G = { $V,\varepsilon,X$}表示一个图，V是节点集合，$\varepsilon$是边集，X是节点的初始特征矩阵（每个节点的特征向量拼起来）&lt;/p&gt;
+&lt;p&gt;$A$是大小为$\lvert V \lvert * \lvert V \lvert$图的邻接矩阵&lt;/p&gt;
+&lt;p&gt;$N(v)$是节点v相邻的节点&lt;/p&gt;
+&lt;p&gt;$d_l$是第l层的嵌入维度&lt;/p&gt;
+&lt;p&gt;TS(traffic segment)=[$P_{t_1},P_{t_2}&amp;hellip;P_{t_n}$]是一段时间内的数据包的集合。$P_{t_i}$是时间戳为$t_i$的数据包，n是流量序列的长度。$t_1,t_2$是流量序列的开始和结束时间。&lt;/p&gt;
+&lt;p&gt;2、加密流量分类&lt;/p&gt;
+&lt;p&gt;M是训练样本数量&lt;/p&gt;
+&lt;p&gt;N是分类类别&lt;/p&gt;
+&lt;p&gt;$bs^j_i=[b^{ij}_1, b^{ij}_2,&amp;hellip;,b^{ij}_m]$，m是字节序列长度，$b^{ij}_k$是第i个流量样本第j个字节序列的第k个字节&lt;/p&gt;
+&lt;p&gt;$s_i=[bs^i_1,bs^i_2,&amp;hellip;,bs^i_n)]$，n是序列长度$bs^i_j$为第i个样本的第j个字节序列，可以理解为就是TS&lt;/p&gt;
+&lt;p&gt;3、 MP-GNN&lt;/p&gt;
+&lt;p&gt;MP-GNN 是 Message Passing Graph Neural Network（消息传递图神经网络）的简称，节点嵌入向量可以通过特定的聚合策略将节点的嵌入向量集成到邻域中，从而迭代更新节点嵌入向量。&lt;/p&gt;
+&lt;p&gt;第l层 MP-GNN 可以形式化为两个过程&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876.png&#34;
+	width=&#34;1025&#34;
+	height=&#34;243&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708310294876&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;421&#34;
+		data-flex-basis=&#34;1012px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中$h^{(l)}_u,h^{(l)}_v$是节点u和v在第l层的嵌入向量，$m^{(l)}_u$是l层中节点u的计算信息，$MSG^{(l)}$是消息计算函数，$AGG^{(l)}$是消息聚合函数，$\theta$是他们对应的参数&lt;/p&gt;
+&lt;h1 id=&#34;methodology&#34;&gt;methodology&lt;/h1&gt;
+&lt;h2 id=&#34;字节级流量图构造-byte-level-traffic-graph-construction&#34;&gt;字节级流量图构造 Byte-level Traffic Graph Construction&lt;/h2&gt;
+&lt;p&gt;节点：某一个字节，注意相同的字节值共享同一个节点，因此节点个数不会超过256，这样能够保持图在一定的规模下，不会太大。&lt;/p&gt;
+&lt;p&gt;字节之间的相关性表示：采用点互信息（PMI）来建模两个字节之间的相似性，字节i和字节j的相似性用$PMI(i,j)$表示。&lt;/p&gt;
+&lt;p&gt;边：根据PMI值来构造边，PMI值为正：表示字节之间的语义相关性高；而PMI值为零或负值：表示字节之间的语义相关性很小或没有。因此，我们只在PMI值为正的两个字节之间创建一条边。&lt;/p&gt;
+&lt;p&gt;节点特征：每个节点的初始特征为字节的值，维度为1，范围为[0,255]&lt;/p&gt;
+&lt;p&gt;图构建：由于$PMI(i,j)=PMI(j,i)$，因此该图是个无向图。&lt;/p&gt;
+&lt;h3 id=&#34;pmi&#34;&gt;PMI&lt;/h3&gt;
+&lt;p&gt;PMI：是一种用于衡量两个事件之间相关性的统计量。&lt;/p&gt;
+&lt;p&gt;$$
+PMI(A, B) = \log \frac{P(A, B)}{P(A) \cdot P(B)}
+$$&lt;/p&gt;
+&lt;p&gt;值大于零，则表示 A 和 B 之间有正相关性；如果值等于零，则表示它们之间没有关联；如果值小于零，则表示它们之间有负相关性。&lt;/p&gt;
+&lt;h2 id=&#34;双嵌入-dual-embedding&#34;&gt;双嵌入 dual embedding&lt;/h2&gt;
+&lt;p&gt;原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用&lt;strong&gt;两个不共享参数的嵌入层&lt;/strong&gt;的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$&lt;/p&gt;
+&lt;h2 id=&#34;交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion&#34;&gt;交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion&lt;/h2&gt;
+&lt;p&gt;因为要double embedding，所以encoder也要两个。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093.png&#34;
+	width=&#34;393&#34;
+	height=&#34;831&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708314903093&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;47&#34;
+		data-flex-basis=&#34;113px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这里堆叠了N个GraphSAGE&lt;/p&gt;
+&lt;h3 id=&#34;graphsage&#34;&gt;GraphSAGE&lt;/h3&gt;
+&lt;p&gt;对于图 G 中的每个节点 v，GraphSAGE 通过使用节点 v 的度数归一化其嵌入向量，计算来自每个相邻节点的消息。&lt;/p&gt;
+&lt;p&gt;通过逐元素均值运算（element-wise mean operation）计算所有相邻节点$N(v)$的整体消息，并通过串联运算聚合整体消息以及节点v的嵌入向量&lt;/p&gt;
+&lt;p&gt;对节点A的嵌入向量进行非线性变换，完成一个GraphSAGE层的正向过程&lt;/p&gt;
+&lt;p&gt;GraphSAGE的消息聚合和计算可以描述为&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539.png&#34;
+	width=&#34;904&#34;
+	height=&#34;265&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708315615539&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;341&#34;
+		data-flex-basis=&#34;818px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;$m^{(l)}_{N(v)}$是将v节点所有临接节点的上一层嵌入向量求平均的结果&lt;/p&gt;
+&lt;p&gt;$h_v^{(l)}$是本层v节点的嵌入向量，$\sigma(\cdot)$是激活函数，$CONCAT(\cdot)$是连接函数。然后通过BatchNorm对h进行批量归一化&lt;/p&gt;
+&lt;p&gt;激活函数选择PReLU，将每个负元素值按不同因子缩放，不但引入了非线性，还由于每个负元素的缩放因子的不同而起到类似于注意力机制的作用。&lt;/p&gt;
+&lt;p&gt;由于深度GNN模型中的过度平滑问题，我们最多只堆叠GraphSAGE4层，并将输出拼接起来。这与跳转知识网络（JKL）相类似&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852.png&#34;
+	width=&#34;774&#34;
+	height=&#34;90&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708316388852&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;860&#34;
+		data-flex-basis=&#34;2064px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最后，通过对每个节点的最终嵌入使用meanpooling来得到图嵌入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596.png&#34;
+	width=&#34;474&#34;
+	height=&#34;170&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708316889596&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;278&#34;
+		data-flex-basis=&#34;669px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;用$g_h,g_p$表示header和payload得到的图嵌入&lt;/p&gt;
+&lt;h2 id=&#34;cross-gated-feature-fusion&#34;&gt;Cross-gated Feature Fusion&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715.png&#34;
+	width=&#34;719&#34;
+	height=&#34;817&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708316997715&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;211px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;交叉门控特征融合，这个模块的目标是将$g_h,g_p$融合，获取门控矢量$s_h,s_p$。&lt;/p&gt;
+&lt;p&gt;如上图，我们用了两个filter，每个filter的组成都是线性层、PReLU、线性层、Sigmoid。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446.png&#34;
+	width=&#34;955&#34;
+	height=&#34;260&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708317405446&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;367&#34;
+		data-flex-basis=&#34;881px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中w和b分别是线性层的weight和bias。z 是数据包字节的整体表示向量。&lt;/p&gt;
+&lt;h2 id=&#34;端到端的下游任务训练-end-to-end-training-on-downstream-tasks&#34;&gt;端到端的下游任务训练 End-to-End Training on Downstream Tasks&lt;/h2&gt;
+&lt;p&gt;由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。&lt;/p&gt;
+&lt;p&gt;这里我们使用双层Bi-LSTM作为baseline，他的输出喂给一个带PReLU的两层线性分类器，使用交叉熵作为损失函数&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707.png&#34;
+	width=&#34;1034&#34;
+	height=&#34;86&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708318165707&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;1202&#34;
+		data-flex-basis=&#34;2885px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;n是长度，CE是交叉熵，y是ground truth（标注数据的分类标签）&lt;/p&gt;
+&lt;p&gt;实验部分还有一个用transformer的&lt;/p&gt;
+&lt;h1 id=&#34;experiments&#34;&gt;experiments&lt;/h1&gt;
+&lt;p&gt;介绍了实验设置，在很多数据集和baseline上做了对比实验，&lt;strong&gt;做了消融实验（good）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;还分析了TFE-GNN的灵敏度，回答了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;每个组件的功能&lt;/li&gt;
+&lt;li&gt;哪个GNN架构效果最好&lt;/li&gt;
+&lt;li&gt;TFE-GNN的复杂度如何&lt;/li&gt;
+&lt;li&gt;超参数的变化在多大程度上会影响TFE-GNN的有效性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;实验设置&#34;&gt;实验设置&lt;/h2&gt;
+&lt;p&gt;数据集：ISCX VPN-nonVPN , ISCX Tor-nonTor , self-collected WWT datasets.&lt;/p&gt;
+&lt;p&gt;预处理：对于每个数据集，筛除&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;空流或空段：所有数据包都没有有效负载（用于establish 连接）&lt;/li&gt;
+&lt;li&gt;超长流或超长段：长度（即数据包数）大于 10000&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然后对于每个数据包，删掉以太网标头，源 IP 地址和目标 IP 地址以及端口号都将被删除，以消除IP地址和端口号的敏感信息的干扰##&lt;/p&gt;
+&lt;p&gt;细节：一个样本的最大数据包数设置为50，最大有效负载字节长度和最大标头字节长度分别设置为 150 和 40，PMI 窗口大小设置为 5&lt;/p&gt;
+&lt;p&gt;epoch设置为120，lr为1e-2，用Adam优化器分512批次将lr从1e-2衰减到1e-4。warmup为0.1，droupout为0.2.\&lt;/p&gt;
+&lt;p&gt;运行了10次实验。&lt;/p&gt;
+&lt;p&gt;用AC、PR、RC和F1做评估&lt;/p&gt;
+&lt;p&gt;和基于传统特征工程的方法（即 AppScanner [31]、CUMUL [23]、K-FP （K-Fingerprinting） [8]、FlowPrint [32]、GRAIN [43]、FAAR [19]、ETC-PS [40]）、基于深度学习的方法（即 FS-Net [18]、 EDC [16]、FFB [44]、MVML [4]、DF [30]、ET-BERT [17]）和基于图神经网络的方法（即 GraphDApp [29]、ECD-GNN [11]）做比较。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300.png&#34;
+	width=&#34;2191&#34;
+	height=&#34;1053&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708319331300&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;499px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719.png&#34;
+	width=&#34;2610&#34;
+	height=&#34;1067&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708319345719&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;244&#34;
+		data-flex-basis=&#34;587px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;消融实验&#34;&gt;消融实验&lt;/h2&gt;
+&lt;p&gt;在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &amp;lsquo;H&amp;rsquo;、&amp;lsquo;P&amp;rsquo;、&amp;lsquo;DUAL&amp;rsquo;、&amp;lsquo;JKN&amp;rsquo;、&amp;lsquo;CGFF&amp;rsquo; 和 &amp;lsquo;A&amp;amp;N&amp;rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM&lt;/p&gt;
+&lt;p&gt;（只用H或P就不需要DUAL和CGFF）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833.png&#34;
+	width=&#34;1731&#34;
+	height=&#34;590&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708319828833&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;293&#34;
+		data-flex-basis=&#34;704px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;得出结论&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数据包标头在分类中起着比数据包有效载荷更重要的作用，不同的数据集具有不同级别的标头和有效载荷重要性&lt;/li&gt;
+&lt;li&gt;使用双嵌入使 f1 分数分别提高了 3.63% 和 0.95%，这表明其总体有效性。JKN样串联和交叉门控特征融合在两个数据集上都以相似的幅度增强了TFE-GNN的性能。&lt;/li&gt;
+&lt;li&gt;缺少激活函数和批量归一化在两个数据集上都可以看到显著的性能下降，证明了其必要性&lt;/li&gt;
+&lt;li&gt;用sum替换mean在两个数据集上分别差了11.1%和29.64%，用max替换mean在VPN上差很多在tor上只差一点&lt;/li&gt;
+&lt;li&gt;用GRU替换LSTM导致两个都差10%左右，transformer替换LSTM导致VPN差了40%左右，tor上只差一点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;换GNN架构为GAT, GIN, GCN and SGC，还是GraphSAGE最好&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036.png&#34;
+	width=&#34;950&#34;
+	height=&#34;475&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708321015036&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;200&#34;
+		data-flex-basis=&#34;480px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此外，通过TFE-GNN可以快捷的拓展一个segment级的全局特征&lt;/p&gt;
+&lt;p&gt;复杂度&lt;/p&gt;
+&lt;p&gt;TFE-GNN 在模型复杂度相对较小的情况下，在公共数据集上实现了最显着的改进。虽然ET-BERT在ISCX-nonVPN数据集上达到了可比的结果，但ET-BERT的FLOP大约是TFEGNN的五倍，模型参数的数量也增加了一倍，这通常表明模型推理时间更长，需要更多的计算资源。此外，ETBERT的预训练阶段非常耗时，由于预训练期间有大量的额外数据，并且模型复杂度高，因此成本很高。相比之下，TFE-GNN可以实现更高的精度，同时降低训练或推理成本。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217.png&#34;
+	width=&#34;843&#34;
+	height=&#34;637&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708321171217&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;317px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;双重嵌入维度的影响。为了研究双嵌入层隐藏维度的影响，我们进行了灵敏度实验，结果如图a所示。正如我们所看到的，当嵌入维度低于 100 时，f1 分数会迅速增加。在此之后，随着维度的变化，模型性能趋于稳定。为了减少计算消耗，选取50作为默认维度&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227.png&#34;
+	width=&#34;1288&#34;
+	height=&#34;417&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1708321219227&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;308&#34;
+		data-flex-basis=&#34;741px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;PMI窗口大小的影响。从图 b 中可以看出，较小的窗口大小通常会导致更好的 f1 分数。窗口越大图中添加的边就越多，由于图太密集，模型将更难分类。&lt;/p&gt;
+&lt;p&gt;段长的影响。从图 c 中，我们可以得出一个结论，即用于训练的短段长度通常会使性能更好。&lt;/p&gt;
+&lt;h1 id=&#34;conclusion-and-future-work&#34;&gt;conclusion and future work&lt;/h1&gt;
+&lt;p&gt;我们提出了一种构建字节级流量图的方法和一个名为 TFE-GNN 的模型，用于加密流量分类。字节级流量图构造方法可以挖掘原始字节之间的潜在相关性并生成判别性流量图。TFE-GNN 旨在从构建的流量图中提取高维特征。最后，TFE-GNN可以将每个数据包编码为一个整体表示向量，该向量可用于一些下游任务，如流量分类。选择了几个基线来评估 TFE-GNN 的有效性。实验结果表明，所提模型全面超越了WWT和ISCX数据集上的所有基线。精心设计的实验进一步证明了TFE-GNN具有很强的有效性。&lt;/p&gt;
+&lt;p&gt;将来，我们将尝试在以下限制方面改进 TFE-GNN。（1）有限的图构建方法。所提模型的图拓扑结构是在训练过程之前确定的，这可能会导致非最佳性能。此外，TFE-GNN无法应对每个数据包的原始字节中隐含的字节级噪声。（2） 字节序列中隐含的未使用的时间信息。字节级 trafc 图的构造没有引入字节序列的显式时间特征。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</title>
+        <link>https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</link>
+        <pubDate>Wed, 25 Oct 2023 10:25:43 +0800</pubDate>
+        
+        <guid>https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post 复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
+&lt;p&gt;复现这篇2023NDSS论文，他大开源在https://github.com/fuchuanpu/HyperVision&lt;/p&gt;
+&lt;h1 id=&#34;环境配置&#34;&gt;环境配置&lt;/h1&gt;
+&lt;p&gt;我是在home下做的，如果想在别的地方搞稍微换下路径就行&lt;/p&gt;
+&lt;p&gt;先拉git的代码 &lt;code&gt;git clone https://github.com/fuchuanpu/HyperVision.git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;依照作者在readme里说，在纯净的ubuntu22.04上运行他的脚本即可。用docker装一个纯净的ubuntu22.04&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 下载镜像&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker pull homebrew/ubuntu22.04:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动，并且把~/HyperVision 和容器内的/root/HyperVision连起来&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -td --name hypervision -v &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/HyperVision&amp;#34;&lt;/span&gt;:/root/HyperVision homebrew/ubuntu22.04:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; hypervision -it bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;接下来的操作在docker里了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo su
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /root/HyperVision
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ./env/install_all.sh &lt;span class=&#34;c1&#34;&gt;# 这里最好先换个国内的源，会把需要装的都装了&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://hypervision-publish.s3.cn-north-1.amazonaws.com.cn/hypervision-dataset.tar.gz &lt;span class=&#34;c1&#34;&gt;# 下载数据集，有6G，走的cdn，裸连速度就还不错&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xzf hypervision-dataset.tar.gz &lt;span class=&#34;c1&#34;&gt;# 我也不知道为什么他写了个-xxf 如果想删掉原来的就删吧，不删也没关系&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./script/rebuild.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./script/expand.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; build &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ../script/run_all_brute.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ..
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ./result_analyze
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./batch_analyzer.py -g brute
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat ./log/brute/*.log &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep AU_ROC
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1zj411e7xC/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.bilibili.com/video/BV1zj411e7xC/&lt;/a&gt;
+
+&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+        fill=&#34;currentColor&#34;&gt;
+&lt;/svg&gt;&lt;/span&gt;
+
+    可以看到复现视频&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469.png&#34;
+	width=&#34;760&#34;
+	height=&#34;377&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698203084469&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;483px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</title>
+        <link>https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</link>
+        <pubDate>Mon, 16 Oct 2023 20:34:22 +0800</pubDate>
+        
+        <guid>https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png" alt="Featured image of post Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
+&lt;p&gt;doi is &lt;a class=&#34;link&#34; href=&#34;https://dl.acm.org/doi/10.1145/3548606.3560604&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;here&lt;/a&gt;
+
+&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+        fill=&#34;currentColor&#34;&gt;
+&lt;/svg&gt;&lt;/span&gt;
+
+    &lt;/p&gt;
+&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;h2 id=&#34;问题引入&#34;&gt;问题引入&lt;/h2&gt;
+&lt;p&gt;目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。&lt;/p&gt;
+&lt;h2 id=&#34;提出方法&#34;&gt;提出方法&lt;/h2&gt;
+&lt;p&gt;提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;能够利用基于流量模式构建的紧凑内存图来检测加密恶意流量的未知模式。该图捕获由图结构特征表示的流交互模式，而不是特定已知攻击的特征。&lt;/li&gt;
+&lt;li&gt;我们开发了一种无监督图学习方法，通过分析图的连接性、稀疏性和统计特征来检测异常交互模式&lt;/li&gt;
+&lt;li&gt;建立了一个信息论模型来证明图保存的信息接近理想的理论边界。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;h2 id=&#34;现有方法&#34;&gt;现有方法&lt;/h2&gt;
+&lt;p&gt;深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测&lt;/p&gt;
+&lt;p&gt;简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666.png&#34;
+	width=&#34;1715&#34;
+	height=&#34;539&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;318&#34;
+		data-flex-basis=&#34;763px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;HyperVision，这是一个实时检测系统，旨在通过分析流之间的交互模式来捕获加密恶意流量的足迹。特别是，它可以通过识别异常流交互（即不同于良性的交互模式）来检测具有未知足迹的加密恶意流。&lt;/p&gt;
+&lt;p&gt;但是，构建用于实时检测的图形具有挑战性。我们不能简单地使用 IP 地址作为顶点，而传统的四元组流（源目的ip，源目的port）作为边来构建图，因为生成的密集图无法维持各种流之间的交互模式，例如，引起依赖爆炸问题 。&lt;/p&gt;
+&lt;p&gt;收到流量尺寸分布的研究的启发，互联网上的大多数流都是短流，而大多数数据包与长流相关联，我们利用两种策略来记录不同大小的流，并在图中分别处理短流和长流的交互模式。&lt;/p&gt;
+&lt;p&gt;我们设计了一种四步 轻量级 无监督 图学习方法，通过利用图上维护的丰富流交互信息来检测加密的恶意流量。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先，我们通过提取连通分量来分析图的连通性，并通过对高层次统计特征进行聚类来识别异常分量。通过排除良性分量，我们还显著减少了学习开销。&lt;/li&gt;
+&lt;li&gt;其次，我们根据在边特征中观察到的局部邻接关系对边进行预聚类。预聚类操作显著降低了特征处理开销，并确保了实时检测。&lt;/li&gt;
+&lt;li&gt;第三，我们使用Z3 SMT solver求解顶点覆盖问题来提取关键顶点，以最大程度地减少聚类的数量。&lt;/li&gt;
+&lt;li&gt;最后，根据每个临界顶点的连接边进行聚类，这些边位于预聚类产生的簇的中心，从而得到指示加密恶意流量的异常边。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此外，为了量化HyperVision基于图的流量记录相对于现有方法的优势，我们开发了一个流量记录熵模型，这是一个基于信息论的框架，从理论上分析恶意流量检测系统的现有数据源保留的信息量。这个框架表明NetFlow [19]和Zeek [86]无法保留高保真流量信息，而HyperVision中的图捕获了接近最优的流量信息，并且图中维护的信息量接近理想化数据源的理论上界。（这么屌啊？）此外，分析结果表明，HyperVision中的图形实现了比所有现有数据源更高的信息密度（即每单位存储的流量信息量），这是准确高效检测的基础。&lt;/p&gt;
+&lt;p&gt;过两天读R. Zamir, “A proof of the fisher information inequality via a data processing argument,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 12461250, 1998.&lt;/p&gt;
+&lt;h2 id=&#34;平台和数据集&#34;&gt;平台和数据集&lt;/h2&gt;
+&lt;p&gt;我们使用英特尔的数据平面开发套件 （DPDK） [37] 对 HyperVision进行原型设计。为了广泛评估原型的性能，我们重放了92个攻击数据集，其中包括在我们的虚拟私有云 （VPC）中收集的80个新数据集，其中包含 1,500 多个实例。在 VPC 中，我们收集了 48 个典型的加密恶意流量，包括 （i） 加密泛洪流量，例如泛洪目标链路 [41];（ii） 网络攻击，例如利用网络漏洞 [64];（iii） 恶意软件活动，包括连接测试、依赖项更新和下载。&lt;/p&gt;
+&lt;p&gt;此外，HyperVision 的平均检测吞吐量超过 100 Gb/s，平均检测延迟为 0.83 秒。&lt;/p&gt;
+&lt;h2 id=&#34;省流&#34;&gt;省流&lt;/h2&gt;
+&lt;p&gt;• 我们提出了 HyperVision，这是首个使用流交互图实现对未知模式的加密恶意流量进行实时无监督检测的方法。
+• 我们开发了多种算法来构建内存中的图，使我们能够准确捕获不同流之间的交互模式。
+• 我们设计了一种轻量级的无监督图形学习方法，通过图形特征来检测加密流量。
+• 我们开发了一个由信息论建立的理论分析框架，以展示该图形捕获了接近最优的流量交互信息。
+• 我们原型化了 HyperVision，并进行了广泛的实验，使用各种真实世界的加密恶意流量来验证其准确性和效率。&lt;/p&gt;
+&lt;h2 id=&#34;名词解释&#34;&gt;名词解释&lt;/h2&gt;
+&lt;p&gt;连通分量：在图论中，连通分量是一个图中的一个子图，其中任意两个顶点都可以通过边相连的路径相互访问。&lt;/p&gt;
+&lt;p&gt;Z3 SMT solver：3（Z3 SMT solver）是由微软研究院开发的一个高性能的SMT（Satisfiability Modulo Theories）求解器。SMT 求解器是一种自动化工具，用于解决布尔公式、一阶逻辑公式和其他数学理论的判定问题。Z3 在各种计算机科学和工程领域都有广泛的应用，包括软件验证、形式化方法、人工智能、编译器优化和硬件验证等。&lt;/p&gt;
+&lt;p&gt;英特尔的数据平面开发套件 （DPDK）：旨在优化数据包处理性能。它专注于高性能网络应用程序和数据平面开发，使开发人员能够在通用服务器硬件上实现高吞吐量和低延迟的数据包处理。它通过绕过操作系统内核，并在用户空间中实现网络协议栈，从而提供极低的延迟和高吞吐量。支持多核处理器，允许并行处理大量数据包。利用支持硬件加速的网络接口卡（NIC）来进一步提高性能。DPDK 是一个开源项目，开发人员可以根据其需求进行自定义和扩展。DPDK 通常用于构建高性能网络应用程序，如网络功能虚拟化（NFV）、防火墙、负载均衡、数据包过滤和路由等。它还用于云计算、边缘计算和网络设备。&lt;/p&gt;
+&lt;h1 id=&#34;hypervision&#34;&gt;HyperVision&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png&#34;
+	width=&#34;1737&#34;
+	height=&#34;755&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698218520903&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;552px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;首先HyperVision以镜像来的路由器流量作为输入，确保不会干扰流量转发。在识别加密的恶意流量后，它可以与现有的中间恶意流量防御配合，以限制检测到的流量。重点检测使用加密流量构建的主动攻击。不考虑不会为受害者带来流量的被动攻击，例如流量窃听和被动流量分析&lt;/p&gt;
+&lt;p&gt;HyperVision的设计目标如下：首先，它应该能够实现通用检测，即检测使用加密或非加密流量构建的攻击，从而确保攻击无法逃避流量加密的检测。其次，它能够实现实时高速流量处理，这意味着它可以识别通过加密流量是否是恶意的，同时产生低检测延迟。第三，HyperVision 执行的检测是不受监督的，这意味着它不需要任何加密恶意流量的先验知识。&lt;/p&gt;
+&lt;h2 id=&#34;图构造&#34;&gt;图构造&lt;/h2&gt;
+&lt;p&gt;将流分为短流和长流，并分别记录它们的相互作用模式，以降低图的密度。&lt;/p&gt;
+&lt;p&gt;使用不同的地址作为顶点，分别连接与短流和长流关联的边。聚合大量相似的短流，为一组短流构建一条边，从而减少维护流交互模式的开销。拟合长流中数据包特征的分布，构建与长流相关的边缘，从而保证了高保真记录的流交互模式，同时解决了传统方法中粗粒度流特征的问题。&lt;/p&gt;
+&lt;h2 id=&#34;预处理图&#34;&gt;预处理图&lt;/h2&gt;
+&lt;p&gt;通过提取连通分量来减少图的开销，并使用高级统计信息进行聚类。其中，聚类可以准确地检测出只有良性交互模式的组件，从而对这些良性组件进行过滤，减小图的规模。此外，我们进行了预聚类，并使用生成的聚类中心来表示图像中的识别的集群的边缘。（第五节详细讲）&lt;/p&gt;
+&lt;h2 id=&#34;基于图的恶意流量检测&#34;&gt;基于图的恶意流量检测&lt;/h2&gt;
+&lt;p&gt;通过分析图特征来实现无监督加密恶意流量检测。&lt;/p&gt;
+&lt;h1 id=&#34;图构造-1&#34;&gt;图构造&lt;/h1&gt;
+&lt;h2 id=&#34;流的分类&#34;&gt;流的分类&lt;/h2&gt;
+&lt;p&gt;为了避免图构建过程中流之间的依赖爆炸，把流分成长流和短流，并且降低密度。下图显示了显示了2020年1月MAWI互联网流量数据集的流完成时间和流长度的分布，纵轴PDF是概率密度函数，可以看到不论是长流还是短流都在分布短时间、长长度更多。
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407.png&#34;
+	width=&#34;862&#34;
+	height=&#34;361&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698331144407&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;238&#34;
+		data-flex-basis=&#34;573px&#34;
+	
+&gt;
+利用短流合并后，图的稠密度显著下降
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326.png&#34;
+	width=&#34;874&#34;
+	height=&#34;355&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698332038326&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;246&#34;
+		data-flex-basis=&#34;590px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;获取每个数据包的信息，并获取其源、目标地址、端口号和每个数据包的功能，包括协议、长度和到达间隔。我们开发了一种流量分类算法来对流量进行分类（附录A中的算法1）简单来说就是维护一个哈希表，键是hash(src,dest,src_post,dest_port)，值是流的所有数据包特征的序列(协议、数据包长度、到达间隔)，然后用一个定时器TIME_NOW，每隔JUDGE_INTERVAL检查一下，如果在这个interval里流发了多个数据包，就算他是长流，否则就说他是短流）【q，这个interval怎么设置？为什么后面说ssh暴力破解都是短流？这不是应该是短期发好多包吗？】&lt;/p&gt;
+&lt;h2 id=&#34;短流聚合&#34;&gt;短流聚合&lt;/h2&gt;
+&lt;p&gt;我们观察到，大多数短流具有几乎相同的每个数据包的特征序列。我们设计了一种聚合短流的算法（附录A中的算法2）。当满足以下所有要求时，可以聚合一组流&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;流具有相同的源和/或目标地址（为啥不是哈希表的键值一样）&lt;/li&gt;
+&lt;li&gt;流具有相同的协议类型&lt;/li&gt;
+&lt;li&gt;流的数量足够大，即当短流量的数量达到阈值AGG_LINE&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们为短流构建一条边，为所有流及其四个元组保留一个特征序列（即协议、数据包长度和到达间隔）&lt;/p&gt;
+&lt;h2 id=&#34;长流的特征分布拟合&#34;&gt;长流的特征分布拟合&lt;/h2&gt;
+&lt;p&gt;由于长流中的特征是集中分布的，我们使用直方图来表示长流中每个数据包特征的频率分布。直方图的每个条目表示一个数据包特征的频率，从而避免保留其长的每个数据包特征序列。具体来说，我们为每个长流中的每个数据包特征序列构建直方图，然后维护一个哈希表，    键为数据包特征序列，值为直方图。我们将数据包长度和到达间隔的桶宽度分别设置为 10 字节和 1 毫秒，以在拟合精度和开销之间进行权衡。
+下图显示了数据集中的长流中已用桶的数量和最大桶的大小，可以看是集中分布的，即长流中的大多数数据包具有相似的包长度和到达间隔。长度拟合平均用11个桶，每个桶平均200个数据包；到达间隔拟合平均用121个桶，每个桶平均71个数据包。
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628.png&#34;
+	width=&#34;859&#34;
+	height=&#34;337&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1698336076628&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;254&#34;
+		data-flex-basis=&#34;611px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

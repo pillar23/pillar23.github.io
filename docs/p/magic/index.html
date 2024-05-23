@@ -1,57 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='文章可以在这里获取
-Abstract APT攻击越来越成为普遍的威胁，然而，以前的工作表现出几个缺点：
-需要包含攻击的数据和APT的先验知识 无法提取隐藏在来源图中的丰富上下文信息 由于其令人望而却步的计算开销和内存消耗而变得不切实际。 本文介绍一种自监督APT检测方法MAGIC，能够在不同级别的监督下进行多粒度检测。利用掩码图表示学习对良性系统实体和行为进行建模，对来源图进行高效的深度特征提取和结构抽象。通过异常值检测方法检测异常系统行为，MAGIC 能够执行系统实体级和批处理日志级 APT 检测。
-MAGIC是专门为处理概念漂移而设计的，具有模型适配机制，并成功应用于通用条件和检测场景。我们在三个广泛使用的数据集上评估了MAGIC，包括真实世界和模拟攻击。评估结果表明，MAGIC在所有场景中都取得了令人鼓舞的检测结果，并且在性能开销方面比最先进的APT检测方法具有巨大的优势。
-Introduction 高级持续性威胁（APTs）是由熟练的攻击者进行的蓄意和复杂的网络攻击，对企业和机构都构成巨大威胁。大多数 APT 都涉及零日漏洞，并且由于其隐蔽性和多变性而特别难以检测。
-最近关于APT检测的工作利用数据来源进行APT检测。数据来源将审计日志转换为来源图，从审计日志中提取丰富的上下文信息，为细粒度的因果关系分析和 APT 检测提供完美的平台。
-早期工作基于典型或特定的 APT 模式构建规则，并将审计日志与这些规则进行匹配，以检测潜在的 APT。
-最近的一些工作采用统计异常检测方法来检测APT，这些APT侧重于不同的来源图元素，例如系统实体、交互和社区。
-最近的研究基于深度学习的方法。他们利用各种深度学习 （DL） 技术对 APT 模式或系统行为进行建模，并以分类或异常检测方式执行 APT 检测。
-虽然这些现有方法已经证明了它们能够以合理的准确性检测 APT，但它们遇到了以下挑战的各种组合：
-监督方法存在缺乏数据 （LOD） 问题，因为它们需要有关 APT 的先验知识（即攻击模式或包含攻击的日志）。此外，当面对他们没有接受过处理培训的新型 APT 时，这些方法特别容易受到攻击。 基于统计的方法只需要良性数据即可发挥作用，但无法提取审计日志中埋藏的复杂良性活动的深层语义和相关性，导致误报率高。 基于深度学习的方法，特别是基于序列和基于图的方法，以沉重的计算开销为代价，取得了可观的有效性，使其在实际检测场景中不切实际 在本文中，我们通过引入MAGIC来解决上述三个问题，MAGIC是一种新颖的自监督APT检测方法，它利用掩码图表示学习和简单的异常值检测方法从海量审计日志中识别关键攻击系统实体。MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器[19]之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。
-MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。
-MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行多粒度检测，即检测批处理日志中是否存在 APT 或定位实体级对手。虽然 MAGIC 旨在执行 APT 检测而不会受到攻击包含数据，但它非常适合半监督和完全监督的情况。此外，MAGIC还包含一个可选的模型适配机制，为其用户提供反馈渠道。这样的反馈对于MAGIC进一步提高性能、对抗概念漂移和减少误报非常重要。
-我们在三个不同的 APT 攻击数据集上评估了MAGIC的性能和开销：DARPA Transparent Computing E3 数据集、StreamSpot 数据集和 Unicorn Wget 数据集。DARPA 数据集包含真实世界的攻击，而 StreamSpot 和 Unicorn Wget 数据集则在受控环境中完全模拟。评估结果表明，MAGIC 能够以 97.'>
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用掩码图学习降低溯源图的消耗'>
 <title>MAGIC</title>
 
-<link rel='canonical' href='http://localhost:1313/p/magic/'>
+<link rel='canonical' href='https://blog2.pillar.fun/p/magic/'>
 
-<link rel="stylesheet" href="/scss/style.min.a38f4a1f6c1fd7c80b11d5812e9078b237c7cef12b17dca1fde8a6091a83da56.css"><meta property='og:title' content='MAGIC'>
-<meta property='og:description' content='文章可以在这里获取
-Abstract APT攻击越来越成为普遍的威胁，然而，以前的工作表现出几个缺点：
-需要包含攻击的数据和APT的先验知识 无法提取隐藏在来源图中的丰富上下文信息 由于其令人望而却步的计算开销和内存消耗而变得不切实际。 本文介绍一种自监督APT检测方法MAGIC，能够在不同级别的监督下进行多粒度检测。利用掩码图表示学习对良性系统实体和行为进行建模，对来源图进行高效的深度特征提取和结构抽象。通过异常值检测方法检测异常系统行为，MAGIC 能够执行系统实体级和批处理日志级 APT 检测。
-MAGIC是专门为处理概念漂移而设计的，具有模型适配机制，并成功应用于通用条件和检测场景。我们在三个广泛使用的数据集上评估了MAGIC，包括真实世界和模拟攻击。评估结果表明，MAGIC在所有场景中都取得了令人鼓舞的检测结果，并且在性能开销方面比最先进的APT检测方法具有巨大的优势。
-Introduction 高级持续性威胁（APTs）是由熟练的攻击者进行的蓄意和复杂的网络攻击，对企业和机构都构成巨大威胁。大多数 APT 都涉及零日漏洞，并且由于其隐蔽性和多变性而特别难以检测。
-最近关于APT检测的工作利用数据来源进行APT检测。数据来源将审计日志转换为来源图，从审计日志中提取丰富的上下文信息，为细粒度的因果关系分析和 APT 检测提供完美的平台。
-早期工作基于典型或特定的 APT 模式构建规则，并将审计日志与这些规则进行匹配，以检测潜在的 APT。
-最近的一些工作采用统计异常检测方法来检测APT，这些APT侧重于不同的来源图元素，例如系统实体、交互和社区。
-最近的研究基于深度学习的方法。他们利用各种深度学习 （DL） 技术对 APT 模式或系统行为进行建模，并以分类或异常检测方式执行 APT 检测。
-虽然这些现有方法已经证明了它们能够以合理的准确性检测 APT，但它们遇到了以下挑战的各种组合：
-监督方法存在缺乏数据 （LOD） 问题，因为它们需要有关 APT 的先验知识（即攻击模式或包含攻击的日志）。此外，当面对他们没有接受过处理培训的新型 APT 时，这些方法特别容易受到攻击。 基于统计的方法只需要良性数据即可发挥作用，但无法提取审计日志中埋藏的复杂良性活动的深层语义和相关性，导致误报率高。 基于深度学习的方法，特别是基于序列和基于图的方法，以沉重的计算开销为代价，取得了可观的有效性，使其在实际检测场景中不切实际 在本文中，我们通过引入MAGIC来解决上述三个问题，MAGIC是一种新颖的自监督APT检测方法，它利用掩码图表示学习和简单的异常值检测方法从海量审计日志中识别关键攻击系统实体。MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器[19]之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。
-MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。
-MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行多粒度检测，即检测批处理日志中是否存在 APT 或定位实体级对手。虽然 MAGIC 旨在执行 APT 检测而不会受到攻击包含数据，但它非常适合半监督和完全监督的情况。此外，MAGIC还包含一个可选的模型适配机制，为其用户提供反馈渠道。这样的反馈对于MAGIC进一步提高性能、对抗概念漂移和减少误报非常重要。
-我们在三个不同的 APT 攻击数据集上评估了MAGIC的性能和开销：DARPA Transparent Computing E3 数据集、StreamSpot 数据集和 Unicorn Wget 数据集。DARPA 数据集包含真实世界的攻击，而 StreamSpot 和 Unicorn Wget 数据集则在受控环境中完全模拟。评估结果表明，MAGIC 能够以 97.'>
-<meta property='og:url' content='http://localhost:1313/p/magic/'>
+<link rel="stylesheet" href="/scss/style.min.abbf77341b31aeb03b715c2ff883328ae7f3889f992cf736e2ffb8d1bd491c50.css"><meta property='og:title' content='MAGIC'>
+<meta property='og:description' content='使用掩码图学习降低溯源图的消耗'>
+<meta property='og:url' content='https://blog2.pillar.fun/p/magic/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='溯源图' /><meta property='article:tag' content='论文笔记' /><meta property='article:published_time' content='2024-03-02T20:19:11&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:19:11&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='溯源图' /><meta property='article:tag' content='论文笔记' /><meta property='article:published_time' content='2024-03-02T20:19:11&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:19:11&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/magic/MAGIC/1709702251187.png' />
 <meta name="twitter:title" content="MAGIC">
-<meta name="twitter:description" content="文章可以在这里获取
-Abstract APT攻击越来越成为普遍的威胁，然而，以前的工作表现出几个缺点：
-需要包含攻击的数据和APT的先验知识 无法提取隐藏在来源图中的丰富上下文信息 由于其令人望而却步的计算开销和内存消耗而变得不切实际。 本文介绍一种自监督APT检测方法MAGIC，能够在不同级别的监督下进行多粒度检测。利用掩码图表示学习对良性系统实体和行为进行建模，对来源图进行高效的深度特征提取和结构抽象。通过异常值检测方法检测异常系统行为，MAGIC 能够执行系统实体级和批处理日志级 APT 检测。
-MAGIC是专门为处理概念漂移而设计的，具有模型适配机制，并成功应用于通用条件和检测场景。我们在三个广泛使用的数据集上评估了MAGIC，包括真实世界和模拟攻击。评估结果表明，MAGIC在所有场景中都取得了令人鼓舞的检测结果，并且在性能开销方面比最先进的APT检测方法具有巨大的优势。
-Introduction 高级持续性威胁（APTs）是由熟练的攻击者进行的蓄意和复杂的网络攻击，对企业和机构都构成巨大威胁。大多数 APT 都涉及零日漏洞，并且由于其隐蔽性和多变性而特别难以检测。
-最近关于APT检测的工作利用数据来源进行APT检测。数据来源将审计日志转换为来源图，从审计日志中提取丰富的上下文信息，为细粒度的因果关系分析和 APT 检测提供完美的平台。
-早期工作基于典型或特定的 APT 模式构建规则，并将审计日志与这些规则进行匹配，以检测潜在的 APT。
-最近的一些工作采用统计异常检测方法来检测APT，这些APT侧重于不同的来源图元素，例如系统实体、交互和社区。
-最近的研究基于深度学习的方法。他们利用各种深度学习 （DL） 技术对 APT 模式或系统行为进行建模，并以分类或异常检测方式执行 APT 检测。
-虽然这些现有方法已经证明了它们能够以合理的准确性检测 APT，但它们遇到了以下挑战的各种组合：
-监督方法存在缺乏数据 （LOD） 问题，因为它们需要有关 APT 的先验知识（即攻击模式或包含攻击的日志）。此外，当面对他们没有接受过处理培训的新型 APT 时，这些方法特别容易受到攻击。 基于统计的方法只需要良性数据即可发挥作用，但无法提取审计日志中埋藏的复杂良性活动的深层语义和相关性，导致误报率高。 基于深度学习的方法，特别是基于序列和基于图的方法，以沉重的计算开销为代价，取得了可观的有效性，使其在实际检测场景中不切实际 在本文中，我们通过引入MAGIC来解决上述三个问题，MAGIC是一种新颖的自监督APT检测方法，它利用掩码图表示学习和简单的异常值检测方法从海量审计日志中识别关键攻击系统实体。MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器[19]之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。
-MAGIC首先通过简单而通用的步骤从审计日志中构建出处图。然后，MAGIC使用图表示模块，该模块通过以自我监督的方式合并图特征和结构信息来获得嵌入。该模型建立在图形掩蔽自编码器之上，在掩蔽特征重建和基于样本的结构重建的共同监督下。采用无监督异常值检测方法对计算出的嵌入进行分析，并得到最终的检测结果。
-MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行多粒度检测，即检测批处理日志中是否存在 APT 或定位实体级对手。虽然 MAGIC 旨在执行 APT 检测而不会受到攻击包含数据，但它非常适合半监督和完全监督的情况。此外，MAGIC还包含一个可选的模型适配机制，为其用户提供反馈渠道。这样的反馈对于MAGIC进一步提高性能、对抗概念漂移和减少误报非常重要。
-我们在三个不同的 APT 攻击数据集上评估了MAGIC的性能和开销：DARPA Transparent Computing E3 数据集、StreamSpot 数据集和 Unicorn Wget 数据集。DARPA 数据集包含真实世界的攻击，而 StreamSpot 和 Unicorn Wget 数据集则在受控环境中完全模拟。评估结果表明，MAGIC 能够以 97.">
+<meta name="twitter:description" content="使用掩码图学习降低溯源图的消耗"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog2.pillar.fun/p/magic/MAGIC/1709702251187.png' />
   
 
 
@@ -194,7 +156,7 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -213,13 +175,13 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/links/' >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
                 
                 
                 
@@ -232,7 +194,7 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 
 
                 
-                <span>Links</span>
+                <span>链接</span>
             </a>
         </li>
         
@@ -282,7 +244,7 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="http://localhost:1313/" selected>中文</option>
+                            <option value="https://blog2.pillar.fun/" selected>中文</option>
                         
                     </select>
                 </li>
@@ -393,10 +355,30 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/magic/">
+                <img src="/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_800x0_resize_box_3.png"
+                        srcset="/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_800x0_resize_box_3.png 800w, /p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="363" 
+                        loading="lazy"
+                        alt="Featured image of post MAGIC" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%BA%E6%96%87/" >
+                论文
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -404,6 +386,10 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
             <a href="/p/magic/">MAGIC</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            使用掩码图学习降低溯源图的消耗
+        </h3>
         
     </div>
 
@@ -454,7 +440,16 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
     
     
     <p>文章可以在<a class="link" href="https://doi.org/10.48550/arXiv.2310.09831"  target="_blank" rel="noopener"
-    >这里</a>获取</p>
+    >这里</a>
+
+<span style="white-space: nowrap;"><svg width=".7em"
+    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+        fill="currentColor">
+</svg></span>
+
+    获取</p>
 <h2 id="abstract">Abstract</h2>
 <p>APT攻击越来越成为普遍的威胁，然而，以前的工作表现出几个缺点：</p>
 <ol>
@@ -1008,9 +1003,20 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
         <div class="flex article-list--tile">
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/flash/">
         
+        
+            <div class="article-image">
+                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_huf8d1b81f197ed97f0307a2b1035badd9_647016_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post FLASH"
+                        
+                        data-hash="md5-oANxbhPbrDGCaKnIV8oT&#43;g==">
+                
+            </div>
         
 
         <div class="article-details">
@@ -1021,13 +1027,96 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/atlas/">
         
+        
+            <div class="article-image">
+                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hua3897747c65368fc3b388dfc773651dc_99107_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post ATLAS"
+                        
+                        data-hash="md5-H4HrFfoActBcMamdj/ca1g==">
+                
+            </div>
         
 
         <div class="article-details">
             <h2 class="article-title">ATLAS</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/tfe-gnn/">
+        
+        
+            <div class="article-image">
+                <img src="/p/tfe-gnn/pic/1708314808397.7170dbc8ee3236d7df65bfbc5de3eafc_hu2454b6a4f42e67d1ef9df24f58be9406_460521_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post TFE GNN"
+                        
+                        data-hash="md5-cXDbyO4yNtffZb&#43;8XePq/A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">TFE GNN</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/">
+        
+        
+            <div class="article-image">
+                <img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.47a8bb27abaed161063e75e9a73add3f_hu5782aa90e2830d7e2b9710b9167608e2_253472_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis"
+                        
+                        data-hash="md5-R6i7J6uu0WEGPnXppzrdPw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kairos/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kairos/KAIROS/1715250405508.d69d8c20c789c24e299d7678cdc02502_hu2f94ae9770155cf79c4d05b797271e0d_220753_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post KAIROS"
+                        
+                        data-hash="md5-1p2MIMeJwk4pnXZ4zcAlAg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">KAIROS</h2>
         </div>
     </a>
 </article>
@@ -1065,7 +1154,7 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
     <section class="copyright">
         &copy; 
         
-            2020 - 
+            2023 - 
         
         2024 pill4r
     </section>
@@ -1074,56 +1163,54 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了13篇文章 ·
+        总计4.65k字
+    </section>
+    
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
+    </section>
 </footer>
 
-<section class="totalcount">
-    
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    发表了17篇文章 ·
-    总计6.05k字
-</section>
 
 
     
@@ -1221,6 +1308,20 @@ MAGIC 旨在灵活且可扩展。根据应用程序背景，MAGIC 能够执行�
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<script>
+    let s1 = '2023-10-03'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

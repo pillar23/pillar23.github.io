@@ -2,72 +2,659 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on π1l4r_のblog</title>
-        <link>http://localhost:1313/page/</link>
+        <link>https://blog2.pillar.fun/page/</link>
         <description>Recent content in Pages on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Archives</title>
-        <link>http://localhost:1313/archives/</link>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.pillar.fun/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>归档</title>
+        <link>https://blog2.pillar.fun/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/archives/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Links</title>
-        <link>http://localhost:1313/links/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <guid>https://blog2.pillar.fun/archives/</guid>
+        <description>&lt;div id=&#34;heatmap&#34; style=&#34;
+  max-width: 1900px;
+  height: 180px;
+  padding: 2px;
+  text-align: center;
+  &#34;
+&gt;&lt;/div&gt;
+&lt;script src=&#34;https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+  var chartDom = document.getElementById(&#39;heatmap&#39;);
+  var myChart = echarts.init(chartDom);
+  window.onresize = function() {
+      myChart.resize();
+  };
+  var option;
+
+  
+  
+  
+  
+  
+  
+  var dataMap = new Map();
+  
+    var key = &#34;2024-05-21&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  500 ;
+    var link = &#34;/p/cve-2023-2480/&#34;;
+    var title = &#34;CVE 2023 2480&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-04-18&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  223 ;
+    var link = &#34;/p/flash/&#34;;
+    var title = &#34;FLASH&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-03-02&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  713 ;
+    var link = &#34;/p/magic/&#34;;
+    var title = &#34;MAGIC&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-03-02&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  309 ;
+    var link = &#34;/p/atlas/&#34;;
+    var title = &#34;ATLAS&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-03-02&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  81 ;
+    var link = &#34;/p/kairos/&#34;;
+    var title = &#34;KAIROS&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-02-16&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  254 ;
+    var link = &#34;/p/tfe-gnn/&#34;;
+    var title = &#34;TFE GNN&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-12-27&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  377 ;
+    var link = &#34;/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/&#34;;
+    var title = &#34;网络认证技术笔记&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-12-27&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  615 ;
+    var link = &#34;/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/&#34;;
+    var title = &#34;自然语言处理笔记&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-11-29&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  154 ;
+    var link = &#34;/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/&#34;;
+    var title = &#34;网络认证技术作业三&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-10-25&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  92 ;
+    var link = &#34;/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/&#34;;
+    var title = &#34;复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-10-19&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  1012 ;
+    var link = &#34;/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/&#34;;
+    var title = &#34;IKEv2标准阅读&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-10-16&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  143 ;
+    var link = &#34;/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/&#34;;
+    var title = &#34;Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-10-16&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  179 ;
+    var link = &#34;/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/&#34;;
+    var title = &#34;Frp实现隧道穿透远程桌面&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }var data = [];
+  
+  for (const [key, value] of dataMap.entries()) {
+    var sum = 0;
+    for (const v of value) {
+      sum += v.wordCount;
+    }
+    data.push([key, (sum / 1000).toFixed(1)]);
+  }
+  
+  var startDate = new Date();
+  var year_Mill = startDate.setFullYear((startDate.getFullYear() - 1));
+  var startDate = +new Date(year_Mill);
+  var endDate = +new Date();
+
+  var dayTime = 3600 * 24 * 1000;
+  startDate = echarts.format.formatTime(&#39;yyyy-MM-dd&#39;, startDate);
+  endDate = echarts.format.formatTime(&#39;yyyy-MM-dd&#39;, endDate);
+
+  
+  function heatmap_width(months){             
+    var startDate = new Date();
+    var mill = startDate.setMonth((startDate.getMonth() - months));
+    var endDate = +new Date();
+    startDate = +new Date(mill);
+
+    endDate = echarts.format.formatTime(&#39;yyyy-MM-dd&#39;, endDate);
+    startDate = echarts.format.formatTime(&#39;yyyy-MM-dd&#39;, startDate);
+
+    var showmonth = [];
+    showmonth.push([
+        startDate,
+        endDate
+    ]);
+    return showmonth
+  };
+
+  function getRangeArr() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth &gt;= 600) {
+      return heatmap_width(12);
+    } else if (windowWidth &gt;= 400) {
+      return heatmap_width(9);
+    } else {
+      return heatmap_width(6);
+    }
+  }
+
+  option = {
+    title: {
+        top: 0,
+        left: &#39;center&#39;,
+        text: &#39;博客热力图&#39;
+    },
+    tooltip: {
+      hideDelay: 1000,
+      enterable: true,
+      formatter: function (p) {
+        const date = p.data[0];
+        const posts = dataMap.get(date);
+        var content = `${date}`;
+        for (const [i, post] of posts.entries()) {
+            content += &#34;&lt;br&gt;&#34;;
+            var link = post.link;
+            var title = post.title;
+            var wordCount = (post.wordCount / 1000).toFixed(1);
+            content += `&lt;a href=&#34;${link}&#34; target=&#34;_blank&#34;&gt;${title} | ${wordCount} k&lt;/a&gt;`
+        }
+        return content;
+      }
+    },
+    visualMap: {
+        min: 0,
+        max: 10,
+        type: &#39;piecewise&#39;,
+        orient: &#39;horizontal&#39;,
+        left: &#39;center&#39;,
+        top: 30,
         
-        <guid>http://localhost:1313/links/</guid>
-        <description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
-&lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;links&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;GitHub&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;GitHub is the world&amp;#39;s largest software development platform.&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;website&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;https://github.com&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;TypeScript&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;website&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;https://www.typescriptlang.org&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ts-logo-128.jpg&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;image&lt;/code&gt; field accepts both local and external images.&lt;/p&gt;
+        inRange: {   
+          
+          color: [&#39;#7aa8744c&#39;, &#39;#7AA874&#39; ] 
+        },
+        splitNumber: 4,
+        text: [&#39;千字&#39;, &#39;&#39;],
+        showLabel: true,
+        itemGap: 20,
+    },
+    calendar: {
+        top: 80,
+        left: 20,
+        right: 4,
+        cellSize: [&#39;auto&#39;, 13],
+        range: getRangeArr(),
+        itemStyle: {
+            color: &#39;#F1F1F1&#39;,
+            borderWidth: 1.5,
+            borderColor: &#39;#fff&#39;,
+        },
+        yearLabel: { show: false },
+        
+        splitLine: {
+          lineStyle: {
+            color: &#39;rgba(0, 0, 0, 0.0)&#39;,
+            
+            
+            
+            
+          }
+        }
+    },
+    series: {
+        type: &#39;heatmap&#39;,
+        coordinateSystem: &#39;calendar&#39;,
+        data: data,
+    }
+  };
+  myChart.setOption(option);
+  myChart.on(&#39;click&#39;, function(params) {
+    if (params.componentType === &#39;series&#39;) {
+      
+      const post = dataMap.get(params.data[0])[0];
+      const link = window.location.origin + post.link;
+      window.open(link, &#39;_blank&#39;).focus();
+    }
+});
+&lt;/script&gt; 
+
 </description>
-        </item>
-        <item>
-        <title>Search</title>
-        <link>http://localhost:1313/search/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/search/</guid>
-        <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>http://localhost:1313/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://blog2.pillar.fun/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://blog2.pillar.fun/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;p style=&#34;text-align: center;&#34;&gt;知名网络保安&lt;/p&gt;
 &lt;p id=&#34;jinrishici-sentence&#34; style=&#34;text-align: center;&#34;&gt;正在加载胸中锦绣....&lt;/p&gt;
 &lt;script src=&#34;https://sdk.jinrishici.com/v2/browser/jinrishici.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+&lt;div id=&#34;heatmap&#34; style=&#34;
+  max-width: 1900px;
+  height: 180px;
+  padding: 2px;
+  text-align: center;
+  &#34;
+&gt;&lt;/div&gt;
+&lt;script src=&#34;https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+  var chartDom = document.getElementById(&#39;heatmap&#39;);
+  var myChart = echarts.init(chartDom);
+  window.onresize = function() {
+      myChart.resize();
+  };
+  var option;
+
+  
+  
+  
+  
+  
+  
+  var dataMap = new Map();
+  
+    var key = &#34;2024-05-21&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  500 ;
+    var link = &#34;/p/cve-2023-2480/&#34;;
+    var title = &#34;CVE 2023 2480&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-04-18&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  223 ;
+    var link = &#34;/p/flash/&#34;;
+    var title = &#34;FLASH&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-03-02&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  713 ;
+    var link = &#34;/p/magic/&#34;;
+    var title = &#34;MAGIC&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-03-02&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  309 ;
+    var link = &#34;/p/atlas/&#34;;
+    var title = &#34;ATLAS&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-03-02&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  81 ;
+    var link = &#34;/p/kairos/&#34;;
+    var title = &#34;KAIROS&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-02-16&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  254 ;
+    var link = &#34;/p/tfe-gnn/&#34;;
+    var title = &#34;TFE GNN&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-12-27&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  377 ;
+    var link = &#34;/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/&#34;;
+    var title = &#34;网络认证技术笔记&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-12-27&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  615 ;
+    var link = &#34;/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/&#34;;
+    var title = &#34;自然语言处理笔记&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-11-29&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  154 ;
+    var link = &#34;/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/&#34;;
+    var title = &#34;网络认证技术作业三&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-10-25&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  92 ;
+    var link = &#34;/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/&#34;;
+    var title = &#34;复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-10-19&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  1012 ;
+    var link = &#34;/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/&#34;;
+    var title = &#34;IKEv2标准阅读&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-10-16&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  143 ;
+    var link = &#34;/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/&#34;;
+    var title = &#34;Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2023-10-16&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  179 ;
+    var link = &#34;/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/&#34;;
+    var title = &#34;Frp实现隧道穿透远程桌面&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }var data = [];
+  
+  for (const [key, value] of dataMap.entries()) {
+    var sum = 0;
+    for (const v of value) {
+      sum += v.wordCount;
+    }
+    data.push([key, (sum / 1000).toFixed(1)]);
+  }
+  
+  var startDate = new Date();
+  var year_Mill = startDate.setFullYear((startDate.getFullYear() - 1));
+  var startDate = +new Date(year_Mill);
+  var endDate = +new Date();
+
+  var dayTime = 3600 * 24 * 1000;
+  startDate = echarts.format.formatTime(&#39;yyyy-MM-dd&#39;, startDate);
+  endDate = echarts.format.formatTime(&#39;yyyy-MM-dd&#39;, endDate);
+
+  
+  function heatmap_width(months){             
+    var startDate = new Date();
+    var mill = startDate.setMonth((startDate.getMonth() - months));
+    var endDate = +new Date();
+    startDate = +new Date(mill);
+
+    endDate = echarts.format.formatTime(&#39;yyyy-MM-dd&#39;, endDate);
+    startDate = echarts.format.formatTime(&#39;yyyy-MM-dd&#39;, startDate);
+
+    var showmonth = [];
+    showmonth.push([
+        startDate,
+        endDate
+    ]);
+    return showmonth
+  };
+
+  function getRangeArr() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth &gt;= 600) {
+      return heatmap_width(12);
+    } else if (windowWidth &gt;= 400) {
+      return heatmap_width(9);
+    } else {
+      return heatmap_width(6);
+    }
+  }
+
+  option = {
+    title: {
+        top: 0,
+        left: &#39;center&#39;,
+        text: &#39;博客热力图&#39;
+    },
+    tooltip: {
+      hideDelay: 1000,
+      enterable: true,
+      formatter: function (p) {
+        const date = p.data[0];
+        const posts = dataMap.get(date);
+        var content = `${date}`;
+        for (const [i, post] of posts.entries()) {
+            content += &#34;&lt;br&gt;&#34;;
+            var link = post.link;
+            var title = post.title;
+            var wordCount = (post.wordCount / 1000).toFixed(1);
+            content += `&lt;a href=&#34;${link}&#34; target=&#34;_blank&#34;&gt;${title} | ${wordCount} k&lt;/a&gt;`
+        }
+        return content;
+      }
+    },
+    visualMap: {
+        min: 0,
+        max: 10,
+        type: &#39;piecewise&#39;,
+        orient: &#39;horizontal&#39;,
+        left: &#39;center&#39;,
+        top: 30,
+        
+        inRange: {   
+          
+          color: [&#39;#7aa8744c&#39;, &#39;#7AA874&#39; ] 
+        },
+        splitNumber: 4,
+        text: [&#39;千字&#39;, &#39;&#39;],
+        showLabel: true,
+        itemGap: 20,
+    },
+    calendar: {
+        top: 80,
+        left: 20,
+        right: 4,
+        cellSize: [&#39;auto&#39;, 13],
+        range: getRangeArr(),
+        itemStyle: {
+            color: &#39;#F1F1F1&#39;,
+            borderWidth: 1.5,
+            borderColor: &#39;#fff&#39;,
+        },
+        yearLabel: { show: false },
+        
+        splitLine: {
+          lineStyle: {
+            color: &#39;rgba(0, 0, 0, 0.0)&#39;,
+            
+            
+            
+            
+          }
+        }
+    },
+    series: {
+        type: &#39;heatmap&#39;,
+        coordinateSystem: &#39;calendar&#39;,
+        data: data,
+    }
+  };
+  myChart.setOption(option);
+  myChart.on(&#39;click&#39;, function(params) {
+    if (params.componentType === &#39;series&#39;) {
+      
+      const post = dataMap.get(params.data[0])[0];
+      const link = window.location.origin + post.link;
+      window.open(link, &#39;_blank&#39;).focus();
+    }
+});
+&lt;/script&gt; 
+
 </description>
+        </item>
+        <item>
+        <title>链接</title>
+        <link>https://blog2.pillar.fun/%E9%93%BE%E6%8E%A5/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog2.pillar.fun/%E9%93%BE%E6%8E%A5/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>搜索</title>
+        <link>https://blog2.pillar.fun/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog2.pillar.fun/search/</guid>
+        <description></description>
         </item>
         
     </channel>

@@ -3,6 +3,9 @@ title = 'IKEv2标准阅读'
 date = 2023-10-19T16:31:55+08:00
 draft = false
 tags = ["课程作业"]
+categories = ["课业"]
+description = "任选一个标准（口令鉴别协议），书写阅读报告"
+image = "/img/placeholder.jpeg"
 +++
 
 # 导语

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>流量检测 on π1l4r_のblog</title>
-        <link>http://localhost:1313/tags/%E6%B5%81%E9%87%8F%E6%A3%80%E6%B5%8B/</link>
+        <link>https://blog2.pillar.fun/tags/%E6%B5%81%E9%87%8F%E6%A3%80%E6%B5%8B/</link>
         <description>Recent content in 流量检测 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Fri, 16 Feb 2024 16:28:03 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E6%B5%81%E9%87%8F%E6%A3%80%E6%B5%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 16 Feb 2024 16:28:03 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/tags/%E6%B5%81%E9%87%8F%E6%A3%80%E6%B5%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>TFE GNN</title>
-        <link>http://localhost:1313/p/tfe-gnn/</link>
+        <link>https://blog2.pillar.fun/p/tfe-gnn/</link>
         <pubDate>Fri, 16 Feb 2024 16:28:03 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/tfe-gnn/</guid>
-        <description>&lt;h1 id=&#34;abstract&#34;&gt;abstract&lt;/h1&gt;
+        <guid>https://blog2.pillar.fun/p/tfe-gnn/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png" alt="Featured image of post TFE GNN" /&gt;&lt;h1 id=&#34;abstract&#34;&gt;abstract&lt;/h1&gt;
 &lt;p&gt;目的：实现加密流量[VPN、tor]的分类&lt;/p&gt;
 &lt;p&gt;现有局限性：只能提取低级别特征，基于统计的方法对&lt;strong&gt;短流&lt;/strong&gt;无效，对header和payload采取&lt;strong&gt;不平等&lt;/strong&gt;的处理，难以挖掘字节之间的潜在相关性。&lt;/p&gt;
 &lt;p&gt;提出方法：&lt;/p&gt;
@@ -23,10 +23,10 @@
 &lt;li&gt;引入了一个双嵌入层、一个基于GNN的流量图编码器以及一个交叉门控特征融合机制。[分别嵌入header和payload，然后通过融合实现数据增强]&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;结果：两个真实数据集（WWT和ISCX）优于SOTA&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708314808397.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png&#34;
 	width=&#34;1695&#34;
 	height=&#34;735&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708314808397&#34;
@@ -67,10 +67,10 @@
 &lt;p&gt;3、 MP-GNN&lt;/p&gt;
 &lt;p&gt;MP-GNN 是 Message Passing Graph Neural Network（消息传递图神经网络）的简称，节点嵌入向量可以通过特定的聚合策略将节点的嵌入向量集成到邻域中，从而迭代更新节点嵌入向量。&lt;/p&gt;
 &lt;p&gt;第l层 MP-GNN 可以形式化为两个过程&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708310294876.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876.png&#34;
 	width=&#34;1025&#34;
 	height=&#34;243&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708310294876&#34;
@@ -99,10 +99,10 @@ $$&lt;/p&gt;
 &lt;p&gt;原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用&lt;strong&gt;两个不共享参数的嵌入层&lt;/strong&gt;的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$&lt;/p&gt;
 &lt;h2 id=&#34;交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion&#34;&gt;交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion&lt;/h2&gt;
 &lt;p&gt;因为要double embedding，所以encoder也要两个。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708314903093.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093.png&#34;
 	width=&#34;393&#34;
 	height=&#34;831&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708314903093&#34;
@@ -119,10 +119,10 @@ $$&lt;/p&gt;
 &lt;p&gt;通过逐元素均值运算（element-wise mean operation）计算所有相邻节点$N(v)$的整体消息，并通过串联运算聚合整体消息以及节点v的嵌入向量&lt;/p&gt;
 &lt;p&gt;对节点A的嵌入向量进行非线性变换，完成一个GraphSAGE层的正向过程&lt;/p&gt;
 &lt;p&gt;GraphSAGE的消息聚合和计算可以描述为&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708315615539.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539.png&#34;
 	width=&#34;904&#34;
 	height=&#34;265&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708315615539&#34;
@@ -137,10 +137,10 @@ $$&lt;/p&gt;
 &lt;p&gt;$h_v^{(l)}$是本层v节点的嵌入向量，$\sigma(\cdot)$是激活函数，$CONCAT(\cdot)$是连接函数。然后通过BatchNorm对h进行批量归一化&lt;/p&gt;
 &lt;p&gt;激活函数选择PReLU，将每个负元素值按不同因子缩放，不但引入了非线性，还由于每个负元素的缩放因子的不同而起到类似于注意力机制的作用。&lt;/p&gt;
 &lt;p&gt;由于深度GNN模型中的过度平滑问题，我们最多只堆叠GraphSAGE4层，并将输出拼接起来。这与跳转知识网络（JKL）相类似&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708316388852.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852.png&#34;
 	width=&#34;774&#34;
 	height=&#34;90&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316388852&#34;
@@ -152,10 +152,10 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;最后，通过对每个节点的最终嵌入使用meanpooling来得到图嵌入&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708316889596.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596.png&#34;
 	width=&#34;474&#34;
 	height=&#34;170&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316889596&#34;
@@ -168,10 +168,10 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;用$g_h,g_p$表示header和payload得到的图嵌入&lt;/p&gt;
 &lt;h2 id=&#34;cross-gated-feature-fusion&#34;&gt;Cross-gated Feature Fusion&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708316997715.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715.png&#34;
 	width=&#34;719&#34;
 	height=&#34;817&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316997715&#34;
@@ -184,10 +184,10 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;交叉门控特征融合，这个模块的目标是将$g_h,g_p$融合，获取门控矢量$s_h,s_p$。&lt;/p&gt;
 &lt;p&gt;如上图，我们用了两个filter，每个filter的组成都是线性层、PReLU、线性层、Sigmoid。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708317405446.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446.png&#34;
 	width=&#34;955&#34;
 	height=&#34;260&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708317405446&#34;
@@ -202,10 +202,10 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;端到端的下游任务训练-end-to-end-training-on-downstream-tasks&#34;&gt;端到端的下游任务训练 End-to-End Training on Downstream Tasks&lt;/h2&gt;
 &lt;p&gt;由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。&lt;/p&gt;
 &lt;p&gt;这里我们使用双层Bi-LSTM作为baseline，他的输出喂给一个带PReLU的两层线性分类器，使用交叉熵作为损失函数&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708318165707.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707.png&#34;
 	width=&#34;1034&#34;
 	height=&#34;86&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708318165707&#34;
@@ -240,10 +240,10 @@ $$&lt;/p&gt;
 &lt;p&gt;运行了10次实验。&lt;/p&gt;
 &lt;p&gt;用AC、PR、RC和F1做评估&lt;/p&gt;
 &lt;p&gt;和基于传统特征工程的方法（即 AppScanner [31]、CUMUL [23]、K-FP （K-Fingerprinting） [8]、FlowPrint [32]、GRAIN [43]、FAAR [19]、ETC-PS [40]）、基于深度学习的方法（即 FS-Net [18]、 EDC [16]、FFB [44]、MVML [4]、DF [30]、ET-BERT [17]）和基于图神经网络的方法（即 GraphDApp [29]、ECD-GNN [11]）做比较。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708319331300.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300.png&#34;
 	width=&#34;2191&#34;
 	height=&#34;1053&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319331300&#34;
@@ -254,10 +254,10 @@ $$&lt;/p&gt;
 		data-flex-basis=&#34;499px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708319345719.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719.png&#34;
 	width=&#34;2610&#34;
 	height=&#34;1067&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319345719&#34;
@@ -271,10 +271,10 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;消融实验&#34;&gt;消融实验&lt;/h2&gt;
 &lt;p&gt;在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &amp;lsquo;H&amp;rsquo;、&amp;lsquo;P&amp;rsquo;、&amp;lsquo;DUAL&amp;rsquo;、&amp;lsquo;JKN&amp;rsquo;、&amp;lsquo;CGFF&amp;rsquo; 和 &amp;lsquo;A&amp;amp;N&amp;rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM&lt;/p&gt;
 &lt;p&gt;（只用H或P就不需要DUAL和CGFF）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708319828833.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833.png&#34;
 	width=&#34;1731&#34;
 	height=&#34;590&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319828833&#34;
@@ -294,10 +294,10 @@ $$&lt;/p&gt;
 &lt;li&gt;用GRU替换LSTM导致两个都差10%左右，transformer替换LSTM导致VPN差了40%左右，tor上只差一点&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;换GNN架构为GAT, GIN, GCN and SGC，还是GraphSAGE最好&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708321015036.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036.png&#34;
 	width=&#34;950&#34;
 	height=&#34;475&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321015036&#34;
@@ -311,10 +311,10 @@ $$&lt;/p&gt;
 &lt;p&gt;此外，通过TFE-GNN可以快捷的拓展一个segment级的全局特征&lt;/p&gt;
 &lt;p&gt;复杂度&lt;/p&gt;
 &lt;p&gt;TFE-GNN 在模型复杂度相对较小的情况下，在公共数据集上实现了最显着的改进。虽然ET-BERT在ISCX-nonVPN数据集上达到了可比的结果，但ET-BERT的FLOP大约是TFEGNN的五倍，模型参数的数量也增加了一倍，这通常表明模型推理时间更长，需要更多的计算资源。此外，ETBERT的预训练阶段非常耗时，由于预训练期间有大量的额外数据，并且模型复杂度高，因此成本很高。相比之下，TFE-GNN可以实现更高的精度，同时降低训练或推理成本。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708321171217.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217.png&#34;
 	width=&#34;843&#34;
 	height=&#34;637&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321171217&#34;
@@ -326,10 +326,10 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;双重嵌入维度的影响。为了研究双嵌入层隐藏维度的影响，我们进行了灵敏度实验，结果如图a所示。正如我们所看到的，当嵌入维度低于 100 时，f1 分数会迅速增加。在此之后，随着维度的变化，模型性能趋于稳定。为了减少计算消耗，选取50作为默认维度&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/tfe-gnn/pic/1708321219227.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227.png&#34;
 	width=&#34;1288&#34;
 	height=&#34;417&#34;
-	srcset=&#34;http://localhost:1313/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_480x0_resize_box_3.png 480w, http://localhost:1313/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321219227&#34;
@@ -349,11 +349,11 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</title>
-        <link>http://localhost:1313/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</link>
+        <link>https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</link>
         <pubDate>Wed, 25 Oct 2023 10:25:43 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
-        <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
+        <guid>https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post 复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
 &lt;p&gt;复现这篇2023NDSS论文，他大开源在https://github.com/fuchuanpu/HyperVision&lt;/p&gt;
 &lt;h1 id=&#34;环境配置&#34;&gt;环境配置&lt;/h1&gt;
 &lt;p&gt;我是在home下做的，如果想在别的地方搞稍微换下路径就行&lt;/p&gt;
@@ -413,11 +413,20 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1zj411e7xC/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.bilibili.com/video/BV1zj411e7xC/&lt;/a&gt;可以看到复现视频&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469.png&#34;
+    &gt;https://www.bilibili.com/video/BV1zj411e7xC/&lt;/a&gt;
+
+&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+        fill=&#34;currentColor&#34;&gt;
+&lt;/svg&gt;&lt;/span&gt;
+
+    可以看到复现视频&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469.png&#34;
 	width=&#34;760&#34;
 	height=&#34;377&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_480x0_resize_box_3.png 480w, http://localhost:1313/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698203084469&#34;
@@ -432,13 +441,22 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis</title>
-        <link>http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</link>
+        <link>https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</link>
         <pubDate>Mon, 16 Oct 2023 20:34:22 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
-        <description>&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
+        <guid>https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png" alt="Featured image of post Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
 &lt;p&gt;doi is &lt;a class=&#34;link&#34; href=&#34;https://dl.acm.org/doi/10.1145/3548606.3560604&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;here&lt;/a&gt;&lt;/p&gt;
+    &gt;here&lt;/a&gt;
+
+&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+        fill=&#34;currentColor&#34;&gt;
+&lt;/svg&gt;&lt;/span&gt;
+
+    &lt;/p&gt;
 &lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
 &lt;h2 id=&#34;问题引入&#34;&gt;问题引入&lt;/h2&gt;
 &lt;p&gt;目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。&lt;/p&gt;
@@ -453,10 +471,10 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;现有方法&#34;&gt;现有方法&lt;/h2&gt;
 &lt;p&gt;深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测&lt;/p&gt;
 &lt;p&gt;简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666.png&#34;
 	width=&#34;1715&#34;
 	height=&#34;539&#34;
-	srcset=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_480x0_resize_box_3.png 480w, http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;img&#34;
@@ -493,10 +511,10 @@ $$&lt;/p&gt;
 &lt;p&gt;Z3 SMT solver：3（Z3 SMT solver）是由微软研究院开发的一个高性能的SMT（Satisfiability Modulo Theories）求解器。SMT 求解器是一种自动化工具，用于解决布尔公式、一阶逻辑公式和其他数学理论的判定问题。Z3 在各种计算机科学和工程领域都有广泛的应用，包括软件验证、形式化方法、人工智能、编译器优化和硬件验证等。&lt;/p&gt;
 &lt;p&gt;英特尔的数据平面开发套件 （DPDK）：旨在优化数据包处理性能。它专注于高性能网络应用程序和数据平面开发，使开发人员能够在通用服务器硬件上实现高吞吐量和低延迟的数据包处理。它通过绕过操作系统内核，并在用户空间中实现网络协议栈，从而提供极低的延迟和高吞吐量。支持多核处理器，允许并行处理大量数据包。利用支持硬件加速的网络接口卡（NIC）来进一步提高性能。DPDK 是一个开源项目，开发人员可以根据其需求进行自定义和扩展。DPDK 通常用于构建高性能网络应用程序，如网络功能虚拟化（NFV）、防火墙、负载均衡、数据包过滤和路由等。它还用于云计算、边缘计算和网络设备。&lt;/p&gt;
 &lt;h1 id=&#34;hypervision&#34;&gt;HyperVision&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png&#34;
 	width=&#34;1737&#34;
 	height=&#34;755&#34;
-	srcset=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_480x0_resize_box_3.png 480w, http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698218520903&#34;
@@ -519,10 +537,10 @@ $$&lt;/p&gt;
 &lt;h1 id=&#34;图构造-1&#34;&gt;图构造&lt;/h1&gt;
 &lt;h2 id=&#34;流的分类&#34;&gt;流的分类&lt;/h2&gt;
 &lt;p&gt;为了避免图构建过程中流之间的依赖爆炸，把流分成长流和短流，并且降低密度。下图显示了显示了2020年1月MAWI互联网流量数据集的流完成时间和流长度的分布，纵轴PDF是概率密度函数，可以看到不论是长流还是短流都在分布短时间、长长度更多。
-&lt;img src=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407.png&#34;
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407.png&#34;
 	width=&#34;862&#34;
 	height=&#34;361&#34;
-	srcset=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_480x0_resize_box_3.png 480w, http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698331144407&#34;
@@ -534,10 +552,10 @@ $$&lt;/p&gt;
 	
 &gt;
 利用短流合并后，图的稠密度显著下降
-&lt;img src=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326.png&#34;
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326.png&#34;
 	width=&#34;874&#34;
 	height=&#34;355&#34;
-	srcset=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_480x0_resize_box_3.png 480w, http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698332038326&#34;
@@ -560,10 +578,10 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;长流的特征分布拟合&#34;&gt;长流的特征分布拟合&lt;/h2&gt;
 &lt;p&gt;由于长流中的特征是集中分布的，我们使用直方图来表示长流中每个数据包特征的频率分布。直方图的每个条目表示一个数据包特征的频率，从而避免保留其长的每个数据包特征序列。具体来说，我们为每个长流中的每个数据包特征序列构建直方图，然后维护一个哈希表，    键为数据包特征序列，值为直方图。我们将数据包长度和到达间隔的桶宽度分别设置为 10 字节和 1 毫秒，以在拟合精度和开销之间进行权衡。
 下图显示了数据集中的长流中已用桶的数量和最大桶的大小，可以看是集中分布的，即长流中的大多数数据包具有相似的包长度和到达间隔。长度拟合平均用11个桶，每个桶平均200个数据包；到达间隔拟合平均用121个桶，每个桶平均71个数据包。
-&lt;img src=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628.png&#34;
+&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628.png&#34;
 	width=&#34;859&#34;
 	height=&#34;337&#34;
-	srcset=&#34;http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_480x0_resize_box_3.png 480w, http://localhost:1313/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698336076628&#34;

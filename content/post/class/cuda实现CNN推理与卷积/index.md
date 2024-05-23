@@ -3,11 +3,12 @@ title = 'Cuda实现CNN推理与卷积'
 date = 2023-10-17T10:31:05+08:00
 draft = true
 tags = ["课程作业"]
+categories = ["课业"]
+description = "ucas 2023秋 赵地老师GPU架构与编程课程大作业一"
+image = "/img/placeholder.jpeg"
 +++
 
 # 导语
-
-ucas 2023 赵地老师GPU架构与编程课程大作业一
 
 要求：cuda不调库实现CNN推理 加分：cuda不调库实现CNN训练
 
@@ -171,8 +172,6 @@ private:
 ```
 
 语法类似上面，给private赋值
-
-
 
 然后使用MNIST类的read_test_data()方法读取数据集
 

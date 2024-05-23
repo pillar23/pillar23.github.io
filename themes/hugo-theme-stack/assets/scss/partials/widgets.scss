@@ -66,6 +66,34 @@
     }
 }
 
+/* Category widget */
+.category {
+    .category-label {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        a {
+            background: var(--card-background);
+            box-shadow: var(--shadow-l1);
+            border-radius: var(--category-border-radius);
+            padding: 8px 20px;
+            color: var(--card-text-color-main);
+            font-size: 1.4rem;
+            transition: box-shadow 0.3s ease;
+
+            &:hover {
+                box-shadow: var(--shadow-l2);
+            }
+        }
+    }
+    .category-count {
+        margin-left: 7px;
+        color: var(--body-text-color);
+    }
+}
+
+
 .tagCloud {
     .tagCloud-count {
         color: var(--body-text-color);
