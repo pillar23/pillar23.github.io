@@ -2,6 +2,7 @@
 title = 'KAIROS'
 date = 2024-03-02T20:15:55+08:00
 draft = false
+tags = ["论文笔记", "溯源图"]
 categories = ["论文"]
 description = "使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题"
 image = "KAIROS/1715250405508.png"
