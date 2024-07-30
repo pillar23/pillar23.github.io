@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbf77341b31aeb03b715c2ff883328ae7f3889f992cf736e2ffb8d1bd491c50.css"><meta property='og:title' content='IKEv2标准阅读'>
+<link rel="stylesheet" href="/scss/style.min.0c40e8a523f4835f9e94f17f178c31dcbcb38313782bb275c3ec17b44e371a2a.css"><meta property='og:title' content='IKEv2标准阅读'>
 <meta property='og:description' content='任选一个标准（口令鉴别协议），书写阅读报告'>
 <meta property='og:url' content='https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
@@ -14,9 +14,6 @@
 <meta name="twitter:title" content="IKEv2标准阅读">
 <meta name="twitter:description" content="任选一个标准（口令鉴别协议），书写阅读报告"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog2.pillar.fun/img/placeholder.jpeg' />
-  
-
-
     </head>
     <body class="
     article-page
@@ -230,25 +227,6 @@
         
 
         <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://blog2.pillar.fun/" selected>中文</option>
-                        
-                    </select>
-                </li>
-            
             
             
                 <li id="dark-mode-toggle">
@@ -537,44 +515,44 @@
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Notation</span>        <span class="n">Payload</span> 
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Notation        Payload 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">----------------------------------------</span>
+</span></span><span class="line"><span class="cl">----------------------------------------
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">AUTH</span>            <span class="n">Authentication</span> 
+</span></span><span class="line"><span class="cl">AUTH            Authentication 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CERT</span>            <span class="n">Certificate</span> 
+</span></span><span class="line"><span class="cl">CERT            Certificate 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CERTREQ</span>         <span class="n">Certificate</span> <span class="n">Request</span> 
+</span></span><span class="line"><span class="cl">CERTREQ         Certificate Request 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CP</span>              <span class="n">Configuration</span> 
+</span></span><span class="line"><span class="cl">CP              Configuration 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">D</span>               <span class="n">Delete</span> 
+</span></span><span class="line"><span class="cl">D               Delete 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">EAP</span>             <span class="n">Extensible</span> <span class="n">Authentication</span> 
+</span></span><span class="line"><span class="cl">EAP             Extensible Authentication 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">HDR</span>             <span class="n">IKE</span> <span class="n">header</span> <span class="p">(</span><span class="ow">not</span> <span class="n">a</span> <span class="n">payload</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">HDR             IKE header (not a payload) 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">IDi</span>             <span class="n">Identification</span> <span class="o">-</span> <span class="n">Initiator</span> 
+</span></span><span class="line"><span class="cl">IDi             Identification - Initiator 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">IDr</span>             <span class="n">Identification</span> <span class="o">-</span> <span class="n">Responder</span> 
+</span></span><span class="line"><span class="cl">IDr             Identification - Responder 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">KE</span>              <span class="n">Key</span> <span class="n">Exchange</span> 
+</span></span><span class="line"><span class="cl">KE              Key Exchange 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Ni</span><span class="p">,</span> <span class="n">Nr</span>          <span class="n">Nonce</span> 
+</span></span><span class="line"><span class="cl">Ni, Nr          Nonce 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">N</span>               <span class="n">Notify</span> 
+</span></span><span class="line"><span class="cl">N               Notify 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">SA</span>              <span class="n">Security</span> <span class="n">Association</span> 
+</span></span><span class="line"><span class="cl">SA              Security Association 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">SK</span>              <span class="n">Encrypted</span> <span class="ow">and</span> <span class="n">Authenticated</span>
+</span></span><span class="line"><span class="cl">SK              Encrypted and Authenticated
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">TSi</span>             <span class="n">Traffic</span> <span class="n">Selector</span> <span class="o">-</span> <span class="n">Initiator</span> 
+</span></span><span class="line"><span class="cl">TSi             Traffic Selector - Initiator 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">TSr</span>             <span class="n">Traffic</span> <span class="n">Selector</span> <span class="o">-</span> <span class="n">Responder</span> 
+</span></span><span class="line"><span class="cl">TSr             Traffic Selector - Responder 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">V</span>               <span class="n">Vendor</span> <span class="n">ID</span>
+</span></span><span class="line"><span class="cl">V               Vendor ID
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>第 3 节介绍了每个有效负载的内容的详细信息。可能选择显示的有效负载将显示在括号中，例如 [CERTREQ];这表示可以选择包含证书请求有效负载。</p>
@@ -867,8 +845,10 @@
         
             
         
-        发表了13篇文章 ·
-        总计4.65k字
+            
+        
+        发表了14篇文章 ·
+        总计4.98k字
     </section>
     
     <section class="running-time">
