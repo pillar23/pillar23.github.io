@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用TFE-GNN对流量使用字节级方法实现恶意流量检测'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="使用TFE-GNN对流量使用字节级方法实现恶意流量检测">
 <title>TFE GNN</title>
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/tfe-gnn/'>
 
-<link rel="stylesheet" href="/scss/style.min.0c40e8a523f4835f9e94f17f178c31dcbcb38313782bb275c3ec17b44e371a2a.css"><meta property='og:title' content='TFE GNN'>
-<meta property='og:description' content='使用TFE-GNN对流量使用字节级方法实现恶意流量检测'>
+<link rel="stylesheet" href="/scss/style.min.82c29a3df35b3996da6bb4b4275e5ad453e2587c06ff57bf28028350a6e437b5.css"><meta property='og:title' content="TFE GNN">
+<meta property='og:description' content="使用TFE-GNN对流量使用字节级方法实现恶意流量检测">
 <meta property='og:url' content='https://blog2.pillar.fun/p/tfe-gnn/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='流量检测' /><meta property='article:tag' content='论文笔记' /><meta property='article:published_time' content='2024-02-16T16:28:03&#43;08:00'/><meta property='article:modified_time' content='2024-02-16T16:28:03&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png' />
 <meta name="twitter:title" content="TFE GNN">
 <meta name="twitter:description" content="使用TFE-GNN对流量使用字节级方法实现恶意流量检测"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png' />
+  
+
+
     </head>
     <body class="
     article-page
@@ -57,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                        <img src="/img/avatar_hu8974536233092345980.jpg" width="300"
                             height="299" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -73,7 +76,7 @@
             <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
             <h2 class="site-description">Like tears in rain.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -225,12 +228,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,7 +241,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -246,10 +249,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -274,26 +278,26 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ol>
+  <ul>
     <li><a href="#字节级流量图构造-byte-level-traffic-graph-construction">字节级流量图构造 Byte-level Traffic Graph Construction</a>
-      <ol>
+      <ul>
         <li><a href="#pmi">PMI</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#双嵌入-dual-embedding">双嵌入 dual embedding</a></li>
     <li><a href="#交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion">交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion</a>
-      <ol>
+      <ul>
         <li><a href="#graphsage">GraphSAGE</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#cross-gated-feature-fusion">Cross-gated Feature Fusion</a></li>
     <li><a href="#端到端的下游任务训练-end-to-end-training-on-downstream-tasks">端到端的下游任务训练 End-to-End Training on Downstream Tasks</a></li>
-  </ol>
+  </ul>
 
-  <ol>
+  <ul>
     <li><a href="#实验设置">实验设置</a></li>
     <li><a href="#消融实验">消融实验</a></li>
-  </ol>
+  </ul>
 </nav>
         </div>
     </section>
@@ -308,8 +312,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/tfe-gnn/">
-                <img src="/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_800x0_resize_box_3.png"
-                        srcset="/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_800x0_resize_box_3.png 800w, /p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_1600x0_resize_box_3.png 1600w"
+                <img src="/p/tfe-gnn/pic/1708314808397_hu16726544897321246322.png"
+                        srcset="/p/tfe-gnn/pic/1708314808397_hu16726544897321246322.png 800w, /p/tfe-gnn/pic/1708314808397_hu16936131816906054614.png 1600w"
                         width="800" 
                         height="347" 
                         loading="lazy"
@@ -388,8 +392,8 @@
     <section class="article-content">
     
     
-    <h1 id="abstract">abstract</h1>
-<p>目的：实现加密流量[VPN、tor]的分类</p>
+    <h1 id="abstract">abstract
+</h1><p>目的：实现加密流量[VPN、tor]的分类</p>
 <p>现有局限性：只能提取低级别特征，基于统计的方法对<strong>短流</strong>无效，对header和payload采取<strong>不平等</strong>的处理，难以挖掘字节之间的潜在相关性。</p>
 <p>提出方法：</p>
 <ol>
@@ -401,7 +405,7 @@
 <p><img src="/p/tfe-gnn/pic/1708314808397.png"
 	width="1695"
 	height="735"
-	srcset="/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708314808397_hu10056475487319799432.png 480w, /p/tfe-gnn/pic/1708314808397_hu1121579838167834255.png 1024w"
 	loading="lazy"
 	
 		alt="1708314808397"
@@ -412,8 +416,8 @@
 		data-flex-basis="553px"
 	
 ></p>
-<h1 id="introduction">introduction</h1>
-<p>加密流量保存用户隐私同时也给了攻击者藏身的机会。</p>
+<h1 id="introduction">introduction
+</h1><p>加密流量保存用户隐私同时也给了攻击者藏身的机会。</p>
 <p>传统的数据包检测（DPI）挖掘数据包中的潜在模式或关键词，面对加密数据包时<strong>耗时</strong>且准确性低。</p>
 <p>由于动态端口的应用，基于端口的工作不再有效。</p>
 <p>通过数据流的统计特征（e.g.数据包长度的平均值）采用机器学习分类器（e.g.随机森林）来实现分类的方法，需要手工制作的特征工程，并且在某些情况下可能会由于不可靠/不稳定的fow级统计信息而失败。与长流相比，短流的统计特征有更大的偏差（e.g.长度通常服从长尾分布）意味着不可靠的统计特征普遍存在。我们使用<strong>数据包字节</strong>而非统计特征。</p>
@@ -427,8 +431,8 @@
 <p>TFE-GNN由三大子模块组成（即双嵌入、流量图编码器和交叉门控特征融合机制）。双嵌入层分别嵌入header和payload；图编码器将图编码为高维图向量；交叉门控特征融合机制对header和payload的图向量融合，得到数据包的整体表示向量。</p>
 <p>使用端到端训练（从输入数据到最终输出直接进行训练，而无需将任务分解为多个独立的阶段或模块），采用时间序列模型，获得下游任务的预测结果。</p>
 <p>实验使用了自收集的WWT（WhatsApp、WeChat、Telegram）和公开的ISCX数据集，与十几个baseline比较得出TFE-GNN效果最好。</p>
-<h1 id="preliminary">preliminary</h1>
-<p>1、图的定义</p>
+<h1 id="preliminary">preliminary
+</h1><p>1、图的定义</p>
 <p>G = { $V,\varepsilon,X$}表示一个图，V是节点集合，$\varepsilon$是边集，X是节点的初始特征矩阵（每个节点的特征向量拼起来）</p>
 <p>$A$是大小为$\lvert V \lvert * \lvert V \lvert$图的邻接矩阵</p>
 <p>$N(v)$是节点v相邻的节点</p>
@@ -445,7 +449,7 @@
 <p><img src="/p/tfe-gnn/pic/1708310294876.png"
 	width="1025"
 	height="243"
-	srcset="/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708310294876_hu9686899449597939073.png 480w, /p/tfe-gnn/pic/1708310294876_hu12367339155382874363.png 1024w"
 	loading="lazy"
 	
 		alt="1708310294876"
@@ -457,27 +461,27 @@
 	
 ></p>
 <p>其中$h^{(l)}_u,h^{(l)}_v$是节点u和v在第l层的嵌入向量，$m^{(l)}_u$是l层中节点u的计算信息，$MSG^{(l)}$是消息计算函数，$AGG^{(l)}$是消息聚合函数，$\theta$是他们对应的参数</p>
-<h1 id="methodology">methodology</h1>
-<h2 id="字节级流量图构造-byte-level-traffic-graph-construction">字节级流量图构造 Byte-level Traffic Graph Construction</h2>
-<p>节点：某一个字节，注意相同的字节值共享同一个节点，因此节点个数不会超过256，这样能够保持图在一定的规模下，不会太大。</p>
+<h1 id="methodology">methodology
+</h1><h2 id="字节级流量图构造-byte-level-traffic-graph-construction">字节级流量图构造 Byte-level Traffic Graph Construction
+</h2><p>节点：某一个字节，注意相同的字节值共享同一个节点，因此节点个数不会超过256，这样能够保持图在一定的规模下，不会太大。</p>
 <p>字节之间的相关性表示：采用点互信息（PMI）来建模两个字节之间的相似性，字节i和字节j的相似性用$PMI(i,j)$表示。</p>
 <p>边：根据PMI值来构造边，PMI值为正：表示字节之间的语义相关性高；而PMI值为零或负值：表示字节之间的语义相关性很小或没有。因此，我们只在PMI值为正的两个字节之间创建一条边。</p>
 <p>节点特征：每个节点的初始特征为字节的值，维度为1，范围为[0,255]</p>
 <p>图构建：由于$PMI(i,j)=PMI(j,i)$，因此该图是个无向图。</p>
-<h3 id="pmi">PMI</h3>
-<p>PMI：是一种用于衡量两个事件之间相关性的统计量。</p>
+<h3 id="pmi">PMI
+</h3><p>PMI：是一种用于衡量两个事件之间相关性的统计量。</p>
 <p>$$
 PMI(A, B) = \log \frac{P(A, B)}{P(A) \cdot P(B)}
 $$</p>
 <p>值大于零，则表示 A 和 B 之间有正相关性；如果值等于零，则表示它们之间没有关联；如果值小于零，则表示它们之间有负相关性。</p>
-<h2 id="双嵌入-dual-embedding">双嵌入 dual embedding</h2>
-<p>原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用<strong>两个不共享参数的嵌入层</strong>的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$</p>
-<h2 id="交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion">交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion</h2>
-<p>因为要double embedding，所以encoder也要两个。</p>
+<h2 id="双嵌入-dual-embedding">双嵌入 dual embedding
+</h2><p>原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用<strong>两个不共享参数的嵌入层</strong>的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$</p>
+<h2 id="交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion">交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion
+</h2><p>因为要double embedding，所以encoder也要两个。</p>
 <p><img src="/p/tfe-gnn/pic/1708314903093.png"
 	width="393"
 	height="831"
-	srcset="/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708314903093_hu3589382369443086847.png 480w, /p/tfe-gnn/pic/1708314903093_hu10987948906079601206.png 1024w"
 	loading="lazy"
 	
 		alt="1708314903093"
@@ -489,15 +493,15 @@ $$</p>
 	
 ></p>
 <p>这里堆叠了N个GraphSAGE</p>
-<h3 id="graphsage">GraphSAGE</h3>
-<p>对于图 G 中的每个节点 v，GraphSAGE 通过使用节点 v 的度数归一化其嵌入向量，计算来自每个相邻节点的消息。</p>
+<h3 id="graphsage">GraphSAGE
+</h3><p>对于图 G 中的每个节点 v，GraphSAGE 通过使用节点 v 的度数归一化其嵌入向量，计算来自每个相邻节点的消息。</p>
 <p>通过逐元素均值运算（element-wise mean operation）计算所有相邻节点$N(v)$的整体消息，并通过串联运算聚合整体消息以及节点v的嵌入向量</p>
 <p>对节点A的嵌入向量进行非线性变换，完成一个GraphSAGE层的正向过程</p>
 <p>GraphSAGE的消息聚合和计算可以描述为</p>
 <p><img src="/p/tfe-gnn/pic/1708315615539.png"
 	width="904"
 	height="265"
-	srcset="/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708315615539_hu16997038112434978700.png 480w, /p/tfe-gnn/pic/1708315615539_hu8476786481248738620.png 1024w"
 	loading="lazy"
 	
 		alt="1708315615539"
@@ -515,7 +519,7 @@ $$</p>
 <p><img src="/p/tfe-gnn/pic/1708316388852.png"
 	width="774"
 	height="90"
-	srcset="/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708316388852_hu13055082633814061763.png 480w, /p/tfe-gnn/pic/1708316388852_hu10472738061696134416.png 1024w"
 	loading="lazy"
 	
 		alt="1708316388852"
@@ -530,7 +534,7 @@ $$</p>
 <p><img src="/p/tfe-gnn/pic/1708316889596.png"
 	width="474"
 	height="170"
-	srcset="/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708316889596_hu1589171423332782639.png 480w, /p/tfe-gnn/pic/1708316889596_hu16529616899160323887.png 1024w"
 	loading="lazy"
 	
 		alt="1708316889596"
@@ -542,11 +546,11 @@ $$</p>
 	
 ></p>
 <p>用$g_h,g_p$表示header和payload得到的图嵌入</p>
-<h2 id="cross-gated-feature-fusion">Cross-gated Feature Fusion</h2>
-<p><img src="/p/tfe-gnn/pic/1708316997715.png"
+<h2 id="cross-gated-feature-fusion">Cross-gated Feature Fusion
+</h2><p><img src="/p/tfe-gnn/pic/1708316997715.png"
 	width="719"
 	height="817"
-	srcset="/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708316997715_hu16691838358225565276.png 480w, /p/tfe-gnn/pic/1708316997715_hu10866716706894507529.png 1024w"
 	loading="lazy"
 	
 		alt="1708316997715"
@@ -562,7 +566,7 @@ $$</p>
 <p><img src="/p/tfe-gnn/pic/1708317405446.png"
 	width="955"
 	height="260"
-	srcset="/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708317405446_hu5724030346151372970.png 480w, /p/tfe-gnn/pic/1708317405446_hu16118948200565701031.png 1024w"
 	loading="lazy"
 	
 		alt="1708317405446"
@@ -574,13 +578,13 @@ $$</p>
 	
 ></p>
 <p>其中w和b分别是线性层的weight和bias。z 是数据包字节的整体表示向量。</p>
-<h2 id="端到端的下游任务训练-end-to-end-training-on-downstream-tasks">端到端的下游任务训练 End-to-End Training on Downstream Tasks</h2>
-<p>由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。</p>
+<h2 id="端到端的下游任务训练-end-to-end-training-on-downstream-tasks">端到端的下游任务训练 End-to-End Training on Downstream Tasks
+</h2><p>由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。</p>
 <p>这里我们使用双层Bi-LSTM作为baseline，他的输出喂给一个带PReLU的两层线性分类器，使用交叉熵作为损失函数</p>
 <p><img src="/p/tfe-gnn/pic/1708318165707.png"
 	width="1034"
 	height="86"
-	srcset="/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708318165707_hu15666663530963338673.png 480w, /p/tfe-gnn/pic/1708318165707_hu1955602989388333101.png 1024w"
 	loading="lazy"
 	
 		alt="1708318165707"
@@ -593,8 +597,8 @@ $$</p>
 ></p>
 <p>n是长度，CE是交叉熵，y是ground truth（标注数据的分类标签）</p>
 <p>实验部分还有一个用transformer的</p>
-<h1 id="experiments">experiments</h1>
-<p>介绍了实验设置，在很多数据集和baseline上做了对比实验，<strong>做了消融实验（good）</strong></p>
+<h1 id="experiments">experiments
+</h1><p>介绍了实验设置，在很多数据集和baseline上做了对比实验，<strong>做了消融实验（good）</strong></p>
 <p>还分析了TFE-GNN的灵敏度，回答了</p>
 <ol>
 <li>每个组件的功能</li>
@@ -602,8 +606,8 @@ $$</p>
 <li>TFE-GNN的复杂度如何</li>
 <li>超参数的变化在多大程度上会影响TFE-GNN的有效性</li>
 </ol>
-<h2 id="实验设置">实验设置</h2>
-<p>数据集：ISCX VPN-nonVPN , ISCX Tor-nonTor , self-collected WWT datasets.</p>
+<h2 id="实验设置">实验设置
+</h2><p>数据集：ISCX VPN-nonVPN , ISCX Tor-nonTor , self-collected WWT datasets.</p>
 <p>预处理：对于每个数据集，筛除</p>
 <ol>
 <li>空流或空段：所有数据包都没有有效负载（用于establish 连接）</li>
@@ -618,7 +622,7 @@ $$</p>
 <p><img src="/p/tfe-gnn/pic/1708319331300.png"
 	width="2191"
 	height="1053"
-	srcset="/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708319331300_hu7610470449965954899.png 480w, /p/tfe-gnn/pic/1708319331300_hu16173415788549922911.png 1024w"
 	loading="lazy"
 	
 		alt="1708319331300"
@@ -632,7 +636,7 @@ $$</p>
 <p><img src="/p/tfe-gnn/pic/1708319345719.png"
 	width="2610"
 	height="1067"
-	srcset="/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708319345719_hu15159923228735777244.png 480w, /p/tfe-gnn/pic/1708319345719_hu16133383631045347086.png 1024w"
 	loading="lazy"
 	
 		alt="1708319345719"
@@ -643,13 +647,13 @@ $$</p>
 		data-flex-basis="587px"
 	
 ></p>
-<h2 id="消融实验">消融实验</h2>
-<p>在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &lsquo;H&rsquo;、&lsquo;P&rsquo;、&lsquo;DUAL&rsquo;、&lsquo;JKN&rsquo;、&lsquo;CGFF&rsquo; 和 &lsquo;A&amp;N&rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM</p>
+<h2 id="消融实验">消融实验
+</h2><p>在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &lsquo;H&rsquo;、&lsquo;P&rsquo;、&lsquo;DUAL&rsquo;、&lsquo;JKN&rsquo;、&lsquo;CGFF&rsquo; 和 &lsquo;A&amp;N&rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM</p>
 <p>（只用H或P就不需要DUAL和CGFF）</p>
 <p><img src="/p/tfe-gnn/pic/1708319828833.png"
 	width="1731"
 	height="590"
-	srcset="/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708319828833_hu13284168224497385380.png 480w, /p/tfe-gnn/pic/1708319828833_hu7046735823590417566.png 1024w"
 	loading="lazy"
 	
 		alt="1708319828833"
@@ -672,7 +676,7 @@ $$</p>
 <p><img src="/p/tfe-gnn/pic/1708321015036.png"
 	width="950"
 	height="475"
-	srcset="/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708321015036_hu8216215334432359085.png 480w, /p/tfe-gnn/pic/1708321015036_hu11835192227397475699.png 1024w"
 	loading="lazy"
 	
 		alt="1708321015036"
@@ -689,7 +693,7 @@ $$</p>
 <p><img src="/p/tfe-gnn/pic/1708321171217.png"
 	width="843"
 	height="637"
-	srcset="/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708321171217_hu2224805251417421898.png 480w, /p/tfe-gnn/pic/1708321171217_hu10472565223415392163.png 1024w"
 	loading="lazy"
 	
 		alt="1708321171217"
@@ -704,7 +708,7 @@ $$</p>
 <p><img src="/p/tfe-gnn/pic/1708321219227.png"
 	width="1288"
 	height="417"
-	srcset="/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_480x0_resize_box_3.png 480w, /p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_1024x0_resize_box_3.png 1024w"
+	srcset="/p/tfe-gnn/pic/1708321219227_hu17384695895483586112.png 480w, /p/tfe-gnn/pic/1708321219227_hu8943852023995629723.png 1024w"
 	loading="lazy"
 	
 		alt="1708321219227"
@@ -717,8 +721,8 @@ $$</p>
 ></p>
 <p>PMI窗口大小的影响。从图 b 中可以看出，较小的窗口大小通常会导致更好的 f1 分数。窗口越大图中添加的边就越多，由于图太密集，模型将更难分类。</p>
 <p>段长的影响。从图 c 中，我们可以得出一个结论，即用于训练的短段长度通常会使性能更好。</p>
-<h1 id="conclusion-and-future-work">conclusion and future work</h1>
-<p>我们提出了一种构建字节级流量图的方法和一个名为 TFE-GNN 的模型，用于加密流量分类。字节级流量图构造方法可以挖掘原始字节之间的潜在相关性并生成判别性流量图。TFE-GNN 旨在从构建的流量图中提取高维特征。最后，TFE-GNN可以将每个数据包编码为一个整体表示向量，该向量可用于一些下游任务，如流量分类。选择了几个基线来评估 TFE-GNN 的有效性。实验结果表明，所提模型全面超越了WWT和ISCX数据集上的所有基线。精心设计的实验进一步证明了TFE-GNN具有很强的有效性。</p>
+<h1 id="conclusion-and-future-work">conclusion and future work
+</h1><p>我们提出了一种构建字节级流量图的方法和一个名为 TFE-GNN 的模型，用于加密流量分类。字节级流量图构造方法可以挖掘原始字节之间的潜在相关性并生成判别性流量图。TFE-GNN 旨在从构建的流量图中提取高维特征。最后，TFE-GNN可以将每个数据包编码为一个整体表示向量，该向量可用于一些下游任务，如流量分类。选择了几个基线来评估 TFE-GNN 的有效性。实验结果表明，所提模型全面超越了WWT和ISCX数据集上的所有基线。精心设计的实验进一步证明了TFE-GNN具有很强的有效性。</p>
 <p>将来，我们将尝试在以下限制方面改进 TFE-GNN。（1）有限的图构建方法。所提模型的图拓扑结构是在训练过程之前确定的，这可能会导致非最佳性能。此外，TFE-GNN无法应对每个数据包的原始字节中隐含的字节级噪声。（2） 字节序列中隐含的未使用的时间信息。字节级 trafc 图的构造没有引入字节序列的显式时间特征。</p>
 
 </section>
@@ -753,18 +757,18 @@ $$</p>
     
         <link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
                 defer
                 >
             </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
                 defer
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
+        renderMathInElement(document.body, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false },
@@ -792,7 +796,7 @@ $$</p>
         
         
             <div class="article-image">
-                <img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.47a8bb27abaed161063e75e9a73add3f_hu5782aa90e2830d7e2b9710b9167608e2_253472_250x150_fill_box_smart1_3.png" 
+                <img src="/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.47a8bb27abaed161063e75e9a73add3f_hu17840927045277930775.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -812,11 +816,35 @@ $$</p>
             
                 
 <article class="has-image">
+    <a href="/p/shadewatcher/">
+        
+        
+            <div class="article-image">
+                <img src="/p/shadewatcher/index/1725273027411.3ada5e9a22e7e9aaa1548b483dff7e98_hu3970485544490971918.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Shadewatcher"
+                        
+                        data-hash="md5-OtpemiLn6aqhVItIPf9&#43;mA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Shadewatcher</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/nodlink/">
         
         
             <div class="article-image">
-                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu78cd1151dcb1e38ee0d9061743b507d4_198891_250x150_fill_box_smart1_3.png" 
+                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu613526294385964227.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -840,7 +868,7 @@ $$</p>
         
         
             <div class="article-image">
-                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_huf8d1b81f197ed97f0307a2b1035badd9_647016_250x150_fill_box_smart1_3.png" 
+                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_hu12548462074438151116.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -864,7 +892,7 @@ $$</p>
         
         
             <div class="article-image">
-                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_250x150_fill_box_smart1_3.png" 
+                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu17942772012772399691.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -877,30 +905,6 @@ $$</p>
 
         <div class="article-details">
             <h2 class="article-title">MAGIC</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/atlas/">
-        
-        
-            <div class="article-image">
-                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hua3897747c65368fc3b388dfc773651dc_99107_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post ATLAS"
-                        
-                        data-hash="md5-H4HrFfoActBcMamdj/ca1g==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">ATLAS</h2>
         </div>
     </a>
 </article>
@@ -944,59 +948,10 @@ $$</p>
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
-    </section>
-    
-    <section class="totalcount">
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        发表了14篇文章 ·
-        总计4.98k字
-    </section>
-    
-    <section class="running-time">
-        已经向互联网拉屎了
-        <span id="runningdays" class="running-days"></span>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-
 
 
     
@@ -1083,7 +1038,7 @@ $$</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -1094,20 +1049,6 @@ $$</p>
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<script>
-    let s1 = '2023-10-03'; 
-    s1 = new Date(s1.replace(/-/g, "/"));
-    let s2 = new Date();
-    let timeDifference = s2.getTime() - s1.getTime();
-
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-    let result = days + "天" + hours + "小时" + minutes + "分钟";
-    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

@@ -50,14 +50,22 @@
 
     .article-list--tile {
         display: flex;
-        padding-bottom: 0px; // Narrow the spacing
+        padding-bottom: 15px;
 
         article {
-            width: 150px; // Make category cards smaller
-            height: 90px;
-            margin-right: 5px; // Make cards spacing narrower
+            width: 250px;
+            height: 150px;
+            margin-right: 20px;
             flex-shrink: 0;
+
+            .article-title {
+                margin: 0;
+                font-size: 1.8rem;
+            }
+
+            .article-details {
+                padding: 20px;
+            }
         }
     }
-
 }

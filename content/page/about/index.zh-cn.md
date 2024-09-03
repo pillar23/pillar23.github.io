@@ -12,3 +12,5 @@ menu:
 <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
 
 {{< heatmap >}}
+
+v0.118.2

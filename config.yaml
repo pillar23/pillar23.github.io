@@ -39,6 +39,7 @@ permalinks:
     page: /:slug/
 
 params:
+    math: true
     mainSections:
         - post
     featuredImageField: image
@@ -241,10 +242,12 @@ related:
           weight: 200
 
 markup:
-    goldmark:
+  goldmark:
+    extensions:
         renderer:
             ## Set to true if you have HTML content inside Markdown
             unsafe: true
+        enable: true
     tableOfContents:
         endLevel: 4
         ordered: true

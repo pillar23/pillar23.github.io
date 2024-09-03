@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='通过嵌入回收的方法曾前图学习效率'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="通过嵌入回收的方法增强图学习效率">
 <title>FLASH</title>
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/flash/'>
 
-<link rel="stylesheet" href="/scss/style.min.0c40e8a523f4835f9e94f17f178c31dcbcb38313782bb275c3ec17b44e371a2a.css"><meta property='og:title' content='FLASH'>
-<meta property='og:description' content='通过嵌入回收的方法曾前图学习效率'>
+<link rel="stylesheet" href="/scss/style.min.82c29a3df35b3996da6bb4b4275e5ad453e2587c06ff57bf28028350a6e437b5.css"><meta property='og:title' content="FLASH">
+<meta property='og:description' content="通过嵌入回收的方法增强图学习效率">
 <meta property='og:url' content='https://blog2.pillar.fun/p/flash/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='溯源图' /><meta property='article:tag' content='论文笔记' /><meta property='article:published_time' content='2024-04-18T10:51:57&#43;08:00'/><meta property='article:modified_time' content='2024-04-18T10:51:57&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/flash/index/1716374966746.png' />
 <meta name="twitter:title" content="FLASH">
-<meta name="twitter:description" content="通过嵌入回收的方法曾前图学习效率"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="通过嵌入回收的方法增强图学习效率"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog2.pillar.fun/p/flash/index/1716374966746.png' />
+  
+
+
     </head>
     <body class="
     article-page
@@ -57,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                        <img src="/img/avatar_hu8974536233092345980.jpg" width="300"
                             height="299" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -73,7 +76,7 @@
             <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
             <h2 class="site-description">Like tears in rain.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -225,12 +228,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,7 +241,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -246,10 +249,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -274,28 +278,28 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ol>
+  <ul>
     <li><a href="#导语">导语</a></li>
     <li><a href="#motivation">motivation</a></li>
     <li><a href="#introduction">Introduction</a></li>
     <li><a href="#motivation-1">Motivation</a>
-      <ol>
+      <ul>
         <li><a href="#optc的攻击场景">OpTC的攻击场景</a></li>
         <li><a href="#现有方法缺陷">现有方法缺陷</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#flash-design">FLASH design</a></li>
     <li><a href="#evaluation">Evaluation</a></li>
     <li><a href="#主要贡献">主要贡献</a></li>
     <li><a href="#补充知识">补充知识</a>
-      <ol>
+      <ul>
         <li><a href="#加权交叉熵">加权交叉熵</a></li>
         <li><a href="#jaccard-索引">Jaccard 索引</a></li>
         <li><a href="#xgboost">XGBoost</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#我的评价">我的评价</a></li>
-  </ol>
+  </ul>
 </nav>
         </div>
     </section>
@@ -310,8 +314,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/flash/">
-                <img src="/p/flash/index/1716374966746_huf8d1b81f197ed97f0307a2b1035badd9_647016_800x0_resize_box_3.png"
-                        srcset="/p/flash/index/1716374966746_huf8d1b81f197ed97f0307a2b1035badd9_647016_800x0_resize_box_3.png 800w, /p/flash/index/1716374966746_huf8d1b81f197ed97f0307a2b1035badd9_647016_1600x0_resize_box_3.png 1600w"
+                <img src="/p/flash/index/1716374966746_hu7484464939952899452.png"
+                        srcset="/p/flash/index/1716374966746_hu7484464939952899452.png 800w, /p/flash/index/1716374966746_hu17400201304553539458.png 1600w"
                         width="800" 
                         height="700" 
                         loading="lazy"
@@ -339,7 +343,7 @@
     
         
         <h3 class="article-subtitle">
-            通过嵌入回收的方法曾前图学习效率
+            通过嵌入回收的方法增强图学习效率
         </h3>
         
     </div>
@@ -390,23 +394,14 @@
     <section class="article-content">
     
     
-    <h2 id="导语">导语</h2>
-<p>IEEE S&amp;P 2024, doi is <a class="link" href="https://doi.ieeecomputersociety.org/10.1109/SP54263.2024.00139"  target="_blank" rel="noopener"
-    >here</a>
-
-<span style="white-space: nowrap;"><svg width=".7em"
-    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-        fill="currentColor">
-</svg></span>
-
-    </p>
-<h2 id="motivation">motivation</h2>
-<p>简单来说还是对效率问题提出了一个解，针对大的溯源图，开发了一个嵌入回收数据库来<strong>存储</strong>在训练阶段生成的节点嵌入，检测的时候读嵌入数据库即可，不用重新算嵌入</p>
+    <h2 id="导语">导语
+</h2><p>IEEE S&amp;P 2024, doi is <a class="link" href="https://doi.ieeecomputersociety.org/10.1109/SP54263.2024.00139"  target="_blank" rel="noopener"
+    >here</a></p>
+<h2 id="motivation">motivation
+</h2><p>简单来说还是对效率问题提出了一个解，针对大的溯源图，开发了一个嵌入回收数据库来<strong>存储</strong>在训练阶段生成的节点嵌入，检测的时候读嵌入数据库即可，不用重新算嵌入</p>
 <p>Q:为什么训练阶段的节点嵌入在检测时能用到，覆盖率怎么搞？</p>
-<h2 id="introduction">Introduction</h2>
-<p>现有的溯源图IDS的存在局限</p>
+<h2 id="introduction">Introduction
+</h2><p>现有的溯源图IDS的存在局限</p>
 <ol>
 <li>通常会忽略有价值的语义数据，例如来源图中的进程名称、命令行参数、文件路径和 IP 地址。【Q：但是不是说这些内容容易造成混淆吗？把这些通过word2vec编码成向量不是还是容易造成混淆吗？】（A：意思是不带这些可以提升泛化性，对于没见过的攻击比较管用，但是可能因为学的不够多而有误报，我觉得还是泛化性更重要一点。差评)</li>
 <li>一些IDS忽略了系统事件的时间顺序和因果顺序的重要性。</li>
@@ -418,7 +413,7 @@
 <p><img src="/p/flash/FLASH/1713703958031.png"
 	width="894"
 	height="496"
-	srcset="/p/flash/FLASH/1713703958031_hu309cf4843cd94553ffc9c25bbf74bd10_70966_480x0_resize_box_3.png 480w, /p/flash/FLASH/1713703958031_hu309cf4843cd94553ffc9c25bbf74bd10_70966_1024x0_resize_box_3.png 1024w"
+	srcset="/p/flash/FLASH/1713703958031_hu5747633712646063486.png 480w, /p/flash/FLASH/1713703958031_hu2272574874304729147.png 1024w"
 	loading="lazy"
 	
 		alt="1713703958031"
@@ -442,13 +437,13 @@
 <p>• 我们引入了一个两步过程，分别使用 Word2Vec 和 GNN 生成语义和上下文嵌入。在此过程之后，通过轻量级分类器模型进行实时异常检测，确保系统的可扩展性和效率。</p>
 <p>• 我们提供两种方案——选择性图遍历和嵌入回收数据库——使图表示学习在 IDS 设置中变得实用。</p>
 <p>• 我们在真实世界的数据集上对我们的技术进行全面评估。结果突出了FLASH在识别恶意活动方面的有效性，其对对抗性模拟攻击的弹性，以及加速警报验证过程的能力</p>
-<h2 id="motivation-1">Motivation</h2>
-<h3 id="optc的攻击场景">OpTC的攻击场景</h3>
-<p>攻击者会向目标受害者发送网络钓鱼电子邮件。这些电子邮件包含恶意的 PowerShell Empire 暂存器。打开电子邮件附件后，攻击者将获得对受害者系统的访问权限。然后，攻击代理与命令和控制 （C&amp;C） 服务器建立连接，并秘密地在系统中停留数天。代理的目标是检查系统配置并搜索敏感数据。为了保持隐身性，攻击者执行最少的系统活动并模仿良性系统实体的行为。代理找到所需文件后，会从命令服务器下载有效负载，并将数据泄露到服务器。</p>
+<h2 id="motivation-1">Motivation
+</h2><h3 id="optc的攻击场景">OpTC的攻击场景
+</h3><p>攻击者会向目标受害者发送网络钓鱼电子邮件。这些电子邮件包含恶意的 PowerShell Empire 暂存器。打开电子邮件附件后，攻击者将获得对受害者系统的访问权限。然后，攻击代理与命令和控制 （C&amp;C） 服务器建立连接，并秘密地在系统中停留数天。代理的目标是检查系统配置并搜索敏感数据。为了保持隐身性，攻击者执行最少的系统活动并模仿良性系统实体的行为。代理找到所需文件后，会从命令服务器下载有效负载，并将数据泄露到服务器。</p>
 <p><img src="/p/flash/index/1716372896940.png"
 	width="2746"
 	height="728"
-	srcset="/p/flash/index/1716372896940_hu317dbaddf180456aa7acfb703b20839d_342945_480x0_resize_box_3.png 480w, /p/flash/index/1716372896940_hu317dbaddf180456aa7acfb703b20839d_342945_1024x0_resize_box_3.png 1024w"
+	srcset="/p/flash/index/1716372896940_hu13800659924226336805.png 480w, /p/flash/index/1716372896940_hu17608237196896515129.png 1024w"
 	loading="lazy"
 	
 		alt="1716372896940"
@@ -460,12 +455,12 @@
 	
 ></p>
 <p>在数据收集过程中，这种特殊的攻击是作为 DAPRA 红队演习的一部分执行的。红队在系统上安装了 C&amp;C 代理，该代理使用find.exe搜索关键文件并收集系统信息。然后，攻击代理通过Chrome.exe从 news.com:8080 下载了一个名为fileTransfer1000.exe的程序。该程序压缩文档目录中的文件并将它们泄露到 news.com:9999。这是数据泄露攻击的典型示例，攻击者旨在从目标系统中窃取敏感信息，同时通过模拟良性系统进程来保持未被发现。</p>
-<h3 id="现有方法缺陷">现有方法缺陷</h3>
-<p>主要通过学习良性方法</p>
+<h3 id="现有方法缺陷">现有方法缺陷
+</h3><p>主要通过学习良性方法</p>
 <p><img src="/p/flash/index/1716373026697.png"
 	width="1340"
 	height="914"
-	srcset="/p/flash/index/1716373026697_hu62b6fee0b0c876dbff500c3c93f92fbd_147645_480x0_resize_box_3.png 480w, /p/flash/index/1716373026697_hu62b6fee0b0c876dbff500c3c93f92fbd_147645_1024x0_resize_box_3.png 1024w"
+	srcset="/p/flash/index/1716373026697_hu6680475340144074905.png 480w, /p/flash/index/1716373026697_hu9457226379586243925.png 1024w"
 	loading="lazy"
 	
 		alt="1716373026697"
@@ -484,11 +479,11 @@
 <li>Contextual Alerts（上下文警报)：按照他原文还是子图粒度和节点/边粒度的问题，他意思是能检测出节点/边的就能更好重建攻击（那为啥要分两条？多少沾点)</li>
 <li>Robustness Against Mimicry Attacks（对模仿攻击的鲁棒性)：对抗溯源图检测的模仿攻击指操纵分布图编码，修改攻击图中的节点邻域以模仿良性起源图中的节点邻域。归根接地还是要节点粒度/边粒度的检测（嗯是让你凑了三条啊？)</li>
 </ul>
-<h2 id="flash-design">FLASH design</h2>
-<p><img src="/p/flash/index/1716374966746.png"
+<h2 id="flash-design">FLASH design
+</h2><p><img src="/p/flash/index/1716374966746.png"
 	width="1684"
 	height="1474"
-	srcset="/p/flash/index/1716374966746_huf8d1b81f197ed97f0307a2b1035badd9_647016_480x0_resize_box_3.png 480w, /p/flash/index/1716374966746_huf8d1b81f197ed97f0307a2b1035badd9_647016_1024x0_resize_box_3.png 1024w"
+	srcset="/p/flash/index/1716374966746_hu3782896673309331602.png 480w, /p/flash/index/1716374966746_hu4714770129198330165.png 1024w"
 	loading="lazy"
 	
 		alt="1716374966746"
@@ -546,7 +541,7 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
 <img src="/p/flash/index/1716380160194.png"
 	width="890"
 	height="792"
-	srcset="/p/flash/index/1716380160194_hu937ddd0d45b066d7f519c0c9c14817c4_114837_480x0_resize_box_3.png 480w, /p/flash/index/1716380160194_hu937ddd0d45b066d7f519c0c9c14817c4_114837_1024x0_resize_box_3.png 1024w"
+	srcset="/p/flash/index/1716380160194_hu13717560383909114707.png 480w, /p/flash/index/1716380160194_hu14321489911164538637.png 1024w"
 	loading="lazy"
 	
 		alt="1716380160194"
@@ -558,25 +553,25 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
 	
 ></li>
 </ol>
-<h2 id="evaluation">Evaluation</h2>
-<p>懒得写了</p>
-<h2 id="主要贡献">主要贡献</h2>
-<p>嵌入回收数据库存储在训练阶段生成的节点嵌入</p>
+<h2 id="evaluation">Evaluation
+</h2><p>懒得写了</p>
+<h2 id="主要贡献">主要贡献
+</h2><p>嵌入回收数据库存储在训练阶段生成的节点嵌入</p>
 <ol>
 <li>通过图神经网络（GNN）在数据溯源图上利用图表示学习</li>
 <li>使用基于Word2Vec的语义编码器来捕获基本的语义属性和时间顺序</li>
 <li>采用了基于GNN的上下文编码器，可以有效地将局部和全局图结构编码为富有表现力的节点嵌入。</li>
 </ol>
-<h2 id="补充知识">补充知识</h2>
-<h3 id="加权交叉熵">加权交叉熵</h3>
-<p>加权交叉熵（Weighted Cross-Entropy）是一种改进的交叉熵损失函数，它通过为不同类别的样本分配不同的权重来调整损失的计算。在标准的交叉熵损失函数中，所有类别的样本对损失的贡献是相同的。然而，在实际应用中，数据集往往存在类别不平衡的问题，即某些类别的样本数量远多于其他类别。这种不平衡会导致模型在训练时偏向于预测样本数量多的类别，从而忽视了样本数量少的类别。</p>
+<h2 id="补充知识">补充知识
+</h2><h3 id="加权交叉熵">加权交叉熵
+</h3><p>加权交叉熵（Weighted Cross-Entropy）是一种改进的交叉熵损失函数，它通过为不同类别的样本分配不同的权重来调整损失的计算。在标准的交叉熵损失函数中，所有类别的样本对损失的贡献是相同的。然而，在实际应用中，数据集往往存在类别不平衡的问题，即某些类别的样本数量远多于其他类别。这种不平衡会导致模型在训练时偏向于预测样本数量多的类别，从而忽视了样本数量少的类别。</p>
 <p>加权交叉熵通过引入权重系数来解决这个问题。对于样本数量较少的类别，可以为其分配一个较大的权重，而对于样本数量较多的类别，则分配一个较小的权重。这样，在计算损失时，样本数量少的类别对损失的贡献会更大，从而促使模型更加关注这些类别的样本，提高模型对这些类别的预测能力。</p>
-<h3 id="jaccard-索引">Jaccard 索引</h3>
-<p>Jaccard 索引，也称为 Jaccard 相似系数或 Jaccard 系数，是一种衡量两个集合相似度的统计量。它定义为两个集合的交集大小与它们的并集大小的比值。Jaccard 索引的取值范围在 0 到 1 之间，其中 1 表示两个集合完全相同，0 表示两个集合没有共同元素。</p>
+<h3 id="jaccard-索引">Jaccard 索引
+</h3><p>Jaccard 索引，也称为 Jaccard 相似系数或 Jaccard 系数，是一种衡量两个集合相似度的统计量。它定义为两个集合的交集大小与它们的并集大小的比值。Jaccard 索引的取值范围在 0 到 1 之间，其中 1 表示两个集合完全相同，0 表示两个集合没有共同元素。</p>
 <p>Jaccard 索引的数学表达式如下：</p>
 <p>J(A, B) = |A ∩ B| / |A ∪ B|</p>
-<h3 id="xgboost">XGBoost</h3>
-<p>XGBoost（eXtreme Gradient Boosting）是一种基于决策树的集成机器学习算法，它以梯度提升（Gradient Boosting）框架为基础，通过优化目标函数和高效地处理大规模数据集而广受欢迎</p>
+<h3 id="xgboost">XGBoost
+</h3><p>XGBoost（eXtreme Gradient Boosting）是一种基于决策树的集成机器学习算法，它以梯度提升（Gradient Boosting）框架为基础，通过优化目标函数和高效地处理大规模数据集而广受欢迎</p>
 <p>XGBoost 在各种机器学习任务中都有广泛的应用，如分类、回归、排序等。由于其优异的性能和灵活性，XGBoost 成为了数据科学家和机器学习工程师的常用工具之一。</p>
 <p>XGBoost有以下优点：</p>
 <ol>
@@ -586,8 +581,8 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
 <li>XGBoost 可以处理多种类型的数据，包括数值型、类别型和缺失值等。这使得 XGBoost 在实际应用中具有很高的灵活性</li>
 <li>XGBoost 支持在多线程环境下进行并行计算，以及在分布式系统中进行计算，这使得 XGBoost 能够处理更大规模的数据集，并在更短的时间内完成训练。</li>
 </ol>
-<h2 id="我的评价">我的评价</h2>
-<p>感觉没啥特别的，就一个嵌入数据库比较有意思，抽空把嵌入回收那篇的原文读了吧。</p>
+<h2 id="我的评价">我的评价
+</h2><p>感觉没啥特别的，就一个嵌入数据库比较有意思，抽空把嵌入回收那篇的原文读了吧。</p>
 <p>学到了用加权交叉熵来解决数据不平衡，但是我觉得KAIROS的欠采样和过采样更好一点。</p>
 <p>剩下的图缩减的优化算法其实感觉也都大差不差，都是尽可能缩就完了……</p>
 
@@ -623,18 +618,18 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
     
         <link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
                 defer
                 >
             </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
                 defer
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
+        renderMathInElement(document.body, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false },
@@ -658,11 +653,35 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
             
                 
 <article class="has-image">
+    <a href="/p/shadewatcher/">
+        
+        
+            <div class="article-image">
+                <img src="/p/shadewatcher/index/1725273027411.3ada5e9a22e7e9aaa1548b483dff7e98_hu3970485544490971918.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Shadewatcher"
+                        
+                        data-hash="md5-OtpemiLn6aqhVItIPf9&#43;mA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Shadewatcher</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/nodlink/">
         
         
             <div class="article-image">
-                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu78cd1151dcb1e38ee0d9061743b507d4_198891_250x150_fill_box_smart1_3.png" 
+                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu613526294385964227.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -686,7 +705,7 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
         
         
             <div class="article-image">
-                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_250x150_fill_box_smart1_3.png" 
+                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu17942772012772399691.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -710,7 +729,7 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
         
         
             <div class="article-image">
-                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hua3897747c65368fc3b388dfc773651dc_99107_250x150_fill_box_smart1_3.png" 
+                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hu8064581417603664250.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -734,7 +753,7 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
         
         
             <div class="article-image">
-                <img src="/p/kairos/KAIROS/1715250405508.d69d8c20c789c24e299d7678cdc02502_hu2f94ae9770155cf79c4d05b797271e0d_220753_250x150_fill_box_smart1_3.png" 
+                <img src="/p/kairos/KAIROS/1715250405508.d69d8c20c789c24e299d7678cdc02502_hu1612700310401788291.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -747,30 +766,6 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
 
         <div class="article-details">
             <h2 class="article-title">KAIROS</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/tfe-gnn/">
-        
-        
-            <div class="article-image">
-                <img src="/p/tfe-gnn/pic/1708314808397.7170dbc8ee3236d7df65bfbc5de3eafc_hu2454b6a4f42e67d1ef9df24f58be9406_460521_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post TFE GNN"
-                        
-                        data-hash="md5-cXDbyO4yNtffZb&#43;8XePq/A==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">TFE GNN</h2>
         </div>
     </a>
 </article>
@@ -814,59 +809,10 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
-    </section>
-    
-    <section class="totalcount">
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        发表了14篇文章 ·
-        总计4.98k字
-    </section>
-    
-    <section class="running-time">
-        已经向互联网拉屎了
-        <span id="runningdays" class="running-days"></span>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-
 
 
     
@@ -953,7 +899,7 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -964,20 +910,6 @@ FLASH通过比较预测节点类型和实际节点类型来检测异常节点。
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<script>
-    let s1 = '2023-10-03'; 
-    s1 = new Date(s1.replace(/-/g, "/"));
-    let s2 = new Date();
-    let timeDifference = s2.getTime() - s1.getTime();
-
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-    let result = days + "天" + hours + "小时" + minutes + "分钟";
-    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

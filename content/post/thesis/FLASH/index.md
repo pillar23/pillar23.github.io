@@ -4,7 +4,7 @@ date = 2024-04-18T10:51:57+08:00
 draft = false
 tags = ["溯源图", "论文笔记"]
 categories = ["论文"]
-description = "通过嵌入回收的方法曾前图学习效率"
+description = "通过嵌入回收的方法增强图学习效率"
 image = "index/1716374966746.png"
 +++
 

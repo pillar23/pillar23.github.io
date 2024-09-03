@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="建立威胁检测和推荐之间的任务的映射">
+<title>Shadewatcher</title>
+
+<link rel='canonical' href='https://blog2.pillar.fun/p/shadewatcher/'>
+
+<link rel="stylesheet" href="/scss/style.min.82c29a3df35b3996da6bb4b4275e5ad453e2587c06ff57bf28028350a6e437b5.css"><meta property='og:title' content="Shadewatcher">
+<meta property='og:description' content="建立威胁检测和推荐之间的任务的映射">
+<meta property='og:url' content='https://blog2.pillar.fun/p/shadewatcher/'>
+<meta property='og:site_name' content='π1l4r_のblog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='论文笔记' /><meta property='article:tag' content='溯源图' /><meta property='article:published_time' content='2024-09-02T16:25:49&#43;08:00'/><meta property='article:modified_time' content='2024-09-02T16:25:49&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/shadewatcher/index/1725273027411.png' />
+<meta name="twitter:title" content="Shadewatcher">
+<meta name="twitter:description" content="建立威胁检测和推荐之间的任务的映射"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog2.pillar.fun/p/shadewatcher/index/1725273027411.png' />
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8974536233092345980.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
+            <h2 class="site-description">Like tears in rain.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/such-stupid6'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/class' >
+                
+                
+                
+                <span>📕课程</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/thesis' >
+                
+                
+                
+                <span>📚论文</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/tech' >
+                
+                
+                
+                <span>👨🏻‍💻技术</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#导语">导语</a></li>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#backgroundmotivation">Background&amp;Motivation</a>
+      <ul>
+        <li><a href="#攻击场景">攻击场景</a></li>
+        <li><a href="#对现有方法的挑战">对现有方法的挑战</a></li>
+        <li><a href="#威胁检测作为建议">威胁检测作为建议</a></li>
+      </ul>
+    </li>
+    <li><a href="#problem-definition">Problem definition</a>
+      <ul>
+        <li><a href="#基本概念">基本概念</a></li>
+        <li><a href="#问题陈述">问题陈述</a></li>
+      </ul>
+    </li>
+    <li><a href="#shadewatcher-overview">SHADEWATCHER OVERVIEW</a></li>
+    <li><a href="#knowledge-graph-builder">KNOWLEDGE GRAPH BUILDER</a>
+      <ul>
+        <li><a href="#provenance-graph-construction">Provenance Graph Construction</a></li>
+        <li><a href="#interaction-extraction">Interaction Extraction</a></li>
+      </ul>
+    </li>
+    <li><a href="#recommendation-model">RECOMMENDATION MODEL</a>
+      <ul>
+        <li><a href="#对一阶信息进行建模">对一阶信息进行建模</a></li>
+        <li><a href="#对高阶信息进行建模">对高阶信息进行建模</a></li>
+        <li><a href="#学习检测威胁">学习检测威胁</a></li>
+        <li><a href="#模型适配">模型适配</a></li>
+      </ul>
+    </li>
+    <li><a href="#结果">结果</a></li>
+    <li><a href="#implementation">IMPLEMENTATION</a></li>
+    <li><a href="#补充知识">补充知识</a>
+      <ul>
+        <li><a href="#transr">TransR</a></li>
+        <li><a href="#二分图">二分图</a></li>
+      </ul>
+    </li>
+    <li><a href="#我的评价">我的评价</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/shadewatcher/">
+                <img src="/p/shadewatcher/index/1725273027411_hu3177509697112890583.png"
+                        srcset="/p/shadewatcher/index/1725273027411_hu3177509697112890583.png 800w, /p/shadewatcher/index/1725273027411_hu5284519506124575856.png 1600w"
+                        width="800" 
+                        height="336" 
+                        loading="lazy"
+                        alt="Featured image of post Shadewatcher" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%BA%E6%96%87/" >
+                论文
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/shadewatcher/">Shadewatcher</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            建立威胁检测和推荐之间的任务的映射
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 02, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="导语">导语
+</h2><p>sp22</p>
+<p>doi is <a class="link" href="10.1109/SP46214.2022.9833669" >here</a></p>
+<h2 id="abstract">Abstract
+</h2><p>系统审计通过监控系统实体之间的交互，提供了对网络威胁的低层次视角。针对高级网络攻击，一种普遍的解决方案是对审计记录进行数据溯源分析，以寻找异常（异常行为）或已知攻击的特征。然而，现有的方法存在几个局限性：1) 产生大量误报，2) 依赖专家知识，或 3) 生成粗粒度的检测信号。在本文中，我们认识到网络安全中的威胁检测与信息检索中的推荐之间的结构相似性。通过将系统实体交互的安全概念映射到用户-物品交互的推荐概念，我们通过<strong>预测系统实体对其交互实体的偏好来识别网络威胁</strong>。此外，受近期在推荐中通过物品侧信息建模高阶连通性的进展启发，我们将这一思路转移到网络威胁分析中，并定制了一个自动检测系统 SHADEWATCHER。该系统通过图神经网络实现审计记录中的高阶信息潜力，以提高检测效果。此外，我们为 SHADEWATCHER 配备了动态更新功能，以更好地应对误报。在对真实和模拟网络攻击场景的评估中，SHADEWATCHER 在高精度和高召回率的威胁识别方面展现了优势。此外，SHADEWATCHER 能够在几秒钟内从近百万个系统实体交互中精确定位威胁。</p>
+<h2 id="introduction">Introduction
+</h2><p>现有的基于来源的检测器分为三类：1） 基于统计的检测通过审计记录在溯源图中的稀有性来量化审计记录的可疑程度 [10]–[12];2） 基于规范的检测将审计记录与与已知攻击模式相关的安全策略知识库进行匹配 [13]–[19];3） 基于学习的检测扩展了机器学习技术，以对良性行为进行建模并检测与良性行为的偏差</p>
+<p>基于统计的检测容易出现大量误报，适用于罕见但正常的系统活动。这是因为统计分析只考虑来源图中的直接（因果）联系，而不考虑系统实体之间的微妙（语义）关系，这对于威胁分析至关重要，尤其是在面对不断变化的行为时。虽然基于规范的检测可以通过将攻击语义定义为安全策略来保持较低的误报率，但这种启发式方法非常耗时且容易出错。基于学习的检测旨在将审计记录的因果关系和语义全面纳入威胁分析。尽管检测精度很高，但目前的学习方法产生的检测信号是粗粒度的，例如行为水平。因此，需要繁琐的体力劳动来审查个人行为中的所有审计记录，以确定它们是否表明实际的攻击</p>
+<p>分析网络威胁的根本挑战是在大量审计记录中进行全面而细粒度的推理。安全分析师不仅需要辨别某个审计记录是否是攻击的结果，还需要辨别它与恶意行为的关联。威胁行为者通常会通过分析师认为可疑的意外系统实体交互来诱导不需要的行为。直观地说，有意的交互构成了行为的规范，并构成了最 “可能” 被观察到的行为。相反，无意的行为偏离了常态，并包含了“不太可能”需要观察的互动。因此，可以通过确定系统实体与另一个实体交互的可能性来揭示网络威胁。这种交互的可能性可以通过利用出处图中的因果联系来估计。然而，这种连接性并没有捕捉到系统实体背后隐藏的语义含义，而这些语义是揭示它们之间的关系所必需的。为了说明这一点，请考虑 Linux /proc 文件系统。由于 /proc/25/stat 和 /proc/27/stat 属于不同的进程，因此它们在出处图中通常是断开连接的，被直接连接视为因果无关。但是，它们都显示有关进程的状态信息，在考虑它们周围的边界上下文时，可以反映这些信息。【这个例子的意思是他要搞一个新的建图方法？】</p>
+<p>我们注意到，在推荐域中也探讨了类似的问题，其中主要目标是预测用户消费商品的可能性。早期的推荐系统假设行为相似的用户会共享对项目的偏好，以便他们通过历史用户项目交互找到相似的用户来理解用户偏好。但是，用户和项目之间的直接连接（称为一阶连接）不足以比较不同项目之间的语义相似性。为了解决这个问题，研究人员进一步考虑了项目的侧面信息，例如，电影的类型，以捕获项目语义。其核心是侧面信息可以形成高阶连接，以链接用户-项目交互中断开连接的相似项目。基于建议的这一进步，<strong>我们的目标是整合系统实体的侧面信息，以全面解释它们的交互</strong>。尽管这些辅助信息没有在出处图中明确编码，但最近的一项研究表明，系统实体的语义可以从使用它们的上下文中揭示出来。因此，我们利用<strong>上下文信息</strong>作为底层 Side 信息来分析系统实体。此后，具有相似上下文的系统实体将在语义上相关，尽管在因果分析中被认为无关紧要。【还是用上下文信息呗】</p>
+<p>通过将系统实体交互和实体上下文信息的网络安全概念映射到用户-项目交互和项目端信息的推荐概念，我们可以将网络威胁检测<strong>制定为推荐任务</strong>。特别是，我们观察到语义相似的系统实体会在交互上表现出相似的偏好。例如，敏感文件（例如 /etc/passwd 和 /etc/shadow）通常不与公共网络交互，否则表明数据泄露 [32]。基于此观察结果，<strong>可以进一步将威胁检测指定为预测系统实体不“首选”其交互式实体的可能性</strong>。请注意，与研究用户偏好的典型推荐方案相比，威胁检测针对系统实体不太可能喜欢的交互，因为此类交互通常是强攻击指标。</p>
+<p>在本文中，我们介绍了 SHADEWATCHER，这是第一个<strong>通过系统实体交互建议来分析网络威胁的系统</strong>。SHADEWATCHER 使用<strong>上下文感知嵌入模型</strong>提取系统实体的侧面信息，该模型通过实体在运行系统中的使用情况来展开实体的语义。为了揭示交互的系统实体意图，SHADEWATCHER 采用了<strong>基于图神经网络构建的推荐模型</strong>，该模型通过递归传播来自相邻实体的信息来利用高阶连接。此外，SHADEWATCHER 还根据分析师对检测信号（即潜在的恶意交互）的反馈动态更新其模型。这允许 SHADEWATCHER 集成虚假建议作为<strong>额外的监督</strong>，以提高其检测能力。作为一种半监督方法，SHADEWATCHER 在未标记的良性系统实体交互与标记的分析师对误报的反馈相结合的基础上进行了训练。简而言之，SHADEWATCHER 对建议的新颖利用使其对现有检测器有利，因为：1） SHADEWATCHER 不是将历史频率作为估计怀疑程度的指标，而是推断系统实体的内在语义以发现异常交互;2） SHADEWATCHER 提供端到端解决方案，无需事先了解攻击即可检测威胁;3） SHADEWATCHER 生成精细的检测信号，突出显示攻击的关键指标。</p>
+<p>我们实施了 SHADEWATCHER，并评估了其对 TRACE 团队在 DARPA 透明计算 （TC） 计划中生成的四次 APT 攻击的有效性和效率，以及最近文献中在测试台环境中模拟的六次网络攻击。实验结果表明，SHADEWATCHER 可以有效区分良性和恶意的系统实体交互，并以较高的精度和召回率检测网络威胁。我们还证明了 SHADEWATCHER 足够高效，可以扩展到企业环境。</p>
+<p>总之，我们做出了以下贡献：</p>
+<ul>
+<li>我们识别出<strong>威胁检测和推荐之间的任务相似性</strong>。建立这两个领域之间的映射是我们方法的关键创新，这为网络威胁分析提供了有效解决方案的新空间。此外，我们认识到在审计记录中高阶信息的概念，用于建模系统实体对其交互实体的偏好。</li>
+<li>提出了 SHADEWATCHER，这是第一个基于推荐原理设计的系统，旨在以自动化和自适应的方式分析网络威胁，同时提供适当的抽象以突出关键攻击指标。</li>
+<li>我们实现了 SHADEWATCHER，并针对真实和模拟攻击场景进行了系统评估。结果表明，SHADEWATCHER 在网络威胁分析中实现了高效能和高效率。</li>
+</ul>
+<h2 id="backgroundmotivation">Background&amp;Motivation
+</h2><h3 id="攻击场景">攻击场景
+</h3><p>带有 drakon dropper 的浏览器扩展（简称 Extension Backdoor）是来自 DARPA TC 计划红队对蓝队对抗战的 APT 攻击 [35]。攻击始于在访问恶意网站时破坏 Firefox 中易受攻击的密码管理器扩展通行证 mgr。然后，被入侵的扩展程序会在磁盘上放置一个恶意程序 gtcache。在执行过程中，程序会将用户信息 /etc/passwd 泄露到公共网络。同时，它植入 ztmp 来收集系统配置并执行目标网络的端口扫描以进行内部侦察。</p>
+<p>图 1a 显示了根据 Extension Backdoor 中的审计记录构建的简化出处图。图中的节点表示系统实体，其中矩形、椭圆和菱形分别表示进程、文件和套接字。灰色边缘表示以信息流方向为导向的系统调用。为了减少混乱，我们使用两个单独的节点来代替具有不同进程 ID 的 /proc/pid/stat 和具有不同网络端口的 128.55.12.73。Provenance 图为导航大规模审计记录提供了一种有前途的表示形式。它使安全分析师能够执行向后和向前信息流跟踪，以发现安全事件的根本原因及其后果</p>
+<p><img src="/p/shadewatcher/index/1725269213636.png"
+	width="1560"
+	height="476"
+	srcset="/p/shadewatcher/index/1725269213636_hu9795253548004543819.png 480w, /p/shadewatcher/index/1725269213636_hu6711862739792932779.png 1024w"
+	loading="lazy"
+	
+		alt="1725269213636"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="327"
+		data-flex-basis="786px"
+	
+></p>
+<h3 id="对现有方法的挑战">对现有方法的挑战
+</h3><p>基于来源的检测擅长从来源图中提取潜在的恶意行为。然而，我们确定了现有方法的几个固有局限性。</p>
+<ul>
+<li>基于统计的检测：最近的研究观察到，攻击活动中的安全事件通常是不常见的系统活动。因此，他们通过历史频率量化审计记录的可疑程度。虽然简单有效，但主要问题是使用统计分析生成的误报数量。例如，当 gtcache 首次读取图 1a 中的 /proc/27/stat 时，会发出警报，因为此活动以前从未见过，尽管它表示完全正常的进程状态检索。从这个例子中，很容易看出基于统计的方法的主要不足，<strong>即识别系统执行历史上很少见的审计记录，但无法区分正常记录与以前未观察到但语义相关的活动。</strong></li>
+<li>基于规范的检测：基于规范的检测器通过将审计记录与描述攻击语义的安全策略知识库进行匹配来追踪网络威胁。虽然这种检测可以保持较低的误报率，但制定安全策略非常耗时，并且不可避免地需要领域专业知识。关于我们的激励性示例，RapSheet开发了十多个手工制作的 TTP（战术、技术和程序）查询，用于杀伤链搜索;Morse初始化 600 万个系统实体的机密性和完整性标签，用于标签传播;Poirot从一份六页的网络威胁情报报告中提取查询图，用于图形对齐。我们还注意到，由于专家对攻击的主观解释、能力水平不同，甚至只是纯粹的人为错误等因素，<strong>最终策略的质量可能会有很大差异。</strong></li>
+<li>基于学习的检测：目前基于学习的检测器大多训练良性行为模型，并将偏差检测为网络攻击。虽然这些方法可以通过将审计记录的语义纳入威胁分析来实现高检测准确性，但迄今为止还没有学习解决方案提供有关攻击关键指标的可解释结果或见解，从而削弱了在实践中的实用性。具体来说，<strong>需要大量的手动工作来查看行为中的审计记录</strong>，以找到触发检测信号的特定系统活动。例如，由于 Unicorn 分析了长时间系统执行的 APT 攻击，分析师需要筛选数千条审计记录，以识别和验证单个检测信号的指标。</li>
+</ul>
+<h3 id="威胁检测作为建议">威胁检测作为建议
+</h3><p>系统实体交互是我们方法的基石，我们利用观察结果，<strong>即低可能性的交互可以自然地被识别为潜在的网络威胁</strong>。例如，浏览器下载的可执行文件（例如 gtcache）通常不会运行敏感的用户命令（例如 uname），否则意味着恶意执行 。基于来源的解决方案通常使用来源图中的因果关系来解释系统实体交互。然而，这种因果关系不足以揭示两个系统实体之间的语义关系。特别是，因果断开的实体（例如， /proc/pid/stat 具有不同的 pid ）不一定在语义上无关紧要。</p>
+<p>我们发现，在推荐域中也探讨了类似的问题。图 1b 说明了一个电影推荐场景，其中 Alice 是为其提供推荐的目标用户。用户-项目交互 Alice→Iron Man 和 Bob →Iron Man） 表明 Alice 和 Bob 之间的行为相似性。基于行为相似的用户对项目有共同偏好的假设，早期的推荐系统预测 Alice 会像 Bob 喜欢的那样支持 Thor。但是，考虑到相关项目对特定用户的推荐，用户与项目的交互是不够的，因为它们无法比较项目语义相似性。为了解决这个问题，最近提出的方法利用项目方面的信息，如电影类型和工作室，形成高阶连接，将语义相似的项目联系起来。例如，钢铁侠→Action→复仇者联盟和钢铁侠→漫威影业→复仇者联盟“这两个顺序连接表明爱丽丝可能更喜欢复仇者联盟，因为它的侧面信息与钢铁侠的信息相同。</p>
+<p>同样，更好地了解系统实体交互的一种直观方法是识别系统实体的侧面信息以形成高阶连接。例如，如果 /proc/27/stat 通过侧面信息（例如，图 1c 中的进程状态信息）与 /proc/25/stat 相关联，我们将确定它们共享与其他系统实体（例如 gtcache）交互的概率。但是，side information 未在原始 Provenance Graph 中显式编码。为了提取这些知识，我们从最近的一项研究中汲取灵感，该研究从系统实体的使用上下文中推断出系统实体的语义。更具体地说，我们将上下文信息视为剖分析系统实体的辅助知识。因此，系统实体的因果关系形成用户-项交互，如建议中所示，而系统上下文提供侧面信息以形成高阶连接。请注意，由于系统实体的上下文信息反映在来源图中的邻居中，因此我们将高阶连接捕获为关联相邻实体的多跳路径。</p>
+<p>因此，我们可以将网络威胁检测表述为推荐问题，它对两个系统实体之间交互的可能性进行建模，<strong>预测实体通常不喜欢作为网络威胁的交互</strong>。例如，在图 1a 中检测到 Extension Backdoor 的攻击会变成推荐 gtcache 不太可能与之交互的系统实体在图 1c 中。在这种洞察力的推动下，我们能够在威胁检测和推荐领域之间架起桥梁，并利用推荐方法的进步来帮助理解系统实体交互。</p>
+<h2 id="problem-definition">Problem definition
+</h2><h3 id="基本概念">基本概念
+</h3><p>Provenance Graph：审计记录是一组描述系统执行历史记录的日志条目。每条记录都以系统调用的粒度表示一个活动。通常，它被表述为 3 元组 $(src， rel， dst)$，其中 $src， dst ∈ E = {process， f ile， socket}，rel ∈ R = {clone， write， &hellip;}$。例如，图 1a 中的网络服务扫描活动定义为 $（ztmp， connect， 128.55.12.73：54）$。数据来源以来源图的形式组织审计记录，来源图是由$ （src， rel， dst）$ 元组组成的有向无环图。正式地，我们将出处图定义为$ GP = {（src， rel， dst）| src， dst ∈ E， rel ∈ R}。$</p>
+<p>系统实体交互：来源图中的因果关系反映了系统实体之间的交互。例如，图 1a 中连接 gtcache 和 uname 的边链表明它们是交互式的。在推荐场景中，用户-项目交互通常以二分图的形式呈现，以保留协同过滤信号 [38]。因此，我们还将系统实体交互定义为二分图，$GB = {（e， y_{ee}^′ ， e^′）|e， e^′ ∈ E）}$。链接$ y_{ee}^′ = 1$ 表示实体 e 与实体$ e^′$ 进行了交互，而 $y_{ee}^′ = 0$ 则相反。请注意，系统实体交互不仅表示显式数据依赖关系，还表示隐式控制依赖关系。例如，前面提到的 gtcache 和 uname 之间的交互显示了一个控制依赖关系，其中 gtcache 操作 ztmp 来执行 uname。</p>
+<p>连接顺序：在这里，我们定义了知识图谱 （KG） 的概念，它将系统实体上下文和交互编码为统一的关系图。更具体地说，我们将 GB 中的有效交互（即 $y_{ee}^′ = 1$）转换为 3 元组$（e， interact， e^′）$，其中 interact 代表系统调用之外的附加关系。由于 GP 和 GB 现在都被定义为实体-关系-实体集，我们可以将它们统一为 KG，$GK = {（h， r， t）|h， t ∈ E， r ∈ R^′}$，其中 R′ = R ∪ {interact}。通过代表系统实体上下文和交互的 KG，我们将一阶连接性正式定义为 KG 中的单跳连接（例如，/etc/passwd −r1 →gtcache），将高阶连接性定义为多跳路径（例如，/etc/passwd −r1 →gtcache−r4 →146.153.68.151：80）。</p>
+<h3 id="问题陈述">问题陈述
+</h3><p>给定审计记录中的系统实体交互，我们的目标是学习一个推荐模型，其目标是预测系统实体 h 不与另一个实体 t 交互的概率 yˆht。请注意，yˆht 还表示交互是对抗性的可能性，这构成了 SHADEWATCHER 分析审计记录中的网络威胁的基础。 威胁模型：这项工作考虑了旨在操纵或泄露系统中存在的信息的攻击者。例如，攻击者可能会安装恶意软件或插入后门来窃取敏感数据。与之前关于系统审计的研究类似，我们假设操作系统和内核空间审计框架是我们值得信赖的计算基础。此外，我们不考虑在系统审核中不可见的硬件木马或侧信道攻击。</p>
+<p>请注意，在 APT 生命周期期间，攻击者可能会升级权限以破坏系统审计，此时审计数据对于网络威胁分析不再可靠。但是，我们可以通过采用安全的来源存储系统或在远程分析服务器中管理审计数据来确保历史审计记录的完整性。因此，攻击者无法操纵以前的审计记录，这些记录跟踪了 SHADEWATCHER 的权限提升证据，以检测恶意系统实体交互。通过进一步整合防篡改审计技术，我们可以定位攻击者何时篡改审计记录以隐藏他们的足迹。最后，可以采用系统强化技术（例如 Linux IMA）来增加损害系统审计的复杂性。</p>
+<h2 id="shadewatcher-overview">SHADEWATCHER OVERVIEW
+</h2><p>图2展示了SHADEWATCHER架构的概述，该架构接收由通用审计框架（即Linux Audit）收集的审计记录，并生成针对对抗性系统实体交互的信号。SHADEWATCHER由四个主要阶段组成：构建知识图谱（KG）、生成推荐模型、检测网络威胁以及适应模型。</p>
+<p><img src="/p/shadewatcher/index/1725273027411.png"
+	width="759"
+	height="319"
+	srcset="/p/shadewatcher/index/1725273027411_hu6188186484792849485.png 480w, /p/shadewatcher/index/1725273027411_hu13131996733562473907.png 1024w"
+	loading="lazy"
+	
+		alt="1725273027411"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="237"
+		data-flex-basis="571px"
+	
+></p>
+<p>我们的知识图谱构建器首先将系统审计记录转换为来源图（PG），并将系统实体交互提取为二分图（BG）。然后，将PG和BG结合成一个知识图谱（KG），该知识图谱随后用于学习一个推荐模型，其目标是预测系统实体对其交互实体的偏好。</p>
+<p>我们推荐系统的关键思想是<strong>利用知识图谱中的不同阶连通性来建模系统实体交互的可能性</strong>，将系统执行中的异常识别为网络威胁。详细内容将在§ VI中给出，但我们在此概述工作流程。为了明确利用一阶和高阶信息，我们通过上下文感知嵌入模块将系统实体参数化为嵌入（即向量），然后通过图神经网络从邻居处迭代传播嵌入。通过聚合所有传播迭代中的嵌入，SHADEWATCHER确定实体间交互为对抗性的概率。</p>
+<p>当系统行为发生变化时，SHADEWATCHER可能会对未观察到但无害的系统实体交互产生误报。为了跟上不断演变的交互模式，SHADEWATCHER提供了一种选项，可以通过适应分析师对误报交互的反馈动态更新其推荐模型。</p>
+<p>总之，SHADEWATCHER的功能可以分为两个阶段，即训练和检测。为了进行基于异常的检测，我们使用无攻击的审计记录来训练推荐模型。对于新到来的审计流，SHADEWATCHER首先提取系统实体交互，并将其输入到训练阶段获得的推荐模型中。然后，如果这些交互被判断为敌对的概率大于预定义的阈值，SHADEWATCHER将其检测为潜在威胁。需要注意的是，SHADEWATCHER目前被设计和实现为进行离线网络威胁分析。我们在附录A中讨论将SHADEWATCHER适应在线方法的潜力及相应的挑战。</p>
+<h2 id="knowledge-graph-builder">KNOWLEDGE GRAPH BUILDER
+</h2><p>在本节中，我们将介绍如何将审计记录解析为知识图谱 （KG），该知识图谱在审计记录中保留一阶和高阶信息。</p>
+<h3 id="provenance-graph-construction">Provenance Graph Construction
+</h3><p>考虑到终端主机上的审计记录，SHADEWATCHER将其转换为一种称为来源图（Provenance Graph, PG）的图结构。图中的节点表示具有一组属性的系统实体，边则描述系统实体之间的因果依赖关系以及记录发生的时间戳。作为审计记录的一种常见表示方式，PG便于对长期攻击进行推理，因为因果记录之间密切相关，尽管在时间上可能相距较远。</p>
+<p>需要注意的是，大多数审计记录在网络威胁的因果分析中并不是严格必要的。更糟糕的是，敌对活动可能会在正常和复杂审计记录的噪声中被淹没。因此，我们借鉴了最近的研究，实施了几种噪声减少策略（在附录B中解释），以减少审计复杂性，同时保留与攻击相关的信息。</p>
+<h3 id="interaction-extraction">Interaction Extraction
+</h3><p>SHADEWATCHER基于系统实体交互识别网络威胁。一种简单的方法是将PG中的每两个系统实体配对，探索它们之间的因果依赖关系。特别地，一对因果连接的实体代表一个有效的交互。不幸的是，由于大多数PG的规模庞大，在实践中遍历所有系统实体对是不可行的。例如，基于DARPA TRACE数据集构建的PG包含超过六百万个系统实体，形成了18万亿对。然而，只有极小一部分（远低于0.01%）的系统实体对表现出有效的交互。</p>
+<p>研究表明，从审计记录中抽象行为可以有效减少分析工作量。具体而言，每个行为被表示为一个来源子图，包含一系列以数据对象（如文件）为根的因果记录。图1a展示了与扩展后门（Extension Backdoor）相关行为的一个例子。用双圈突出显示的gtcache表示根数据对象。在行为层面上进行工作可以大幅减少交互分析的范围，因为因果不连接的系统实体已被划分到不同的行为中。因此，我们决定在提取系统实体交互之前，<strong>将PG划分为多个子图，每个子图描述一个行为</strong>。为此，我们首先识别PG中的所有数据对象，然后对每个数据对象执行<strong>前向深度优先搜索以提取子图</strong>，最后<strong>如果一个子图是另一个的子集，则合并这两个子图</strong>。</p>
+<p>直观上，行为总结了一系列数据对象与其交互实体之间的交互，这些实体分别表示交互的发起者和目标。例如，给定交互gtcache→uname和gtcache→162.66.239.75:53，我们观察到一个可执行文件试图收集系统配置并扫描网络服务。基于这一直觉，SHADEWATCHER将行为中的交互转换为一个二分图（BG），<strong>其中两个不相交的节点集分别是数据对象和系统实体，连接这两个集的边反映了交互。</strong></p>
+<p><strong>结合来源图和二分图</strong>。将系统实体交互视为超越系统调用的关系，PG和BG都被形式化为实体-关系-实体元组的集合。因此，我们对齐系统实体，将其合并为一个知识图（KG），如§ III-A中定义。SHADEWATCHER提供将KG存储到数据库（PostgreSQL或Elasticsearch）中的能力，使得KG可以被查询，而无需为后续的网络威胁分析从头构建。我们还将Kibana集成到SHADEWATCHER中，作为可视化前端，以便于攻击调查。</p>
+<h2 id="recommendation-model">RECOMMENDATION MODEL
+</h2><p>图 3 说明了 SHADEWATCHER 推荐模型的工作流程。它主要包括三个部分：1） 对一阶信息进行建模，通过其使用上下文将系统实体参数化为嵌入（即矢量化表示）;2） 对高阶信息进行建模，通过递归传播来自多跳相邻实体的信息来更新系统实体表示;3） 学习检测威胁，预测交互在两个系统实体表示之上对抗的可能性。</p>
+<p><img src="/p/shadewatcher/index/1725276566636.png"
+	width="776"
+	height="452"
+	srcset="/p/shadewatcher/index/1725276566636_hu15867207927075978538.png 480w, /p/shadewatcher/index/1725276566636_hu4805822543146851926.png 1024w"
+	loading="lazy"
+	
+		alt="1725276566636"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="412px"
+	
+></p>
+<h3 id="对一阶信息进行建模">对一阶信息进行建模
+</h3><p>结合了系统实体交互和实体上下文的安全概念以及用户-项目交互和项目属性的推荐概念，我们意识到知识图（KG）中的直接连接展示了系统实体之间的行为和语义相似性。为了建模这种一阶连接性，我们使用KG嵌入方法将系统实体参数化为向量，其中两个向量化实体之间的距离捕捉了它们的相似性。TransE是一种广泛使用的方法。其核心是翻译原则：如果一个元组$(h, r, t)$在KG中成立，则系统实体h、t及其关系r的嵌入通过满足$e_h + e_r ≈ e_t$来学习，其中$e_h, e_r, e_t ∈ \mathbb R^d$。这个原则与我们对系统实体的直观理解完美契合。以图1a中的(ztmp, connect, 128.55.12.73:53)和(ztmp, connect, 128.55.12.73:54)为例。这两个网络套接字都表示为$e_{ztmp} + e_{connect}$，因此在向量空间中嵌入得很近，表明它们具有相似的语义，这反映了我们将它们标记为网络扫描目标的领域知识。尽管TransE有效，但其存在一个显著的限制——单一的关系类型可能对应多个实体，导致1对N、N对1或N对N的问题。我们在§ VIII-C中展示了这一限制如何影响网络威胁分析。</p>
+<p>为了解决这个问题，我们采用TransR，它为不同关系条件下的系统实体学习单独的表示。它允许我们在不同关系上下文中为同一实体赋予独特的语义。更正式地说，TransR将系统实体h、t和关系r映射到嵌入$e_h, e_t ∈ \mathbb R^d$，$e_r ∈ \mathbb R^k$。对于每个关系r，它指定一个投影矩阵$W_r ∈ \mathbb R^{d×k}$，以将系统实体从d维实体空间转换为k维关系空间，即$e^r_h = e_hW_r, e_t^r = e_tW_r$。之后，TransR通过以下方式衡量给定元组(h, r, t)的可信度分数：</p>
+<p>$$
+f(h, r, t) = | e_h^r + e_r - e_t^r |
+$$</p>
+<p>其中 ‖·‖ 表示 L1 范数距离函数。较低的 f(h, r, t) 分数表明该元组在知识图（KG）中更有可能被观察到，反之则不然。为了优化 TransR 的表示学习，我们采用基于边际的成对排名损失，这要求有效元组（在 KG 中观察到）的可信度分数低于损坏元组（未观察到）的可信度分数：</p>
+<p>$$
+L_{\text{first}} = \sum_{(h,r,t) \in \mathcal{G}<em>K} \sum</em>{(h&rsquo;,r&rsquo;,t&rsquo;) \notin \mathcal{G}_K} \sigma(f(h, r, t) - f(h&rsquo;, r&rsquo;, t&rsquo;) + \gamma),
+$$</p>
+<h3 id="对高阶信息进行建模">对高阶信息进行建模
+</h3><p>除了直接的（第一跳）连接外，多跳路径在知识图（KG）中是固有的。这种高阶连接不仅补充了系统实体之间的相似性，还展示了系统实体如何相互影响。例如，二跳路径 /proc/25/stat−r0 → gtcache−r0 → /proc/27/stat 显示了 /proc/25(27)/stat 之间的相似性，因为它们都与 gtcache 进行交互；而 /etc/passwd −r1 → gtcache−r4 → 146.153.68.151:80 描述了敏感用户信息是如何从企业中传输出去的。显然，建模高阶连接可以帮助我们通过揭示系统实体关系来定位潜在对手。然而，仅使用 TransR 无法表征这种高阶信息。</p>
+<p>为了捕获高阶连接性，我们采用图神经网络 （GNN）将多跳路径集成到系统实体表示中。具体来说，给定一个系统实体 h，一个 GNN 模块通过传播和聚合来自邻居的消息来递归更新其表示形式：</p>
+<p>$$
+z_h^{(l)} = g(z_h^{(l-1)}, Z_{N_h}^{(l-1)}),
+$$</p>
+<p>其中 $z^{(l)}<em>h \in \mathbb{R}^{d_l}$是在第$l$层传播中$h$的$d_l$维表示，$z^{(l-1)}<em>h \in \mathbb{R}^{d</em>{l-1}} $是上一层的表示，且 $ z^{(0)}<em>h = e_r^h $是通过 TransR 导出的嵌入进行初始化的；$N_h$ 是 $h$的一跳邻居（也称为自网络 [56]），而 $z^{(l-1)}</em>{N_h} \in \mathbb{R}^{d</em>{l-1}}$记忆了从 ( h ) 的 ( (l-1) ) 跳邻居传播来的信息；$g(\cdot) $ 是聚合函数，用于将实体的表示与其邻居传播来的信息相结合。可以看出，信息传播和聚合函数在 GNN 模块中都起着至关重要的作用。</p>
+<p>在信息传播方面，由于不同的相邻实体对自我实体 h 的贡献是不平等的，我们设计了一种注意力机制 [29] 来区分系统实体邻居的重要性：【和GAT有啥区别呢】</p>
+<p>$$
+z_{N_h}^{(l-1)} = \sum_{(h, r, t) \in N_h} \alpha(h, r, t) z_t^{(l-1)},
+$$</p>
+<p>其中 α(h,r,t) 是注意力函数，用于控制在特定关系 r的条件下，从 t 到 h 传播多少信息。我们将其设计如下：</p>
+<p>$$
+\alpha(h, r, t) = e_t^{r \top} \tanh(e_h^{r} + e_r),
+$$</p>
+<p>其中 $e^{r}_{t}$ 、$e^r_h$ 和 $e_r$ 是从 TransR 获得的系统实体嵌入。所有邻接实体的注意力分数通过 softmax 函数进一步归一化。通过这种注意力信息传播，我们能够从相关实体中突出有用信号，并过滤掉不相关实体中的无用信号。</p>
+<p>$$
+g(z^{(l-1)}<em>h, z^{(l-1)}</em>{N_h}) = \text{LeakyReLU}((z^{(l-1)}<em>h | z^{(l-1)}</em>{N_h}) W^{(l)}),
+$$</p>
+<p>其中 $\cdot|\cdot$ 是两个向量之间的拼接运算符；$ W^{(l)} \in \mathbb{R}^{2d^{(l-1)} \times d^{(l)}} $ 是第  l 层传播层的变换矩阵，用于提取有用信息。因此，我们可以将多跳邻居的消息整合到实体的原始表示 $z^{(0)}_h$ 中，从而形成新的表示 $z^{(l)}_h$ 。具体来说，整合邻近实体的跳数由传播层数 L 决定。</p>
+<h3 id="学习检测威胁">学习检测威胁
+</h3><p>在获得系统实体的表示后，我们进入威胁检测——学习将系统实体的交互分类为正常和对抗性。在进行 L 次信息传播和聚合后，我们获得了实体 h 的一系列表示 ${z_h^{(0)},\dots,z_h^{(L)} }$，这些表示编码了知识图谱中的不同阶次信息。在这里，我们使用一个简单的拼接运算符将它们合并为最终表示：</p>
+<p>$$
+z_h^* = z^{(0)} | \cdots | z^{(L)}_h.
+$$</p>
+<p>串联没有引入额外的参数来优化和保留与不同传播层相关的信息，这在最近的推荐系统中取得了可喜的性能</p>
+<p>对于任何交互(h,interact,t)，我们对系统实体表示应用内积，以预测系统实体 h 不与另一个实体 t 进行交互的可能性:</p>
+<p>$$
+\hat{y}_{ht} = z_h^<em>{}^ \top z_t^</em>.
+$$</p>
+<p>如果概率$\hat y_{ht}$ 大于预定义的阈值，我们会进一步标记该交互为潜在的网络威胁。为了满足这一原则，我们通过优化广泛使用的成对损失来学习 GNN 模块中的参数。</p>
+<p>$$
+\mathcal{L}<em>{higher} = \sum</em>{(h, r_0, t) \in \mathcal{G}<em>K} \sum</em>{(h&rsquo;, r_0&rsquo;, t&rsquo;) \notin \mathcal{G}<em>K} \sigma(\hat{y}</em>{ht} - \hat{y}_{h&rsquo; t&rsquo;}).
+$$</p>
+<p>其中，r0 表示交互关系；在基于正常审计记录建立的知识图谱中的交互被视为负实例（良性实例）；同时，我们随机抽取在知识图谱中未观察到的交互作为正实例（潜在恶意实例）。请注意，我们抽样的交互不一定反映网络威胁。我们将在附录 C 中进一步解释它们对威胁检测的影响。</p>
+<p>通过结合一阶建模和高阶建模的损失，我们最小化了以下目标函数，以学习推荐模型中的参数</p>
+<p>$$
+\mathcal{L} = \mathcal{L}<em>{first} + \mathcal{L}</em>{higher} + \lambda |\Theta|_2,
+$$</p>
+<p>其中，$Θ={e_h,e_r,e_t,W_r,W_l∣h,t∈E,r∈R′,l∈{1,…,L}}$是可训练模型参数的集合；λ<strong>λ</strong> 是超参数，用于控制 L2 正则化项，以解决过拟合问题</p>
+<h3 id="模型适配">模型适配
+</h3><p>随着系统行为的变化，SHADEWATCHER 可能会对训练阶段未观察到的良性系统实体交互发出误报。因此，有必要跟上交互的演变。在实践中，安全运营中心的分析师会不断筛选威胁警报，以过滤掉误报。因此，将 SHADEWATCHER 泛化到不断演变的交互的自然方式是让分析师参与动态更新。为此，我们提供了一个选项，让分析师对误报交互进行重新标注，使 SHADEWATCHER 能够将误报作为额外的监督信息来修正其推荐模型。例如，假设 (gtcache, interact, /proc/27/stat) 被检测为恶意，但后来经过人工验证为误报。为了避免未来对类似交互的错误，SHADEWATCHER 将该交互作为新的负实例反馈，以重新训练其模型。【还是老问题，你要是人工标注的有点垃圾那不是还是存在问题吗】</p>
+<p>更具体地说，分析师需要通过追踪潜在恶意交互中两个系统实体之间的来源来重建攻击场景，从而验证警报的性质。分析师面临的主要挑战是理解之前未见过的交互，例如，程序第一次加载配置文件的情况。为了促进对这些交互的解释，一个直观的方法是将额外的辅助信息——例如，二进制分析、程序理解和网络监控——纳入知识图谱（KG），以便分析师能够从不同的角度推理关于新交互的信息，我们将此留待未来的工作中。我们承认低质量（例如，错误）反馈可能会误导推荐模型。然而，由于 SHADEWATCHER 提供了细粒度的检测信号，突出了攻击的关键指标，分析师有很高的机会正确区分真实和虚假的警报。</p>
+<h2 id="结果">结果
+</h2><p><img src="/p/shadewatcher/index/1725294360842.png"
+	width="1644"
+	height="477"
+	srcset="/p/shadewatcher/index/1725294360842_hu6323844979766758903.png 480w, /p/shadewatcher/index/1725294360842_hu1232330827853790480.png 1024w"
+	loading="lazy"
+	
+		alt="1725294360842"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="344"
+		data-flex-basis="827px"
+	
+></p>
+<p><img src="/p/shadewatcher/index/1725294370760.png"
+	width="780"
+	height="151"
+	srcset="/p/shadewatcher/index/1725294370760_hu781996688306496392.png 480w, /p/shadewatcher/index/1725294370760_hu16222970328724437837.png 1024w"
+	loading="lazy"
+	
+		alt="1725294370760"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="516"
+		data-flex-basis="1239px"
+	
+></p>
+<p><img src="/p/shadewatcher/index/1725294378085.png"
+	width="760"
+	height="164"
+	srcset="/p/shadewatcher/index/1725294378085_hu1174527621972425764.png 480w, /p/shadewatcher/index/1725294378085_hu12595336745314363862.png 1024w"
+	loading="lazy"
+	
+		alt="1725294378085"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="463"
+		data-flex-basis="1112px"
+	
+></p>
+<p><img src="/p/shadewatcher/index/1725294388393.png"
+	width="772"
+	height="186"
+	srcset="/p/shadewatcher/index/1725294388393_hu12996331612970081913.png 480w, /p/shadewatcher/index/1725294388393_hu201572614688455969.png 1024w"
+	loading="lazy"
+	
+		alt="1725294388393"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="415"
+		data-flex-basis="996px"
+	
+></p>
+<p><img src="/p/shadewatcher/index/1725294329545.png"
+	width="776"
+	height="194"
+	srcset="/p/shadewatcher/index/1725294329545_hu8331999500911304632.png 480w, /p/shadewatcher/index/1725294329545_hu8259456271738139150.png 1024w"
+	loading="lazy"
+	
+		alt="1725294329545"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="400"
+		data-flex-basis="960px"
+	
+></p>
+<p><img src="/p/shadewatcher/index/1725294216549.png"
+	width="732"
+	height="292"
+	srcset="/p/shadewatcher/index/1725294216549_hu1970355285795824202.png 480w, /p/shadewatcher/index/1725294216549_hu7873678852612673977.png 1024w"
+	loading="lazy"
+	
+		alt="1725294216549"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="250"
+		data-flex-basis="601px"
+	
+></p>
+<p>测试阶段是指从训练阶段开始，从输入系统实体交互到通过推荐模型预测网络威胁的持续时间。平均而言，预测 792,333 次交互（68,097 次恶意交互和 724,236 次良互）需要 8.16 秒。到目前为止，我们已经在 GPU 上进行了所有实验，但 GPU 在大多数实际威胁检测场景中可能不可用。因此，我们通过在禁用 GPU 的同一服务器上执行检测来进一步评估 SHADEWATCHER 在 CPU 上的效率。尽管测试时间增加到 220 秒，但我们相信效率仍然很有希望，因为数据集的规模相当于两个月的用户每日数据</p>
+<h2 id="implementation">IMPLEMENTATION
+</h2><p><strong>系统审计收集</strong>：为了收集整个系统的审计记录，我们利用了 Linux 审计功能，使用覆盖 32 种常用系统调用的规则集（详细信息见附录 D）。一旦生成审计记录，它会被处理成 JSON 格式，并通过 Apache Kafka 以流的方式发送到 SHADEWATCHER。</p>
+<p><strong>并行来源图构建</strong>：我们的初始原型显示，来源图（PG）的构建非常耗时，这降低了整体系统性能。为了说明这一点，我们提到我们的原型在 DARPA TRACE 数据集的 PG 构建上大约花费六个小时，而预测网络威胁仅需几秒钟。</p>
+<p>为了解决这个问题，我们实现了一个并行处理管道，如图 4 所示，以允许并发审计记录处理。分配器首先以流式方式加载本地审计记录，并批量插入记录队列。一旦构建器在记录队列中识别到一个新批次，它会将该批次分配给一个空闲线程。随后，线程将生成一个来源子图并存入图队列。同时，图队列中的子图会被生成器不断消耗，以构建最终的 PG。在我们当前的实现中，并行管道仅适用于以公共数据模型格式 [62]（例如，DARPA TC 数据集格式）的审计记录，因为它允许独立记录处理。由商业审计框架生成的审计记录之间的巨大依赖关系给支持并发处理带来了不可忽视的挑战 [10]。例如，读记录中使用的文件描述符总是在打开或套接字记录中定义。我们相信，单独的并行甚至分布式 PG 构建本身就是一个有趣的研究课题，因此我们将此扩展留给未来的工作。</p>
+<p><img src="/p/shadewatcher/index/1725294501705.png"
+	width="756"
+	height="377"
+	srcset="/p/shadewatcher/index/1725294501705_hu2657927174174360485.png 480w, /p/shadewatcher/index/1725294501705_hu8955157703667173215.png 1024w"
+	loading="lazy"
+	
+		alt="1725294501705"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="200"
+		data-flex-basis="481px"
+	
+></p>
+<p><strong>推荐模型训练</strong>：我们使用 Google TensorFlow [63] 实现了我们的推荐模型。该模型通过 Adam 优化器 [64] 进行优化，其中批量大小、边际 γ 和归一化 λ 固定为 1024、1 和 10^−5。我们训练模型 30 个周期，并采用提前停止策略——如果在验证集上的准确率连续五个周期未提高，则训练将被终止。为了减轻过拟合问题，我们进一步采用了 dropout 技术 [65]，其丢弃比例为 0.2。我们使用 Xavier [66] 初始化模型参数 Θ。对于超参数，我们应用网格搜索：学习率调试范围为 {0.0001, 0.001, 0.01}；系统实体的嵌入大小在 {16, 32, 64} 中搜索；GNN 中的传播层数在 {1, 2, 3} 中调节；阈值在 {-1, -0.5, 0, 0.5, 1} 中搜索。根据最佳准确率，我们报告的结果是在学习率为 0.001、嵌入大小为 32、两个传播层的隐藏维度分别为 32 和 16，以及阈值为 -0.5 的设置下得到的。</p>
+<h2 id="补充知识">补充知识
+</h2><h3 id="transr">TransR
+</h3><p>TransR是一种用于知识图谱嵌入的方法，它旨在将实体和关系映射到一个向量空间，以便更好地捕捉知识图谱中的信息。与其他方法相比，TransR通过将关系视为从一个实体空间到另一个实体空间的映射来处理不同类型的关系。这种方法允许模型更灵活地表示复杂的多关系结构。</p>
+<h3 id="二分图">二分图
+</h3><p>BG通常指的是“二分图”（Bipartite Graph），它是一种特殊类型的图，节点可以分为两个不相交的集合，且图中的每条边都连接这两个集合中的一个节点。换句话说，二分图的节点可以被划分成两组，使得任意边都只连接来自不同组的节点。</p>
+<h2 id="我的评价">我的评价
+</h2><p>感觉这个GNN的方式似曾相识，是一个很重的模型，然后套了个知识图谱和推荐系统来找异常交互，还是找异常边。主要创新点也在这个套的知识图谱和推荐系统。感觉还是挺慢的，没GPU要220s，有点鸡肋。</p>
+<p>和之前看的几篇比，也没有什么构图方面的缩减，图注意力也见过，而且用了图注意力肯定会慢。你要问我为啥他能中A，我觉得就形式化表达写的相当不错。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a>
+        
+            <a href="/tags/%E6%BA%AF%E6%BA%90%E5%9B%BE/">溯源图</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/nodlink/">
+        
+        
+            <div class="article-image">
+                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu613526294385964227.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post NODLINK"
+                        
+                        data-hash="md5-aQsEwio3kg/K1gDyrXLoXA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">NODLINK</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/flash/">
+        
+        
+            <div class="article-image">
+                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_hu12548462074438151116.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post FLASH"
+                        
+                        data-hash="md5-oANxbhPbrDGCaKnIV8oT&#43;g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FLASH</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/magic/">
+        
+        
+            <div class="article-image">
+                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu17942772012772399691.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MAGIC"
+                        
+                        data-hash="md5-TnPA5ZfQ3LAX&#43;x&#43;B2liZpg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MAGIC</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/atlas/">
+        
+        
+            <div class="article-image">
+                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hu8064581417603664250.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post ATLAS"
+                        
+                        data-hash="md5-H4HrFfoActBcMamdj/ca1g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ATLAS</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kairos/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kairos/KAIROS/1715250405508.d69d8c20c789c24e299d7678cdc02502_hu1612700310401788291.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post KAIROS"
+                        
+                        data-hash="md5-1p2MIMeJwk4pnXZ4zcAlAg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">KAIROS</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus"],"lang":"zh-cn","locale":{"admin":"管理员","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神","placeholder":"有什么想说的请留言，建议登录后再留言，可以获得best-effort的回复喔。"},"pageview":true,"serverURL":"https://waline.pillar.fun","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 pill4r
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

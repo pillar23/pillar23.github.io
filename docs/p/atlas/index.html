@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='将溯源图转为序列的方法'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="将溯源图转为序列的方法">
 <title>ATLAS</title>
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/atlas/'>
 
-<link rel="stylesheet" href="/scss/style.min.0c40e8a523f4835f9e94f17f178c31dcbcb38313782bb275c3ec17b44e371a2a.css"><meta property='og:title' content='ATLAS'>
-<meta property='og:description' content='将溯源图转为序列的方法'>
+<link rel="stylesheet" href="/scss/style.min.82c29a3df35b3996da6bb4b4275e5ad453e2587c06ff57bf28028350a6e437b5.css"><meta property='og:title' content="ATLAS">
+<meta property='og:description' content="将溯源图转为序列的方法">
 <meta property='og:url' content='https://blog2.pillar.fun/p/atlas/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='溯源图' /><meta property='article:tag' content='论文笔记' /><meta property='article:published_time' content='2024-03-02T20:16:17&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:16:17&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753.png' />
 <meta name="twitter:title" content="ATLAS">
 <meta name="twitter:description" content="将溯源图转为序列的方法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog2.pillar.fun/p/atlas/ATLAS/1709635161753.png' />
+  
+
+
     </head>
     <body class="
     article-page
@@ -57,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                        <img src="/img/avatar_hu8974536233092345980.jpg" width="300"
                             height="299" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -73,7 +76,7 @@
             <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
             <h2 class="site-description">Like tears in rain.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -225,12 +228,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,7 +241,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -246,10 +249,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -274,36 +278,31 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ol>
+  <ul>
     <li><a href="#introduction">introduction</a></li>
     <li><a href="#motivation-and-definitions">Motivation and Definitions</a>
-      <ol>
+      <ul>
         <li><a href="#definition">definition</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#method">Method</a>
-      <ol>
+      <ul>
         <li><a href="#序列生成">序列生成</a></li>
         <li><a href="#序列还原">序列还原</a></li>
-        <li><a href="#选择性序列采样">选择性序列采样</a>
-          <ol>
-            <li><a href="#欠采样">欠采样</a></li>
-            <li><a href="#过采样">过采样</a></li>
-          </ol>
-        </li>
+        <li><a href="#选择性序列采样">选择性序列采样</a></li>
         <li><a href="#序列学习">序列学习</a></li>
         <li><a href="#攻击还原">攻击还原</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#工作亮点">工作亮点</a></li>
     <li><a href="#我的想法">我的想法</a></li>
     <li><a href="#补充知识">补充知识</a>
-      <ol>
+      <ul>
         <li><a href="#屈折形式inflectional-forms和派生形式derivational-forms">屈折形式（Inflectional Forms）和派生形式（Derivational Forms）</a></li>
         <li><a href="#levenshtein-distance">Levenshtein Distance</a></li>
-      </ol>
+      </ul>
     </li>
-  </ol>
+  </ul>
 </nav>
         </div>
     </section>
@@ -318,8 +317,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/atlas/">
-                <img src="/p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_800x0_resize_box_3.png"
-                        srcset="/p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_800x0_resize_box_3.png 800w, /p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_1600x0_resize_box_3.png 1600w"
+                <img src="/p/atlas/ATLAS/1709635161753_hu13288420183752911029.png"
+                        srcset="/p/atlas/ATLAS/1709635161753_hu13288420183752911029.png 800w, /p/atlas/ATLAS/1709635161753_hu12846124177431560740.png 1600w"
                         width="800" 
                         height="448" 
                         loading="lazy"
@@ -399,18 +398,9 @@
     
     
     <p>文章可以在<a class="link" href="https://www.usenix.org/conference/usenixsecurity21/presentation/alsaheel"  target="_blank" rel="noopener"
-    >这里</a>
-
-<span style="white-space: nowrap;"><svg width=".7em"
-    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-        fill="currentColor">
-</svg></span>
-
-    获取</p>
-<h2 id="introduction">introduction</h2>
-<p>APT攻击涉及长期的多个攻击步骤，其调查需要分析大量日志以确定其攻击步骤。因此提出ATLAS从现成的审计日志构建端到端攻击故事的框架。</p>
+    >这里</a>获取</p>
+<h2 id="introduction">introduction
+</h2><p>APT攻击涉及长期的多个攻击步骤，其调查需要分析大量日志以确定其攻击步骤。因此提出ATLAS从现成的审计日志构建端到端攻击故事的框架。</p>
 <p>ATLAS基于的观察：<strong>无论利用的漏洞和执行的有效载荷如何，不同的攻击可能具有相似的抽象攻击策略</strong>。</p>
 <p>ATLAS利用因果关系分析、自然语言处理和机器学习技术的新颖组合来构建<strong>基于序列</strong>的模型，该模型从<strong>因果图</strong>中建立攻击和非攻击行为的关键模式。</p>
 <p>取证分析从多个主机、应用程序和网络接口收集各种审计日志。海量日志通常被离线分析或实时监控，以调试系统故障并识别复杂的威胁和漏洞。</p>
@@ -441,13 +431,13 @@
 <li>提出了一种新的序列表示，通过词形还原和词嵌入来抽象攻击和非攻击语义模式。这些序列使 ATLAS 能够构建一个有效的基于序列的模型，以识别构成攻击故事的攻击事件</li>
 <li>我们在受控环境中通过其真实世界报告开发的 10 种现实 APT 攻击中验证了 ATLAS。结果表明，ATLAS能够高精度、最小开销地识别攻击故事的关键攻击条目。</li>
 </ol>
-<h2 id="motivation-and-definitions">Motivation and Definitions</h2>
-<p>整篇论文中设定了一种攻击场景：攻击者通过电子邮件向企业中的目标用户发送恶意Microsoft Word文件（contract.doc）。用户被欺骗使用 Firefox 从 Gmail 下载和打开 Word 文件。该文档包含一段恶意代码，该代码利用易受攻击的 Microsoft Word （winword.exe） 并发出 HTTPS 请求以下载恶意 Microsoft HTA 脚本 （template.hta）。此脚本执行恶意 Visual Basic 脚本 （maintenance.vbs），其中包含安装后门以泄露敏感文件的 PowerShell 命令。最后，攻击者横向移动到其他主机。</p>
+<h2 id="motivation-and-definitions">Motivation and Definitions
+</h2><p>整篇论文中设定了一种攻击场景：攻击者通过电子邮件向企业中的目标用户发送恶意Microsoft Word文件（contract.doc）。用户被欺骗使用 Firefox 从 Gmail 下载和打开 Word 文件。该文档包含一段恶意代码，该代码利用易受攻击的 Microsoft Word （winword.exe） 并发出 HTTPS 请求以下载恶意 Microsoft HTA 脚本 （template.hta）。此脚本执行恶意 Visual Basic 脚本 （maintenance.vbs），其中包含安装后门以泄露敏感文件的 PowerShell 命令。最后，攻击者横向移动到其他主机。</p>
 <p>调查这个场景通常从从审核日志中收集有关攻击的数据开始，例如系统事件、DNS 查询和浏览器事件。攻击调查工具通常以因果图（或来源图）的形式表示审核日志，该图用作取证工具，使安全调查人员能够执行根本原因分析，并更好地了解攻击的性质。大多数先前的研究将因果图中的攻击故事恢复为子图，其中该图中的节点和边与攻击症状具有因果关系。图 1 （a） 显示了由这些工具生成的示例攻击场景的因果关系图。红色虚线箭头表示从中启动攻击调查的警报事件（α，可疑网络连接），红色虚线矩形区域表示已恢复的攻击子图。</p>
 <p><img src="/p/atlas/ATLAS/1709629615797.png"
 	width="1739"
 	height="810"
-	srcset="/p/atlas/ATLAS/1709629615797_hu7294ec030933aa612c8e36d38b404b7e_254270_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1709629615797_hu7294ec030933aa612c8e36d38b404b7e_254270_1024x0_resize_box_3.png 1024w"
+	srcset="/p/atlas/ATLAS/1709629615797_hu4420522809230409162.png 480w, /p/atlas/ATLAS/1709629615797_hu17039758792039199354.png 1024w"
 	loading="lazy"
 	
 		alt="1709629615797"
@@ -464,11 +454,11 @@
 <p>APT攻击可以概括为从审计日志中获取的攻击阶段的<strong>时间序列，</strong> 例如图1（b）中所示的步骤1-14，类似于自然语言中描述的攻击步骤。这些攻击步骤通常适合在特定上下文中作为表示攻击语义的唯一序列，这可以与审核日志中的正常活动区分开来。</p>
 <p>ATLAS 在推理时给定攻击症状节点（警报事件α包含的恶意 IP 地址），提取一组与症状节点关联的候选序列，并使用基于序列的模型来识别序列中的哪些节点参与了攻击。此后，它使用已识别的攻击节点来构建攻击故事，其中包括已识别的攻击节点的事件，从而使攻击调查更加简洁，更容易被调查人员解读。</p>
 <p>图 1 （c） 说明了 ATLAS 为激励示例恢复的攻击故事，其中包括示例攻击的完整关键攻击步骤。此过程大大减少了从大型因果图中进行攻击调查的手动工作，该图排除了对攻击没有影响的事件，并减少了调查大型因果图所需的时间。</p>
-<h3 id="definition">definition</h3>
-<p><img src="/p/atlas/ATLAS/1709635161753.png"
+<h3 id="definition">definition
+</h3><p><img src="/p/atlas/ATLAS/1709635161753.png"
 	width="847"
 	height="474"
-	srcset="/p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1709635161753_hua3897747c65368fc3b388dfc773651dc_99107_1024x0_resize_box_3.png 1024w"
+	srcset="/p/atlas/ATLAS/1709635161753_hu3683163274042333704.png 480w, /p/atlas/ATLAS/1709635161753_hu16162539219414929147.png 1024w"
 	loading="lazy"
 	
 		alt="1709635161753"
@@ -485,9 +475,9 @@
 <p>事件：事件ε是一个四元组（src、action、dest、t），源 （src） 和目标 （dest） 是与动作相关的两个实体。t 是显示事件发生时间的事件时间戳。给定一个实体 e，可以从 e 邻域图中提取其事件，其中包括与 e 的邻居相关的所有操作。例如，给定一个实体Firefox.exe和一个邻域图，其中包含从节点 Firefox.exe 到节点 Word.doc 的操作 open 和时间戳 t，那么 （Firefox.exe， open， Word.doc， t） 是 Firefox 进程在时间 t 打开 Word 文件的事件</p>
 <p>序列：给定一个实体 e，可以从因果图中提取序列 S。序列 S 按时间顺序包括实体 e 的邻域图的所有事件，使得 S{e} ：= {ε1， ε2， . . . ， εn}。同样，如果给定一组实体，我们可以从它们的统一邻域图中提取一个包含所有事件的序列。</p>
 <p>图 2 （a） 说明了具有六个实体 {eA， eB， . . . ， eF} 的因果图。图 2 （b） 显示了 eB 的邻域图，其中包括节点 B、相邻节点 {A， C} 及其连接边 {EAB， EBC}。类似地，实体集 {eB， eC} 的邻域图包括节点 {A， B， C， D， E} 和边 {EAB， EBC， ECD， ECE}，如图 2 （b） 所示。实体 eB 的事件为 εAB =&lt; eA， a1， eB， t1 &gt; 和 εBC =&lt; eB， a2， eC， t2 &gt;如图 2 （c） 所示。图 2 （d） 显示了实体集 {eB， eC} 的事件序列。</p>
-<h2 id="method">Method</h2>
-<h3 id="序列生成">序列生成</h3>
-<p>首先从日志中提取出平台无关的因果图（图缩减）：</p>
+<h2 id="method">Method
+</h2><h3 id="序列生成">序列生成
+</h3><p>首先从日志中提取出平台无关的因果图（图缩减）：</p>
 <ol>
 <li>消除攻击节点无法访问到的所有节点和边缘【这缩的有点狠啊】</li>
 <li>从审计日志中构建具有非重复边的因果图，构建的因果图中不包含重复的边（边属性相同且首尾节点相同）</li>
@@ -495,7 +485,7 @@
 <img src="/p/atlas/ATLAS/1716023699194.png"
 	width="798"
 	height="322"
-	srcset="/p/atlas/ATLAS/1716023699194_hud84dbde1e7c0ad0ed8876d9717f7ce09_69072_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1716023699194_hud84dbde1e7c0ad0ed8876d9717f7ce09_69072_1024x0_resize_box_3.png 1024w"
+	srcset="/p/atlas/ATLAS/1716023699194_hu12113186378682048070.png 480w, /p/atlas/ATLAS/1716023699194_hu17295883117602522276.png 1024w"
 	loading="lazy"
 	
 		alt="1716023699194"
@@ -518,7 +508,7 @@
 <p><img src="/p/atlas/ATLAS/1716026032629.png"
 	width="1518"
 	height="402"
-	srcset="/p/atlas/ATLAS/1716026032629_hu7fd7b8e71a58997854afb105ce0a1630_114728_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1716026032629_hu7fd7b8e71a58997854afb105ce0a1630_114728_1024x0_resize_box_3.png 1024w"
+	srcset="/p/atlas/ATLAS/1716026032629_hu8217553870960031624.png 480w, /p/atlas/ATLAS/1716026032629_hu8420120881980269021.png 1024w"
 	loading="lazy"
 	
 		alt="1716026032629"
@@ -529,13 +519,13 @@
 		data-flex-basis="906px"
 	
 ></p>
-<h3 id="序列还原">序列还原</h3>
-<p>ATLAS使用<strong>词形还原</strong>化将序列转换为表示序列模式的广义文本，以便进行语义解释。</p>
+<h3 id="序列还原">序列还原
+</h3><p>ATLAS使用<strong>词形还原</strong>化将序列转换为表示序列模式的广义文本，以便进行语义解释。</p>
 <p>表1显示了 ATLAS 用于抽象序列中的实体和操作的四种不同的词汇类型以及每种类型中的词汇。词汇表总共包括 30 个单词，能够将单词的<strong>屈折形式</strong>和<strong>派生形式</strong>简化为共同的基本形式。词汇根据单词的细粒度语义分为四种类型：进程、文件、网络和动作。</p>
 <p><img src="/p/atlas/ATLAS/1716026181025.png"
 	width="772"
 	height="242"
-	srcset="/p/atlas/ATLAS/1716026181025_hu59fb008fe5d3dbeea8565b3f1ddc5a1c_33371_480x0_resize_box_3.png 480w, /p/atlas/ATLAS/1716026181025_hu59fb008fe5d3dbeea8565b3f1ddc5a1c_33371_1024x0_resize_box_3.png 1024w"
+	srcset="/p/atlas/ATLAS/1716026181025_hu3967127422606887653.png 480w, /p/atlas/ATLAS/1716026181025_hu11932375728823535271.png 1024w"
 	loading="lazy"
 	
 		alt="1716026181025"
@@ -548,29 +538,29 @@
 ></p>
 <p>ATLAS解析每个序列，查找实体并将每个实体映射到相应的词汇表。词形还原过程后的序列被转换为“类似句子”的中间表示，其中包含广义序列模式的完整语义。</p>
 <p>我们注意到，在对序列进行词形还原后，可能会发生攻击和非攻击序列的意外重复。为了使用非重复序列训练模型，我们丢弃了所有与攻击序列重叠的非攻击序列，然后再将其传递到<strong>选择性序列采样</strong></p>
-<h3 id="选择性序列采样">选择性序列采样</h3>
-<p>构建的攻击和非攻击序列的数量可能不平衡。原因是日志条目中的攻击实体通常少于非攻击实体。例如，我们在通过分析审计日志进行评估时发现，攻击实体的平均数量为 61，而非攻击实体的平均数量约为 21K。为了平衡训练数据集，ATLAS首先对具有一定相似性阈值的非攻击序列进行<strong>欠采样</strong>。然后，使用过采样机制随机<strong>变异</strong>攻击序列，直到它们的总数达到相同数量。不能直接采取复制的过采样因为会造成过拟合。</p>
-<h4 id="欠采样">欠采样</h4>
-<p>通过Levenshtein Distance计算相似性，用80%作为阈值。复杂度为$O(n^2)$</p>
-<h4 id="过采样">过采样</h4>
-<p>对于攻击序列，ATLAS会随机将一种词汇类型变异为另一种相同类型的词汇。</p>
-<h3 id="序列学习">序列学习</h3>
-<p>通过<strong>词表示嵌入</strong>将词形还原序列转换为表示序列模式的广义文本（30个词-&gt;4type)【对……对吗？】，然后用了多种方法生成嵌入向量并在后文进行了比较。</p>
+<h3 id="选择性序列采样">选择性序列采样
+</h3><p>构建的攻击和非攻击序列的数量可能不平衡。原因是日志条目中的攻击实体通常少于非攻击实体。例如，我们在通过分析审计日志进行评估时发现，攻击实体的平均数量为 61，而非攻击实体的平均数量约为 21K。为了平衡训练数据集，ATLAS首先对具有一定相似性阈值的非攻击序列进行<strong>欠采样</strong>。然后，使用过采样机制随机<strong>变异</strong>攻击序列，直到它们的总数达到相同数量。不能直接采取复制的过采样因为会造成过拟合。</p>
+<h4 id="欠采样">欠采样
+</h4><p>通过Levenshtein Distance计算相似性，用80%作为阈值。复杂度为$O(n^2)$</p>
+<h4 id="过采样">过采样
+</h4><p>对于攻击序列，ATLAS会随机将一种词汇类型变异为另一种相同类型的词汇。</p>
+<h3 id="序列学习">序列学习
+</h3><p>通过<strong>词表示嵌入</strong>将词形还原序列转换为表示序列模式的广义文本（30个词-&gt;4type)【对……对吗？】，然后用了多种方法生成嵌入向量并在后文进行了比较。</p>
 <p>通过LSTM和CNN来进行序列学习</p>
-<h3 id="攻击还原">攻击还原</h3>
-<p>遍历所有节点，来判断是否是攻击节点，O(n)复杂度。</p>
+<h3 id="攻击还原">攻击还原
+</h3><p>遍历所有节点，来判断是否是攻击节点，O(n)复杂度。</p>
 <p>为了了识别未知的攻击实体，ATLAS首先从因果图中获取所有未知实体，构建只包含一个未知实体的子集。然后，ATLAS 将攻击实体附加到每个子集;因此，每个子集包含所有已知的攻击症状实体和一个未知实体。ATLAS 使用这些子集从因果图中提取序列，LSTM 模型用于通过预测分数预测每个序列是攻击还是非攻击。此过程通过检查这两个实体的时间顺序事件是否形成模型先前学习的攻击模式来识别未知实体是否与攻击症状实体密切相关。</p>
 <p>ATLAS 攻击故事恢复的目标是从攻击调查阶段识别与已识别攻击实体关联的攻击事件。ATLAS提取已识别攻击实体的邻域图，并将所有包含的事件作为攻击事件获取。这些事件按其时间戳进一步排序，作为恢复的攻击故事。ATLAS 的有效性不受跨多个主机执行的攻击的影响，它只需要对来自单个主机的审计日志执行分析即可发现所有攻击实体</p>
-<h2 id="工作亮点">工作亮点</h2>
-<ol>
+<h2 id="工作亮点">工作亮点
+</h2><ol>
 <li>新的图缩减方法来构建因果图</li>
 <li>通过因果图生成序列用于学习（词型还原+词表示嵌入+过采样&amp;欠采样)</li>
 </ol>
-<h2 id="我的想法">我的想法</h2>
-<p>图缩减方法是没见过的，按照文章的结果，这种图缩减方法也很值得参考，一顿猛缩减可以导致每个小子图的学习代价比较小（或者说因为序列长度有限制吧？)。把图学习转成序列识别的方法很有意思，这样直接就不用使用图学习了。但是感觉他这个识别是否攻击节点计算量也不小，O(n)是n*100s感觉也没啥用啊？抽时间复现下看看。</p>
-<h2 id="补充知识">补充知识</h2>
-<h3 id="屈折形式inflectional-forms和派生形式derivational-forms">屈折形式（Inflectional Forms）和派生形式（Derivational Forms）</h3>
-<p>屈折形式是指单词在不同语法环境下的形式变化，这种变化不改变单词的基本词义或词类。屈折形式主要用于表示语法信息，如时态、数、格、性、比较级等。</p>
+<h2 id="我的想法">我的想法
+</h2><p>图缩减方法是没见过的，按照文章的结果，这种图缩减方法也很值得参考，一顿猛缩减可以导致每个小子图的学习代价比较小（或者说因为序列长度有限制吧？)。把图学习转成序列识别的方法很有意思，这样直接就不用使用图学习了。但是感觉他这个识别是否攻击节点计算量也不小，O(n)是n*100s感觉也没啥用啊？抽时间复现下看看。</p>
+<h2 id="补充知识">补充知识
+</h2><h3 id="屈折形式inflectional-forms和派生形式derivational-forms">屈折形式（Inflectional Forms）和派生形式（Derivational Forms）
+</h3><p>屈折形式是指单词在不同语法环境下的形式变化，这种变化不改变单词的基本词义或词类。屈折形式主要用于表示语法信息，如时态、数、格、性、比较级等。</p>
 <ul>
 <li>walk -&gt; walked -&gt; walking</li>
 <li>book -&gt; books</li>
@@ -581,8 +571,8 @@
 <li>clear (清楚的) -&gt; unclear (不清楚的)</li>
 <li>happy (形容词) -&gt; happiness (名词)</li>
 </ul>
-<h3 id="levenshtein-distance">Levenshtein Distance</h3>
-<p>Levenshtein Distance，也称为编辑距离（Edit Distance），是一种衡量两个字符串之间差异的度量方法。它计算将一个字符串转换为另一个字符串所需的最少单字符编辑操作次数，这些操作包括插入（insertion）、删除（deletion）和替换（substitution）。Levenshtein Distance广泛应用于文本处理、拼写检查、语音识别、DNA序列比对等领域。它可以帮助确定两个字符串的相似度，或者在搜索时提供近似匹配。</p>
+<h3 id="levenshtein-distance">Levenshtein Distance
+</h3><p>Levenshtein Distance，也称为编辑距离（Edit Distance），是一种衡量两个字符串之间差异的度量方法。它计算将一个字符串转换为另一个字符串所需的最少单字符编辑操作次数，这些操作包括插入（insertion）、删除（deletion）和替换（substitution）。Levenshtein Distance广泛应用于文本处理、拼写检查、语音识别、DNA序列比对等领域。它可以帮助确定两个字符串的相似度，或者在搜索时提供近似匹配。</p>
 <p>{{ <code>&lt;heatmap&gt;</code> }}</p>
 
 </section>
@@ -617,18 +607,18 @@
     
         <link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
                 defer
                 >
             </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
                 defer
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
+        renderMathInElement(document.body, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false },
@@ -652,11 +642,35 @@
             
                 
 <article class="has-image">
+    <a href="/p/shadewatcher/">
+        
+        
+            <div class="article-image">
+                <img src="/p/shadewatcher/index/1725273027411.3ada5e9a22e7e9aaa1548b483dff7e98_hu3970485544490971918.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Shadewatcher"
+                        
+                        data-hash="md5-OtpemiLn6aqhVItIPf9&#43;mA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Shadewatcher</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/nodlink/">
         
         
             <div class="article-image">
-                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu78cd1151dcb1e38ee0d9061743b507d4_198891_250x150_fill_box_smart1_3.png" 
+                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu613526294385964227.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -680,7 +694,7 @@
         
         
             <div class="article-image">
-                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_huf8d1b81f197ed97f0307a2b1035badd9_647016_250x150_fill_box_smart1_3.png" 
+                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_hu12548462074438151116.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -704,7 +718,7 @@
         
         
             <div class="article-image">
-                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_250x150_fill_box_smart1_3.png" 
+                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu17942772012772399691.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -728,7 +742,7 @@
         
         
             <div class="article-image">
-                <img src="/p/kairos/KAIROS/1715250405508.d69d8c20c789c24e299d7678cdc02502_hu2f94ae9770155cf79c4d05b797271e0d_220753_250x150_fill_box_smart1_3.png" 
+                <img src="/p/kairos/KAIROS/1715250405508.d69d8c20c789c24e299d7678cdc02502_hu1612700310401788291.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -741,30 +755,6 @@
 
         <div class="article-details">
             <h2 class="article-title">KAIROS</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/tfe-gnn/">
-        
-        
-            <div class="article-image">
-                <img src="/p/tfe-gnn/pic/1708314808397.7170dbc8ee3236d7df65bfbc5de3eafc_hu2454b6a4f42e67d1ef9df24f58be9406_460521_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post TFE GNN"
-                        
-                        data-hash="md5-cXDbyO4yNtffZb&#43;8XePq/A==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">TFE GNN</h2>
         </div>
     </a>
 </article>
@@ -808,59 +798,10 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
-    </section>
-    
-    <section class="totalcount">
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        发表了14篇文章 ·
-        总计4.98k字
-    </section>
-    
-    <section class="running-time">
-        已经向互联网拉屎了
-        <span id="runningdays" class="running-days"></span>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-
 
 
     
@@ -947,7 +888,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -958,20 +899,6 @@
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<script>
-    let s1 = '2023-10-03'; 
-    s1 = new Date(s1.replace(/-/g, "/"));
-    let s2 = new Date();
-    let timeDifference = s2.getTime() - s1.getTime();
-
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-    let result = days + "天" + hours + "小时" + minutes + "分钟";
-    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

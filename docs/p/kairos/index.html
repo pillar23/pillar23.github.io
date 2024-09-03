@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题">
 <title>KAIROS</title>
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/kairos/'>
 
-<link rel="stylesheet" href="/scss/style.min.0c40e8a523f4835f9e94f17f178c31dcbcb38313782bb275c3ec17b44e371a2a.css"><meta property='og:title' content='KAIROS'>
-<meta property='og:description' content='使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题'>
+<link rel="stylesheet" href="/scss/style.min.82c29a3df35b3996da6bb4b4275e5ad453e2587c06ff57bf28028350a6e437b5.css"><meta property='og:title' content="KAIROS">
+<meta property='og:description' content="使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题">
 <meta property='og:url' content='https://blog2.pillar.fun/p/kairos/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='论文笔记' /><meta property='article:tag' content='溯源图' /><meta property='article:published_time' content='2024-03-02T20:15:55&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:15:55&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/kairos/KAIROS/1715250405508.png' />
 <meta name="twitter:title" content="KAIROS">
 <meta name="twitter:description" content="使用TGN进行图学习，使用过采样和欠采样的数据增强解决数据不均衡问题"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog2.pillar.fun/p/kairos/KAIROS/1715250405508.png' />
+  
+
+
     </head>
     <body class="
     article-page
@@ -57,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                        <img src="/img/avatar_hu8974536233092345980.jpg" width="300"
                             height="299" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -73,7 +76,7 @@
             <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
             <h2 class="site-description">Like tears in rain.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -225,12 +228,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,7 +241,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -246,10 +249,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -274,20 +278,20 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ol>
+  <ul>
     <li><a href="#导语">导语</a></li>
     <li><a href="#abstract">Abstract</a></li>
     <li><a href="#senario">senario</a></li>
     <li><a href="#challenge">challenge</a></li>
     <li><a href="#method">Method</a></li>
     <li><a href="#补充知识">补充知识</a>
-      <ol>
+      <ul>
         <li><a href="#分层特征哈希">分层特征哈希</a></li>
         <li><a href="#tgn">TGN</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#我的评价">我的评价</a></li>
-  </ol>
+  </ul>
 </nav>
         </div>
     </section>
@@ -302,8 +306,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/kairos/">
-                <img src="/p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_800x0_resize_box_3.png"
-                        srcset="/p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_800x0_resize_box_3.png 800w, /p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_1600x0_resize_box_3.png 1600w"
+                <img src="/p/kairos/KAIROS/1715250405508_hu15936746637459630693.png"
+                        srcset="/p/kairos/KAIROS/1715250405508_hu15936746637459630693.png 800w, /p/kairos/KAIROS/1715250405508_hu16037977417762278217.png 1600w"
                         width="800" 
                         height="194" 
                         loading="lazy"
@@ -382,26 +386,17 @@
     <section class="article-content">
     
     
-    <h2 id="导语">导语</h2>
-<p>SP24</p>
+    <h2 id="导语">导语
+</h2><p>SP24</p>
 <p>doi is <a class="link" href="https://doi.org/10.48550/arXiv.2308.05034"  target="_blank" rel="noopener"
-    >here</a>
-
-<span style="white-space: nowrap;"><svg width=".7em"
-    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-        fill="currentColor">
-</svg></span>
-
-    </p>
-<h2 id="abstract">Abstract</h2>
-<p>溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。</p>
-<h2 id="senario">senario</h2>
-<p><img src="/p/kairos/KAIROS/1715250405508.png"
+    >here</a></p>
+<h2 id="abstract">Abstract
+</h2><p>溯源图是描述系统执行历史的结构化审计日志。最近的研究探索了多种技术来分析自动主机入侵检测的溯源图，特别关注高级持续威胁（APT）。通过筛选他们的设计文档，我们确定了推动基于溯源图的入侵检测系统 (PIDS) 开发的四个常见维度：范围（能否检测到渗透到应用程序边界的现代攻击？）、攻击不可知性（能否检测到新颖的攻击而无需攻击特征的先验知识？）、及时性（能否在主机系统运行时有效地监控主机系统？）以及攻击重建能力（能否从大型溯源图中提取攻击活动，以便系统管理员能够轻松理解并快速响应系统入侵？） 。我们提出了 KAIROS，这是第一个同时满足所有四个维度的需求的 PIDS，而现有方法至少牺牲了一个维度，并且难以实现可比的检测性能。 KAIROS 利用基于新型图神经网络的编码器-解码器架构，该架构可以学习溯源图结构变化的时间演化，以量化每个系统事件的异常程度。然后，基于这些细粒度信息，KAIROS 重建攻击足迹，生成紧凑的摘要图，准确描述系统审核日志流上的恶意活动。使用最先进的基准数据集，我们证明 KAIROS 优于以前的方法。</p>
+<h2 id="senario">senario
+</h2><p><img src="/p/kairos/KAIROS/1715250405508.png"
 	width="1756"
 	height="426"
-	srcset="/p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_480x0_resize_box_3.png 480w, /p/kairos/KAIROS/1715250405508_hu2f94ae9770155cf79c4d05b797271e0d_220753_1024x0_resize_box_3.png 1024w"
+	srcset="/p/kairos/KAIROS/1715250405508_hu12541639019621993375.png 480w, /p/kairos/KAIROS/1715250405508_hu10238542756978226811.png 1024w"
 	loading="lazy"
 	
 		alt="1715250405508"
@@ -413,14 +408,14 @@
 	
 ></p>
 <p>来自DARPA E3-THEIA的溯源图的摘要，描述了一种攻击活动，由KAIROS自动生成。矩形、椭圆形和菱形分别表示进程、文件和套接字。R=读取，W=写入，O=打开，S=发送，Rc=接收，C=克隆，E=执行。为了清晰起见，我们添加了颜色和虚线元素，以突出显示 KAIROS 生成的输出。KAIROS从原始来源图中提取实体节点和边，以重建攻击。根据攻击地面真相，虚线粉红色节点和边缘是 KAIROS 错过的与攻击相关的活动。蓝色节点和边是基本事实中未明确提及但包含在 KAIROS 中的活动。</p>
-<h2 id="challenge">challenge</h2>
-<ol>
+<h2 id="challenge">challenge
+</h2><ol>
 <li>不可知性：有没见过的攻击，需要模型具有泛化性</li>
 <li>攻击重建：很难通过溯源图得到并重现完整的攻击流程</li>
 <li>及时性：作为入侵检测系统（IDS)需要及时性，这就要求模型性能比较高</li>
 </ol>
-<h2 id="method">Method</h2>
-<p>KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的<strong>深度图学习</strong>和<strong>社区发现</strong>， 可以做到</p>
+<h2 id="method">Method
+</h2><p>KAIROS是一个基于异常的入侵检测和攻击调查系统。它通过来源图中的因果依赖关系，利用最先进的<strong>深度图学习</strong>和<strong>社区发现</strong>， 可以做到</p>
 <ol>
 <li>在事先不了解任何特定攻击特征的情况下检测异常系统行为。</li>
 <li>根据信息流关联检测到的异常内核对象之间。 KAIROS 提供简洁且有意义的摘要图表，用于节省人力的人机交互取证分析。</li>
@@ -429,7 +424,7 @@
 <p><img src="/p/kairos/KAIROS/1715251388567.png"
 	width="1732"
 	height="786"
-	srcset="/p/kairos/KAIROS/1715251388567_hua06a32d18c9f2c33ed34385a24464937_264162_480x0_resize_box_3.png 480w, /p/kairos/KAIROS/1715251388567_hua06a32d18c9f2c33ed34385a24464937_264162_1024x0_resize_box_3.png 1024w"
+	srcset="/p/kairos/KAIROS/1715251388567_hu2955830248438160794.png 480w, /p/kairos/KAIROS/1715251388567_hu18394330498613971540.png 1024w"
 	loading="lazy"
 	
 		alt="1715251388567"
@@ -447,7 +442,7 @@ KAIROS以流式传输方式分析图表，按时间顺序摄取图表中出现�
 <p><img src="/p/kairos/KAIROS/1715253831664.png"
 	width="930"
 	height="186"
-	srcset="/p/kairos/KAIROS/1715253831664_hu38a6058028f39050fdcd8295286cf12f_31842_480x0_resize_box_3.png 480w, /p/kairos/KAIROS/1715253831664_hu38a6058028f39050fdcd8295286cf12f_31842_1024x0_resize_box_3.png 1024w"
+	srcset="/p/kairos/KAIROS/1715253831664_hu11765583873174899588.png 480w, /p/kairos/KAIROS/1715253831664_hu5590058521924493629.png 1024w"
 	loading="lazy"
 	
 		alt="1715253831664"
@@ -472,13 +467,13 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
 为了帮助系统管理员推理警报，KAIROS 自动从异常时间窗口队列生成紧凑的攻击摘要图。这涉及识别具有高重建误差的边缘社区以提高易读性。图形简化是必要的，因为与图像和文本不同，图形即使是人类专家也很难可视化和解释。在图中，系统管理员只需要了解 KAIROS 中的一个小的汇总图，而不是跟踪触发警报的异常时间窗口队列中的一个大得多的图。</p>
 </li>
 </ol>
-<h2 id="补充知识">补充知识</h2>
-<h3 id="分层特征哈希">分层特征哈希</h3>
-<p>在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。</p>
+<h2 id="补充知识">补充知识
+</h2><h3 id="分层特征哈希">分层特征哈希
+</h3><p>在传统的哈希技术中，常见的方法是将特征空间的维度映射到固定大小的哈希表中。然而，当特征空间非常大时，这种方法可能会导致哈希冲突，进而影响模型的性能。</p>
 <p>分层特征哈希通过将特征空间分解为多个层级来解决这个问题。每个层级都具有不同的哈希函数，用于将特征映射到不同的桶中。通常，初始层级的哈希函数将原始特征映射到较小的中间空间，然后通过逐渐应用更多的哈希函数，将特征映射到最终的哈希桶中。</p>
 <p>分层特征哈希将高维输入向量投影到低维特征空间，同时保留原始输入之间的分层相似性。分层特征哈希在处理大规模高维数据时具有很好的效果，例如在文本分类、推荐系统和图像检索等任务中经常被使用。</p>
-<h3 id="tgn">TGN</h3>
-<p>TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。</p>
+<h3 id="tgn">TGN
+</h3><p>TGN，全称Temporal Graph Networks，是一种针对时间图的网络嵌入方法。在许多实际应用中，包括社交网络、交通网络等，图的拓扑结构和节点的交互是随着时间发展而变化的，这种图被称为时间图。TGN的目标是为时间图中的节点和边生成嵌入向量，以便在这些向量上进行各种预测任务，如链接预测、节点分类等。</p>
 <p>TGN对边的嵌入主要涉及以下步骤：</p>
 <ol>
 <li><strong>节点嵌入更新</strong>：当新的边事件（如用户间的交互）发生时，TGN会根据新的边事件信息更新对应节点的嵌入。具体来说，TGN采用了记忆化的节点嵌入更新机制，即根据节点的历史嵌入和新的边事件信息共同决定节点的新的嵌入。</li>
@@ -486,8 +481,8 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
 <li><strong>时间编码器</strong>：为了捕获边事件的时间信息，TGN引入了一个时间编码器，它可以将边事件的时间戳编码为一个连续的向量。在生成边的嵌入时，会将这个时间向量和节点的嵌入一起考虑。</li>
 </ol>
 <p>通过以上步骤，TGN能够处理时间图中的边事件，并为每个边事件生成一个嵌入向量，这个嵌入向量同时考虑了边事件的拓扑结构信息和时间信息。这使得TGN能够适应图的动态变化，并进行各种预测任务。</p>
-<h2 id="我的评价">我的评价</h2>
-<p>贡献主要有：</p>
+<h2 id="我的评价">我的评价
+</h2><p>贡献主要有：</p>
 <ol>
 <li>提出了PIDS的四个重要指标</li>
 <li>提出了新的三对象九交互的建图模式（但是没怎么证明有效性)</li>
@@ -528,18 +523,18 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
     
         <link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
                 defer
                 >
             </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
                 defer
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
+        renderMathInElement(document.body, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false },
@@ -563,11 +558,35 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
             
                 
 <article class="has-image">
+    <a href="/p/shadewatcher/">
+        
+        
+            <div class="article-image">
+                <img src="/p/shadewatcher/index/1725273027411.3ada5e9a22e7e9aaa1548b483dff7e98_hu3970485544490971918.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Shadewatcher"
+                        
+                        data-hash="md5-OtpemiLn6aqhVItIPf9&#43;mA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Shadewatcher</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/nodlink/">
         
         
             <div class="article-image">
-                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu78cd1151dcb1e38ee0d9061743b507d4_198891_250x150_fill_box_smart1_3.png" 
+                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu613526294385964227.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -591,7 +610,7 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
         
         
             <div class="article-image">
-                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_huf8d1b81f197ed97f0307a2b1035badd9_647016_250x150_fill_box_smart1_3.png" 
+                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_hu12548462074438151116.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -615,7 +634,7 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
         
         
             <div class="article-image">
-                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_250x150_fill_box_smart1_3.png" 
+                <img src="/p/magic/MAGIC/1709702251187.4e73c0e597d0dcb017fb1f81da5899a6_hu17942772012772399691.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -639,7 +658,7 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
         
         
             <div class="article-image">
-                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hua3897747c65368fc3b388dfc773651dc_99107_250x150_fill_box_smart1_3.png" 
+                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hu8064581417603664250.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -652,30 +671,6 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
 
         <div class="article-details">
             <h2 class="article-title">ATLAS</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/tfe-gnn/">
-        
-        
-            <div class="article-image">
-                <img src="/p/tfe-gnn/pic/1708314808397.7170dbc8ee3236d7df65bfbc5de3eafc_hu2454b6a4f42e67d1ef9df24f58be9406_460521_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post TFE GNN"
-                        
-                        data-hash="md5-cXDbyO4yNtffZb&#43;8XePq/A==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">TFE GNN</h2>
         </div>
     </a>
 </article>
@@ -719,59 +714,10 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
-    </section>
-    
-    <section class="totalcount">
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        发表了14篇文章 ·
-        总计4.98k字
-    </section>
-    
-    <section class="running-time">
-        已经向互联网拉屎了
-        <span id="runningdays" class="running-days"></span>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-
 
 
     
@@ -858,7 +804,7 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -869,20 +815,6 @@ KAIROS 构建时间窗口队列来检测部署期间的异常情况。为此，K
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<script>
-    let s1 = '2023-10-03'; 
-    s1 = new Date(s1.replace(/-/g, "/"));
-    let s2 = new Date();
-    let timeDifference = s2.getTime() - s1.getTime();
-
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-    let result = days + "天" + hours + "小时" + minutes + "分钟";
-    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

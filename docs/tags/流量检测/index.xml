@@ -13,8 +13,8 @@
         <pubDate>Fri, 16 Feb 2024 16:28:03 +0800</pubDate>
         
         <guid>https://blog2.pillar.fun/p/tfe-gnn/</guid>
-        <description>&lt;img src="https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png" alt="Featured image of post TFE GNN" /&gt;&lt;h1 id=&#34;abstract&#34;&gt;abstract&lt;/h1&gt;
-&lt;p&gt;目的：实现加密流量[VPN、tor]的分类&lt;/p&gt;
+        <description>&lt;img src="https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png" alt="Featured image of post TFE GNN" /&gt;&lt;h1 id=&#34;abstract&#34;&gt;abstract
+&lt;/h1&gt;&lt;p&gt;目的：实现加密流量[VPN、tor]的分类&lt;/p&gt;
 &lt;p&gt;现有局限性：只能提取低级别特征，基于统计的方法对&lt;strong&gt;短流&lt;/strong&gt;无效，对header和payload采取&lt;strong&gt;不平等&lt;/strong&gt;的处理，难以挖掘字节之间的潜在相关性。&lt;/p&gt;
 &lt;p&gt;提出方法：&lt;/p&gt;
 &lt;ol&gt;
@@ -26,7 +26,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397.png&#34;
 	width=&#34;1695&#34;
 	height=&#34;735&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu2454b6a4f42e67d1ef9df24f58be9406_460521_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu10056475487319799432.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314808397_hu1121579838167834255.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708314808397&#34;
@@ -37,8 +37,8 @@
 		data-flex-basis=&#34;553px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;introduction&#34;&gt;introduction&lt;/h1&gt;
-&lt;p&gt;加密流量保存用户隐私同时也给了攻击者藏身的机会。&lt;/p&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;introduction
+&lt;/h1&gt;&lt;p&gt;加密流量保存用户隐私同时也给了攻击者藏身的机会。&lt;/p&gt;
 &lt;p&gt;传统的数据包检测（DPI）挖掘数据包中的潜在模式或关键词，面对加密数据包时&lt;strong&gt;耗时&lt;/strong&gt;且准确性低。&lt;/p&gt;
 &lt;p&gt;由于动态端口的应用，基于端口的工作不再有效。&lt;/p&gt;
 &lt;p&gt;通过数据流的统计特征（e.g.数据包长度的平均值）采用机器学习分类器（e.g.随机森林）来实现分类的方法，需要手工制作的特征工程，并且在某些情况下可能会由于不可靠/不稳定的fow级统计信息而失败。与长流相比，短流的统计特征有更大的偏差（e.g.长度通常服从长尾分布）意味着不可靠的统计特征普遍存在。我们使用&lt;strong&gt;数据包字节&lt;/strong&gt;而非统计特征。&lt;/p&gt;
@@ -52,8 +52,8 @@
 &lt;p&gt;TFE-GNN由三大子模块组成（即双嵌入、流量图编码器和交叉门控特征融合机制）。双嵌入层分别嵌入header和payload；图编码器将图编码为高维图向量；交叉门控特征融合机制对header和payload的图向量融合，得到数据包的整体表示向量。&lt;/p&gt;
 &lt;p&gt;使用端到端训练（从输入数据到最终输出直接进行训练，而无需将任务分解为多个独立的阶段或模块），采用时间序列模型，获得下游任务的预测结果。&lt;/p&gt;
 &lt;p&gt;实验使用了自收集的WWT（WhatsApp、WeChat、Telegram）和公开的ISCX数据集，与十几个baseline比较得出TFE-GNN效果最好。&lt;/p&gt;
-&lt;h1 id=&#34;preliminary&#34;&gt;preliminary&lt;/h1&gt;
-&lt;p&gt;1、图的定义&lt;/p&gt;
+&lt;h1 id=&#34;preliminary&#34;&gt;preliminary
+&lt;/h1&gt;&lt;p&gt;1、图的定义&lt;/p&gt;
 &lt;p&gt;G = { $V,\varepsilon,X$}表示一个图，V是节点集合，$\varepsilon$是边集，X是节点的初始特征矩阵（每个节点的特征向量拼起来）&lt;/p&gt;
 &lt;p&gt;$A$是大小为$\lvert V \lvert * \lvert V \lvert$图的邻接矩阵&lt;/p&gt;
 &lt;p&gt;$N(v)$是节点v相邻的节点&lt;/p&gt;
@@ -70,7 +70,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876.png&#34;
 	width=&#34;1025&#34;
 	height=&#34;243&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hufe69c388e41ee4451bc7efaec1a1a9cc_36993_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hu9686899449597939073.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708310294876_hu12367339155382874363.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708310294876&#34;
@@ -82,27 +82,27 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中$h^{(l)}_u,h^{(l)}_v$是节点u和v在第l层的嵌入向量，$m^{(l)}_u$是l层中节点u的计算信息，$MSG^{(l)}$是消息计算函数，$AGG^{(l)}$是消息聚合函数，$\theta$是他们对应的参数&lt;/p&gt;
-&lt;h1 id=&#34;methodology&#34;&gt;methodology&lt;/h1&gt;
-&lt;h2 id=&#34;字节级流量图构造-byte-level-traffic-graph-construction&#34;&gt;字节级流量图构造 Byte-level Traffic Graph Construction&lt;/h2&gt;
-&lt;p&gt;节点：某一个字节，注意相同的字节值共享同一个节点，因此节点个数不会超过256，这样能够保持图在一定的规模下，不会太大。&lt;/p&gt;
+&lt;h1 id=&#34;methodology&#34;&gt;methodology
+&lt;/h1&gt;&lt;h2 id=&#34;字节级流量图构造-byte-level-traffic-graph-construction&#34;&gt;字节级流量图构造 Byte-level Traffic Graph Construction
+&lt;/h2&gt;&lt;p&gt;节点：某一个字节，注意相同的字节值共享同一个节点，因此节点个数不会超过256，这样能够保持图在一定的规模下，不会太大。&lt;/p&gt;
 &lt;p&gt;字节之间的相关性表示：采用点互信息（PMI）来建模两个字节之间的相似性，字节i和字节j的相似性用$PMI(i,j)$表示。&lt;/p&gt;
 &lt;p&gt;边：根据PMI值来构造边，PMI值为正：表示字节之间的语义相关性高；而PMI值为零或负值：表示字节之间的语义相关性很小或没有。因此，我们只在PMI值为正的两个字节之间创建一条边。&lt;/p&gt;
 &lt;p&gt;节点特征：每个节点的初始特征为字节的值，维度为1，范围为[0,255]&lt;/p&gt;
 &lt;p&gt;图构建：由于$PMI(i,j)=PMI(j,i)$，因此该图是个无向图。&lt;/p&gt;
-&lt;h3 id=&#34;pmi&#34;&gt;PMI&lt;/h3&gt;
-&lt;p&gt;PMI：是一种用于衡量两个事件之间相关性的统计量。&lt;/p&gt;
+&lt;h3 id=&#34;pmi&#34;&gt;PMI
+&lt;/h3&gt;&lt;p&gt;PMI：是一种用于衡量两个事件之间相关性的统计量。&lt;/p&gt;
 &lt;p&gt;$$
 PMI(A, B) = \log \frac{P(A, B)}{P(A) \cdot P(B)}
 $$&lt;/p&gt;
 &lt;p&gt;值大于零，则表示 A 和 B 之间有正相关性；如果值等于零，则表示它们之间没有关联；如果值小于零，则表示它们之间有负相关性。&lt;/p&gt;
-&lt;h2 id=&#34;双嵌入-dual-embedding&#34;&gt;双嵌入 dual embedding&lt;/h2&gt;
-&lt;p&gt;原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用&lt;strong&gt;两个不共享参数的嵌入层&lt;/strong&gt;的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$&lt;/p&gt;
-&lt;h2 id=&#34;交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion&#34;&gt;交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion&lt;/h2&gt;
-&lt;p&gt;因为要double embedding，所以encoder也要两个。&lt;/p&gt;
+&lt;h2 id=&#34;双嵌入-dual-embedding&#34;&gt;双嵌入 dual embedding
+&lt;/h2&gt;&lt;p&gt;原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用&lt;strong&gt;两个不共享参数的嵌入层&lt;/strong&gt;的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$&lt;/p&gt;
+&lt;h2 id=&#34;交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion&#34;&gt;交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion
+&lt;/h2&gt;&lt;p&gt;因为要double embedding，所以encoder也要两个。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093.png&#34;
 	width=&#34;393&#34;
 	height=&#34;831&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu64aaaec4b1314f959e9285444c864229_65160_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu3589382369443086847.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708314903093_hu10987948906079601206.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708314903093&#34;
@@ -114,15 +114,15 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里堆叠了N个GraphSAGE&lt;/p&gt;
-&lt;h3 id=&#34;graphsage&#34;&gt;GraphSAGE&lt;/h3&gt;
-&lt;p&gt;对于图 G 中的每个节点 v，GraphSAGE 通过使用节点 v 的度数归一化其嵌入向量，计算来自每个相邻节点的消息。&lt;/p&gt;
+&lt;h3 id=&#34;graphsage&#34;&gt;GraphSAGE
+&lt;/h3&gt;&lt;p&gt;对于图 G 中的每个节点 v，GraphSAGE 通过使用节点 v 的度数归一化其嵌入向量，计算来自每个相邻节点的消息。&lt;/p&gt;
 &lt;p&gt;通过逐元素均值运算（element-wise mean operation）计算所有相邻节点$N(v)$的整体消息，并通过串联运算聚合整体消息以及节点v的嵌入向量&lt;/p&gt;
 &lt;p&gt;对节点A的嵌入向量进行非线性变换，完成一个GraphSAGE层的正向过程&lt;/p&gt;
 &lt;p&gt;GraphSAGE的消息聚合和计算可以描述为&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539.png&#34;
 	width=&#34;904&#34;
 	height=&#34;265&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu40d7983af992989c3d85572d7bd9802d_30315_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu16997038112434978700.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708315615539_hu8476786481248738620.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708315615539&#34;
@@ -140,7 +140,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852.png&#34;
 	width=&#34;774&#34;
 	height=&#34;90&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_huc9d10b268459d777e3ff184d0d11a444_16138_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_hu13055082633814061763.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316388852_hu10472738061696134416.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316388852&#34;
@@ -155,7 +155,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596.png&#34;
 	width=&#34;474&#34;
 	height=&#34;170&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu5fbd28a8e40853f2c41dfc63a0ac47e3_10523_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu1589171423332782639.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316889596_hu16529616899160323887.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316889596&#34;
@@ -167,11 +167,11 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;用$g_h,g_p$表示header和payload得到的图嵌入&lt;/p&gt;
-&lt;h2 id=&#34;cross-gated-feature-fusion&#34;&gt;Cross-gated Feature Fusion&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715.png&#34;
+&lt;h2 id=&#34;cross-gated-feature-fusion&#34;&gt;Cross-gated Feature Fusion
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715.png&#34;
 	width=&#34;719&#34;
 	height=&#34;817&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu14775318d57f3dbb05d716d7616dcaff_127447_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu16691838358225565276.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708316997715_hu10866716706894507529.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708316997715&#34;
@@ -187,7 +187,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446.png&#34;
 	width=&#34;955&#34;
 	height=&#34;260&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu7443dad402e54e62dc3da38b16cb5bb6_49416_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu5724030346151372970.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708317405446_hu16118948200565701031.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708317405446&#34;
@@ -199,13 +199,13 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中w和b分别是线性层的weight和bias。z 是数据包字节的整体表示向量。&lt;/p&gt;
-&lt;h2 id=&#34;端到端的下游任务训练-end-to-end-training-on-downstream-tasks&#34;&gt;端到端的下游任务训练 End-to-End Training on Downstream Tasks&lt;/h2&gt;
-&lt;p&gt;由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。&lt;/p&gt;
+&lt;h2 id=&#34;端到端的下游任务训练-end-to-end-training-on-downstream-tasks&#34;&gt;端到端的下游任务训练 End-to-End Training on Downstream Tasks
+&lt;/h2&gt;&lt;p&gt;由于我们已经将流量段中每个数据包的原始字节编码为表示向量z，因此可以将段级分类任务视为时间序列预测任务。&lt;/p&gt;
 &lt;p&gt;这里我们使用双层Bi-LSTM作为baseline，他的输出喂给一个带PReLU的两层线性分类器，使用交叉熵作为损失函数&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707.png&#34;
 	width=&#34;1034&#34;
 	height=&#34;86&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu2ca755d9c018ae8a19d295524949e337_18435_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu15666663530963338673.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708318165707_hu1955602989388333101.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708318165707&#34;
@@ -218,8 +218,8 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;n是长度，CE是交叉熵，y是ground truth（标注数据的分类标签）&lt;/p&gt;
 &lt;p&gt;实验部分还有一个用transformer的&lt;/p&gt;
-&lt;h1 id=&#34;experiments&#34;&gt;experiments&lt;/h1&gt;
-&lt;p&gt;介绍了实验设置，在很多数据集和baseline上做了对比实验，&lt;strong&gt;做了消融实验（good）&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;experiments&#34;&gt;experiments
+&lt;/h1&gt;&lt;p&gt;介绍了实验设置，在很多数据集和baseline上做了对比实验，&lt;strong&gt;做了消融实验（good）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;还分析了TFE-GNN的灵敏度，回答了&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;每个组件的功能&lt;/li&gt;
@@ -227,8 +227,8 @@ $$&lt;/p&gt;
 &lt;li&gt;TFE-GNN的复杂度如何&lt;/li&gt;
 &lt;li&gt;超参数的变化在多大程度上会影响TFE-GNN的有效性&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;实验设置&#34;&gt;实验设置&lt;/h2&gt;
-&lt;p&gt;数据集：ISCX VPN-nonVPN , ISCX Tor-nonTor , self-collected WWT datasets.&lt;/p&gt;
+&lt;h2 id=&#34;实验设置&#34;&gt;实验设置
+&lt;/h2&gt;&lt;p&gt;数据集：ISCX VPN-nonVPN , ISCX Tor-nonTor , self-collected WWT datasets.&lt;/p&gt;
 &lt;p&gt;预处理：对于每个数据集，筛除&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;空流或空段：所有数据包都没有有效负载（用于establish 连接）&lt;/li&gt;
@@ -243,7 +243,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300.png&#34;
 	width=&#34;2191&#34;
 	height=&#34;1053&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu634752c82cc834f29dac24ec0440da23_376168_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu7610470449965954899.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319331300_hu16173415788549922911.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319331300&#34;
@@ -257,7 +257,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719.png&#34;
 	width=&#34;2610&#34;
 	height=&#34;1067&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu14785f7012c6c7ae6e93539fa33a885c_445634_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu15159923228735777244.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319345719_hu16133383631045347086.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319345719&#34;
@@ -268,13 +268,13 @@ $$&lt;/p&gt;
 		data-flex-basis=&#34;587px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;消融实验&#34;&gt;消融实验&lt;/h2&gt;
-&lt;p&gt;在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &amp;lsquo;H&amp;rsquo;、&amp;lsquo;P&amp;rsquo;、&amp;lsquo;DUAL&amp;rsquo;、&amp;lsquo;JKN&amp;rsquo;、&amp;lsquo;CGFF&amp;rsquo; 和 &amp;lsquo;A&amp;amp;N&amp;rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM&lt;/p&gt;
+&lt;h2 id=&#34;消融实验&#34;&gt;消融实验
+&lt;/h2&gt;&lt;p&gt;在 ISCX-VPN 和 ISCX-Tor 数据集上对 TFE-GNN 进行了消融实验，分别将头、有效载荷、双嵌入模块、跳跃知识网络式串联、交叉门控特征融合和激活函数以及批量归一化分别表示为 &amp;lsquo;H&amp;rsquo;、&amp;lsquo;P&amp;rsquo;、&amp;lsquo;DUAL&amp;rsquo;、&amp;lsquo;JKN&amp;rsquo;、&amp;lsquo;CGFF&amp;rsquo; 和 &amp;lsquo;A&amp;amp;N&amp;rsquo;。不仅验证了TFE-GNN中每个组件的有效性，而且还测试了一些替代模块或操作的影响，用sum、max替换mean，用GRU、transformer替换LSTM&lt;/p&gt;
 &lt;p&gt;（只用H或P就不需要DUAL和CGFF）&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833.png&#34;
 	width=&#34;1731&#34;
 	height=&#34;590&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu66361c58c4e6d6328e5c56abddd750a6_180501_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu13284168224497385380.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708319828833_hu7046735823590417566.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708319828833&#34;
@@ -297,7 +297,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036.png&#34;
 	width=&#34;950&#34;
 	height=&#34;475&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu626d5be1952281257ee8075a345bccf3_29371_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu8216215334432359085.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321015036_hu11835192227397475699.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321015036&#34;
@@ -314,7 +314,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217.png&#34;
 	width=&#34;843&#34;
 	height=&#34;637&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_huc850e04a877730152af29956e23179b2_83266_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_hu2224805251417421898.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321171217_hu10472565223415392163.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321171217&#34;
@@ -329,7 +329,7 @@ $$&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227.png&#34;
 	width=&#34;1288&#34;
 	height=&#34;417&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu1980fccd781ba43b83fe06ae8402ace2_105840_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu17384695895483586112.png 480w, https://blog2.pillar.fun/p/tfe-gnn/pic/1708321219227_hu8943852023995629723.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1708321219227&#34;
@@ -342,8 +342,8 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;PMI窗口大小的影响。从图 b 中可以看出，较小的窗口大小通常会导致更好的 f1 分数。窗口越大图中添加的边就越多，由于图太密集，模型将更难分类。&lt;/p&gt;
 &lt;p&gt;段长的影响。从图 c 中，我们可以得出一个结论，即用于训练的短段长度通常会使性能更好。&lt;/p&gt;
-&lt;h1 id=&#34;conclusion-and-future-work&#34;&gt;conclusion and future work&lt;/h1&gt;
-&lt;p&gt;我们提出了一种构建字节级流量图的方法和一个名为 TFE-GNN 的模型，用于加密流量分类。字节级流量图构造方法可以挖掘原始字节之间的潜在相关性并生成判别性流量图。TFE-GNN 旨在从构建的流量图中提取高维特征。最后，TFE-GNN可以将每个数据包编码为一个整体表示向量，该向量可用于一些下游任务，如流量分类。选择了几个基线来评估 TFE-GNN 的有效性。实验结果表明，所提模型全面超越了WWT和ISCX数据集上的所有基线。精心设计的实验进一步证明了TFE-GNN具有很强的有效性。&lt;/p&gt;
+&lt;h1 id=&#34;conclusion-and-future-work&#34;&gt;conclusion and future work
+&lt;/h1&gt;&lt;p&gt;我们提出了一种构建字节级流量图的方法和一个名为 TFE-GNN 的模型，用于加密流量分类。字节级流量图构造方法可以挖掘原始字节之间的潜在相关性并生成判别性流量图。TFE-GNN 旨在从构建的流量图中提取高维特征。最后，TFE-GNN可以将每个数据包编码为一个整体表示向量，该向量可用于一些下游任务，如流量分类。选择了几个基线来评估 TFE-GNN 的有效性。实验结果表明，所提模型全面超越了WWT和ISCX数据集上的所有基线。精心设计的实验进一步证明了TFE-GNN具有很强的有效性。&lt;/p&gt;
 &lt;p&gt;将来，我们将尝试在以下限制方面改进 TFE-GNN。（1）有限的图构建方法。所提模型的图拓扑结构是在训练过程之前确定的，这可能会导致非最佳性能。此外，TFE-GNN无法应对每个数据包的原始字节中隐含的字节级噪声。（2） 字节序列中隐含的未使用的时间信息。字节级 trafc 图的构造没有引入字节序列的显式时间特征。&lt;/p&gt;
 </description>
         </item>
@@ -353,80 +353,39 @@ $$&lt;/p&gt;
         <pubDate>Wed, 25 Oct 2023 10:25:43 +0800</pubDate>
         
         <guid>https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
-        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post 复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
-&lt;p&gt;复现这篇2023NDSS论文，他大开源在https://github.com/fuchuanpu/HyperVision&lt;/p&gt;
-&lt;h1 id=&#34;环境配置&#34;&gt;环境配置&lt;/h1&gt;
-&lt;p&gt;我是在home下做的，如果想在别的地方搞稍微换下路径就行&lt;/p&gt;
+        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post 复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
+&lt;/h1&gt;&lt;p&gt;复现这篇2023NDSS论文，他大开源在https://github.com/fuchuanpu/HyperVision&lt;/p&gt;
+&lt;h1 id=&#34;环境配置&#34;&gt;环境配置
+&lt;/h1&gt;&lt;p&gt;我是在home下做的，如果想在别的地方搞稍微换下路径就行&lt;/p&gt;
 &lt;p&gt;先拉git的代码 &lt;code&gt;git clone https://github.com/fuchuanpu/HyperVision.git&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;依照作者在readme里说，在纯净的ubuntu22.04上运行他的脚本即可。用docker装一个纯净的ubuntu22.04&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 下载镜像&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker pull homebrew/ubuntu22.04:latest
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动，并且把~/HyperVision 和容器内的/root/HyperVision连起来&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -td --name hypervision -v &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/HyperVision&amp;#34;&lt;/span&gt;:/root/HyperVision homebrew/ubuntu22.04:latest
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; hypervision -it bash
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;接下来的操作在docker里了&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo su
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /root/HyperVision
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ./env/install_all.sh &lt;span class=&#34;c1&#34;&gt;# 这里最好先换个国内的源，会把需要装的都装了&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://hypervision-publish.s3.cn-north-1.amazonaws.com.cn/hypervision-dataset.tar.gz &lt;span class=&#34;c1&#34;&gt;# 下载数据集，有6G，走的cdn，裸连速度就还不错&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xzf hypervision-dataset.tar.gz &lt;span class=&#34;c1&#34;&gt;# 我也不知道为什么他写了个-xxf 如果想删掉原来的就删吧，不删也没关系&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./script/rebuild.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./script/expand.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; build &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ../script/run_all_brute.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ..
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ./result_analyze
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./batch_analyzer.py -g brute
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat ./log/brute/*.log &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep AU_ROC
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1zj411e7xC/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.bilibili.com/video/BV1zj411e7xC/&lt;/a&gt;
-
-&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
-    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
-    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
-    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
-        fill=&#34;currentColor&#34;&gt;
-&lt;/svg&gt;&lt;/span&gt;
-
-    可以看到复现视频&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 下载镜像&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker pull homebrew/ubuntu22.04:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 启动，并且把~/HyperVision 和容器内的/root/HyperVision连起来&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run -td --name hypervision -v &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/HyperVision&amp;#34;&lt;/span&gt;:/root/HyperVision homebrew/ubuntu22.04:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 进入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker exec hypervision -it bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接下来的操作在docker里了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo su
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /root/HyperVision
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo ./env/install_all.sh &lt;span style=&#34;color:#75715e&#34;&gt;# 这里最好先换个国内的源，会把需要装的都装了&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget https://hypervision-publish.s3.cn-north-1.amazonaws.com.cn/hypervision-dataset.tar.gz &lt;span style=&#34;color:#75715e&#34;&gt;# 下载数据集，有6G，走的cdn，裸连速度就还不错&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar -xzf hypervision-dataset.tar.gz &lt;span style=&#34;color:#75715e&#34;&gt;# 我也不知道为什么他写了个-xxf 如果想删掉原来的就删吧，不删也没关系&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./script/rebuild.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./script/expand.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd build &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ../script/run_all_brute.sh &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; cd ..
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd ./result_analyze
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./batch_analyzer.py -g brute
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat ./log/brute/*.log | grep AU_ROC
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1zj411e7xC/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.bilibili.com/video/BV1zj411e7xC/&lt;/a&gt;可以看到复现视频&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469.png&#34;
 	width=&#34;760&#34;
 	height=&#34;377&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hub45e6d01c4ae990de3ffc6436b32d0a8_31594_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hu16448326538885162871.png 480w, https://blog2.pillar.fun/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469_hu12202144561702424869.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698203084469&#34;
@@ -445,36 +404,27 @@ $$&lt;/p&gt;
         <pubDate>Mon, 16 Oct 2023 20:34:22 +0800</pubDate>
         
         <guid>https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/</guid>
-        <description>&lt;img src="https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png" alt="Featured image of post Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
-&lt;p&gt;doi is &lt;a class=&#34;link&#34; href=&#34;https://dl.acm.org/doi/10.1145/3548606.3560604&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;here&lt;/a&gt;
-
-&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
-    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
-    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
-    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
-        fill=&#34;currentColor&#34;&gt;
-&lt;/svg&gt;&lt;/span&gt;
-
-    &lt;/p&gt;
-&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;h2 id=&#34;问题引入&#34;&gt;问题引入&lt;/h2&gt;
-&lt;p&gt;目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。&lt;/p&gt;
-&lt;h2 id=&#34;提出方法&#34;&gt;提出方法&lt;/h2&gt;
-&lt;p&gt;提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。&lt;/p&gt;
+        <description>&lt;img src="https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png" alt="Featured image of post Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
+&lt;/h1&gt;&lt;p&gt;doi is &lt;a class=&#34;link&#34; href=&#34;https://dl.acm.org/doi/10.1145/3548606.3560604&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;abstract&#34;&gt;Abstract
+&lt;/h1&gt;&lt;h2 id=&#34;问题引入&#34;&gt;问题引入
+&lt;/h2&gt;&lt;p&gt;目前互联网上的流量已被广泛加密，同时流量加密总是被攻击者滥用以隐藏其恶意行为，现有的加密恶意流量检测方法受到监督，它们依赖于已知攻击（例如，标记数据集）的先验知识。&lt;/p&gt;
+&lt;h2 id=&#34;提出方法&#34;&gt;提出方法
+&lt;/h2&gt;&lt;p&gt;提出了HyperVision，一种基于实时无监督机器学习的恶意流量检测系统。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;能够利用基于流量模式构建的紧凑内存图来检测加密恶意流量的未知模式。该图捕获由图结构特征表示的流交互模式，而不是特定已知攻击的特征。&lt;/li&gt;
 &lt;li&gt;我们开发了一种无监督图学习方法，通过分析图的连接性、稀疏性和统计特征来检测异常交互模式&lt;/li&gt;
 &lt;li&gt;建立了一个信息论模型来证明图保存的信息接近理想的理论边界。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-&lt;h2 id=&#34;现有方法&#34;&gt;现有方法&lt;/h2&gt;
-&lt;p&gt;深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测&lt;/p&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction
+&lt;/h1&gt;&lt;h2 id=&#34;现有方法&#34;&gt;现有方法
+&lt;/h2&gt;&lt;p&gt;深度数据包检测（DPI）的传统基于签名的方法在加密有效载荷的攻击下无效，加密流量具有与良性流量相似的特征，因此也可以逃避现有的基于机器学习。特别是，现有的加密流量检测方法受到监督，即依赖于已知攻击的先验知识，并且只能检测具有已知流量模式的攻击。此外，这些方法无法检测使用和不使用加密流量构建的攻击，并且由于加密和非加密攻击流量的特征显着不同，因此无法实现通用检测&lt;/p&gt;
 &lt;p&gt;简而言之，现有方法无法实现无监督检测，也无法检测具有未知模式的加密恶意流量。特别是，加密的恶意流量具有隐蔽行为，这些方法无法捕获这些行为，这些方法根据单个流的模式检测攻击。但是，检测此类攻击流量仍然是可行的，因为即使攻击的单个流与良性攻击流相似，这些攻击涉及攻击者和受害者之间具有不同流交互的多个攻击步骤与良性流交互模式不同。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666.png&#34;
 	width=&#34;1715&#34;
 	height=&#34;539&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu0e570c94bbba41b9bc7acdb49cda18ad_132437_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu16570111594751954951.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1697463380666_hu2143719007804796072.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;img&#34;
@@ -497,24 +447,24 @@ $$&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;此外，为了量化HyperVision基于图的流量记录相对于现有方法的优势，我们开发了一个流量记录熵模型，这是一个基于信息论的框架，从理论上分析恶意流量检测系统的现有数据源保留的信息量。这个框架表明NetFlow [19]和Zeek [86]无法保留高保真流量信息，而HyperVision中的图捕获了接近最优的流量信息，并且图中维护的信息量接近理想化数据源的理论上界。（这么屌啊？）此外，分析结果表明，HyperVision中的图形实现了比所有现有数据源更高的信息密度（即每单位存储的流量信息量），这是准确高效检测的基础。&lt;/p&gt;
 &lt;p&gt;过两天读R. Zamir, “A proof of the fisher information inequality via a data processing argument,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 12461250, 1998.&lt;/p&gt;
-&lt;h2 id=&#34;平台和数据集&#34;&gt;平台和数据集&lt;/h2&gt;
-&lt;p&gt;我们使用英特尔的数据平面开发套件 （DPDK） [37] 对 HyperVision进行原型设计。为了广泛评估原型的性能，我们重放了92个攻击数据集，其中包括在我们的虚拟私有云 （VPC）中收集的80个新数据集，其中包含 1,500 多个实例。在 VPC 中，我们收集了 48 个典型的加密恶意流量，包括 （i） 加密泛洪流量，例如泛洪目标链路 [41];（ii） 网络攻击，例如利用网络漏洞 [64];（iii） 恶意软件活动，包括连接测试、依赖项更新和下载。&lt;/p&gt;
+&lt;h2 id=&#34;平台和数据集&#34;&gt;平台和数据集
+&lt;/h2&gt;&lt;p&gt;我们使用英特尔的数据平面开发套件 （DPDK） [37] 对 HyperVision进行原型设计。为了广泛评估原型的性能，我们重放了92个攻击数据集，其中包括在我们的虚拟私有云 （VPC）中收集的80个新数据集，其中包含 1,500 多个实例。在 VPC 中，我们收集了 48 个典型的加密恶意流量，包括 （i） 加密泛洪流量，例如泛洪目标链路 [41];（ii） 网络攻击，例如利用网络漏洞 [64];（iii） 恶意软件活动，包括连接测试、依赖项更新和下载。&lt;/p&gt;
 &lt;p&gt;此外，HyperVision 的平均检测吞吐量超过 100 Gb/s，平均检测延迟为 0.83 秒。&lt;/p&gt;
-&lt;h2 id=&#34;省流&#34;&gt;省流&lt;/h2&gt;
-&lt;p&gt;• 我们提出了 HyperVision，这是首个使用流交互图实现对未知模式的加密恶意流量进行实时无监督检测的方法。
+&lt;h2 id=&#34;省流&#34;&gt;省流
+&lt;/h2&gt;&lt;p&gt;• 我们提出了 HyperVision，这是首个使用流交互图实现对未知模式的加密恶意流量进行实时无监督检测的方法。
 • 我们开发了多种算法来构建内存中的图，使我们能够准确捕获不同流之间的交互模式。
 • 我们设计了一种轻量级的无监督图形学习方法，通过图形特征来检测加密流量。
 • 我们开发了一个由信息论建立的理论分析框架，以展示该图形捕获了接近最优的流量交互信息。
 • 我们原型化了 HyperVision，并进行了广泛的实验，使用各种真实世界的加密恶意流量来验证其准确性和效率。&lt;/p&gt;
-&lt;h2 id=&#34;名词解释&#34;&gt;名词解释&lt;/h2&gt;
-&lt;p&gt;连通分量：在图论中，连通分量是一个图中的一个子图，其中任意两个顶点都可以通过边相连的路径相互访问。&lt;/p&gt;
+&lt;h2 id=&#34;名词解释&#34;&gt;名词解释
+&lt;/h2&gt;&lt;p&gt;连通分量：在图论中，连通分量是一个图中的一个子图，其中任意两个顶点都可以通过边相连的路径相互访问。&lt;/p&gt;
 &lt;p&gt;Z3 SMT solver：3（Z3 SMT solver）是由微软研究院开发的一个高性能的SMT（Satisfiability Modulo Theories）求解器。SMT 求解器是一种自动化工具，用于解决布尔公式、一阶逻辑公式和其他数学理论的判定问题。Z3 在各种计算机科学和工程领域都有广泛的应用，包括软件验证、形式化方法、人工智能、编译器优化和硬件验证等。&lt;/p&gt;
 &lt;p&gt;英特尔的数据平面开发套件 （DPDK）：旨在优化数据包处理性能。它专注于高性能网络应用程序和数据平面开发，使开发人员能够在通用服务器硬件上实现高吞吐量和低延迟的数据包处理。它通过绕过操作系统内核，并在用户空间中实现网络协议栈，从而提供极低的延迟和高吞吐量。支持多核处理器，允许并行处理大量数据包。利用支持硬件加速的网络接口卡（NIC）来进一步提高性能。DPDK 是一个开源项目，开发人员可以根据其需求进行自定义和扩展。DPDK 通常用于构建高性能网络应用程序，如网络功能虚拟化（NFV）、防火墙、负载均衡、数据包过滤和路由等。它还用于云计算、边缘计算和网络设备。&lt;/p&gt;
-&lt;h1 id=&#34;hypervision&#34;&gt;HyperVision&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png&#34;
+&lt;h1 id=&#34;hypervision&#34;&gt;HyperVision
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903.png&#34;
 	width=&#34;1737&#34;
 	height=&#34;755&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu5782aa90e2830d7e2b9710b9167608e2_253472_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu18281871510420719819.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698218520903_hu204343653094985891.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698218520903&#34;
@@ -527,20 +477,20 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;首先HyperVision以镜像来的路由器流量作为输入，确保不会干扰流量转发。在识别加密的恶意流量后，它可以与现有的中间恶意流量防御配合，以限制检测到的流量。重点检测使用加密流量构建的主动攻击。不考虑不会为受害者带来流量的被动攻击，例如流量窃听和被动流量分析&lt;/p&gt;
 &lt;p&gt;HyperVision的设计目标如下：首先，它应该能够实现通用检测，即检测使用加密或非加密流量构建的攻击，从而确保攻击无法逃避流量加密的检测。其次，它能够实现实时高速流量处理，这意味着它可以识别通过加密流量是否是恶意的，同时产生低检测延迟。第三，HyperVision 执行的检测是不受监督的，这意味着它不需要任何加密恶意流量的先验知识。&lt;/p&gt;
-&lt;h2 id=&#34;图构造&#34;&gt;图构造&lt;/h2&gt;
-&lt;p&gt;将流分为短流和长流，并分别记录它们的相互作用模式，以降低图的密度。&lt;/p&gt;
+&lt;h2 id=&#34;图构造&#34;&gt;图构造
+&lt;/h2&gt;&lt;p&gt;将流分为短流和长流，并分别记录它们的相互作用模式，以降低图的密度。&lt;/p&gt;
 &lt;p&gt;使用不同的地址作为顶点，分别连接与短流和长流关联的边。聚合大量相似的短流，为一组短流构建一条边，从而减少维护流交互模式的开销。拟合长流中数据包特征的分布，构建与长流相关的边缘，从而保证了高保真记录的流交互模式，同时解决了传统方法中粗粒度流特征的问题。&lt;/p&gt;
-&lt;h2 id=&#34;预处理图&#34;&gt;预处理图&lt;/h2&gt;
-&lt;p&gt;通过提取连通分量来减少图的开销，并使用高级统计信息进行聚类。其中，聚类可以准确地检测出只有良性交互模式的组件，从而对这些良性组件进行过滤，减小图的规模。此外，我们进行了预聚类，并使用生成的聚类中心来表示图像中的识别的集群的边缘。（第五节详细讲）&lt;/p&gt;
-&lt;h2 id=&#34;基于图的恶意流量检测&#34;&gt;基于图的恶意流量检测&lt;/h2&gt;
-&lt;p&gt;通过分析图特征来实现无监督加密恶意流量检测。&lt;/p&gt;
-&lt;h1 id=&#34;图构造-1&#34;&gt;图构造&lt;/h1&gt;
-&lt;h2 id=&#34;流的分类&#34;&gt;流的分类&lt;/h2&gt;
-&lt;p&gt;为了避免图构建过程中流之间的依赖爆炸，把流分成长流和短流，并且降低密度。下图显示了显示了2020年1月MAWI互联网流量数据集的流完成时间和流长度的分布，纵轴PDF是概率密度函数，可以看到不论是长流还是短流都在分布短时间、长长度更多。
+&lt;h2 id=&#34;预处理图&#34;&gt;预处理图
+&lt;/h2&gt;&lt;p&gt;通过提取连通分量来减少图的开销，并使用高级统计信息进行聚类。其中，聚类可以准确地检测出只有良性交互模式的组件，从而对这些良性组件进行过滤，减小图的规模。此外，我们进行了预聚类，并使用生成的聚类中心来表示图像中的识别的集群的边缘。（第五节详细讲）&lt;/p&gt;
+&lt;h2 id=&#34;基于图的恶意流量检测&#34;&gt;基于图的恶意流量检测
+&lt;/h2&gt;&lt;p&gt;通过分析图特征来实现无监督加密恶意流量检测。&lt;/p&gt;
+&lt;h1 id=&#34;图构造-1&#34;&gt;图构造
+&lt;/h1&gt;&lt;h2 id=&#34;流的分类&#34;&gt;流的分类
+&lt;/h2&gt;&lt;p&gt;为了避免图构建过程中流之间的依赖爆炸，把流分成长流和短流，并且降低密度。下图显示了显示了2020年1月MAWI互联网流量数据集的流完成时间和流长度的分布，纵轴PDF是概率密度函数，可以看到不论是长流还是短流都在分布短时间、长长度更多。
 &lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407.png&#34;
 	width=&#34;862&#34;
 	height=&#34;361&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu91da0c3a88b31360028d748e88f1fc92_64594_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu14138556333844645959.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698331144407_hu537099555165266691.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698331144407&#34;
@@ -555,7 +505,7 @@ $$&lt;/p&gt;
 &lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326.png&#34;
 	width=&#34;874&#34;
 	height=&#34;355&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hud5796b94037b563ead5cd18bc85a30ff_242730_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hu13884613714838337522.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698332038326_hu8297001252004669588.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698332038326&#34;
@@ -567,21 +517,21 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;获取每个数据包的信息，并获取其源、目标地址、端口号和每个数据包的功能，包括协议、长度和到达间隔。我们开发了一种流量分类算法来对流量进行分类（附录A中的算法1）简单来说就是维护一个哈希表，键是hash(src,dest,src_post,dest_port)，值是流的所有数据包特征的序列(协议、数据包长度、到达间隔)，然后用一个定时器TIME_NOW，每隔JUDGE_INTERVAL检查一下，如果在这个interval里流发了多个数据包，就算他是长流，否则就说他是短流）【q，这个interval怎么设置？为什么后面说ssh暴力破解都是短流？这不是应该是短期发好多包吗？】&lt;/p&gt;
-&lt;h2 id=&#34;短流聚合&#34;&gt;短流聚合&lt;/h2&gt;
-&lt;p&gt;我们观察到，大多数短流具有几乎相同的每个数据包的特征序列。我们设计了一种聚合短流的算法（附录A中的算法2）。当满足以下所有要求时，可以聚合一组流&lt;/p&gt;
+&lt;h2 id=&#34;短流聚合&#34;&gt;短流聚合
+&lt;/h2&gt;&lt;p&gt;我们观察到，大多数短流具有几乎相同的每个数据包的特征序列。我们设计了一种聚合短流的算法（附录A中的算法2）。当满足以下所有要求时，可以聚合一组流&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;流具有相同的源和/或目标地址（为啥不是哈希表的键值一样）&lt;/li&gt;
 &lt;li&gt;流具有相同的协议类型&lt;/li&gt;
 &lt;li&gt;流的数量足够大，即当短流量的数量达到阈值AGG_LINE&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;我们为短流构建一条边，为所有流及其四个元组保留一个特征序列（即协议、数据包长度和到达间隔）&lt;/p&gt;
-&lt;h2 id=&#34;长流的特征分布拟合&#34;&gt;长流的特征分布拟合&lt;/h2&gt;
-&lt;p&gt;由于长流中的特征是集中分布的，我们使用直方图来表示长流中每个数据包特征的频率分布。直方图的每个条目表示一个数据包特征的频率，从而避免保留其长的每个数据包特征序列。具体来说，我们为每个长流中的每个数据包特征序列构建直方图，然后维护一个哈希表，    键为数据包特征序列，值为直方图。我们将数据包长度和到达间隔的桶宽度分别设置为 10 字节和 1 毫秒，以在拟合精度和开销之间进行权衡。
+&lt;h2 id=&#34;长流的特征分布拟合&#34;&gt;长流的特征分布拟合
+&lt;/h2&gt;&lt;p&gt;由于长流中的特征是集中分布的，我们使用直方图来表示长流中每个数据包特征的频率分布。直方图的每个条目表示一个数据包特征的频率，从而避免保留其长的每个数据包特征序列。具体来说，我们为每个长流中的每个数据包特征序列构建直方图，然后维护一个哈希表，    键为数据包特征序列，值为直方图。我们将数据包长度和到达间隔的桶宽度分别设置为 10 字节和 1 毫秒，以在拟合精度和开销之间进行权衡。
 下图显示了数据集中的长流中已用桶的数量和最大桶的大小，可以看是集中分布的，即长流中的大多数数据包具有相似的包长度和到达间隔。长度拟合平均用11个桶，每个桶平均200个数据包；到达间隔拟合平均用121个桶，每个桶平均71个数据包。
 &lt;img src=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628.png&#34;
 	width=&#34;859&#34;
 	height=&#34;337&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hud9de916891e6630911430552b2ffafcd_65867_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hu7047676554841617489.png 480w, https://blog2.pillar.fun/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/pic/1698336076628_hu16818944799277059070.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1698336076628&#34;

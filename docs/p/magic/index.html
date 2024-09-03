@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用掩码图学习降低溯源图的消耗'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="使用掩码图学习降低溯源图的消耗">
 <title>MAGIC</title>
 
 <link rel='canonical' href='https://blog2.pillar.fun/p/magic/'>
 
-<link rel="stylesheet" href="/scss/style.min.0c40e8a523f4835f9e94f17f178c31dcbcb38313782bb275c3ec17b44e371a2a.css"><meta property='og:title' content='MAGIC'>
-<meta property='og:description' content='使用掩码图学习降低溯源图的消耗'>
+<link rel="stylesheet" href="/scss/style.min.82c29a3df35b3996da6bb4b4275e5ad453e2587c06ff57bf28028350a6e437b5.css"><meta property='og:title' content="MAGIC">
+<meta property='og:description' content="使用掩码图学习降低溯源图的消耗">
 <meta property='og:url' content='https://blog2.pillar.fun/p/magic/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='溯源图' /><meta property='article:tag' content='论文笔记' /><meta property='article:published_time' content='2024-03-02T20:19:11&#43;08:00'/><meta property='article:modified_time' content='2024-03-02T20:19:11&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/magic/MAGIC/1709702251187.png' />
 <meta name="twitter:title" content="MAGIC">
 <meta name="twitter:description" content="使用掩码图学习降低溯源图的消耗"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog2.pillar.fun/p/magic/MAGIC/1709702251187.png' />
+  
+
+
     </head>
     <body class="
     article-page
@@ -57,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hue5a82d99f1d5666b90155cc990e0cb02_77622_300x0_resize_q75_box.jpg" width="300"
+                        <img src="/img/avatar_hu8974536233092345980.jpg" width="300"
                             height="299" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -73,7 +76,7 @@
             <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
             <h2 class="site-description">Like tears in rain.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -225,12 +228,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,7 +241,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -246,10 +249,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -274,55 +278,42 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ol>
+  <ul>
     <li><a href="#abstract">Abstract</a></li>
     <li><a href="#introduction">Introduction</a></li>
     <li><a href="#background">Background</a>
-      <ol>
+      <ul>
         <li><a href="#攻击场景">攻击场景</a></li>
         <li><a href="#prior-research-and-their-limitations">Prior Research and their Limitations</a></li>
         <li><a href="#threat-model-and-definitions">Threat Model and Definitions</a></li>
         <li><a href="#unseen-attack">unseen attack</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#design-details">Design Details</a>
-      <ol>
+      <ul>
         <li><a href="#provenance-graph-construction">Provenance Graph Construction</a></li>
-        <li><a href="#graph-representation-module">Graph Representation Module</a>
-          <ol>
-            <li><a href="#feature-masking">Feature Masking</a></li>
-            <li><a href="#graph-encoder">Graph Encoder</a></li>
-            <li><a href="#graph-decoder">Graph Decoder</a></li>
-          </ol>
-        </li>
+        <li><a href="#graph-representation-module">Graph Representation Module</a></li>
         <li><a href="#detection-module">Detection Module</a></li>
         <li><a href="#model-adaption">Model Adaption</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#implementation">Implementation</a></li>
     <li><a href="#evaluation">Evaluation</a>
-      <ol>
+      <ul>
         <li><a href="#experimental-settings">Experimental Settings</a></li>
         <li><a href="#effectiveness">Effectiveness</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#conclusion">conclusion</a></li>
     <li><a href="#知识补充">知识补充</a>
-      <ol>
-        <li><a href="#多标签哈希">多标签哈希</a>
-          <ol>
-            <li><a href="#1-单一哈希方法">1. 单一哈希方法</a></li>
-            <li><a href="#2-多哈希方法">2. 多哈希方法</a></li>
-            <li><a href="#3-哈希函数的选择">3. 哈希函数的选择</a></li>
-            <li><a href="#4-检索和评估">4. 检索和评估</a></li>
-          </ol>
-        </li>
+      <ul>
+        <li><a href="#多标签哈希">多标签哈希</a></li>
         <li><a href="#图形掩蔽自编码器">图形掩蔽自编码器</a></li>
         <li><a href="#概念漂移">概念漂移</a></li>
         <li><a href="#k-d-tree">K-D tree</a></li>
-      </ol>
+      </ul>
     </li>
-  </ol>
+  </ul>
 </nav>
         </div>
     </section>
@@ -337,8 +328,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/magic/">
-                <img src="/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_800x0_resize_box_3.png"
-                        srcset="/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_800x0_resize_box_3.png 800w, /p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_1600x0_resize_box_3.png 1600w"
+                <img src="/p/magic/MAGIC/1709702251187_hu4805554148768068141.png"
+                        srcset="/p/magic/MAGIC/1709702251187_hu4805554148768068141.png 800w, /p/magic/MAGIC/1709702251187_hu4682056001703519378.png 1600w"
                         width="800" 
                         height="363" 
                         loading="lazy"
@@ -418,18 +409,9 @@
     
     
     <p>文章可以在<a class="link" href="https://doi.org/10.48550/arXiv.2310.09831"  target="_blank" rel="noopener"
-    >这里</a>
-
-<span style="white-space: nowrap;"><svg width=".7em"
-    height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-    <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-    <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-        fill="currentColor">
-</svg></span>
-
-    获取</p>
-<h2 id="abstract">Abstract</h2>
-<p>APT攻击越来越成为普遍的威胁，然而，以前的工作表现出几个缺点：</p>
+    >这里</a>获取</p>
+<h2 id="abstract">Abstract
+</h2><p>APT攻击越来越成为普遍的威胁，然而，以前的工作表现出几个缺点：</p>
 <ol>
 <li>需要包含攻击的数据和APT的先验知识</li>
 <li>无法提取隐藏在来源图中的丰富上下文信息</li>
@@ -437,8 +419,8 @@
 </ol>
 <p>本文介绍一种自监督APT检测方法MAGIC，能够在不同级别的监督下进行多粒度检测。利用掩码图表示学习对良性系统实体和行为进行建模，对来源图进行高效的深度特征提取和结构抽象。通过异常值检测方法检测异常系统行为，MAGIC 能够执行系统实体级和批处理日志级 APT 检测。</p>
 <p>MAGIC是专门为处理概念漂移而设计的，具有模型适配机制，并成功应用于通用条件和检测场景。我们在三个广泛使用的数据集上评估了MAGIC，包括真实世界和模拟攻击。评估结果表明，MAGIC在所有场景中都取得了令人鼓舞的检测结果，并且在性能开销方面比最先进的APT检测方法具有巨大的优势。</p>
-<h2 id="introduction">Introduction</h2>
-<p>高级持续性威胁（APTs）是由熟练的攻击者进行的蓄意和复杂的网络攻击，对企业和机构都构成巨大威胁。大多数 APT 都涉及零日漏洞，并且由于其隐蔽性和多变性而特别难以检测。</p>
+<h2 id="introduction">Introduction
+</h2><p>高级持续性威胁（APTs）是由熟练的攻击者进行的蓄意和复杂的网络攻击，对企业和机构都构成巨大威胁。大多数 APT 都涉及零日漏洞，并且由于其隐蔽性和多变性而特别难以检测。</p>
 <p>最近关于APT检测的工作利用数据来源进行APT检测。数据来源将审计日志转换为来源图，从审计日志中提取丰富的上下文信息，为细粒度的因果关系分析和 APT 检测提供完美的平台。</p>
 <p>早期工作基于典型或特定的 APT 模式<strong>构建规则</strong>，并将审计日志与这些规则进行匹配，以检测潜在的 APT。</p>
 <p>最近的一些工作采用<strong>统计异常检测</strong>方法来检测APT，这些APT侧重于不同的来源图元素，例如系统实体、交互和社区。</p>
@@ -461,20 +443,20 @@
 <li>在三个广泛使用的数据集上评估了 MAGIC，涉及真实世界和模拟的 APT 攻击。评估结果表明，MAGIC检测的APTs具有良好的结果和最小的计算开销。</li>
 <li>提供 MAGIC 的开源实现，以造福社区未来的研究，并鼓励进一步改进我们的方法。</li>
 </ol>
-<h2 id="background">Background</h2>
-<h3 id="攻击场景">攻击场景</h3>
-<p>在这里，我们提供了我们在整篇文章中使用的 APT 场景的详细说明。带有 Drakon Dropper 的 Pine 后门是来自 DARPA Engagement 3 Trace 数据集的 APT 攻击 [20]。在攻击过程中，攻击者构建恶意可执行文件 （/tmp/tcexec） 并通过网络钓鱼电子邮件将其发送到目标主机。然后，用户会无意识地下载并打开电子邮件。电子邮件中包含的可执行文件旨在执行用于内部侦测的端口扫描，并在目标主机和攻击者之间建立静默连接。</p>
+<h2 id="background">Background
+</h2><h3 id="攻击场景">攻击场景
+</h3><p>在这里，我们提供了我们在整篇文章中使用的 APT 场景的详细说明。带有 Drakon Dropper 的 Pine 后门是来自 DARPA Engagement 3 Trace 数据集的 APT 攻击 [20]。在攻击过程中，攻击者构建恶意可执行文件 （/tmp/tcexec） 并通过网络钓鱼电子邮件将其发送到目标主机。然后，用户会无意识地下载并打开电子邮件。电子邮件中包含的可执行文件旨在执行用于内部侦测的端口扫描，并在目标主机和攻击者之间建立静默连接。</p>
 <p>图 1 显示了我们的动机示例的出处图。图中的节点表示系统实体，箭头表示实体之间的定向交互。显示的图是通过删除大多数与攻击无关的实体和交互，从完整的来源图中抽象出来的子图。不同的节点形状对应不同类型的实体。被条纹覆盖的实体被视为恶意实体。</p>
 <p>![1709698742850](MA G IC1709698742850.png)</p>
-<h3 id="prior-research-and-their-limitations">Prior Research and their Limitations</h3>
-<ul>
+<h3 id="prior-research-and-their-limitations">Prior Research and their Limitations
+</h3><ul>
 <li><strong>监督方法</strong>：对于早期作品，需要<strong>构建特殊的启发式规则</strong>来涵盖所有攻击模式。许多基于深度学习的APT检测方法基于良性和攻击性数据构建来源图，并以分类方式检测APT。这些监督方法可以在学习的攻击模式上获得近乎完美的检测结果，但在<strong>面临概念漂移或看不见的攻击模式时尤其容易受到攻击</strong>。此外，对于基于规则的方法，启发式<strong>规则的构建和维护可能非常昂贵和耗时</strong>。对于基于深度学习的方法，包含攻击的数据的稀缺性阻碍了这些监督方法的实际部署。针对上述问题，MAGIC 采用完全自监督的异常检测方式，在有效处理不可见攻击模式的同时，允许不存在包含攻击的数据。</li>
 <li><strong>基于统计的方法</strong>：最新的基于统计学的方法通过识别系统实体、交互和社区的稀有性或异常分数来检测APT信号。然而，系统实<strong>体的稀有性并不一定表明它们的异常</strong>，通过因果分析或标签传播获得的异常评分是来源图上的浅层特征提取。为了说明这一点，在我们的攻击示例中，进程 tcexec 对不同的 IP 地址执行多个端口扫描操作（参见图 1），这可以被视为正常的系统行为。但是，考虑到源自外部网络的进程 tcexec 也会读取敏感的系统信息 （uname） 并与公共 IP 地址 （162.66.239.75） 建立连接，我们可以很容易地将 tcexec 识别为恶意实体。由于无法提取系统实体之间的深层语义和相关性，通常会导致基于统计的方法检测性能低下和误报率高。然而，MAGIC采用图表示模块对来源图进行深度图特征提取，从而产生高质量的嵌入。</li>
 <li><strong>基于 DL 的方法</strong>：最近，基于DL的APT检测方法，无论是有监督还是无监督，都产生了非常有希望的检测结果。然而，在现实中，中型企业每天会产生数百GB的审计日志。因此，基于深度学习的方法，特别是基于序列的和基于图形的方法，由于其<strong>计算开销</strong>而不可行。例如，ATLAS平均需要 1 小时才能在 676MB 的审计日志上进行训练，而 ShadeWatcher在具有 GPU 的 DARPA E3 Trace 数据集上训练平均需要 1 天。此外，一些基于图自编码器的方法在来源图规模扩大时会遇到爆炸性内存开销问题。MAGIC 通过<strong>引入图形掩码自动编码器避免了计算要求高</strong>，并在短短几分钟内完成了对 DARPA E3 Trace 数据集的训练。第 6.4 节中详细介绍了 MAGIC 的性能开销。</li>
 <li><strong>端到端方法</strong>：除了上面讨论的三个主要局限性之外，还值得一提的是，最新的APT检测方法是端到端检测器，并且专注于一个特定的检测任务。例如，ATLAS专注于端到端的攻击重建，而 Unicorn则从流日志中生成系统级警报。相反，MAGIC的方法是通用的，可以在各种检测场景下执行多粒度APT检测，也可以应用于从不同来源收集的审计日志。<strong>（什么叫通用的？预训练精调？还是知识说能检测多场景多力度就算通用了？）</strong></li>
 </ul>
-<h3 id="threat-model-and-definitions">Threat Model and Definitions</h3>
-<p><strong>威胁模型</strong>：我们假设攻击者来自系统外部，并以系统内的有价值信息为目标。攻击者可能会执行复杂的步骤来实现其目标，但在日志中留下可追踪的证据。系统硬件、操作系统和系统审计软件的组合是我们值得信赖的计算基础。在我们的威胁模型中不考虑毒物攻击和逃避攻击。</p>
+<h3 id="threat-model-and-definitions">Threat Model and Definitions
+</h3><p><strong>威胁模型</strong>：我们假设攻击者来自系统外部，并以系统内的有价值信息为目标。攻击者可能会执行复杂的步骤来实现其目标，但在日志中留下可追踪的证据。系统硬件、操作系统和系统审计软件的组合是我们值得信赖的计算基础。在我们的威胁模型中不考虑毒物攻击和逃避攻击。</p>
 <p><strong>出处图</strong>：来源图是从原始审计日志中提取的有向循环图。构建来源图是数据来源的常见做法，因为它连接系统实体并呈现它们之间的交互关系。来源图包含代表不同系统实体（例如，进程、文件和套接字）的节点，以及代表系统实体之间交互（例如，执行和连接）的边缘，并标有它们的类型。例如，/tmp/tcexec 是一个 FileObject 系统实体，而 /tmp/tcexec 和 tcexec 之间的边缘是 FileObject 面向 Process 的执行操作（参见图 1）。</p>
 <p><strong>多粒度检测</strong>：MAGIC 能够执行<strong>两个粒度</strong>的 APT 检测：批处理日志级别和系统实体级别。MAGIC的多粒度检测能力催生了两阶段检测方法：首先对流式日志进行批量日志级检测，然后对正批次进行系统实体级检测，以识别详细的检测结果。将这种方法应用于实际环境将有效减少工作量、资源消耗和误报，同时产生详细的结果。</p>
 <ul>
@@ -485,7 +467,7 @@
 <p><img src="/p/magic/MAGIC/1709702251187.png"
 	width="1736"
 	height="787"
-	srcset="/p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709702251187_hu550e8822d6ecb8abbb01c6bde22a32f3_245553_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709702251187_hu16566016103685080597.png 480w, /p/magic/MAGIC/1709702251187_hu1283021403769105443.png 1024w"
 	loading="lazy"
 	
 		alt="1709702251187"
@@ -501,8 +483,8 @@
 <p>为了应对概念漂移和看不见的攻击（unseen attack），采用了可选的模型适配机制为其用户提供反馈渠道（4）。由安全分析师检查和确认的检测结果将反馈给 MAGIC，帮助其以半监督的方式适应良性系统行为变化。在这种情况下，MAGIC获得了更有希望的检测结果，这将在第6.3节中讨论。此外，MAGIC 可以很容易地应用于现实世界的在线 APT 检测，这要归功于它能够适应概念漂移和最小的计算开销。</p>
 <p><strong>1用的啥？2用的基于图屏蔽自动编码器，3用的啥？KNN? <del>（4）是干啥的？</del></strong></p>
 <p>（4）是靠人工标注进行监督学习的。</p>
-<h3 id="unseen-attack">unseen attack</h3>
-<p>&ldquo;Unseen attack&rdquo;（不可见攻击）是一种高级持续性威胁（Advanced Persistent Threat，APT）攻击中的一种策略。这种攻击手段的目标是使攻击者的活动对受害者尽可能地不可见，让受害者很难察觉到自己受到了攻击。</p>
+<h3 id="unseen-attack">unseen attack
+</h3><p>&ldquo;Unseen attack&rdquo;（不可见攻击）是一种高级持续性威胁（Advanced Persistent Threat，APT）攻击中的一种策略。这种攻击手段的目标是使攻击者的活动对受害者尽可能地不可见，让受害者很难察觉到自己受到了攻击。</p>
 <p>这种类型的攻击通常采取了多种隐蔽的方法，旨在规避传统安全监控和检测工具的检测。一些常见的不可见攻击技术包括：</p>
 <ol>
 <li><strong>无文件攻击（Fileless Attacks）</strong>：这种攻击方式不会在受害者系统上留下可被传统防病毒软件等检测到的文件。攻击者通过利用系统内置的工具或脚本语言，例如 PowerShell 或 WMI (Windows Management Instrumentation)，在内存中执行恶意代码。</li>
@@ -511,15 +493,15 @@
 <li><strong>持续访问</strong>：攻击者在成功进入受害者网络后，会尽可能长时间地保持对系统的访问，以获取更多的信息和权限。他们可能会隐藏在系统的深层次，并悄悄地窃取数据或监视受害者的活动。</li>
 <li><strong>动态改变攻击模式</strong>：攻击者会不断地改变他们的攻击方式和工具，以规避传统的安全防御措施。这种变化性可以使传统的签名检测和规则检测方法失效。</li>
 </ol>
-<h2 id="design-details">Design Details</h2>
-<h3 id="provenance-graph-construction">Provenance Graph Construction</h3>
-<p>MAGIC 首先从原始审计日志中构建出处图，然后再执行图表示和 APT 检测。我们遵循三个步骤来构建一致且优化的来源图，为图表示做好准备。</p>
+<h2 id="design-details">Design Details
+</h2><h3 id="provenance-graph-construction">Provenance Graph Construction
+</h3><p>MAGIC 首先从原始审计日志中构建出处图，然后再执行图表示和 APT 检测。我们遵循三个步骤来构建一致且优化的来源图，为图表示做好准备。</p>
 <p><strong>日志解析</strong>：第一步是简单地解析每个日志条目，提取系统实体以及它们之间的系统交互。然后，可以构建一个原型出处图，以系统实体为节点，以交互为边。现在，我们提取有关节点和边的分类信息。对于提供实体和交互标签的简单日志格式，我们直接使用这些标签。对于提供这些实体和交互的复杂属性的某种格式，我们应用多标签哈希（例如，xxhash）将属性转换为<strong>标签</strong>。在这个阶段，来源图是有向多图。我们设计了一个示例来演示如何处理图 3 中日志解析后的原始来源图。</p>
 <p><strong>初始嵌入</strong>：在这个阶段，我们将节点和边标签转换为维度 d 的固定大小的特征向量（即初始嵌入），其中 d 是图表示模块的隐藏维度。我们应用了查找嵌入，在节点/边标签和 d 维特征向量之间建立了一对一的映射。如图 3（I 和 II）所示，进程 a 和 b 共享相同的标签，因此它们映射到相同的特征向量，而 a 和 c 嵌入到不同的特征向量中，因为它们具有不同的标签。我们注意到，唯一节点/边缘标签的可能数量由数据源（即审计日志格式）决定。因此，查找嵌入在转导设置下工作，不需要学习看不见的标签的嵌入。</p>
 <p><img src="/p/magic/MAGIC/1709705666067.png"
 	width="811"
 	height="975"
-	srcset="/p/magic/MAGIC/1709705666067_hucce759ef0e4eecef2a6b3c179664aa0b_123849_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709705666067_hucce759ef0e4eecef2a6b3c179664aa0b_123849_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709705666067_hu14771503613507104075.png 480w, /p/magic/MAGIC/1709705666067_hu7222784131759302541.png 1024w"
 	loading="lazy"
 	
 		alt="1709705666067"
@@ -532,10 +514,10 @@
 ></p>
 <p><strong>降噪</strong>：我们的图表示模块的预期输入出处图将是简单图。因此，我们需要在节点对之间组合多个边。如果一对节点之间存在同一标签的多个边（也共享相同的初始嵌入），我们将删除多余的边，以便只保留其中一条。然后，我们将剩余的边合并为一条最终边。我们注意到，在一对节点之间，可能会保留几个不同标签的边缘。组合后，通过对剩余边的初始嵌入进行平均来获得所得唯一边的初始嵌入。为了说明这一点，我们在图3（II和III）中展示了我们的降噪如何结合多边，以及它如何影响边的初始嵌入。首先，对于每个标签，将 a 和 c 之间的 3 次读取和 2 次写入交互合并为一个。然后我们将它们组合在一起，形成一个边缘 eac，其初始嵌入等于其余边缘的<strong>平均</strong>初始嵌入（e′ 2 和 e′ 5）。我们在附录E中提供了我们的降噪步骤与以前工作的比较</p>
 <p>简单来说就是先对边和节点进行多标签哈希，目的是将多个类别标签映射到设计的那几个标签上（如果是有标签的日志格式则不需要这一步），这样每个边都有标签，标签就是边的含义（read,write等)。然后将节点和标签转为d维的初始嵌入，再将节点对之间嵌入值相同的边合并成一个边。</p>
-<h3 id="graph-representation-module">Graph Representation Module</h3>
-<p>MAGIC 采用图表示模块从特色出处图（featured provenance graphs）中获取高质量的嵌入。如图 4 所示，图表示模块由三个阶段组成：用于部分隐藏节点特征（即初始嵌入）以进行重建的掩码过程，通过传播和聚合图特征生成节点和系统状态输出嵌入的图编码器，图解码器通过掩码特征重建和基于样本的结构为图表示模块的训练提供监督信号重建。编码器和解码器形成图形掩码自动编码器，在生成快速且节省资源的嵌入方面表现出色。</p>
-<h4 id="feature-masking">Feature Masking</h4>
-<p>在训练我们的图表示模块之前，我们对节点执行掩码，以便在重建这些节点时可以训练图掩码自动编码器。屏蔽节点是随机选择的，覆盖所有节点的一定比例。此类屏蔽节点的初始嵌入将替换为特殊的屏蔽令牌 xmask，以涵盖有关这些节点的任何原始信息。但是，边缘不会被屏蔽，因为这些边缘提供了有关系统实体之间关系的宝贵信息。总之，给定节点初始嵌入 $x_n$，我们按如下方式屏蔽节点：</p>
+<h3 id="graph-representation-module">Graph Representation Module
+</h3><p>MAGIC 采用图表示模块从特色出处图（featured provenance graphs）中获取高质量的嵌入。如图 4 所示，图表示模块由三个阶段组成：用于部分隐藏节点特征（即初始嵌入）以进行重建的掩码过程，通过传播和聚合图特征生成节点和系统状态输出嵌入的图编码器，图解码器通过掩码特征重建和基于样本的结构为图表示模块的训练提供监督信号重建。编码器和解码器形成图形掩码自动编码器，在生成快速且节省资源的嵌入方面表现出色。</p>
+<h4 id="feature-masking">Feature Masking
+</h4><p>在训练我们的图表示模块之前，我们对节点执行掩码，以便在重建这些节点时可以训练图掩码自动编码器。屏蔽节点是随机选择的，覆盖所有节点的一定比例。此类屏蔽节点的初始嵌入将替换为特殊的屏蔽令牌 xmask，以涵盖有关这些节点的任何原始信息。但是，边缘不会被屏蔽，因为这些边缘提供了有关系统实体之间关系的宝贵信息。总之，给定节点初始嵌入 $x_n$，我们按如下方式屏蔽节点：</p>
 <p><img src="/1709708984909.png"
 	
 	
@@ -547,14 +529,14 @@
 	
 ></p>
 <p>其中 $\tilde{N}$ 是随机选择的掩码节点，$emb_n$ 是节点 n 的嵌入，准备训练图表示模块。此掩蔽过程仅在训练期间发生。在检测过程中，我们不会屏蔽任何节点。</p>
-<h4 id="graph-encoder">Graph Encoder</h4>
-<p>从图构建步骤中获得的初始嵌入仅考虑原始特征。然而，原始特征还远远不足以对系统实体的详细行为进行建模。实体的上下文信息，如其邻域、多跳关系以及与其他系统实体的交互模式，对于获得高质量的实体嵌入起着重要作用。在这里，我们采用并扩展了<strong>图形屏蔽自编码器</strong>，以自监督的方式生成输出嵌入。图形屏蔽自动编码器由编码器和解码器组成。编码器通过传播和聚合图特征来生成输出嵌入，解码器重建图特征以提供用于训练的监督信号。这种编码器-解码器架构在生成的嵌入中保留了上下文和语义信息，同时通过掩蔽学习显着降低了其计算开销。</p>
+<h4 id="graph-encoder">Graph Encoder
+</h4><p>从图构建步骤中获得的初始嵌入仅考虑原始特征。然而，原始特征还远远不足以对系统实体的详细行为进行建模。实体的上下文信息，如其邻域、多跳关系以及与其他系统实体的交互模式，对于获得高质量的实体嵌入起着重要作用。在这里，我们采用并扩展了<strong>图形屏蔽自编码器</strong>，以自监督的方式生成输出嵌入。图形屏蔽自动编码器由编码器和解码器组成。编码器通过传播和聚合图特征来生成输出嵌入，解码器重建图特征以提供用于训练的监督信号。这种编码器-解码器架构在生成的嵌入中保留了上下文和语义信息，同时通过掩蔽学习显着降低了其计算开销。</p>
 <p>我们的图表示模块的编码器包含多个堆叠层的图注意力网络（GAT）。GAT层的功能是根据节点本身及其相邻节点的特征（初始嵌入）生成输出节点嵌入。与普通的GNN不同，GAT引入了一种注意力机制来衡量这些邻居的重要性。【GAT加了attention真的还好算吗？训练代价应该也不小吧】</p>
 <p>为了详细解释，GAT 的一层将前几层生成的节点嵌入作为输入，并将嵌入从源节点传播到目标节点，并沿交互传播到消息中。该消息包含有关源节点以及源节点和目标节点之间交互的信息：</p>
 <p><img src="/p/magic/MAGIC/1709710234712.png"
 	width="523"
 	height="97"
-	srcset="/p/magic/MAGIC/1709710234712_hua36d1db2226ef0c7dab718083c445773_7961_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710234712_hua36d1db2226ef0c7dab718083c445773_7961_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709710234712_hu4877810848227224474.png 480w, /p/magic/MAGIC/1709710234712_hu13207393650686208316.png 1024w"
 	loading="lazy"
 	
 		alt="1709710234712"
@@ -569,7 +551,7 @@
 <p><img src="/p/magic/MAGIC/1709710298170.png"
 	width="819"
 	height="113"
-	srcset="/p/magic/MAGIC/1709710298170_hu85b48369b6085df9fdcff38080ffe969_17564_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710298170_hu85b48369b6085df9fdcff38080ffe969_17564_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709710298170_hu1382487747030714842.png 480w, /p/magic/MAGIC/1709710298170_hu10787702640935847178.png 1024w"
 	loading="lazy"
 	
 		alt="1709710298170"
@@ -584,7 +566,7 @@
 <p><img src="/p/magic/MAGIC/1709710344097.png"
 	width="763"
 	height="185"
-	srcset="/p/magic/MAGIC/1709710344097_hu5c46dd1cd3605c2d547afa478ca5264b_16511_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710344097_hu5c46dd1cd3605c2d547afa478ca5264b_16511_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709710344097_hu13173553985498580451.png 480w, /p/magic/MAGIC/1709710344097_hu17831509164333408050.png 1024w"
 	loading="lazy"
 	
 		alt="1709710344097"
@@ -600,7 +582,7 @@
 <p><img src="/p/magic/MAGIC/1709710765514.png"
 	width="391"
 	height="81"
-	srcset="/p/magic/MAGIC/1709710765514_hud313a304217bb9525bb8ee55275c4f0c_4387_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710765514_hud313a304217bb9525bb8ee55275c4f0c_4387_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709710765514_hu5872384700847102640.png 480w, /p/magic/MAGIC/1709710765514_hu16989827514408167519.png 1024w"
 	loading="lazy"
 	
 		alt="1709710765514"
@@ -615,7 +597,7 @@
 <p><img src="/p/magic/MAGIC/1709710804533.png"
 	width="295"
 	height="117"
-	srcset="/p/magic/MAGIC/1709710804533_hu18cf87b6386ab6bddc11df307a6c214f_4926_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709710804533_hu18cf87b6386ab6bddc11df307a6c214f_4926_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709710804533_hu2452798409655667445.png 480w, /p/magic/MAGIC/1709710804533_hu13157717318223148777.png 1024w"
 	loading="lazy"
 	
 		alt="1709710804533"
@@ -627,13 +609,13 @@
 	
 ></p>
 <p>图编码器生成的节点嵌入和系统状态嵌入被视为图表示模块的输出，用于不同场景下的后续任务。</p>
-<h4 id="graph-decoder">Graph Decoder</h4>
-<p>图形编码器不提供支持模型训练的监督信号。在典型的图自编码器中，使用图解码器对节点嵌入进行解码，并通过特征重构和结构重构来监督模型训练。然而，图形屏蔽自编码器放弃了结构重建，以减少计算开销。我们的图解码器是两者的混合体，它集成了掩码特征重建和基于样本的结构重建，以构建优化图表示模块的目标函数。</p>
+<h4 id="graph-decoder">Graph Decoder
+</h4><p>图形编码器不提供支持模型训练的监督信号。在典型的图自编码器中，使用图解码器对节点嵌入进行解码，并通过特征重构和结构重构来监督模型训练。然而，图形屏蔽自编码器放弃了结构重建，以减少计算开销。我们的图解码器是两者的混合体，它集成了掩码特征重建和基于样本的结构重建，以构建优化图表示模块的目标函数。</p>
 <p>给定从图编码器获得的节点嵌入 $h_n$，解码器首先重新屏蔽这些屏蔽节点，并将它们转换为屏蔽特征重建的输入：</p>
 <p><img src="/p/magic/MAGIC/1709711180082.png"
 	width="433"
 	height="113"
-	srcset="/p/magic/MAGIC/1709711180082_hu051c36bc1b5666d451eb10a0eb894d14_9252_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709711180082_hu051c36bc1b5666d451eb10a0eb894d14_9252_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709711180082_hu1968636639871911622.png 480w, /p/magic/MAGIC/1709711180082_hu365186615464640085.png 1024w"
 	loading="lazy"
 	
 		alt="1709711180082"
@@ -648,7 +630,7 @@
 <p><img src="/p/magic/MAGIC/1709711206698.png"
 	width="513"
 	height="187"
-	srcset="/p/magic/MAGIC/1709711206698_hu77ff8b359efadd2edc7202c3b77a4dc5_14330_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709711206698_hu77ff8b359efadd2edc7202c3b77a4dc5_14330_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709711206698_hu8408891488648062334.png 480w, /p/magic/MAGIC/1709711206698_hu3568096683500602977.png 1024w"
 	loading="lazy"
 	
 		alt="1709711206698"
@@ -666,7 +648,7 @@
 <p><img src="/p/magic/MAGIC/1709711513256.png"
 	width="819"
 	height="185"
-	srcset="/p/magic/MAGIC/1709711513256_hu32346daf17371ca74b8acb0e42c31b4c_17333_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709711513256_hu32346daf17371ca74b8acb0e42c31b4c_17333_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709711513256_hu7372905549791781601.png 480w, /p/magic/MAGIC/1709711513256_hu9990400114856831090.png 1024w"
 	loading="lazy"
 	
 		alt="1709711513256"
@@ -679,13 +661,13 @@
 ></p>
 <p>其中 （n， n−） 和 （n， n+） 分别是负样本和正样本，ˆ N =N− e N 是一组非掩码节点。基于样本的结构重建仅对输出嵌入进行监督。我们没有使用点积，而是使用 MLP 来计算边缘概率，因为交互实体的行为不一定相似。此外，我们并没有强迫模型学习预测边缘概率。这种结构重构的功能是最大化抽象节点嵌入中包含的行为信息，以便一个简单的MLP足以将这些信息合并并解释为边缘概率。</p>
 <p>最终的目标函数 L = $L_fr$ + $L_sr$ 结合了 $L_fr$ 和 $L_sr$，并为图表示模块提供监督信号，使其能够以自监督的方式学习参数。</p>
-<h3 id="detection-module">Detection Module</h3>
-<p>基于图表示模块生成的输出嵌入，利用异常值检测方法以无监督方式进行APT检测。如前几节所述，此类嵌入以不同的粒度总结了系统行为。我们的检测模型的目标是识别恶意系统实体或状态，前提是仅对良性系统行为有先验的了解。如果通过图表示学习生成的嵌入在图中具有相似的交互行为，则它们的相应实体往往会形成聚类。因此，系统状态嵌入中的异常值表示不常见和可疑的系统行为。基于这样的洞见，我们开发了一种特殊的异常值检测方法来进行APT检测。</p>
+<h3 id="detection-module">Detection Module
+</h3><p>基于图表示模块生成的输出嵌入，利用异常值检测方法以无监督方式进行APT检测。如前几节所述，此类嵌入以不同的粒度总结了系统行为。我们的检测模型的目标是识别恶意系统实体或状态，前提是仅对良性系统行为有先验的了解。如果通过图表示学习生成的嵌入在图中具有相似的交互行为，则它们的相应实体往往会形成聚类。因此，系统状态嵌入中的异常值表示不常见和可疑的系统行为。基于这样的洞见，我们开发了一种特殊的异常值检测方法来进行APT检测。</p>
 <p>在训练过程中，首先从训练来源图中抽象出良性输出嵌入。在这个阶段，检测模块所做的只是记住这些嵌入，并将它们组织在一个K-D树中[33]。经过训练后，检测模块通过三个步骤揭示异常值：k-最近邻搜索、相似度计算和过滤。给定目标嵌入，检测模块首先通过 K-D 树搜索获得其 k 最近邻。这样的搜索过程只需要 log（N） 时间，其中 N 是记忆训练嵌入的总数。然后，应用相似性准则来评估目标嵌入与其邻居的接近程度并计算异常分数。如果其异常分数高于超参数 θ，则目标嵌入被视为异常值，其相应的系统实体或系统状态为恶意。检测模块的示例工作流程形式化如下，使用欧几里得距离作为相似性准则：</p>
 <p><img src="/p/magic/MAGIC/1709711997347.png"
 	width="399"
 	height="339"
-	srcset="/p/magic/MAGIC/1709711997347_hu17c2e8d081b68e3a8299bded3e1504fa_23202_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709711997347_hu17c2e8d081b68e3a8299bded3e1504fa_23202_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709711997347_hu1310130482646657059.png 480w, /p/magic/MAGIC/1709711997347_hu9508141611325073041.png 1024w"
 	loading="lazy"
 	
 		alt="1709711997347"
@@ -697,21 +679,21 @@
 	
 ></p>
 <p>其中 $\overline{dist}$ 是训练嵌入与其 k 最近邻之间的平均距离。在执行批处理日志级别检测时，检测模块会记住反映系统状态的良性系统状态嵌入，并检测新到达的来源图的系统状态嵌入是否为异常值。在执行系统实体级检测时，检测模块会记住指示系统实体行为的良性节点嵌入，并给定一个新到达的来源图，它会检测所有系统实体嵌入中的异常值。</p>
-<h3 id="model-adaption">Model Adaption</h3>
-<p>为了使APT检测器在实际检测场景中有效运行，必须考虑概念漂移。当面对良性但以前未见过的系统行为时，MAGIC 会产生误报检测结果，这可能会误导后续应用程序（例如攻击调查和故事恢复）。最近的工作通过忘记过时的数据[10]或通过模型适应机制[18]将他们的模型拟合到良性系统变化来解决这个问题。MAGIC还集成了模型适应机制，以对抗概念漂移，并从安全分析师识别的误报中学习。与其他仅使用误报来重新训练模型的作品略有不同，MAGIC可以使用所有反馈进行重新训练。如前几节所述，MAGIC 中的图形表示模块以自监督的方式将系统实体编码为嵌入，而无需知道其标签。任何看不见的数据，包括那些true negative，都是图表示模块的宝贵训练数据，以增强其对看不见的系统行为的表示能力。</p>
+<h3 id="model-adaption">Model Adaption
+</h3><p>为了使APT检测器在实际检测场景中有效运行，必须考虑概念漂移。当面对良性但以前未见过的系统行为时，MAGIC 会产生误报检测结果，这可能会误导后续应用程序（例如攻击调查和故事恢复）。最近的工作通过忘记过时的数据[10]或通过模型适应机制[18]将他们的模型拟合到良性系统变化来解决这个问题。MAGIC还集成了模型适应机制，以对抗概念漂移，并从安全分析师识别的误报中学习。与其他仅使用误报来重新训练模型的作品略有不同，MAGIC可以使用所有反馈进行重新训练。如前几节所述，MAGIC 中的图形表示模块以自监督的方式将系统实体编码为嵌入，而无需知道其标签。任何看不见的数据，包括那些true negative，都是图表示模块的宝贵训练数据，以增强其对看不见的系统行为的表示能力。</p>
 <p>检测模块只能通过良性反馈进行重新训练，以跟上系统行为的变化。而且随着它记住越来越多的良性反馈，它的检测效率会降低。为了解决这个问题，我们还在检测模块上实现了折扣机制。当记忆嵌入的数量超过一定数量时，随着新到达的嵌入被学习，最早的嵌入被简单地删除。我们提供模型适配机制作为概念漂移和看不见的系统行为的可选解决方案。建议通过将确认的假阳性样本提供给 MAGIC 的模型适应机制来使 MAGIC 适应系统变化。</p>
-<h2 id="implementation">Implementation</h2>
-<p>我们在 Python 3.8 中使用了大约 3,500 行代码实现了 MAGIC。我们开发了几个日志解析器来应对不同格式的审计日志，包括 StreamSpot [34]、Camflow [35] 和 CDM [36]。来源图是使用图处理库 Networkx [37] 构建的，并以 JSON 格式存储。图形表示模块是通过 PyTorch [38] 和 DGL [39] 实现的。该检测模块是用Scikit-learn[40]开发的。对于MAGIC的超参数，特征重建损失中的比例因子γ设置为3，相邻变量k设置为10，学习率为0.001，权重衰减因子等于5×10−4。我们在实验中使用了 3 层图形编码器和 0.5 的掩码率。在批处理日志级别检测和实体级检测两种检测方案中，输出嵌入维度 d 是不同的。我们在批处理日志级别检测中使用 d 等于 256，在实体级检测中使用 和 an 等于 64 以减少资源消耗。检测阈值 θ 是通过对每个数据集分别进行的简单线性搜索来选择的。超参数可能有其他选择。我们将在稍后的评估部分演示这些超参数对 MAGIC 的影响。在我们的超参数分析中，d 是从 {16， 32， 64， 128， 256} 中选出的，l 是从 {1， 2， 3， 4} 中选出的，r 是从 {0.3， 0.5， 0.7} 中选出的。对于阈值 θ，在批处理日志级别检测中选择介于 1 和 10 之间。有关实体级检测，请参阅附录 D。</p>
-<h2 id="evaluation">Evaluation</h2>
-<p>我们使用来自各种系统审计软件的 131GB 审计日志来评估 MAGIC 的有效性和效率。我们首先描述了我们的实验设置（第 6.1 节），然后详细说明了 MAGIC 在不同场景中的有效性（第 6.2 节），进行误报分析并评估模型适应机制的有用性（第 6.3 节），并分析了 MAGIC 的运行时性能开销（第 6.4 节）。MAGIC的不同组件和超参数的影响在第6.5节中进行了分析。此外，附录 C 中还对我们的动机示例进行了详细的案例研究，以说明 MAGIC 的管道如何用于 APT 检测。这些实验在相同的设备设置下进行。</p>
-<h3 id="experimental-settings">Experimental Settings</h3>
-<p>我们评估了MAGIC在三个公共数据集上的有效性：StreamSpot数据集[21]，Unicorn Wget数据集[22]和DARPA Engagement 3数据集[20]。这些数据集在数量、来源和粒度方面各不相同。我们相信，通过在这些数据集上测试MAGIC的性能，我们能够将MAGIC与尽可能多的最先进的APT检测方法进行比较，并探索MAGIC的普遍性和适用性。我们对这三个数据集的详细说明如下。</p>
+<h2 id="implementation">Implementation
+</h2><p>我们在 Python 3.8 中使用了大约 3,500 行代码实现了 MAGIC。我们开发了几个日志解析器来应对不同格式的审计日志，包括 StreamSpot [34]、Camflow [35] 和 CDM [36]。来源图是使用图处理库 Networkx [37] 构建的，并以 JSON 格式存储。图形表示模块是通过 PyTorch [38] 和 DGL [39] 实现的。该检测模块是用Scikit-learn[40]开发的。对于MAGIC的超参数，特征重建损失中的比例因子γ设置为3，相邻变量k设置为10，学习率为0.001，权重衰减因子等于5×10−4。我们在实验中使用了 3 层图形编码器和 0.5 的掩码率。在批处理日志级别检测和实体级检测两种检测方案中，输出嵌入维度 d 是不同的。我们在批处理日志级别检测中使用 d 等于 256，在实体级检测中使用 和 an 等于 64 以减少资源消耗。检测阈值 θ 是通过对每个数据集分别进行的简单线性搜索来选择的。超参数可能有其他选择。我们将在稍后的评估部分演示这些超参数对 MAGIC 的影响。在我们的超参数分析中，d 是从 {16， 32， 64， 128， 256} 中选出的，l 是从 {1， 2， 3， 4} 中选出的，r 是从 {0.3， 0.5， 0.7} 中选出的。对于阈值 θ，在批处理日志级别检测中选择介于 1 和 10 之间。有关实体级检测，请参阅附录 D。</p>
+<h2 id="evaluation">Evaluation
+</h2><p>我们使用来自各种系统审计软件的 131GB 审计日志来评估 MAGIC 的有效性和效率。我们首先描述了我们的实验设置（第 6.1 节），然后详细说明了 MAGIC 在不同场景中的有效性（第 6.2 节），进行误报分析并评估模型适应机制的有用性（第 6.3 节），并分析了 MAGIC 的运行时性能开销（第 6.4 节）。MAGIC的不同组件和超参数的影响在第6.5节中进行了分析。此外，附录 C 中还对我们的动机示例进行了详细的案例研究，以说明 MAGIC 的管道如何用于 APT 检测。这些实验在相同的设备设置下进行。</p>
+<h3 id="experimental-settings">Experimental Settings
+</h3><p>我们评估了MAGIC在三个公共数据集上的有效性：StreamSpot数据集[21]，Unicorn Wget数据集[22]和DARPA Engagement 3数据集[20]。这些数据集在数量、来源和粒度方面各不相同。我们相信，通过在这些数据集上测试MAGIC的性能，我们能够将MAGIC与尽可能多的最先进的APT检测方法进行比较，并探索MAGIC的普遍性和适用性。我们对这三个数据集的详细说明如下。</p>
 <p><strong>StreamSpot 数据集</strong>：StreamSpot数据集（见表1）是由StreamSpot[34]使用审计系统SystemTap [41]收集并公开的模拟数据集。StreamSpot 数据集包含 600 批次审计日志，用于监控 6 个独特场景下的系统调用。其中五个方案是模拟的良性用户行为，而攻击方案模拟的是偷渡式下载攻击。该数据集被认为是一个相对较小的数据集，由于没有提供日志条目和系统实体的标签，因此我们对 StreamSpot 数据集执行批量日志级别检测，类似于以前的工作 [10， 15， 17]。</p>
 <p><strong>Unicorn Wget 数据集</strong>：Unicorn Wget数据集（见表1）包含Unicorn[10]设计的模拟攻击。具体来说，它包含 Camflow [35] 收集的 150 批日志，其中 125 批是良性的，其中 25 批包含供应链攻击。这些攻击被归类为隐形攻击，经过精心设计，其行为类似于良性系统工作流程，预计很难识别。这个数据集被认为是我们实验数据集中最难的，因为它的体积大，日志格式复杂，而且这些攻击的隐蔽性。与最先进的方法相同，我们在此数据集上执行批处理日志级别检测。</p>
 <p><img src="/p/magic/MAGIC/1709712995732.png"
 	width="817"
 	height="325"
-	srcset="/p/magic/MAGIC/1709712995732_hu038a9df923508568e84903c6bd1623d5_49229_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709712995732_hu038a9df923508568e84903c6bd1623d5_49229_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709712995732_hu16736836649663020196.png 480w, /p/magic/MAGIC/1709712995732_hu3506223901426432577.png 1024w"
 	loading="lazy"
 	
 		alt="1709712995732"
@@ -726,7 +708,7 @@
 <p><img src="/p/magic/MAGIC/1709713015449.png"
 	width="831"
 	height="329"
-	srcset="/p/magic/MAGIC/1709713015449_hud9843b27b4024551280b826d1d324b03_52173_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713015449_hud9843b27b4024551280b826d1d324b03_52173_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713015449_hu6386064943986991221.png 480w, /p/magic/MAGIC/1709713015449_hu5616414386817103565.png 1024w"
 	loading="lazy"
 	
 		alt="1709713015449"
@@ -738,11 +720,11 @@
 	
 ></p>
 <p>对于不同的数据集，我们采用不同的数据集拆分来评估模型，并且我们仅使用良性样本进行训练。对于 StreamSpot 数据集，我们从 500 个良性日志中随机选择 400 个批次进行训练，其余批次进行测试，从而形成一个平衡的测试集。对于 Unicorn Wget 数据集，选择了 100 批良性日志进行训练，其余用于测试。对于 DARPA E3 数据集，我们使用与 ThreaTrace [17] 相同的真值标签，并根据其出现的顺序拆分日志条目。最早的 80% 日志条目用于训练，其余条目保留用于测试。在评估过程中，MAGIC在100个全局随机种子下的平均性能被报告为最终结果，因此实验结果可能包含系统实体/日志批次的分数。</p>
-<h3 id="effectiveness">Effectiveness</h3>
-<p><img src="/p/magic/MAGIC/1709713083774.png"
+<h3 id="effectiveness">Effectiveness
+</h3><p><img src="/p/magic/MAGIC/1709713083774.png"
 	width="839"
 	height="521"
-	srcset="/p/magic/MAGIC/1709713083774_hucc8f575a68082b3edb5e18e57ba59e25_61653_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713083774_hucc8f575a68082b3edb5e18e57ba59e25_61653_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713083774_hu7766922295113454906.png 480w, /p/magic/MAGIC/1709713083774_hu4116760762879640818.png 1024w"
 	loading="lazy"
 	
 		alt="1709713083774"
@@ -756,7 +738,7 @@
 <p><img src="/p/magic/MAGIC/1709713103510.png"
 	width="1731"
 	height="383"
-	srcset="/p/magic/MAGIC/1709713103510_hu0c8ae3e5da56cd76803a95e065c0c69a_103069_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713103510_hu0c8ae3e5da56cd76803a95e065c0c69a_103069_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713103510_hu16995483857592374564.png 480w, /p/magic/MAGIC/1709713103510_hu6608190692199720497.png 1024w"
 	loading="lazy"
 	
 		alt="1709713103510"
@@ -770,7 +752,7 @@
 <p><img src="/p/magic/MAGIC/1709713117689.png"
 	width="837"
 	height="743"
-	srcset="/p/magic/MAGIC/1709713117689_hu4387d49ca41b8e66fefd80563e191f71_90569_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713117689_hu4387d49ca41b8e66fefd80563e191f71_90569_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713117689_hu3824301991513032585.png 480w, /p/magic/MAGIC/1709713117689_hu11627098207624115713.png 1024w"
 	loading="lazy"
 	
 		alt="1709713117689"
@@ -784,7 +766,7 @@
 <p><img src="/p/magic/MAGIC/1709713129950.png"
 	width="837"
 	height="727"
-	srcset="/p/magic/MAGIC/1709713129950_hu3fa0a3dbdbed859ed7a4be337bec3ab2_156190_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713129950_hu3fa0a3dbdbed859ed7a4be337bec3ab2_156190_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713129950_hu9572249531266145929.png 480w, /p/magic/MAGIC/1709713129950_hu12752382627248994446.png 1024w"
 	loading="lazy"
 	
 		alt="1709713129950"
@@ -798,7 +780,7 @@
 <p><img src="/p/magic/MAGIC/1709713153070.png"
 	width="885"
 	height="801"
-	srcset="/p/magic/MAGIC/1709713153070_hud6612d36fb5c0e22a75c5a5a157aca07_106887_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713153070_hud6612d36fb5c0e22a75c5a5a157aca07_106887_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713153070_hu11813049733154175154.png 480w, /p/magic/MAGIC/1709713153070_hu2157147875222274722.png 1024w"
 	loading="lazy"
 	
 		alt="1709713153070"
@@ -812,7 +794,7 @@
 <p><img src="/p/magic/MAGIC/1709713173936.png"
 	width="857"
 	height="509"
-	srcset="/p/magic/MAGIC/1709713173936_hu8fc3646338be836665a4c5a8db534fea_62888_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713173936_hu8fc3646338be836665a4c5a8db534fea_62888_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713173936_hu9319643627340386566.png 480w, /p/magic/MAGIC/1709713173936_hu15817294430340440104.png 1024w"
 	loading="lazy"
 	
 		alt="1709713173936"
@@ -826,7 +808,7 @@
 <p><img src="/p/magic/MAGIC/1709713196429.png"
 	width="1561"
 	height="587"
-	srcset="/p/magic/MAGIC/1709713196429_hu0fad53adbd08d285dc62c0f6b0e42f51_93870_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713196429_hu0fad53adbd08d285dc62c0f6b0e42f51_93870_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713196429_hu17319953700161582369.png 480w, /p/magic/MAGIC/1709713196429_hu15068925706863331265.png 1024w"
 	loading="lazy"
 	
 		alt="1709713196429"
@@ -840,7 +822,7 @@
 <p><img src="/p/magic/MAGIC/1709713209284.png"
 	width="867"
 	height="525"
-	srcset="/p/magic/MAGIC/1709713209284_hud365458e9fec964efcc85d1f686cb918_54083_480x0_resize_box_3.png 480w, /p/magic/MAGIC/1709713209284_hud365458e9fec964efcc85d1f686cb918_54083_1024x0_resize_box_3.png 1024w"
+	srcset="/p/magic/MAGIC/1709713209284_hu10323844585953397662.png 480w, /p/magic/MAGIC/1709713209284_hu15728535437809342745.png 1024w"
 	loading="lazy"
 	
 		alt="1709713209284"
@@ -851,35 +833,35 @@
 		data-flex-basis="396px"
 	
 ></p>
-<h2 id="conclusion">conclusion</h2>
-<p>我们推出了 MAGIC，这是一种普遍适用的 APT 检测方法，它以最高的效率运行，开销很小。MAGIC 利用掩码图表示学习从原始审计日志中对良性系统行为进行建模，并通过异常值检测方法执行多粒度 APT 检测。在各种检测场景下对三个广泛使用的数据集进行评估表明，MAGIC以低误报率和最小的计算开销取得了良好的检测结果。</p>
-<h2 id="知识补充">知识补充</h2>
-<h3 id="多标签哈希">多标签哈希</h3>
-<p>多标签哈希（Multi-Label Hashing）是一种用于解决多标签分类问题的技术。在多标签分类问题中，每个样本可以属于一个或多个类别，而不是单一的类别。</p>
+<h2 id="conclusion">conclusion
+</h2><p>我们推出了 MAGIC，这是一种普遍适用的 APT 检测方法，它以最高的效率运行，开销很小。MAGIC 利用掩码图表示学习从原始审计日志中对良性系统行为进行建模，并通过异常值检测方法执行多粒度 APT 检测。在各种检测场景下对三个广泛使用的数据集进行评估表明，MAGIC以低误报率和最小的计算开销取得了良好的检测结果。</p>
+<h2 id="知识补充">知识补充
+</h2><h3 id="多标签哈希">多标签哈希
+</h3><p>多标签哈希（Multi-Label Hashing）是一种用于解决多标签分类问题的技术。在多标签分类问题中，每个样本可以属于一个或多个类别，而不是单一的类别。</p>
 <p>哈希是一种将数据映射到固定长度的二进制编码的方法。多标签哈希技术将这种哈希方法应用于多标签分类问题，将样本的多个标签映射为固定长度的二进制编码，从而方便快速的类别检索和处理。</p>
 <p>以下是多标签哈希的一些关键思想和方法：</p>
-<h4 id="1-单一哈希方法">1. 单一哈希方法</h4>
-<ul>
+<h4 id="1-单一哈希方法">1. 单一哈希方法
+</h4><ul>
 <li><strong>Bit-Vector Hashing</strong>：最简单的多标签哈希方法之一是将每个标签映射为二进制编码的位向量。例如，如果有5个类别，则可以用5位二进制编码来表示每个标签，如 <code>[1, 0, 1, 1, 0]</code>。</li>
 </ul>
-<h4 id="2-多哈希方法">2. 多哈希方法</h4>
-<ul>
+<h4 id="2-多哈希方法">2. 多哈希方法
+</h4><ul>
 <li><strong>Binary Relevance</strong>：这种方法将每个标签独立地进行哈希处理。对于每个标签，都使用一个单独的哈希函数，将其映射为固定长度的二进制编码。这种方法简单直观，但可能导致标签之间的相关性被忽略。</li>
 <li><strong>Multiple Hashing</strong>：这种方法使用多个哈希函数，将每个标签映射为多个不同的二进制编码。这可以捕捉到标签之间的一些相关性，提高多标签哈希的性能。</li>
 </ul>
-<h4 id="3-哈希函数的选择">3. 哈希函数的选择</h4>
-<ul>
+<h4 id="3-哈希函数的选择">3. 哈希函数的选择
+</h4><ul>
 <li><strong>局部敏感哈希（Locality Sensitive Hashing，LSH）</strong>：LSH 是一种常用的哈希方法，它能够使相似的样本在哈希空间中映射为相邻的编码。这有助于快速的近似最近邻（ANN）搜索，对于多标签分类中的相似性检索很有用。</li>
 <li><strong>Deep Learning Hashing</strong>：使用深度学习模型学习哈希函数也是一种常见的方法。例如，可以使用卷积神经网络（CNN）或循环神经网络（RNN）来学习将标签映射为二进制编码的函数。</li>
 </ul>
-<h4 id="4-检索和评估">4. 检索和评估</h4>
-<ul>
+<h4 id="4-检索和评估">4. 检索和评估
+</h4><ul>
 <li><strong>哈希编码检索</strong>：一旦对样本进行了哈希处理，可以使用快速的哈希编码检索技术来查找与查询标签最相似的样本。</li>
 <li><strong>评估指标</strong>：对于多标签哈希，常用的评估指标包括 Hamming Loss、Hamming Distance、Precision、Recall、F1 Score 等，用于衡量模型的分类准确性和性能。</li>
 </ul>
 <p>多标签哈希方法可以提高对于多标签数据的处理效率和准确性，尤其在大规模的多标签数据集中具有很好的应用前景。</p>
-<h3 id="图形掩蔽自编码器">图形掩蔽自编码器</h3>
-<p>&ldquo;Graph Masked Autoencoders&rdquo; 是一种用于图形数据的自编码器模型，旨在学习图形数据的低维度表示。</p>
+<h3 id="图形掩蔽自编码器">图形掩蔽自编码器
+</h3><p>&ldquo;Graph Masked Autoencoders&rdquo; 是一种用于图形数据的自编码器模型，旨在学习图形数据的低维度表示。</p>
 <p>这个模型的主要思想是结合了自编码器（Autoencoder）的概念和图形数据的结构。自编码器是一种无监督学习算法，用于学习数据的紧凑表示，并在重建时最大程度地保留原始数据的信息。</p>
 <p>&ldquo;Graph Masked Autoencoders&rdquo; 在这个基础上加入了一种“掩蔽”机制，用于处理图形数据。这个“掩蔽”机制的目的是在训练过程中限制模型只能看到部分图形数据，从而强制模型学习到更加泛化的图形特征表示。</p>
 <p>具体来说，训练过程包含以下步骤：</p>
@@ -891,8 +873,8 @@
 <p>通过这个过程，模型被迫学习到不同节点和边之间的潜在关系，以及如何在只看到部分数据时对图形数据进行有效的编码和解码。</p>
 <p>这种方法的优势在于它能够提高模型对图形数据的泛化能力。因为模型只能看到部分数据，它不会过度依赖于特定的节点或边，从而可以更好地处理未见过的图形数据。</p>
 <p>&ldquo;Graph Masked Autoencoders&rdquo; 的应用包括图形节点分类、图形重构、图形生成等任务。它是图神经网络（Graph Neural Networks）领域中的一种重要技术，用于学习和处理复杂的图形结构数据。</p>
-<h3 id="概念漂移">概念漂移</h3>
-<p>概念漂移是指机器学习模型在应用于新数据时性能下降的现象。这种现象通常发生在训练模型的数据分布与新数据的分布不同时。具体来说，概念漂移可能会导致模型在新数据上的预测准确性降低。</p>
+<h3 id="概念漂移">概念漂移
+</h3><p>概念漂移是指机器学习模型在应用于新数据时性能下降的现象。这种现象通常发生在训练模型的数据分布与新数据的分布不同时。具体来说，概念漂移可能会导致模型在新数据上的预测准确性降低。</p>
 <p>概念漂移可以分为几种不同类型：</p>
 <ol>
 <li><strong>特征漂移（Feature Drift）</strong>：特征漂移是指输入特征的分布在训练数据和测试数据中不同的情况。例如，训练数据中的特征范围可能与测试数据中的范围不同，这会导致模型无法准确地泛化到新数据。</li>
@@ -907,10 +889,10 @@
 <li><strong>领域适应（Domain Adaptation）</strong>：通过调整模型或数据来使其适应新的数据分布。</li>
 </ul>
 <p>处理概念漂移是一个活跃的研究领域，因为许多现实世界的应用场景中数据分布经常发生变化。</p>
-<h3 id="k-d-tree">K-D tree</h3>
-<p>K-D 树（K-Dimensional Tree，K-Dimensional Binary Tree）是一种用于高效处理k维空间的数据结构，用于解决近似最近邻搜索（Approximate Nearest Neighbor Search）等问题。它是一种二叉树结构，用于对 k 维数据进行分割和组织，以便快速地搜索最近的邻居。</p>
-<h1 id="我的想法">我的想法</h1>
-<p>和之前看的ATLAS比较起来，通过mask和减小模型复杂度来实现降低开销，并且没有造成结果的损失。好像就没啥更吊的地方了吧？</p>
+<h3 id="k-d-tree">K-D tree
+</h3><p>K-D 树（K-Dimensional Tree，K-Dimensional Binary Tree）是一种用于高效处理k维空间的数据结构，用于解决近似最近邻搜索（Approximate Nearest Neighbor Search）等问题。它是一种二叉树结构，用于对 k 维数据进行分割和组织，以便快速地搜索最近的邻居。</p>
+<h1 id="我的想法">我的想法
+</h1><p>和之前看的ATLAS比较起来，通过mask和减小模型复杂度来实现降低开销，并且没有造成结果的损失。好像就没啥更吊的地方了吧？</p>
 <p>加了个监督学习的步骤</p>
 <p>嵌入阶段用了mask和图<strong>注意力</strong>网络的技术手段，能获得质量更高，多跳敏感的嵌入。</p>
 <p>通过检测时候通过KD树找到K个临近的embedding，然后通过相似性计算， 设立一个阈值来判断是否具有恶意。再用decoder来还原出embedding所对应的边或者节点</p>
@@ -947,18 +929,18 @@
     
         <link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
                 defer
                 >
             </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
                 defer
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
+        renderMathInElement(document.body, {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false },
@@ -982,11 +964,35 @@
             
                 
 <article class="has-image">
+    <a href="/p/shadewatcher/">
+        
+        
+            <div class="article-image">
+                <img src="/p/shadewatcher/index/1725273027411.3ada5e9a22e7e9aaa1548b483dff7e98_hu3970485544490971918.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Shadewatcher"
+                        
+                        data-hash="md5-OtpemiLn6aqhVItIPf9&#43;mA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Shadewatcher</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/nodlink/">
         
         
             <div class="article-image">
-                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu78cd1151dcb1e38ee0d9061743b507d4_198891_250x150_fill_box_smart1_3.png" 
+                <img src="/p/nodlink/index/1722260277932.690b04c22a37920fcad600f2ad72e85c_hu613526294385964227.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1010,7 +1016,7 @@
         
         
             <div class="article-image">
-                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_huf8d1b81f197ed97f0307a2b1035badd9_647016_250x150_fill_box_smart1_3.png" 
+                <img src="/p/flash/index/1716374966746.a003716e13dbac318268a9c857ca13fa_hu12548462074438151116.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1034,7 +1040,7 @@
         
         
             <div class="article-image">
-                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hua3897747c65368fc3b388dfc773651dc_99107_250x150_fill_box_smart1_3.png" 
+                <img src="/p/atlas/ATLAS/1709635161753.1f81eb15fa0072d05c31a99d8ff71ad6_hu8064581417603664250.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1058,7 +1064,7 @@
         
         
             <div class="article-image">
-                <img src="/p/kairos/KAIROS/1715250405508.d69d8c20c789c24e299d7678cdc02502_hu2f94ae9770155cf79c4d05b797271e0d_220753_250x150_fill_box_smart1_3.png" 
+                <img src="/p/kairos/KAIROS/1715250405508.d69d8c20c789c24e299d7678cdc02502_hu1612700310401788291.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1071,30 +1077,6 @@
 
         <div class="article-details">
             <h2 class="article-title">KAIROS</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/tfe-gnn/">
-        
-        
-            <div class="article-image">
-                <img src="/p/tfe-gnn/pic/1708314808397.7170dbc8ee3236d7df65bfbc5de3eafc_hu2454b6a4f42e67d1ef9df24f58be9406_460521_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post TFE GNN"
-                        
-                        data-hash="md5-cXDbyO4yNtffZb&#43;8XePq/A==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">TFE GNN</h2>
         </div>
     </a>
 </article>
@@ -1138,59 +1120,10 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
-    </section>
-    
-    <section class="totalcount">
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        发表了14篇文章 ·
-        总计4.98k字
-    </section>
-    
-    <section class="running-time">
-        已经向互联网拉屎了
-        <span id="runningdays" class="running-days"></span>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-
 
 
     
@@ -1277,7 +1210,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -1288,20 +1221,6 @@
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<script>
-    let s1 = '2023-10-03'; 
-    s1 = new Date(s1.replace(/-/g, "/"));
-    let s2 = new Date();
-    let timeDifference = s2.getTime() - s1.getTime();
-
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-    let result = days + "天" + hours + "小时" + minutes + "分钟";
-    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

@@ -16,29 +16,15 @@
         <description>&lt;img src="https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.png" alt="Featured image of post 网络认证技术作业三" /&gt;&lt;p&gt;为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;choco install openssl&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;首先生成私钥&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl genrsa -aes256 -out private.pem &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;其中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;openssl genrsa -aes256 -out private.pem &lt;span style=&#34;color:#ae81ff&#34;&gt;4096&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;genrsa&lt;/code&gt;是openssl的一个命令，用于生成RSA私钥。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;-aes256&lt;/code&gt;表示在输出私钥之前，使用AES 256加密&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;-out private.pem&lt;/code&gt; 表示将生成的私钥输出到名为private.pem的文件中&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;4096&lt;/code&gt;表示生成的私钥的位数，即私钥的长度为4096位&lt;/p&gt;
 &lt;p&gt;然后使用私钥生成证书&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl req -new -x509 -days &lt;span class=&#34;m&#34;&gt;365&lt;/span&gt; -key .&lt;span class=&#34;se&#34;&gt;\p&lt;/span&gt;rivate.pem -out cacert.crt -config .&lt;span class=&#34;se&#34;&gt;\s&lt;/span&gt;mime.cnf -extensions smime
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;其中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;openssl req -new -x509 -days &lt;span style=&#34;color:#ae81ff&#34;&gt;365&lt;/span&gt; -key .&lt;span style=&#34;color:#ae81ff&#34;&gt;\p&lt;/span&gt;rivate.pem -out cacert.crt -config .&lt;span style=&#34;color:#ae81ff&#34;&gt;\s&lt;/span&gt;mime.cnf -extensions smime
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;req&lt;/code&gt;是openssl的一个命令，用于创建和处理PKCS#10格式的证书请求。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;-new&lt;/code&gt;表示创建一个新的证书请求。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;-x509&lt;/code&gt;表示生成一个自签名的证书，而不是生成一个证书请求。&lt;/p&gt;
@@ -48,27 +34,14 @@
 &lt;p&gt;&lt;code&gt;-config .\smime.cnf&lt;/code&gt;表示使用名为smime.cnf的文件作为配置文件。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;-extensions smime&lt;/code&gt;表示应该包含配置文件中名为smime的部分中指定的扩展。&lt;/p&gt;
 &lt;p&gt;smime的部分为&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;smime&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;basicConstraints&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; CA:FALSE
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;keyUsage&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; nonRepudiation, digitalSignature, keyEncipherment
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;extendedKeyUsage&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; emailProtection
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;subjectKeyIdentifier&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;hash&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;authorityKeyIdentifier&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; keyid:always, issuer
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;subjectAltName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; email:copy
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;basicConstraints = CA:FALSE&lt;/code&gt;指定证书不能用作CA（证书颁发机构）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;smime&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;basicConstraints &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CA:FALSE
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;keyUsage &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nonRepudiation, digitalSignature, keyEncipherment
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;extendedKeyUsage &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; emailProtection
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;subjectKeyIdentifier &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; hash
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;authorityKeyIdentifier &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; keyid:always, issuer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;subjectAltName &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; email:copy
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;basicConstraints = CA:FALSE&lt;/code&gt;指定证书不能用作CA（证书颁发机构）&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;keyUsage = nonRepudiation, digitalSignature, keyEncipherment&lt;/code&gt;指定证书的公钥可以用于哪些用途。这个证书可以用于非否认（nonRepudiation）、数字签名（digitalSignature）和密钥封装（keyEncipherment）&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;extendedKeyUsage = emailProtection&lt;/code&gt;用于电子邮件保护（emailProtection）&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;subjectKeyIdentifier = hash&lt;/code&gt;用公钥的hash值唯一地标识证书中的公钥。&lt;/p&gt;
@@ -79,7 +52,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787.png&#34;
 	width=&#34;847&#34;
 	height=&#34;573&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787_hu1ca0e203045f363c7dfc9327af5412e7_22590_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787_hu1ca0e203045f363c7dfc9327af5412e7_22590_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787_hu17165879921753680436.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787_hu4806887702423259926.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701257323787&#34;
@@ -94,7 +67,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795.png&#34;
 	width=&#34;827&#34;
 	height=&#34;675&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795_huc97422d1f88fe62363f4df14dd100dc1_40609_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795_huc97422d1f88fe62363f4df14dd100dc1_40609_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795_hu7533296930055372906.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795_hu17530596613425736032.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701257667795&#34;
@@ -109,7 +82,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426.png&#34;
 	width=&#34;819&#34;
 	height=&#34;491&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426_hu8e1fc5f6fc1ecc61f79bf2641f205e4f_24891_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426_hu8e1fc5f6fc1ecc61f79bf2641f205e4f_24891_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426_hu2024155453600559689.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426_hu4201524837540034718.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701257930426&#34;
@@ -126,7 +99,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073.png&#34;
 	width=&#34;855&#34;
 	height=&#34;417&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073_huffb7f040e2e48f203f4d0169e8905683_26794_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073_huffb7f040e2e48f203f4d0169e8905683_26794_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073_hu17716889339716606819.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073_hu10499399039886456992.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701253924073&#34;
@@ -141,7 +114,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717.png&#34;
 	width=&#34;1073&#34;
 	height=&#34;571&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717_hu8e5646353046150d6cc1c11ebf5173ba_18512_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717_hu8e5646353046150d6cc1c11ebf5173ba_18512_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717_hu10368783417683325174.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717_hu5072019229119659573.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254826717&#34;
@@ -156,7 +129,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046.png&#34;
 	width=&#34;1211&#34;
 	height=&#34;1081&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046_hu3bbe05d8a5ef82db3b307813a98ea051_66928_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046_hu3bbe05d8a5ef82db3b307813a98ea051_66928_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046_hu10963510743842251483.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046_hu16824046125666459864.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701253859046&#34;
@@ -171,7 +144,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179.png&#34;
 	width=&#34;943&#34;
 	height=&#34;403&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179_hub5d760ac2a5ee030a0d3488cb27f6727_41069_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179_hub5d760ac2a5ee030a0d3488cb27f6727_41069_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179_hu1591807652405323081.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179_hu14302989938282512054.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254522179&#34;
@@ -185,7 +158,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598.png&#34;
 	width=&#34;1187&#34;
 	height=&#34;1061&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598_hu45244e8f9752cc130b9bfaeeaf365aca_49605_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598_hu45244e8f9752cc130b9bfaeeaf365aca_49605_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598_hu15348383641582059596.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598_hu9657815826302673246.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254551598&#34;
@@ -199,7 +172,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460.png&#34;
 	width=&#34;1705&#34;
 	height=&#34;1009&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460_hua771ed0f156c4b2a5736e87b7540c250_83225_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460_hua771ed0f156c4b2a5736e87b7540c250_83225_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460_hu6951950976345695763.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460_hu12745949766548365465.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254581460&#34;
@@ -213,7 +186,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232.png&#34;
 	width=&#34;879&#34;
 	height=&#34;655&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232_hu5b04e88abdc17c2c71703fb7a1b21a58_81458_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232_hu5b04e88abdc17c2c71703fb7a1b21a58_81458_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232_hu18342330981869491276.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232_hu8299742400613984236.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254667232&#34;
@@ -225,19 +198,12 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里outlook只支持导入pfx，所以我们需要把生成的证书格式转换&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl pkcs12 -export -out cacert.pfx -inkey .\private.pem -in .\cacert.crt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;接下来是导入助教的证书，首先在outlook里新建一个联系人&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;openssl pkcs12 -export -out cacert.pfx -inkey .\private.pem -in .\cacert.crt
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接下来是导入助教的证书，首先在outlook里新建一个联系人&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693.png&#34;
 	width=&#34;1547&#34;
 	height=&#34;659&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693_hu8204e7d5b9e44ebabb58d5299efadd0a_59321_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693_hu8204e7d5b9e44ebabb58d5299efadd0a_59321_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693_hu6224654897561945954.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693_hu17036281567946463483.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701255095693&#34;
@@ -249,20 +215,13 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;导入，这里又只支持.cer了，我的windows下的openssl好像缺了库没法转，所以用wsl里的openssl转了一下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl pkcs12 -in limengjie22\@mails.ucas.ac.cn.pfx -nokeys -out output.cer
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;openssl pkcs12 -nokeys&lt;/code&gt;命令用于从PKCS#12文件（通常具有.pfx或.p12扩展名）中提取证书，-nokeys指定不包含私钥，这样生成的output.cer不能做任何需要私钥的操作（我们也没有要用私钥的操作）&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;openssl pkcs12 -in limengjie22\@mails.ucas.ac.cn.pfx -nokeys -out output.cer
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;openssl pkcs12 -nokeys&lt;/code&gt;命令用于从PKCS#12文件（通常具有.pfx或.p12扩展名）中提取证书，-nokeys指定不包含私钥，这样生成的output.cer不能做任何需要私钥的操作（我们也没有要用私钥的操作）&lt;/p&gt;
 &lt;p&gt;import password即使提供的私钥.txt的内容。然后就可以成功导入了&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765.png&#34;
 	width=&#34;853&#34;
 	height=&#34;459&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765_hubfdf095b398c3780ccbc5589af64626b_24046_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765_hubfdf095b398c3780ccbc5589af64626b_24046_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765_hu11289906702990029714.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765_hu633056975698361235.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701255140765&#34;
@@ -277,7 +236,7 @@
 &lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.png&#34;
 	width=&#34;1159&#34;
 	height=&#34;155&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352_huef27e5727017564e1ce50cb4180e51e4_19943_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352_huef27e5727017564e1ce50cb4180e51e4_19943_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352_hu11940644482753663051.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352_hu13369538901111674843.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701255501352&#34;
@@ -296,23 +255,14 @@
         <pubDate>Thu, 19 Oct 2023 16:31:55 +0800</pubDate>
         
         <guid>https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</guid>
-        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post IKEv2标准阅读" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语&lt;/h1&gt;
-&lt;p&gt;ucas 2023秋 网络认证技术&lt;/p&gt;
+        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post IKEv2标准阅读" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
+&lt;/h1&gt;&lt;p&gt;ucas 2023秋 网络认证技术&lt;/p&gt;
 &lt;p&gt;作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。&lt;/p&gt;
-&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
-&lt;p&gt;我选择阅读&lt;a class=&#34;link&#34; href=&#34;https://www.rfc-editor.org/rfc/rfc7296.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;RFC 7296&lt;/a&gt;
-
-&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
-    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
-    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
-    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
-        fill=&#34;currentColor&#34;&gt;
-&lt;/svg&gt;&lt;/span&gt;
-
-    ，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。&lt;/p&gt;
-&lt;h1 id=&#34;解决了什么问题&#34;&gt;解决了什么问题&lt;/h1&gt;
-&lt;p&gt;IKEv2（Internet Key Exchange version 2）是一种用于建立虚拟专用网络（VPN）连接的协议，它解决了许多与安全通信和远程访问有关的问题。包括：&lt;/p&gt;
+&lt;h1 id=&#34;概述&#34;&gt;概述
+&lt;/h1&gt;&lt;p&gt;我选择阅读&lt;a class=&#34;link&#34; href=&#34;https://www.rfc-editor.org/rfc/rfc7296.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 7296&lt;/a&gt;，该标准是互联网密钥交换 （IKE） 协议的第二个版本。本标准使RFC 5996废弃， IKEv2是当前的互联网标准。&lt;/p&gt;
+&lt;h1 id=&#34;解决了什么问题&#34;&gt;解决了什么问题
+&lt;/h1&gt;&lt;p&gt;IKEv2（Internet Key Exchange version 2）是一种用于建立虚拟专用网络（VPN）连接的协议，它解决了许多与安全通信和远程访问有关的问题。包括：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;安全性：IKEv2提供了强大的安全性，通过使用加密算法来保护数据的机密性和完整性。它还允许身份验证，以确保通信双方是合法的，并可以抵御各种网络攻击，如中间人攻击和数据篡改。&lt;/li&gt;
 &lt;li&gt;移动性：IKEv2支持移动设备的连接，允许用户从一个网络切换到另一个网络时保持连接的连续性。这对于移动工作人员或在不同网络环境中工作的人员非常有用。&lt;/li&gt;
@@ -322,14 +272,14 @@
 &lt;li&gt;NAT穿透：IKEv2能够穿越网络地址转换（NAT）设备，这使得它在各种网络环境中都能够正常工作，包括家庭网络和企业网络。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;在基本原理-1.1节也简述了IKEv2在特定场景下解决了什么问题。&lt;/p&gt;
-&lt;h1 id=&#34;基本原理&#34;&gt;基本原理&lt;/h1&gt;
-&lt;h2 id=&#34;11-使用场景&#34;&gt;1.1 使用场景&lt;/h2&gt;
-&lt;p&gt;IP 安全性 （IPsec） 为 IP 数据报提供机密性、数据完整性、访问控制和数据源身份验证，这些服务是通过维护 IP 数据报的源和接收方之间的共享状态来提供的。以手动方式建立此共享状态不能很好地扩展。IKEv2正是这样一个动态建立此状态的协议。IKE 在双方之间执行相互身份验证，并建立 IKE 安全关联 （SA），该关联包含共享机密信息，可用于高效建立用于封装安全有效负载 （ESP） [ESP] 或身份验证标头 （AH） [AH] 的 SA，以及一组加密算法，供 SA 用于保护其承载的流量。IKE 用于在许多不同的场景中协商 ESP 或 AH SA，每种方案都有自己的特殊要求。&lt;/p&gt;
-&lt;h3 id=&#34;111-隧道模式下的安全网关到安全网关&#34;&gt;1.1.1 隧道模式下的安全网关到安全网关&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088.png&#34;
+&lt;h1 id=&#34;基本原理&#34;&gt;基本原理
+&lt;/h1&gt;&lt;h2 id=&#34;11-使用场景&#34;&gt;1.1 使用场景
+&lt;/h2&gt;&lt;p&gt;IP 安全性 （IPsec） 为 IP 数据报提供机密性、数据完整性、访问控制和数据源身份验证，这些服务是通过维护 IP 数据报的源和接收方之间的共享状态来提供的。以手动方式建立此共享状态不能很好地扩展。IKEv2正是这样一个动态建立此状态的协议。IKE 在双方之间执行相互身份验证，并建立 IKE 安全关联 （SA），该关联包含共享机密信息，可用于高效建立用于封装安全有效负载 （ESP） [ESP] 或身份验证标头 （AH） [AH] 的 SA，以及一组加密算法，供 SA 用于保护其承载的流量。IKE 用于在许多不同的场景中协商 ESP 或 AH SA，每种方案都有自己的特殊要求。&lt;/p&gt;
+&lt;h3 id=&#34;111-隧道模式下的安全网关到安全网关&#34;&gt;1.1.1 隧道模式下的安全网关到安全网关
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088.png&#34;
 	width=&#34;1300&#34;
 	height=&#34;339&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088_hufb247ef671637b2c050a81500fd7f4bb_21836_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088_hufb247ef671637b2c050a81500fd7f4bb_21836_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088_hu17835943804313113804.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088_hu13568277230924474737.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697641620088&#34;
@@ -341,11 +291,11 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;在此方案中，IP 连接的两个endpoint都不实现 IPsec，但它们之间的网络节点会保护部分方式的流量。保护对endpoint是透明的，并且依赖于普通路由通过隧道终结点发送数据包进行处理。每个endpoint将宣布其后subnet的地址集，数据包将以隧道模式发送，其中内部 IP 标头将包含实际端点的 IP 地址。&lt;/p&gt;
-&lt;h3 id=&#34;112-端点到端点传输模式&#34;&gt;1.1.2 端点到端点传输模式&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874.png&#34;
+&lt;h3 id=&#34;112-端点到端点传输模式&#34;&gt;1.1.2 端点到端点传输模式
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874.png&#34;
 	width=&#34;1306&#34;
 	height=&#34;327&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874_hu3ec6806d4f02055f52e719e5d3b0c663_20032_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874_hu3ec6806d4f02055f52e719e5d3b0c663_20032_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874_hu13499073414692899883.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874_hu960953422566784343.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697642019874&#34;
@@ -358,11 +308,11 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;在此方案中，IP 连接的两个终结点都实现 IPsec，这是 [IPSECARCH] 中主机的要求。该模式通常使用没有内部 IP 标头。将协商一对地址，以便此 SA 保护数据包。这些endpoint可以根据参与者的 IPsec 身份验证身份实现应用层访问控制。此方案实现了端到端安全性。虽然此场景可能不完全适用于 IPv4 公网，但已在使用 IKEv1 的内网内的特定场景中成功部署。在向 IPv6 过渡期间和采用 IKEv2 期间，应该更广泛地启用它。&lt;/p&gt;
 &lt;p&gt;在这种情况下，一个或两个受保护的端点可能位于网络地址转换 （NAT） 节点后面，在这种情况下，必须对隧道数据包进行 UDP 封装，以便 UDP 标头中的端口号可用于标识 NAT “后面”的各个endpoint。&lt;/p&gt;
-&lt;h3 id=&#34;113隧道模式下的端点到安全网关&#34;&gt;1.1.3隧道模式下的端点到安全网关&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491.png&#34;
+&lt;h3 id=&#34;113隧道模式下的端点到安全网关&#34;&gt;1.1.3隧道模式下的端点到安全网关
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491.png&#34;
 	width=&#34;1309&#34;
 	height=&#34;315&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491_hu17dbcb515734ea993030e0a8d6150c48_25124_480x0_resize_box_3.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491_hu17dbcb515734ea993030e0a8d6150c48_25124_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491_hu17265859170288725566.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491_hu2294255082020515239.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697642991491&#34;
@@ -376,95 +326,51 @@
 &lt;p&gt;在此方案中，受保护的endpoint（通常是便携式计算机）通过受 IPsec保护的隧道连接回其企业网络。它可能仅使用此隧道访问公司网络上的信息，或者可能通过公司网络将其所有流量通过隧道传输回，以便利用公司防火墙提供的针对基于 Internet 的攻击的保护。在任一情况下，受保护端点都需要一个与安全网关关联的 IP 地址，以便返回到该网关的数据包将转到安全网关并用隧道传回。此 IP 地址可以是静态的，也可以由安全网关动态分配。为了支持后一种情况，IKEv2 包括一种机制（即配置有效负载），发起方请求安全网关拥有的 IP 地址，以便在其 SA 期间使用。&lt;/p&gt;
 &lt;p&gt;在这种情况下，数据包将使用隧道模式。在来自受保护endpoint的每个数据包上，外部 IP 标头将包含与其当前位置关联的源 IP 地址（即，将流量直接路由到端点的地址），而内部 IP 标头将包含安全网关分配的源 IP 地址（即，将流量路由到安全网关以转发到端点的地址）。外部目标地址将始终是安全网关的地址，而内部目标地址将是数据包的最终目标。&lt;/p&gt;
 &lt;p&gt;在这种情况下，受保护的终结点可能位于 NAT 后面。在这种情况下，安全网关看到的 IP 地址将与受保护端点发送的 IP 地址不同，并且必须对数据包进行 UDP 封装才能正确路由。&lt;/p&gt;
-&lt;h2 id=&#34;12初始交换&#34;&gt;1.2初始交换&lt;/h2&gt;
-&lt;p&gt;使用 IKE 的通信始终从IKE_SA_INIT和IKE_AUTH交换开始（在 IKEv1 中称为阶段 1）。这些初始交换通常由四条消息组成，但在某些情况下，该数字可能会增长。使用 IKE 的所有通信都由请求/响应对组成。我们将首先描述基础交换，然后是变体。第一对消息 （IKE_SA_INIT） 协商加密算法、交换随机数并进行 Diffie-Hellman 交换 [DH]。&lt;/p&gt;
+&lt;h2 id=&#34;12初始交换&#34;&gt;1.2初始交换
+&lt;/h2&gt;&lt;p&gt;使用 IKE 的通信始终从IKE_SA_INIT和IKE_AUTH交换开始（在 IKEv1 中称为阶段 1）。这些初始交换通常由四条消息组成，但在某些情况下，该数字可能会增长。使用 IKE 的所有通信都由请求/响应对组成。我们将首先描述基础交换，然后是变体。第一对消息 （IKE_SA_INIT） 协商加密算法、交换随机数并进行 Diffie-Hellman 交换 [DH]。&lt;/p&gt;
 &lt;p&gt;第二对消息 （IKE_AUTH） 对以前的消息进行身份验证，交换身份和证书，并建立第一个子 SA。这些消息的某些部分使用通过IKE_SA_INIT交换建立的密钥进行加密和完整性保护，因此身份对窃听者隐藏，并且所有消息中的所有字段都经过身份验证。有关如何生成加密密钥的信息，请参阅第 2.14 节。（无法完成IKE_AUTH交换的中间人攻击者仍可以看到发起者的身份。&lt;/p&gt;
 &lt;p&gt;初始交换后的所有消息都使用在IKE_SA_INIT交换中协商的加密算法和密钥进行加密保护。这些后续消息使用第 3.14 节中描述的加密有效负载的语法，使用第 2.14 节中所述派生的密钥进行加密。所有后续消息都包含加密有效负载，即使它们在文本中称为“空”。对于CREATE_CHILD_SA、IKE_AUTH或信息交换，标头后面的消息是加密的，包含标头的消息是使用为 IKE SA 协商的加密算法进行完整性保护的。&lt;/p&gt;
 &lt;p&gt;每个 IKE 消息都包含一个消息 ID 作为其固定标头的一部分。此消息 ID 用于匹配请求和响应，并标识消息的重新传输。&lt;/p&gt;
 &lt;p&gt;一些简称如下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Notation        Payload 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AUTH            Authentication 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CERT            Certificate 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CERTREQ         Certificate Request 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CP              Configuration 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D               Delete 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;EAP             Extensible Authentication 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HDR             IKE header (not a payload) 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IDi             Identification - Initiator 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IDr             Identification - Responder 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;KE              Key Exchange 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ni, Nr          Nonce 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;N               Notify 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SA              Security Association 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SK              Encrypted and Authenticated
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TSi             Traffic Selector - Initiator 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TSr             Traffic Selector - Responder 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;V               Vendor ID
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;第 3 节介绍了每个有效负载的内容的详细信息。可能选择显示的有效负载将显示在括号中，例如 [CERTREQ];这表示可以选择包含证书请求有效负载。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+Notation        Payload 
+
+----------------------------------------
+
+AUTH            Authentication 
+
+CERT            Certificate 
+
+CERTREQ         Certificate Request 
+
+CP              Configuration 
+
+D               Delete 
+
+EAP             Extensible Authentication 
+
+HDR             IKE header (not a payload) 
+
+IDi             Identification - Initiator 
+
+IDr             Identification - Responder 
+
+KE              Key Exchange 
+
+Ni, Nr          Nonce 
+
+N               Notify 
+
+SA              Security Association 
+
+SK              Encrypted and Authenticated
+
+TSi             Traffic Selector - Initiator 
+
+TSr             Traffic Selector - Responder 
+
+V               Vendor ID
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第 3 节介绍了每个有效负载的内容的详细信息。可能选择显示的有效负载将显示在括号中，例如 [CERTREQ];这表示可以选择包含证书请求有效负载。&lt;/p&gt;
 &lt;p&gt;初始交流如下：&lt;/p&gt;
 &lt;p&gt;发起方→接收方HDR, SAi1, KEi, Ni。&lt;/p&gt;
 &lt;p&gt;HDR 包含安全参数索引 （SPI）、版本号、Exchange 类型、消息 ID 和各种标志。SAi1 有效负载声明发起方为 IKE SA 支持的加密算法。KE 有效负载发送发起方的 Diffie-Hellman 值。Ni是发起者的随机数。&lt;/p&gt;
@@ -476,15 +382,15 @@
 &lt;p&gt;如果在IKE_AUTH交换期间创建子 SA 由于某种原因而失败，IKE SA 仍会照常创建。IKE_AUTH交换中不阻止设置 IKE SA 的通知消息类型列表至少包括以下内容：NO_PROPOSAL_CHOSEN、TS_UNACCEPTABLE、SINGLE_PAIR_REQUIRED、INTERNAL_ADDRESS_FAILURE和FAILED_CP_REQUIRED。&lt;/p&gt;
 &lt;p&gt;如果失败与创建 IKE SA 有关（例如，返回AUTHENTICATION_FAILED通知错误消息），则不会创建 IKE SA。请注意，尽管IKE_AUTH消息已加密且完整性受到保护，但如果收到此通知错误消息的对等方尚未对另一端进行身份验证（或者如果对等方由于某种原因未能对另一端进行身份验证），则需要谨慎对待这些信息。更准确地说，假设MAC正确验证，则已知错误通知消息的发送方是IKE_SA_INIT交换的响应者，但无法保证发送方的身份。&lt;/p&gt;
 &lt;p&gt;请注意，IKE_AUTH消息不包含 KEi/KEr 或 Ni/Nr 有效负载。因此，IKE_AUTH交换中的 SA 有效负载不能包含具有除 NONE 以外的任何值的转换类型 4（Diffie-Hellman 组）。实现应该省略整个转换子结构，而不是发送值 NONE。&lt;/p&gt;
-&lt;h2 id=&#34;13-create_child_sa交换&#34;&gt;1.3 CREATE_CHILD_SA交换&lt;/h2&gt;
-&lt;p&gt;CREATE_CHILD_SA交换用于创建新的子 SA，并重新生成 IKE SA 和子 SA 的密钥。此交换由单个请求/响应对组成，其某些功能在 IKEv1 中称为第 2 阶段交换。在初始交换完成后，它可以由IKE SA的任何一端发起。&lt;/p&gt;
+&lt;h2 id=&#34;13-create_child_sa交换&#34;&gt;1.3 CREATE_CHILD_SA交换
+&lt;/h2&gt;&lt;p&gt;CREATE_CHILD_SA交换用于创建新的子 SA，并重新生成 IKE SA 和子 SA 的密钥。此交换由单个请求/响应对组成，其某些功能在 IKEv1 中称为第 2 阶段交换。在初始交换完成后，它可以由IKE SA的任何一端发起。&lt;/p&gt;
 &lt;p&gt;通过创建新 SA，然后删除旧 SA 来重新生成 SA 的密钥。本节介绍重新生成密钥的第一部分，即创建新 SA;第 2.8 节介绍了重新生成密钥的机制，包括将流量从旧 SA 移动到新 SA 以及删除旧 SA。必须一起阅读这两个部分才能理解重新生成密钥的整个过程。&lt;/p&gt;
 &lt;p&gt;任一端点都可能发起CREATE_CHILD_SA交换，因此在本节中，术语发起方是指发起此交换的端点。实现可以拒绝 IKE SA 中的所有CREATE_CHILD_SA请求。&lt;/p&gt;
 &lt;p&gt;CREATE_CHILD_SA请求可以选择包含用于额外 Diffie-Hellman 交换的 KE 有效负载，以便为子 SA 提供更强有力的前向保密保证。子 SA 的键控材料是 IKE SA 建立期间建立的SK_d、CREATE_CHILD_SA交换期间交换的随机数和 Diffie-Hellman 值（如果 KE 有效载荷包含在CREATE_CHILD_SA交换中）的函数。&lt;/p&gt;
 &lt;p&gt;如果CREATE_CHILD_SA交换包含 KEi 有效载荷，则至少有一个 SA 报价必须包括 KEi 的 Diffie-Hellman 组。KEi的Diffie-Hellman组必须是发起者期望响应者接受的组的一个元素（可以提出其他Diffie-Hellman组）。如果响应方使用不同的 Diffie-Hellman 组（NONE 除外）选择提案，则响应方必须拒绝该请求，并在INVALID_KE_PAYLOAD Notify 有效负载中指示其首选的 Diffie-Hellman 组。有两个八位字节的数据与此通知相关联：接受的 Diffie-Hellman 组号，按大端序排列。在此类拒绝的情况下，CREATE_CHILD_SA交换失败，发起方可能会在响应者在INVALID_KE_PAYLOAD通知有效负载中给出的组中使用 Diffie-Hellman 提案和 KEi 重试交换。&lt;/p&gt;
 &lt;p&gt;响应方发送NO_ADDITIONAL_SAS通知，以指示CREATE_CHILD_SA请求不可接受，因为响应方不愿意在此 IKE SA 上接受更多的子 SA。此通知还可用于拒绝 IKE SA 重新生成密钥。一些最小实现可能只接受初始 IKE 交换上下文中的单个子 SA 设置，并拒绝任何后续添加更多设置的尝试。&lt;/p&gt;
-&lt;h3 id=&#34;131-通过create_child_sa交换创建新的子-sa&#34;&gt;1.3.1 通过CREATE_CHILD_SA交换创建新的子 SA&lt;/h3&gt;
-&lt;p&gt;可以通过发送CREATE_CHILD_SA请求来创建子 SA。创建新子 SA 的CREATE_CHILD_SA请求是：&lt;/p&gt;
+&lt;h3 id=&#34;131-通过create_child_sa交换创建新的子-sa&#34;&gt;1.3.1 通过CREATE_CHILD_SA交换创建新的子 SA
+&lt;/h3&gt;&lt;p&gt;可以通过发送CREATE_CHILD_SA请求来创建子 SA。创建新子 SA 的CREATE_CHILD_SA请求是：&lt;/p&gt;
 &lt;p&gt;发起方→接收方 HDR, SK {SA, Ni, [KEi,] TSi, TSr}。&lt;/p&gt;
 &lt;p&gt;发起方在 SA 有效负载中发送 SA 选件，在 Ni 有效负载中发送随机数，在 KEi 有效负载中发送 Diffie-Hellman 值（可选），并在 TSi 和 TSr 有效负载中发送建议的子 SA 的建议流量选择器。&lt;/p&gt;
 &lt;p&gt;接收方→发起方 HDR, SK {SA, Nr, [KEr,]TSi, TSr}&lt;/p&gt;
@@ -495,36 +401,36 @@
 &lt;p&gt;NON_FIRST_FRAGMENTS_ALSO通知用于碎片控制。有关更全面的解释，请参见 [IPSECARCH]。双方需要同意在任何一方发送非第一个片段之前发送。仅当建议 SA 的请求和接受 SA 的响应中都包含通知NON_FIRST_FRAGMENTS_ALSO才会启用它。如果响应程序不想发送或接收非第一个片段，则它只会从响应中省略NON_FIRST_FRAGMENTS_ALSO通知，但不会拒绝整个子 SA 创建。&lt;/p&gt;
 &lt;p&gt;第 2.22 节中涵盖的IPCOMP_SUPPORTED通知也可以包含在交易所中。&lt;/p&gt;
 &lt;p&gt;创建子 SA 的失败尝试不应拆除 IKE SA：没有理由丢失为 IKE SA 所做的工作。有关创建子 SA 失败时可能出现的错误消息列表，请参阅第 2.21 节。&lt;/p&gt;
-&lt;h3 id=&#34;132-使用create_child_sa交换机重新生成-ike-sa-的密钥&#34;&gt;1.3.2 使用CREATE_CHILD_SA交换机重新生成 IKE SA 的密钥&lt;/h3&gt;
-&lt;p&gt;重新生成 IKE SA 密钥的CREATE_CHILD_SA请求是：&lt;/p&gt;
+&lt;h3 id=&#34;132-使用create_child_sa交换机重新生成-ike-sa-的密钥&#34;&gt;1.3.2 使用CREATE_CHILD_SA交换机重新生成 IKE SA 的密钥
+&lt;/h3&gt;&lt;p&gt;重新生成 IKE SA 密钥的CREATE_CHILD_SA请求是：&lt;/p&gt;
 &lt;p&gt;发起方→接收方HDR, SK {SA, Ni, KEi}&lt;/p&gt;
 &lt;p&gt;发起方在 SA 有效负载中发送 SA 产品/服务，在 Ni 有效负载中发送随机数，在 KEi 有效负载中发送 Diffie-Hellman 值。必须包括 KEi 有效负载。新的发起方 SPI 在 SA 有效负载的 SPI 字段中提供。一旦对等方收到重新生成 IKE SA 密钥的请求或发送重新生成 IKE SA 的请求，它就不应在正在重新生成密钥的 IKE SA 上发起任何新的CREATE_CHILD_SA交换。&lt;/p&gt;
 &lt;p&gt;接收方→发起方 HDR, SK {SA, Nr, KEr}&lt;/p&gt;
 &lt;p&gt;如果所选加密套件包含该组，则响应程序使用 SA 有效负载中的已接受产品/服务、Nr 有效负载中的随机数和 KEr 有效负载中的 Diffie-Hellman 值进行回复（使用相同的消息 ID 进行响应）。新的响应程序 SPI 在 SA 有效负载的 SPI 字段中提供。&lt;/p&gt;
 &lt;p&gt;新的 IKE SA 将其消息计数器设置为 0，无论它们在早期的 IKE SA 中是什么。来自新 IKE SA 上双方的第一个 IKE 请求的消息 ID 为 0。旧的 IKE SA 保留其编号，因此任何进一步的请求（例如，删除 IKE SA）都将具有连续编号。新的 IKE SA 的窗口大小也重置为 1，并且此重新密钥交换中的发起方是新 IKE SA 的新“原始发起方”。&lt;/p&gt;
-&lt;h3 id=&#34;133-使用-create_child_sa-交换重新生成子-sa-的密钥&#34;&gt;1.3.3. 使用 CREATE_CHILD_SA 交换重新生成子 SA 的密钥&lt;/h3&gt;
-&lt;p&gt;重新生成子 SA 密钥CREATE_CHILD_SA请求是：&lt;/p&gt;
+&lt;h3 id=&#34;133-使用-create_child_sa-交换重新生成子-sa-的密钥&#34;&gt;1.3.3. 使用 CREATE_CHILD_SA 交换重新生成子 SA 的密钥
+&lt;/h3&gt;&lt;p&gt;重新生成子 SA 密钥CREATE_CHILD_SA请求是：&lt;/p&gt;
 &lt;p&gt;发起方→接收方 HDR, SK {N(REKEY_SA), SA, Ni, [KEi,] TSi, TSr}&lt;/p&gt;
 &lt;p&gt;发起方在 SA 有效负载中发送 SA 选件，在 Ni 有效负载中发送随机数，在 KEi 有效负载中发送 Diffie-Hellman 值（可选），并在 TSi 和 TSr 有效负载中发送建议的子 SA 的建议流量选择器。第 1.3.1 节中描述的通知也可以在重新生成密钥交换中发送。通常，这些通知与原始交换中使用的通知相同;例如，重新生成传输模式 SA 的密钥时，将使用USE_TRANSPORT_MODE通知。如果交换的目的是替换现有的 ESP 或 AH SA，则必须将REKEY_SA通知包含在CREATE_CHILD_SA交换中。正在重新生成密钥的 SA 由通知有效负载中的 SPI 字段标识;这是交换发起方在入站 ESP 或 AH 数据包中期望的 SPI。没有与此通知消息类型关联的数据。REKEY_SA通知的协议 ID 字段设置为与我们要重新生成密钥的 SA 的协议匹配，例如，3 表示 ESP，2 表示 AH。&lt;/p&gt;
 &lt;p&gt;重新生成子 SA 密钥CREATE_CHILD_SA响应为：&lt;/p&gt;
 &lt;p&gt;接收方→发起方 HDR, SK {SA, Nr, [KEr,] TSi, TSr}&lt;/p&gt;
 &lt;p&gt;如果请求中包含 KEi 并且所选加密套件包含该组，则响应程序使用 SA 有效负载中的已接受报价、Nr 有效负载中的随机数和 KEr 有效负载中的 Diffie-Hellman 值进行回复（使用相同的消息 ID 进行响应）。&lt;/p&gt;
 &lt;p&gt;要在该 SA 上发送的流量的流量选择器在响应的 TS 有效负载中指定，这可能是子 SA 的发起方建议的子集。&lt;/p&gt;
-&lt;h2 id=&#34;14-信息交换&#34;&gt;1.4. 信息交换&lt;/h2&gt;
-&lt;p&gt;在 IKE SA 运行过程中的不同点，对等方可能希望相互传达有关某些事件的错误或通知的控制消息。为了实现这一点，IKE 定义了一个信息交换。信息交换必须仅在初始交换之后进行，并使用协商密钥进行加密保护。请注意，某些信息性消息（而非交换）可以在 IKE SA 的上下文之外发送。第 2.21 节还详细介绍了错误消息。&lt;/p&gt;
+&lt;h2 id=&#34;14-信息交换&#34;&gt;1.4. 信息交换
+&lt;/h2&gt;&lt;p&gt;在 IKE SA 运行过程中的不同点，对等方可能希望相互传达有关某些事件的错误或通知的控制消息。为了实现这一点，IKE 定义了一个信息交换。信息交换必须仅在初始交换之后进行，并使用协商密钥进行加密保护。请注意，某些信息性消息（而非交换）可以在 IKE SA 的上下文之外发送。第 2.21 节还详细介绍了错误消息。&lt;/p&gt;
 &lt;p&gt;与 IKE SA 相关的控制消息必须在该 IKE SA 下发送。与子 SA 相关的控制消息必须在生成它们的 IKE SA（如果 IKE SA 已重新生成密钥，则为其后续消息）的保护下发送。&lt;/p&gt;
 &lt;p&gt;信息交换中的消息包含零个或多个通知、删除和配置有效负载。信息交换请求的接收者必须发送一些响应;否则，发送方将假定消息在网络中丢失并重新传输。该响应可能是一条空消息。信息交换中的请求消息也可能不包含有效负载。这是终结点可以要求另一个终结点验证其是否处于活动状态的预期方式。&lt;/p&gt;
 &lt;p&gt;信息交换定义为：&lt;/p&gt;
 &lt;p&gt;发起方→接收方 HDR, SK {[N,] [D,] [CP,] &amp;hellip;}&lt;/p&gt;
 &lt;p&gt;接收方→发起方 HDR, SK {[N,] [D,] [CP,] &amp;hellip;}&lt;/p&gt;
 &lt;p&gt;信息交换的处理由其组件有效载荷决定。&lt;/p&gt;
-&lt;h3 id=&#34;141-删除具有信息交换的-sa&#34;&gt;1.4.1. 删除具有信息交换的 SA&lt;/h3&gt;
-&lt;p&gt;ESP 和 AH SA 始终成对存在，每个方向上有一个 SA。关闭 SA 时，必须关闭（即删除）对的两个成员。每个终结点必须关闭其传入的 SA，并允许另一个终结点关闭每对中的另一个 SA。要删除 SA，将发送具有一个或多个 Delete 有效负载的信息交换，列出要删除的 SA 的 SPI（正如入站数据包标头中预期的那样）。收件人必须关闭指定的 SA。请注意，从不在单个消息中发送 SA 两端的删除有效负载。如果要同时删除多个 SA，则在信息交换中包括每个 SA 对的入站部分的删除有效负载。&lt;/p&gt;
+&lt;h3 id=&#34;141-删除具有信息交换的-sa&#34;&gt;1.4.1. 删除具有信息交换的 SA
+&lt;/h3&gt;&lt;p&gt;ESP 和 AH SA 始终成对存在，每个方向上有一个 SA。关闭 SA 时，必须关闭（即删除）对的两个成员。每个终结点必须关闭其传入的 SA，并允许另一个终结点关闭每对中的另一个 SA。要删除 SA，将发送具有一个或多个 Delete 有效负载的信息交换，列出要删除的 SA 的 SPI（正如入站数据包标头中预期的那样）。收件人必须关闭指定的 SA。请注意，从不在单个消息中发送 SA 两端的删除有效负载。如果要同时删除多个 SA，则在信息交换中包括每个 SA 对的入站部分的删除有效负载。&lt;/p&gt;
 &lt;p&gt;通常，信息交换中的响应将包含向另一个方向的配对 SA 的删除有效负载。有一个例外。如果一组 SA 的两端偶然独立决定关闭它们，则每个 SA 都可能发送 Delete 有效负载，并且这两个请求可能会在网络中交叉。如果节点收到已发出删除请求的 SA 的删除请求，则必须在处理请求时删除传出 SA，在处理响应时删除传入 SA。在这种情况下，响应不得包含已删除 SA 的删除有效负载，因为这会导致重复删除，并且理论上可能会删除错误的 SA。&lt;/p&gt;
 &lt;p&gt;与 ESP 和 AH SA 类似，IKE SA 也通过发送信息交换来删除。删除 IKE SA 会隐式关闭根据该 IKE SA 协商的任何剩余子 SA。对删除 IKE SA 的请求的响应是空的信息响应。&lt;/p&gt;
 &lt;p&gt;半闭合 ESP 或 AH 连接是异常的，具有审计功能的节点如果它们仍然存在，则可能应该审计它们的存在。请注意，此规范未指定时间段，因此由各个终结点决定等待多长时间。节点可以拒绝接受半闭合连接上的传入数据，但不得单方面关闭它们并重用 SPI。如果连接状态变得足够混乱，节点可能会关闭 IKE SA，如上所述。然后，它可以在新的 IKE SA 下干净的基础上重建所需的 SA。&lt;/p&gt;
-&lt;h2 id=&#34;15-ike-sa-之外的信息性消息&#34;&gt;1.5 IKE SA 之外的信息性消息&lt;/h2&gt;
-&lt;p&gt;在某些情况下，节点收到无法处理的数据包，但它可能希望将这种情况通知发送方。&lt;/p&gt;
+&lt;h2 id=&#34;15-ike-sa-之外的信息性消息&#34;&gt;1.5 IKE SA 之外的信息性消息
+&lt;/h2&gt;&lt;p&gt;在某些情况下，节点收到无法处理的数据包，但它可能希望将这种情况通知发送方。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;如果 ESP 或 AH 数据包到达时带有无法识别的 SPI。这可能是由于接收节点最近崩溃并丢失状态，或者由于其他一些系统故障或攻击。&lt;/li&gt;
 &lt;li&gt;如果加密的 IKE 请求数据包到达端口 500 或 4500，并且具有无法识别的 IKE SPI。这可能是由于接收节点最近崩溃并丢失状态，或者由于其他一些系统故障或攻击。&lt;/li&gt;
@@ -532,18 +438,9 @@
 &lt;/ul&gt;
 &lt;p&gt;在第一种情况下，如果接收节点有一个活动的 IKE SA 到数据包来自的 IP 地址，它可能会在信息交换中通过该 IKE SA 发送任性数据包的INVALID_SPI通知。通知数据包含无效数据包的 SPI。此通知的接收者无法判断 SPI 是针对 AH 还是 ESP，但这并不重要，因为在许多情况下，两者的 SPI 会有所不同。如果不存在合适的 IKE SA，则节点可能会向源 IP 地址发送没有加密保护的信息性消息，如果数据包是 UDP（UDP 封装的 ESP 或 AH），则使用源 UDP 端口作为目标端口。在这种情况下，它应该只被收件人用作可能出错的提示（因为它很容易被伪造）。此消息不是信息交换的一部分，接收节点不得响应它，因为这样做可能会导致消息循环。消息构造如下：没有对此类通知的接收者有意义的 IKE SPI 值;使用零值或随机值都是可以接受的，这是第 3.1 节中禁止零 IKE 发起方 SPI 的规则的例外。发起方标志设置为 1，响应标志设置为 0，版本标志以正常方式设置;这些标志在第 3.1 节中描述。&lt;/p&gt;
 &lt;p&gt;在第两种和第三种情况下，消息始终在没有加密保护的情况下发送（在 IKE SA 外部），并且包括INVALID_IKE_SPI或INVALID_MAJOR_VERSION通知（没有通知数据）。该消息是响应消息，因此它被发送到带有相同 IKE SPI 的 IP 地址和端口，并且消息 ID 和交换类型是从请求中复制的。响应标志设置为 1，版本标志以正常方式设置。&lt;/p&gt;
-&lt;h1 id=&#34;可能存在的问题&#34;&gt;可能存在的问题&lt;/h1&gt;
-&lt;p&gt;参考发表在27th USENIX Security Symposium (USENIX Security 18), 2018的&lt;a class=&#34;link&#34; href=&#34;https://usenix.org/conference/usenixsecurity18/presentation/felsch&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;The Dangers of Key Reuse: Practical Attacks on IPsec IKE&lt;/a&gt;
-
-&lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
-    height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
-    &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
-    &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
-        fill=&#34;currentColor&#34;&gt;
-&lt;/svg&gt;&lt;/span&gt;
-
-    可IKEv1、v2如果重用密钥可能导致跨协议身份验证绕过，从而使攻击者能够冒充受害者主机或网络。在IKEv1模式下利用Bleichenbacher预言机，其中RSA加密的随机数用于身份验证。利用此漏洞打破了基于 RSA 加密的模式，此外还破坏了 IKEv1 和 IKEv2 中基于 RSA 签名的身份验证。此外，还存在针对基于 PSK（预共享密钥）的 IKE 模式的离线字典攻击，从而涵盖了 IKE 的所有可用身份验证机制。在思科（CVE-2018-0131）、华为（CVE2017-17305）、Clavister（CVE-2018-8753）和合勤科技（CVE-2018-9129）的IKEv1实现中找到了Bleichenbacher预言机。&lt;/p&gt;
+&lt;h1 id=&#34;可能存在的问题&#34;&gt;可能存在的问题
+&lt;/h1&gt;&lt;p&gt;参考发表在27th USENIX Security Symposium (USENIX Security 18), 2018的&lt;a class=&#34;link&#34; href=&#34;https://usenix.org/conference/usenixsecurity18/presentation/felsch&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The Dangers of Key Reuse: Practical Attacks on IPsec IKE&lt;/a&gt;可IKEv1、v2如果重用密钥可能导致跨协议身份验证绕过，从而使攻击者能够冒充受害者主机或网络。在IKEv1模式下利用Bleichenbacher预言机，其中RSA加密的随机数用于身份验证。利用此漏洞打破了基于 RSA 加密的模式，此外还破坏了 IKEv1 和 IKEv2 中基于 RSA 签名的身份验证。此外，还存在针对基于 PSK（预共享密钥）的 IKE 模式的离线字典攻击，从而涵盖了 IKE 的所有可用身份验证机制。在思科（CVE-2018-0131）、华为（CVE2017-17305）、Clavister（CVE-2018-8753）和合勤科技（CVE-2018-9129）的IKEv1实现中找到了Bleichenbacher预言机。&lt;/p&gt;
 </description>
         </item>
         
