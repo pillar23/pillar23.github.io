@@ -228,6 +228,16 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/post/misc' >
+                
+                
+                
+                <span>👾杂项</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -278,63 +288,116 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ul>
+  <ol>
     <li><a href="#model">model</a></li>
     <li><a href="#task">task</a>
-      <ul>
-        <li></li>
-      </ul>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#属性抽取ae">属性抽取（AE）</a></li>
+            <li><a href="#观点抽取oe">观点抽取（OE）</a></li>
+          </ol>
+        </li>
+      </ol>
     </li>
     <li><a href="#属性级情感分类">属性级情感分类</a></li>
-  </ul>
+  </ol>
 
-  <ul>
+  <ol>
     <li><a href="#语言模型概念">语言模型概念</a></li>
     <li><a href="#神经网络语言模型">神经网络语言模型</a>
-      <ul>
-        <li><a href="#一些我不会的背景知识">一些（我不会的）背景知识</a></li>
-        <li><a href="#dnnnnlm">DNN（NNLM）</a></li>
+      <ol>
+        <li><a href="#一些我不会的背景知识">一些（我不会的）背景知识</a>
+          <ol>
+            <li><a href="#梯度下降算法">梯度下降算法</a></li>
+            <li><a href="#双曲正切函数">双曲正切函数</a></li>
+            <li><a href="#bp算法">BP算法</a></li>
+            <li><a href="#bptt算法">BPTT算法</a></li>
+            <li><a href="#one-hot编码">one-hot编码</a></li>
+            <li><a href="#pairwise">pairwise</a></li>
+            <li><a href="#zero-shot">zero-shot</a></li>
+            <li><a href="#ppo">PPO</a></li>
+          </ol>
+        </li>
+        <li><a href="#dnnnnlm">DNN（NNLM）</a>
+          <ol>
+            <li><a href="#2-grambigram">2-gram（bigram）</a></li>
+            <li><a href="#n-gram">n-gram</a></li>
+          </ol>
+        </li>
         <li><a href="#rnnrnnlm">RNN（RNNLM）</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#词向量">词向量</a>
-      <ul>
+      <ol>
         <li><a href="#nnlm的词向量">NNLM的词向量</a></li>
         <li><a href="#rnnlm的词向量">RNNLM的词向量</a></li>
         <li><a href="#cw">C&amp;W</a></li>
         <li><a href="#cbow">CBOW</a></li>
         <li><a href="#skip-gram">skip-gram</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#注意力机制">注意力机制</a>
-      <ul>
+      <ol>
         <li><a href="#概述">概述</a></li>
         <li><a href="#举例1-seq2seqrnn2rnn的机器翻译中">举例1， seq2seq（RNN2RNN）的机器翻译中</a></li>
         <li><a href="#注意力编码机制">注意力编码机制</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#预训练语言模型">预训练语言模型</a>
-      <ul>
-        <li></li>
-      </ul>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#迁移学习">迁移学习</a></li>
+            <li><a href="#几个范式">几个范式</a></li>
+          </ol>
+        </li>
+      </ol>
     </li>
     <li><a href="#方面级情感分类">方面级情感分类</a>
-      <ul>
-        <li><a href="#基本方法原理">基本方法、原理</a></li>
-      </ul>
+      <ol>
+        <li><a href="#基本方法原理">基本方法、原理</a>
+          <ol>
+            <li><a href="#lstm">LSTM</a></li>
+            <li><a href="#td-lstm">TD-LSTM</a></li>
+            <li><a href="#tc-lstm">TC-LSTM</a></li>
+            <li><a href="#at-lstm">AT-LSTM</a></li>
+            <li><a href="#atae-lstm">ATAE-LSTM</a></li>
+            <li><a href="#ian">IAN</a></li>
+          </ol>
+        </li>
+      </ol>
     </li>
     <li><a href="#实体和关系联合抽取">实体和关系联合抽取</a>
-      <ul>
-        <li><a href="#基本方法原理-1">基本方法原理</a></li>
-      </ul>
+      <ol>
+        <li><a href="#基本方法原理-1">基本方法原理</a>
+          <ol>
+            <li><a href="#名词解释">名词解释</a></li>
+            <li><a href="#dygie">DyGIE</a></li>
+            <li><a href="#oneie">OneIE</a></li>
+            <li><a href="#uie">UIE</a></li>
+            <li><a href="#uniex">UniEX</a></li>
+          </ol>
+        </li>
+      </ol>
     </li>
     <li><a href="#检索式问答系统">检索式问答系统</a>
-      <ul>
-        <li><a href="#流水线方式">流水线方式</a></li>
-        <li><a href="#端到端方式">端到端方式</a></li>
-      </ul>
+      <ol>
+        <li><a href="#流水线方式">流水线方式</a>
+          <ol>
+            <li><a href="#drqa">DrQA</a></li>
+            <li><a href="#evidence-aggregation-for-answer-re-ranking-in-open-domain-question-answering">Evidence Aggregation for Answer Re-Ranking in Open-Domain Question Answering</a></li>
+          </ol>
+        </li>
+        <li><a href="#端到端方式">端到端方式</a>
+          <ol>
+            <li><a href="#retriever-reader的联合学习">Retriever-Reader的联合学习</a></li>
+            <li><a href="#基于预训练的retriever-free方法">基于预训练的Retriever-Free方法</a></li>
+          </ol>
+        </li>
+      </ol>
     </li>
-  </ul>
+  </ol>
 </nav>
         </div>
     </section>
@@ -605,10 +668,9 @@
 </h3><h4 id="梯度下降算法">梯度下降算法
 </h4><p>梯度下降法是一种常用的优化算法，主要用于找到函数的局部最小值。它的基本思想是：在每一步迭代过程中，选择函数在当前点的负梯度（即函数在该点下降最快的方向）作为搜索方向，然后按照一定的步长向该方向更新当前点，不断迭代，直到满足停止准则。</p>
 <p>具体来说，假设我们要最小化一个可微函数$f(x)$，我们首先随机选择一个初始点$x_0$，然后按照以下规则更新$x$：</p>
-<p>$$
+$$
 x_{n+1} = x_n - \alpha \nabla f(x_n)
-$$</p>
-<p>其中，$\nabla f(x_n)$是函数$f$在点$x_n$处的梯度，$\alpha$是步长（也称为学习率），控制着每一步更新的幅度。</p>
+$$<p>其中，$\nabla f(x_n)$是函数$f$在点$x_n$处的梯度，$\alpha$是步长（也称为学习率），控制着每一步更新的幅度。</p>
 <p>梯度下降法只能保证找到局部最小值</p>
 <h4 id="双曲正切函数">双曲正切函数
 </h4><p>它解决了Sigmoid函数的不以0为中心输出问题，然而，梯度消失的问题和幂运算的问题仍然存在</p>
@@ -2873,6 +2935,13 @@ $$</p>
             ignoredClasses: ["gist"]
         });})
 </script>
+
+
+
+
+
+
+
     
 </article>
 

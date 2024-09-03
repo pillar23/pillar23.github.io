@@ -215,6 +215,10 @@ menu:
           url: /post/tech
           weight: 3
 
+        - name: 👾杂项
+          url: /post/misc
+          weight: 4
+
           
 
     social:
@@ -242,12 +246,24 @@ related:
           weight: 200
 
 markup:
-  goldmark:
-    extensions:
+    goldmark:
         renderer:
             ## Set to true if you have HTML content inside Markdown
             unsafe: true
-        enable: true
+        extensions: 
+            passthrough:
+                delimiters:
+                    block:
+                        - - \[
+                          - \]
+                        - - $$
+                          - $$
+                    inline:
+                        - - \(
+                          - \)
+                        - - $
+                          - $
+                enable: true
     tableOfContents:
         endLevel: 4
         ordered: true
@@ -257,6 +273,6 @@ markup:
         codeFences: true
         guessSyntax: true
         lineNoStart: 1
-        lineNos: true
+        linenos: true
         lineNumbersInTable: true
         tabWidth: 4

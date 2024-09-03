@@ -228,6 +228,16 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/post/misc' >
+                
+                
+                
+                <span>👾杂项</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -278,42 +288,55 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ul>
+  <ol>
     <li><a href="#abstract">Abstract</a></li>
     <li><a href="#introduction">Introduction</a></li>
     <li><a href="#background">Background</a>
-      <ul>
+      <ol>
         <li><a href="#攻击场景">攻击场景</a></li>
         <li><a href="#prior-research-and-their-limitations">Prior Research and their Limitations</a></li>
         <li><a href="#threat-model-and-definitions">Threat Model and Definitions</a></li>
         <li><a href="#unseen-attack">unseen attack</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#design-details">Design Details</a>
-      <ul>
+      <ol>
         <li><a href="#provenance-graph-construction">Provenance Graph Construction</a></li>
-        <li><a href="#graph-representation-module">Graph Representation Module</a></li>
+        <li><a href="#graph-representation-module">Graph Representation Module</a>
+          <ol>
+            <li><a href="#feature-masking">Feature Masking</a></li>
+            <li><a href="#graph-encoder">Graph Encoder</a></li>
+            <li><a href="#graph-decoder">Graph Decoder</a></li>
+          </ol>
+        </li>
         <li><a href="#detection-module">Detection Module</a></li>
         <li><a href="#model-adaption">Model Adaption</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#implementation">Implementation</a></li>
     <li><a href="#evaluation">Evaluation</a>
-      <ul>
+      <ol>
         <li><a href="#experimental-settings">Experimental Settings</a></li>
         <li><a href="#effectiveness">Effectiveness</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#conclusion">conclusion</a></li>
     <li><a href="#知识补充">知识补充</a>
-      <ul>
-        <li><a href="#多标签哈希">多标签哈希</a></li>
+      <ol>
+        <li><a href="#多标签哈希">多标签哈希</a>
+          <ol>
+            <li><a href="#1-单一哈希方法">1. 单一哈希方法</a></li>
+            <li><a href="#2-多哈希方法">2. 多哈希方法</a></li>
+            <li><a href="#3-哈希函数的选择">3. 哈希函数的选择</a></li>
+            <li><a href="#4-检索和评估">4. 检索和评估</a></li>
+          </ol>
+        </li>
         <li><a href="#图形掩蔽自编码器">图形掩蔽自编码器</a></li>
         <li><a href="#概念漂移">概念漂移</a></li>
         <li><a href="#k-d-tree">K-D tree</a></li>
-      </ul>
+      </ol>
     </li>
-  </ul>
+  </ol>
 </nav>
         </div>
     </section>
@@ -577,7 +600,7 @@
 		data-flex-basis="989px"
 	
 ></p>
-<p>其中 $h^l_n$ 是 GAT 第 l 层节点 n 的隐藏嵌入，$h^{l-1}_n$ 是 l − 1 层的隐藏嵌入，$\mathcal{N}<em>n$ 是 n 的单跳邻域。第一个 GAT 层的输入是初始节点嵌入。Embe 是初始边缘嵌入，在整个图形表示模块中保持不变。$W_as$，$W_am$，$W</em>{self}$ ，$W{msg}$ 是可训练的参数。更新的节点嵌入构成了节点单跳交互行为的一般抽象。</p>
+<p>其中 $h^l_n$ 是 GAT 第 l 层节点 n 的隐藏嵌入，$h^{l-1}_n$ 是 l − 1 层的隐藏嵌入，$\mathcal{N}_n$ 是 n 的单跳邻域。第一个 GAT 层的输入是初始节点嵌入。Embe 是初始边缘嵌入，在整个图形表示模块中保持不变。$W_as$，$W_am$，$W_{self}$ ，$W{msg}$ 是可训练的参数。更新的节点嵌入构成了节点单跳交互行为的一般抽象。</p>
 <p>将此类 GAT 的多层堆叠以获得最终的节点嵌入 h，该节点嵌入由原始节点嵌入和所有 GAT 层的输出连接起来：</p>
 <p><img src="/p/magic/MAGIC/1709710765514.png"
 	width="391"
@@ -950,6 +973,13 @@
             ignoredClasses: ["gist"]
         });})
 </script>
+
+
+
+
+
+
+
     
 </article>
 

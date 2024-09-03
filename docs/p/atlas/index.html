@@ -228,6 +228,16 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/post/misc' >
+                
+                
+                
+                <span>👾杂项</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -278,31 +288,36 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ul>
+  <ol>
     <li><a href="#introduction">introduction</a></li>
     <li><a href="#motivation-and-definitions">Motivation and Definitions</a>
-      <ul>
+      <ol>
         <li><a href="#definition">definition</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#method">Method</a>
-      <ul>
+      <ol>
         <li><a href="#序列生成">序列生成</a></li>
         <li><a href="#序列还原">序列还原</a></li>
-        <li><a href="#选择性序列采样">选择性序列采样</a></li>
+        <li><a href="#选择性序列采样">选择性序列采样</a>
+          <ol>
+            <li><a href="#欠采样">欠采样</a></li>
+            <li><a href="#过采样">过采样</a></li>
+          </ol>
+        </li>
         <li><a href="#序列学习">序列学习</a></li>
         <li><a href="#攻击还原">攻击还原</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#工作亮点">工作亮点</a></li>
     <li><a href="#我的想法">我的想法</a></li>
     <li><a href="#补充知识">补充知识</a>
-      <ul>
+      <ol>
         <li><a href="#屈折形式inflectional-forms和派生形式derivational-forms">屈折形式（Inflectional Forms）和派生形式（Derivational Forms）</a></li>
         <li><a href="#levenshtein-distance">Levenshtein Distance</a></li>
-      </ul>
+      </ol>
     </li>
-  </ul>
+  </ol>
 </nav>
         </div>
     </section>
@@ -503,7 +518,7 @@
 <p>对于一个图中的攻击节点，构建攻击节点子集，子集节点数$\geq$2，因此对于n个攻击节点的集合，有$\sum_{i=2}^k C_n^i$个子集，这个方法在面对攻击节点数量很多的时候复杂度会爆炸，但是攻击者一般会为了隐藏而最小化攻击节点数量【这样每个攻击子图都得比较小才合适，怪不得图缩减缩得这么狠】。</p>
 <p>1、对于攻击实体中的每个实体，ATLAS提取其在攻击子图中的邻域图，即捕捉与攻击节点节点有因果关系的实体，2、从邻域图中获取按照时间戳排序的攻击事件。如果源节点或目标节点代表攻击实体，则事件被标记为攻击。3、最后，ATLAS 将提取的时间戳排序的攻击事件转换为序列，并在以下情况下将其标记为攻击：（a） 它仅包含攻击事件， （b）它包括实体子集的所有攻击事件。【还是在缩减，这样攻击序列理论上是最小的】</p>
 <p>对于非攻击节点：</p>
-<p>意义不是很大，主要学习攻击序列。同时，对于一个有k个攻击节点和k&rsquo;个非攻击节点的因果图，会有$\sum^{k}_{i=1} C^i_k.k&rsquo;$(攻击节点的子集（子集节点数不必$\geq$ 2)+非攻击节点的全集)。提取非攻击序列的方法和提取攻击序列的方法的1、2步骤一样，3、如果序列与任何提取的攻击序列不匹配，则 ATLAS 会将其标记为非攻击，否则，处理后的序列将被丢弃。</p>
+<p>意义不是很大，主要学习攻击序列。同时，对于一个有k个攻击节点和k&rsquo;个非攻击节点的因果图，会有$\sum^{k}_{i=1} C^i_k.k'$(攻击节点的子集（子集节点数不必$\geq$ 2)+非攻击节点的全集)。提取非攻击序列的方法和提取攻击序列的方法的1、2步骤一样，3、如果序列与任何提取的攻击序列不匹配，则 ATLAS 会将其标记为非攻击，否则，处理后的序列将被丢弃。</p>
 <p>下面这张图是例子</p>
 <p><img src="/p/atlas/ATLAS/1716026032629.png"
 	width="1518"
@@ -628,6 +643,13 @@
             ignoredClasses: ["gist"]
         });})
 </script>
+
+
+
+
+
+
+
     
 </article>
 

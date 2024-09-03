@@ -228,6 +228,16 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/post/misc' >
+                
+                
+                
+                <span>👾杂项</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -346,28 +356,60 @@
 </h1><p>我是在home下做的，如果想在别的地方搞稍微换下路径就行</p>
 <p>先拉git的代码 <code>git clone https://github.com/fuchuanpu/HyperVision.git</code></p>
 <p>依照作者在readme里说，在纯净的ubuntu22.04上运行他的脚本即可。用docker装一个纯净的ubuntu22.04</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 下载镜像</span>
-</span></span><span style="display:flex;"><span>docker pull homebrew/ubuntu22.04:latest
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动，并且把~/HyperVision 和容器内的/root/HyperVision连起来</span>
-</span></span><span style="display:flex;"><span>docker run -td --name hypervision -v <span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/HyperVision&#34;</span>:/root/HyperVision homebrew/ubuntu22.04:latest
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 进入</span>
-</span></span><span style="display:flex;"><span>docker exec hypervision -it bash
-</span></span></code></pre></div><p>接下来的操作在docker里了</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo su
-</span></span><span style="display:flex;"><span>cd /root/HyperVision
-</span></span><span style="display:flex;"><span>sudo ./env/install_all.sh <span style="color:#75715e"># 这里最好先换个国内的源，会把需要装的都装了</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>wget https://hypervision-publish.s3.cn-north-1.amazonaws.com.cn/hypervision-dataset.tar.gz <span style="color:#75715e"># 下载数据集，有6G，走的cdn，裸连速度就还不错</span>
-</span></span><span style="display:flex;"><span>tar -xzf hypervision-dataset.tar.gz <span style="color:#75715e"># 我也不知道为什么他写了个-xxf 如果想删掉原来的就删吧，不删也没关系</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>./script/rebuild.sh
-</span></span><span style="display:flex;"><span>./script/expand.sh
-</span></span><span style="display:flex;"><span>cd build <span style="color:#f92672">&amp;&amp;</span> ../script/run_all_brute.sh <span style="color:#f92672">&amp;&amp;</span> cd ..
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>cd ./result_analyze
-</span></span><span style="display:flex;"><span>./batch_analyzer.py -g brute
-</span></span><span style="display:flex;"><span>cat ./log/brute/*.log | grep AU_ROC
-</span></span></code></pre></div><p>在<a class="link" href="https://www.bilibili.com/video/BV1zj411e7xC/"  target="_blank" rel="noopener"
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载镜像</span>
+</span></span><span class="line"><span class="cl">docker pull homebrew/ubuntu22.04:latest
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动，并且把~/HyperVision 和容器内的/root/HyperVision连起来</span>
+</span></span><span class="line"><span class="cl">docker run -td --name hypervision -v <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/HyperVision&#34;</span>:/root/HyperVision homebrew/ubuntu22.04:latest
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入</span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> hypervision -it bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来的操作在docker里了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo su
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /root/HyperVision
+</span></span><span class="line"><span class="cl">sudo ./env/install_all.sh <span class="c1"># 这里最好先换个国内的源，会把需要装的都装了</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wget https://hypervision-publish.s3.cn-north-1.amazonaws.com.cn/hypervision-dataset.tar.gz <span class="c1"># 下载数据集，有6G，走的cdn，裸连速度就还不错</span>
+</span></span><span class="line"><span class="cl">tar -xzf hypervision-dataset.tar.gz <span class="c1"># 我也不知道为什么他写了个-xxf 如果想删掉原来的就删吧，不删也没关系</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./script/rebuild.sh
+</span></span><span class="line"><span class="cl">./script/expand.sh
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> build <span class="o">&amp;&amp;</span> ../script/run_all_brute.sh <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ./result_analyze
+</span></span><span class="line"><span class="cl">./batch_analyzer.py -g brute
+</span></span><span class="line"><span class="cl">cat ./log/brute/*.log <span class="p">|</span> grep AU_ROC
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<a class="link" href="https://www.bilibili.com/video/BV1zj411e7xC/"  target="_blank" rel="noopener"
     >https://www.bilibili.com/video/BV1zj411e7xC/</a>可以看到复现视频</p>
 <p><img src="/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/%E5%A4%8D%E7%8E%B0Detecting/1698203084469.png"
 	width="760"
@@ -437,6 +479,13 @@
             ignoredClasses: ["gist"]
         });})
 </script>
+
+
+
+
+
+
+
     
 </article>
 

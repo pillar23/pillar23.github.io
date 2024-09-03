@@ -228,6 +228,16 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/post/misc' >
+                
+                
+                
+                <span>👾杂项</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -278,29 +288,29 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ul>
+  <ol>
     <li><a href="#11-使用场景">1.1 使用场景</a>
-      <ul>
+      <ol>
         <li><a href="#111-隧道模式下的安全网关到安全网关">1.1.1 隧道模式下的安全网关到安全网关</a></li>
         <li><a href="#112-端点到端点传输模式">1.1.2 端点到端点传输模式</a></li>
         <li><a href="#113隧道模式下的端点到安全网关">1.1.3隧道模式下的端点到安全网关</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#12初始交换">1.2初始交换</a></li>
     <li><a href="#13-create_child_sa交换">1.3 CREATE_CHILD_SA交换</a>
-      <ul>
+      <ol>
         <li><a href="#131-通过create_child_sa交换创建新的子-sa">1.3.1 通过CREATE_CHILD_SA交换创建新的子 SA</a></li>
         <li><a href="#132-使用create_child_sa交换机重新生成-ike-sa-的密钥">1.3.2 使用CREATE_CHILD_SA交换机重新生成 IKE SA 的密钥</a></li>
         <li><a href="#133-使用-create_child_sa-交换重新生成子-sa-的密钥">1.3.3. 使用 CREATE_CHILD_SA 交换重新生成子 SA 的密钥</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#14-信息交换">1.4. 信息交换</a>
-      <ul>
+      <ol>
         <li><a href="#141-删除具有信息交换的-sa">1.4.1. 删除具有信息交换的 SA</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#15-ike-sa-之外的信息性消息">1.5 IKE SA 之外的信息性消息</a></li>
-  </ul>
+  </ol>
 </nav>
         </div>
     </section>
@@ -468,45 +478,89 @@
 <p>初始交换后的所有消息都使用在IKE_SA_INIT交换中协商的加密算法和密钥进行加密保护。这些后续消息使用第 3.14 节中描述的加密有效负载的语法，使用第 2.14 节中所述派生的密钥进行加密。所有后续消息都包含加密有效负载，即使它们在文本中称为“空”。对于CREATE_CHILD_SA、IKE_AUTH或信息交换，标头后面的消息是加密的，包含标头的消息是使用为 IKE SA 协商的加密算法进行完整性保护的。</p>
 <p>每个 IKE 消息都包含一个消息 ID 作为其固定标头的一部分。此消息 ID 用于匹配请求和响应，并标识消息的重新传输。</p>
 <p>一些简称如下</p>
-<pre tabindex="0"><code>
-Notation        Payload 
-
-----------------------------------------
-
-AUTH            Authentication 
-
-CERT            Certificate 
-
-CERTREQ         Certificate Request 
-
-CP              Configuration 
-
-D               Delete 
-
-EAP             Extensible Authentication 
-
-HDR             IKE header (not a payload) 
-
-IDi             Identification - Initiator 
-
-IDr             Identification - Responder 
-
-KE              Key Exchange 
-
-Ni, Nr          Nonce 
-
-N               Notify 
-
-SA              Security Association 
-
-SK              Encrypted and Authenticated
-
-TSi             Traffic Selector - Initiator 
-
-TSr             Traffic Selector - Responder 
-
-V               Vendor ID
-</code></pre><p>第 3 节介绍了每个有效负载的内容的详细信息。可能选择显示的有效负载将显示在括号中，例如 [CERTREQ];这表示可以选择包含证书请求有效负载。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Notation</span>        <span class="n">Payload</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">----------------------------------------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AUTH</span>            <span class="n">Authentication</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CERT</span>            <span class="n">Certificate</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CERTREQ</span>         <span class="n">Certificate</span> <span class="n">Request</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CP</span>              <span class="n">Configuration</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">D</span>               <span class="n">Delete</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">EAP</span>             <span class="n">Extensible</span> <span class="n">Authentication</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">HDR</span>             <span class="n">IKE</span> <span class="n">header</span> <span class="p">(</span><span class="ow">not</span> <span class="n">a</span> <span class="n">payload</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">IDi</span>             <span class="n">Identification</span> <span class="o">-</span> <span class="n">Initiator</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">IDr</span>             <span class="n">Identification</span> <span class="o">-</span> <span class="n">Responder</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">KE</span>              <span class="n">Key</span> <span class="n">Exchange</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Ni</span><span class="p">,</span> <span class="n">Nr</span>          <span class="n">Nonce</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">N</span>               <span class="n">Notify</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SA</span>              <span class="n">Security</span> <span class="n">Association</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SK</span>              <span class="n">Encrypted</span> <span class="ow">and</span> <span class="n">Authenticated</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">TSi</span>             <span class="n">Traffic</span> <span class="n">Selector</span> <span class="o">-</span> <span class="n">Initiator</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">TSr</span>             <span class="n">Traffic</span> <span class="n">Selector</span> <span class="o">-</span> <span class="n">Responder</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">V</span>               <span class="n">Vendor</span> <span class="n">ID</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第 3 节介绍了每个有效负载的内容的详细信息。可能选择显示的有效负载将显示在括号中，例如 [CERTREQ];这表示可以选择包含证书请求有效负载。</p>
 <p>初始交流如下：</p>
 <p>发起方→接收方HDR, SAi1, KEi, Ni。</p>
 <p>HDR 包含安全参数索引 （SPI）、版本号、Exchange 类型、消息 ID 和各种标志。SAi1 有效负载声明发起方为 IKE SA 支持的加密算法。KE 有效负载发送发起方的 Diffie-Hellman 值。Ni是发起者的随机数。</p>
@@ -629,6 +683,13 @@ V               Vendor ID
             ignoredClasses: ["gist"]
         });})
 </script>
+
+
+
+
+
+
+
     
 </article>
 

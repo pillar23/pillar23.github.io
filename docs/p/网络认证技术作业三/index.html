@@ -228,6 +228,16 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/post/misc' >
+                
+                
+                
+                <span>👾杂项</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -347,15 +357,29 @@
     <p>为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1</p>
 <p><code>choco install openssl</code></p>
 <p>首先生成私钥</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>openssl genrsa -aes256 -out private.pem <span style="color:#ae81ff">4096</span>
-</span></span></code></pre></div><p>其中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openssl genrsa -aes256 -out private.pem <span class="m">4096</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中</p>
 <p><code>genrsa</code>是openssl的一个命令，用于生成RSA私钥。</p>
 <p><code>-aes256</code>表示在输出私钥之前，使用AES 256加密</p>
 <p><code>-out private.pem</code> 表示将生成的私钥输出到名为private.pem的文件中</p>
 <p><code>4096</code>表示生成的私钥的位数，即私钥的长度为4096位</p>
 <p>然后使用私钥生成证书</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>openssl req -new -x509 -days <span style="color:#ae81ff">365</span> -key .<span style="color:#ae81ff">\p</span>rivate.pem -out cacert.crt -config .<span style="color:#ae81ff">\s</span>mime.cnf -extensions smime
-</span></span></code></pre></div><p>其中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">openssl req -new -x509 -days <span class="m">365</span> -key .<span class="se">\p</span>rivate.pem -out cacert.crt -config .<span class="se">\s</span>mime.cnf -extensions smime
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中</p>
 <p><code>req</code>是openssl的一个命令，用于创建和处理PKCS#10格式的证书请求。</p>
 <p><code>-new</code>表示创建一个新的证书请求。</p>
 <p><code>-x509</code>表示生成一个自签名的证书，而不是生成一个证书请求。</p>
@@ -365,14 +389,27 @@
 <p><code>-config .\smime.cnf</code>表示使用名为smime.cnf的文件作为配置文件。</p>
 <p><code>-extensions smime</code>表示应该包含配置文件中名为smime的部分中指定的扩展。</p>
 <p>smime的部分为</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>smime<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>basicConstraints <span style="color:#f92672">=</span> CA:FALSE
-</span></span><span style="display:flex;"><span>keyUsage <span style="color:#f92672">=</span> nonRepudiation, digitalSignature, keyEncipherment
-</span></span><span style="display:flex;"><span>extendedKeyUsage <span style="color:#f92672">=</span> emailProtection
-</span></span><span style="display:flex;"><span>subjectKeyIdentifier <span style="color:#f92672">=</span> hash
-</span></span><span style="display:flex;"><span>authorityKeyIdentifier <span style="color:#f92672">=</span> keyid:always, issuer
-</span></span><span style="display:flex;"><span>subjectAltName <span style="color:#f92672">=</span> email:copy
-</span></span></code></pre></div><p><code>basicConstraints = CA:FALSE</code>指定证书不能用作CA（证书颁发机构）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>smime<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">basicConstraints</span> <span class="o">=</span> CA:FALSE
+</span></span><span class="line"><span class="cl"><span class="nv">keyUsage</span> <span class="o">=</span> nonRepudiation, digitalSignature, keyEncipherment
+</span></span><span class="line"><span class="cl"><span class="nv">extendedKeyUsage</span> <span class="o">=</span> emailProtection
+</span></span><span class="line"><span class="cl"><span class="nv">subjectKeyIdentifier</span> <span class="o">=</span> <span class="nb">hash</span>
+</span></span><span class="line"><span class="cl"><span class="nv">authorityKeyIdentifier</span> <span class="o">=</span> keyid:always, issuer
+</span></span><span class="line"><span class="cl"><span class="nv">subjectAltName</span> <span class="o">=</span> email:copy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>basicConstraints = CA:FALSE</code>指定证书不能用作CA（证书颁发机构）</p>
 <p><code>keyUsage = nonRepudiation, digitalSignature, keyEncipherment</code>指定证书的公钥可以用于哪些用途。这个证书可以用于非否认（nonRepudiation）、数字签名（digitalSignature）和密钥封装（keyEncipherment）</p>
 <p><code>extendedKeyUsage = emailProtection</code>用于电子邮件保护（emailProtection）</p>
 <p><code>subjectKeyIdentifier = hash</code>用公钥的hash值唯一地标识证书中的公钥。</p>
@@ -529,8 +566,15 @@
 	
 ></p>
 <p>这里outlook只支持导入pfx，所以我们需要把生成的证书格式转换</p>
-<pre tabindex="0"><code>openssl pkcs12 -export -out cacert.pfx -inkey .\private.pem -in .\cacert.crt
-</code></pre><p>接下来是导入助教的证书，首先在outlook里新建一个联系人</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">openssl</span> <span class="n">pkcs12</span> <span class="o">-</span><span class="k">export</span> <span class="o">-</span><span class="n">out</span> <span class="n">cacert</span><span class="o">.</span><span class="n">pfx</span> <span class="o">-</span><span class="n">inkey</span> <span class="o">.</span>\<span class="n">private</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="ow">in</span> <span class="o">.</span>\<span class="n">cacert</span><span class="o">.</span><span class="n">crt</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来是导入助教的证书，首先在outlook里新建一个联系人</p>
 <p><img src="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693.png"
 	width="1547"
 	height="659"
@@ -546,8 +590,15 @@
 	
 ></p>
 <p>导入，这里又只支持.cer了，我的windows下的openssl好像缺了库没法转，所以用wsl里的openssl转了一下</p>
-<pre tabindex="0"><code>openssl pkcs12 -in limengjie22\@mails.ucas.ac.cn.pfx -nokeys -out output.cer
-</code></pre><p><code>openssl pkcs12 -nokeys</code>命令用于从PKCS#12文件（通常具有.pfx或.p12扩展名）中提取证书，-nokeys指定不包含私钥，这样生成的output.cer不能做任何需要私钥的操作（我们也没有要用私钥的操作）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">openssl pkcs12 -in limengjie22\@mails.ucas.ac.cn.pfx -nokeys -out output.cer
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>openssl pkcs12 -nokeys</code>命令用于从PKCS#12文件（通常具有.pfx或.p12扩展名）中提取证书，-nokeys指定不包含私钥，这样生成的output.cer不能做任何需要私钥的操作（我们也没有要用私钥的操作）</p>
 <p>import password即使提供的私钥.txt的内容。然后就可以成功导入了</p>
 <p><img src="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765.png"
 	width="853"
@@ -630,6 +681,13 @@
             ignoredClasses: ["gist"]
         });})
 </script>
+
+
+
+
+
+
+
     
 </article>
 

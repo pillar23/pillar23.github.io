@@ -228,6 +228,16 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/post/misc' >
+                
+                
+                
+                <span>👾杂项</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -278,26 +288,26 @@
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ul>
+  <ol>
     <li><a href="#字节级流量图构造-byte-level-traffic-graph-construction">字节级流量图构造 Byte-level Traffic Graph Construction</a>
-      <ul>
+      <ol>
         <li><a href="#pmi">PMI</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#双嵌入-dual-embedding">双嵌入 dual embedding</a></li>
     <li><a href="#交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion">交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion</a>
-      <ul>
+      <ol>
         <li><a href="#graphsage">GraphSAGE</a></li>
-      </ul>
+      </ol>
     </li>
     <li><a href="#cross-gated-feature-fusion">Cross-gated Feature Fusion</a></li>
     <li><a href="#端到端的下游任务训练-end-to-end-training-on-downstream-tasks">端到端的下游任务训练 End-to-End Training on Downstream Tasks</a></li>
-  </ul>
+  </ol>
 
-  <ul>
+  <ol>
     <li><a href="#实验设置">实验设置</a></li>
     <li><a href="#消融实验">消融实验</a></li>
-  </ul>
+  </ol>
 </nav>
         </div>
     </section>
@@ -437,12 +447,12 @@
 <p>$A$是大小为$\lvert V \lvert * \lvert V \lvert$图的邻接矩阵</p>
 <p>$N(v)$是节点v相邻的节点</p>
 <p>$d_l$是第l层的嵌入维度</p>
-<p>TS(traffic segment)=[$P_{t_1},P_{t_2}&hellip;P_{t_n}$]是一段时间内的数据包的集合。$P_{t_i}$是时间戳为$t_i$的数据包，n是流量序列的长度。$t_1,t_2$是流量序列的开始和结束时间。</p>
+<p>TS(traffic segment)=[$P_{t_1},P_{t_2}...P_{t_n}$]是一段时间内的数据包的集合。$P_{t_i}$是时间戳为$t_i$的数据包，n是流量序列的长度。$t_1,t_2$是流量序列的开始和结束时间。</p>
 <p>2、加密流量分类</p>
 <p>M是训练样本数量</p>
 <p>N是分类类别</p>
-<p>$bs^j_i=[b^{ij}_1, b^{ij}_2,&hellip;,b^{ij}_m]$，m是字节序列长度，$b^{ij}_k$是第i个流量样本第j个字节序列的第k个字节</p>
-<p>$s_i=[bs^i_1,bs^i_2,&hellip;,bs^i_n)]$，n是序列长度$bs^i_j$为第i个样本的第j个字节序列，可以理解为就是TS</p>
+<p>$bs^j_i=[b^{ij}_1, b^{ij}_2,...,b^{ij}_m]$，m是字节序列长度，$b^{ij}_k$是第i个流量样本第j个字节序列的第k个字节</p>
+<p>$s_i=[bs^i_1,bs^i_2,...,bs^i_n)]$，n是序列长度$bs^i_j$为第i个样本的第j个字节序列，可以理解为就是TS</p>
 <p>3、 MP-GNN</p>
 <p>MP-GNN 是 Message Passing Graph Neural Network（消息传递图神经网络）的简称，节点嵌入向量可以通过特定的聚合策略将节点的嵌入向量集成到邻域中，从而迭代更新节点嵌入向量。</p>
 <p>第l层 MP-GNN 可以形式化为两个过程</p>
@@ -470,10 +480,9 @@
 <p>图构建：由于$PMI(i,j)=PMI(j,i)$，因此该图是个无向图。</p>
 <h3 id="pmi">PMI
 </h3><p>PMI：是一种用于衡量两个事件之间相关性的统计量。</p>
-<p>$$
+$$
 PMI(A, B) = \log \frac{P(A, B)}{P(A) \cdot P(B)}
-$$</p>
-<p>值大于零，则表示 A 和 B 之间有正相关性；如果值等于零，则表示它们之间没有关联；如果值小于零，则表示它们之间有负相关性。</p>
+$$<p>值大于零，则表示 A 和 B 之间有正相关性；如果值等于零，则表示它们之间没有关联；如果值小于零，则表示它们之间有负相关性。</p>
 <h2 id="双嵌入-dual-embedding">双嵌入 dual embedding
 </h2><p>原因：字节值通常用作进一步向量嵌入的初始特征。具有不同值的两个字节对应两个不同的嵌入向量。然而，字节的含义不仅随字节值本身而变化，还随它所在的字节序列的部分而变化。换句话说，在数据包的header和payload中，具有相同值的两个字节的表示含义可能完全不同。对于header和payload，使用<strong>两个不共享参数的嵌入层</strong>的双嵌入，嵌入矩阵分别是$E_{header}$和$E_{payload}$</p>
 <h2 id="交叉门控特征融合的流量图编码器-traffic-graph-encoder-with-cross-gated-feature-fusion">交叉门控特征融合的流量图编码器 Traffic Graph Encoder with Cross-gated Feature Fusion
@@ -778,6 +787,13 @@ $$</p>
             ignoredClasses: ["gist"]
         });})
 </script>
+
+
+
+
+
+
+
     
 </article>
 
