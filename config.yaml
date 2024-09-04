@@ -32,7 +32,7 @@ DefaultContentLanguage: zh-cn
 
 # Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
 # This will make .Summary and .WordCount behave correctly for CJK languages.
-hasCJKLanguage: false
+hasCJKLanguage: true
 
 permalinks:
     post: /p/:slug/
@@ -44,7 +44,7 @@ params:
         - post
     featuredImageField: image
     rssFullContent: true
-    favicon:  # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
+    favicon: img/lotus.svg  # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
 
     footer:
         since: 2023
@@ -202,22 +202,30 @@ params:
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
 ### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
 menu:
-    main:
-        - name: 📕课程
-          url: /post/class
-          weight: 1
+#     main:
+        # - name: 课程
+        #   url: /post/class
+        #   weight: 1
+        #   params:
+        #       icon: book-2
 
-        - name: 📚论文
-          url: /post/thesis
-          weight: 2
+        # - name: 论文
+        #   url: /post/thesis
+        #   weight: 2
+        #   params:
+        #       icon: school
 
-        - name: 👨🏻‍💻技术
-          url: /post/tech
-          weight: 3
+        # - name: 技术
+        #   url: /post/tech
+        #   weight: 3
+        #   params:
+        #       icon: device-desktop
 
-        - name: 👾杂项
-          url: /post/misc
-          weight: 4
+        # - name: 杂项
+        #   url: /post/misc
+        #   weight: 4
+        #   params:
+        #       icon: topology-star-3
 
           
 
@@ -269,6 +277,8 @@ markup:
         ordered: true
         startLevel: 2
     highlight:
+        # style: "xcode"
+        # style: "monokai"
         noClasses: false
         codeFences: true
         guessSyntax: true

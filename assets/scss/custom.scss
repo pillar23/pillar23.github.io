@@ -21,29 +21,33 @@ html {
 }
 
 // 页面基本配色
-// :root {
-//   // 全局顶部边距
-//   --main-top-padding: 30px;
-//   // 全局卡片圆角
-//   --card-border-radius: 25px;
-//   // 标签云卡片圆角
-//   --tag-border-radius: 8px;
-//   // 卡片间距
-//   --section-separation: 40px;
-//   // 全局字体大小
-//   --article-font-size: 1.8rem;
-//   // 行内代码背景色
-//   --code-background-color: #f8f8f8;
-//   // 行内代码前景色
-//   --code-text-color: #e96900;
-//   // 暗色模式下样式
-//   &[data-scheme="dark"] {
-//     // 行内代码背景色
-//     --code-background-color: #ff6d1b17;
-//     // 行内代码前景色
-//     --code-text-color: #e96900;
-//   }
-// }
+:root {
+  // 全局顶部边距
+  --main-top-padding: 30px;
+  // 全局卡片圆角
+  --card-border-radius: 25px;
+  // 标签云卡片圆角
+  --tag-border-radius: 8px;
+  // 卡片间距
+  --section-separation: 40px;
+  // 全局字体大小
+  --article-font-size: 1.8rem;
+  --emphasize-text-color: #9e8f9f; // Add emphasize font color
+  // // 行内代码背景色
+  // --code-background-color: #f8f8f8;
+  // // 行内代码前景色
+  // --code-text-color: #e96900;
+  // 暗色模式下样式
+  &[data-scheme="dark"] {
+    // 背景色
+    --body-background: #000000;
+    // 滚动条按钮色
+    --scrollbar-thumb: #24242480;
+    // 文章卡片背景色
+    --card-background: #121212;
+    --emphasize-text-color: #d5cfc4; // Add emphasize font color for dark scheme
+  }
+}
 
 //------------------------------------------------------
 // 修复引用块内容窄页面显示问题
@@ -106,12 +110,22 @@ code {
 
 // light模式下的代码块样式调整
 [data-scheme="light"] .article-content .highlight {
-  background-color: #fff9f3;
+  background-color: #fff;
 }
 
 [data-scheme="light"] .chroma {
-  color: #ff6f00;
-  background-color: #fff9f3cc;
+  // color: #ff6f00;
+  background-color: #fff;
+}
+
+// dark模式下的代码块样式调整
+[data-scheme="dark"] .article-content .highlight {
+  background-color: #1f1f24;
+}
+
+[data-scheme="dark"] .chroma {
+  // color: #ff6f00;
+  background-color: #1f1f24;
 }
 
 //-------------------------------------------

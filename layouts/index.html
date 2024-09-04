@@ -1,0 +1,54 @@
+{{ define "main" }}
+    {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
+    {{ $filtered := ($pages | intersect $notHidden) }}
+    {{ $pag := .Paginate ($filtered) }}
+    <!-- 首页欢迎字幅 -->
+    <div class="welcome">
+        <p style="font-size: 2rem; text-align: center; font-weight: bold">
+            <span class="shake">👋</span>
+            <span class="jump-text1" style="color:#FF6F61;">W</span>
+            <span class="jump-text2" style="color:#FFB16D;">e</span>
+            <span class="jump-text3" style="color:#FFE68A;">l</span>
+            <span class="jump-text4" style="color:#A8D5BA;">c</span>
+            <span class="jump-text5" style="color:#80D3F5;">o</span>
+            <span class="jump-text6" style="color:#A0C4FF;">m</span>
+            <span class="jump-text7" style="color:#B39CD0;">e</span>
+            <span class="jump-text8"> </span>
+            <span class="jump-text9" style="color:#FF6F61;">T</span>
+            <span class="jump-text10" style="color:#FFB16D;">o</span>
+            <span class="jump-text11" style="color:#FFE68A;"> </span>
+            <span class="jump-text12" style="color:#A8D5BA;">P</span>
+            <span class="jump-text13" style="color:#80D3F5;">i</span>
+            <span class="jump-text14" style="color:#A0C4FF;">l</span>
+            <span class="jump-text15" style="color:#B39CD0;">l</span>
+            <span class="jump-text16" style="color:#FF6F61;">a</span>
+            <span class="jump-text17" style="color:#FFB16D;">4</span>
+            <span class="jump-text18" style="color:#FFE68A;">r</span>
+            <span class="jump-text19" style="color:#A8D5BA;">'</span>
+            <span class="jump-text20" style="color:#80D3F5;">s</span>
+            <span class="jump-text21" style="color:#A0C4FF;"> </span>
+            <span class="jump-text22" style="color:#B39CD0;">B</span>
+            <span class="jump-text23" style="color:#FF6F61;">l</span>
+            <span class="jump-text24" style="color:#FFB16D;">o</span>
+            <span class="jump-text25" style="color:#FFE68A;">g</span>
+            
+
+        </p>
+    </div>
+  <!-- 首页欢迎字幅 -->
+    {{ partial "heatmap" . }}
+
+    <section class="article-list">
+        {{ range $index, $element := $pag.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{- partial "pagination.html" . -}}
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

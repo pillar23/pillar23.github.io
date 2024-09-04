@@ -27,8 +27,106 @@
   window.onresize = function() {
       myChart.resize();
   };
-  var option;
+  
+  function genOption(){
+    var option;
+    const colorSchemeItem = localStorage.getItem(&#39;StackColorScheme&#39;); 
+    if (colorSchemeItem == &#39;light&#39;) {
+      var color_t = [&#39;#a8e4a0&#39;, &#39;#7aa874&#39;, &#39;#4e8a4c&#39;,&#39;#2c5f2d&#39; ]; 
+      var color_font = &#39;#000&#39;; 
+      var color_cube = &#39;#f1f1f1&#39;; 
+      var color_title = &#39;#000&#39;; 
+      var color_border = &#39;#fff&#39;; 
+      var color_split_month = &#39;rgba(0, 0, 0, 0.0)&#39;; 
+    } else {
+      var color_t = [&#39;#fbb1d9&#39;, &#39;#f770d4&#39;, &#39;#d94bbf&#39;, &#39;#a734a2&#39; ]; 
+      var color_font = &#39;#fff&#39;; 
+      var color_cube = &#39;#1e1e1e&#39;; 
+      var color_title = &#39;#fff&#39;; 
+      var color_border = &#39;#121212&#39;; 
+      var color_split_month = &#39;rgba(0, 0, 0, 0.0)&#39;; 
+    }
+    option = {
+      title: {
+          top: 0,
+          left: &#39;center&#39;,
+          text: &#39;博客热力图&#39;,
+          textStyle: {
+            color: color_title,
+            fontSize: 20,
+          }
+      },
+      tooltip: {
+        hideDelay: 1000,
+        enterable: true,
+        formatter: function (p) {
+          const date = p.data[0];
+          const posts = dataMap.get(date);
+          var content = `${date}`;
+          for (const [i, post] of posts.entries()) {
+              content += &#34;&lt;br&gt;&#34;;
+              var link = post.link;
+              var title = post.title;
+              var wordCount = (post.wordCount / 1000).toFixed(1);
+              content += `&lt;a href=&#34;${link}&#34; target=&#34;_blank&#34;&gt;${title} | ${wordCount} k&lt;/a&gt;`
+          }
+          return content;
+        }
+      },
+      visualMap: {
+        min: 0,
+        max: 10,
+        type: &#39;piecewise&#39;,
+        orient: &#39;horizontal&#39;,
+        left: &#39;center&#39;,
+        top: 30,
 
+        inRange: {   
+          
+          color: color_t,
+        },
+        splitNumber: 4,
+        text: [&#39;千字&#39;, &#39;&#39;],
+        showLabel: true,
+        itemGap: 20,
+        textStyle: {
+          color: color_font,
+        }
+      },
+      calendar: {
+        top: 80,
+        left: 20,
+        right: 4,
+        cellSize: [&#39;auto&#39;, 13],
+        range: getRangeArr(),
+        itemStyle: {
+            color: color_cube,
+            borderWidth: 1.5,
+            borderColor: color_border,
+        },
+        monthLabel: { color: color_font },
+        dayLabel: { color: color_font },
+        yearLabel: { show: false },
+        
+        splitLine: {
+          lineStyle: {
+            color: &#39;rgba(0, 0, 0, 0.0)&#39;,
+            
+            
+            
+            
+          }
+        }
+      },
+      series: {
+        type: &#39;heatmap&#39;,
+        coordinateSystem: &#39;calendar&#39;,
+        data: data,
+      }
+  };
+    return option;
+  }
+  
   
   
   
@@ -37,9 +135,33 @@
   
   var dataMap = new Map();
   
+    var key = &#34;2024-09-05&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  1671 ;
+    var link = &#34;/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/&#34;;
+    var title = &#34;HugoStackHeatmap明暗主题适配&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-09-04&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  4375 ;
+    var link = &#34;/p/hugostack%E8%A3%85%E4%BF%AE/&#34;;
+    var title = &#34;HugoStack装修&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
     var key = &#34;2024-09-03&#34;;
     var value = dataMap.get(key);
-    var wordCount =  205 ;
+    var wordCount =  969 ;
     var link = &#34;/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/&#34;;
     var title = &#34;Markdown下的Tex渲染失败解决&#34;;
     
@@ -51,7 +173,7 @@
     }
     var key = &#34;2024-09-02&#34;;
     var value = dataMap.get(key);
-    var wordCount =  777 ;
+    var wordCount =  12859 ;
     var link = &#34;/p/shadewatcher/&#34;;
     var title = &#34;Shadewatcher&#34;;
     
@@ -63,7 +185,7 @@
     }
     var key = &#34;2024-07-24&#34;;
     var value = dataMap.get(key);
-    var wordCount =  318 ;
+    var wordCount =  6489 ;
     var link = &#34;/p/nodlink/&#34;;
     var title = &#34;NODLINK&#34;;
     
@@ -75,7 +197,7 @@
     }
     var key = &#34;2024-05-21&#34;;
     var value = dataMap.get(key);
-    var wordCount =  500 ;
+    var wordCount =  2144 ;
     var link = &#34;/p/cve-2023-2480/&#34;;
     var title = &#34;CVE 2023 2480&#34;;
     
@@ -87,7 +209,7 @@
     }
     var key = &#34;2024-04-18&#34;;
     var value = dataMap.get(key);
-    var wordCount =  223 ;
+    var wordCount =  5574 ;
     var link = &#34;/p/flash/&#34;;
     var title = &#34;FLASH&#34;;
     
@@ -99,7 +221,7 @@
     }
     var key = &#34;2024-03-02&#34;;
     var value = dataMap.get(key);
-    var wordCount =  712 ;
+    var wordCount =  14597 ;
     var link = &#34;/p/magic/&#34;;
     var title = &#34;MAGIC&#34;;
     
@@ -111,7 +233,7 @@
     }
     var key = &#34;2024-03-02&#34;;
     var value = dataMap.get(key);
-    var wordCount =  308 ;
+    var wordCount =  5813 ;
     var link = &#34;/p/atlas/&#34;;
     var title = &#34;ATLAS&#34;;
     
@@ -123,7 +245,7 @@
     }
     var key = &#34;2024-03-02&#34;;
     var value = dataMap.get(key);
-    var wordCount =  81 ;
+    var wordCount =  2963 ;
     var link = &#34;/p/kairos/&#34;;
     var title = &#34;KAIROS&#34;;
     
@@ -135,7 +257,7 @@
     }
     var key = &#34;2024-02-16&#34;;
     var value = dataMap.get(key);
-    var wordCount =  253 ;
+    var wordCount =  5231 ;
     var link = &#34;/p/tfe-gnn/&#34;;
     var title = &#34;TFE GNN&#34;;
     
@@ -147,7 +269,7 @@
     }
     var key = &#34;2023-12-27&#34;;
     var value = dataMap.get(key);
-    var wordCount =  377 ;
+    var wordCount =  5733 ;
     var link = &#34;/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/&#34;;
     var title = &#34;网络认证技术笔记&#34;;
     
@@ -159,7 +281,7 @@
     }
     var key = &#34;2023-12-27&#34;;
     var value = dataMap.get(key);
-    var wordCount =  614 ;
+    var wordCount =  12702 ;
     var link = &#34;/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/&#34;;
     var title = &#34;自然语言处理笔记&#34;;
     
@@ -171,7 +293,7 @@
     }
     var key = &#34;2023-11-29&#34;;
     var value = dataMap.get(key);
-    var wordCount =  154 ;
+    var wordCount =  1725 ;
     var link = &#34;/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/&#34;;
     var title = &#34;网络认证技术作业三&#34;;
     
@@ -183,7 +305,7 @@
     }
     var key = &#34;2023-10-25&#34;;
     var value = dataMap.get(key);
-    var wordCount =  91 ;
+    var wordCount =  437 ;
     var link = &#34;/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/&#34;;
     var title = &#34;复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&#34;;
     
@@ -195,7 +317,7 @@
     }
     var key = &#34;2023-10-19&#34;;
     var value = dataMap.get(key);
-    var wordCount =  1010 ;
+    var wordCount =  9320 ;
     var link = &#34;/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/&#34;;
     var title = &#34;IKEv2标准阅读&#34;;
     
@@ -207,7 +329,7 @@
     }
     var key = &#34;2023-10-16&#34;;
     var value = dataMap.get(key);
-    var wordCount =  143 ;
+    var wordCount =  3980 ;
     var link = &#34;/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/&#34;;
     var title = &#34;Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&#34;;
     
@@ -219,7 +341,7 @@
     }
     var key = &#34;2023-10-16&#34;;
     var value = dataMap.get(key);
-    var wordCount =  177 ;
+    var wordCount =  1215 ;
     var link = &#34;/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/&#34;;
     var title = &#34;Frp实现隧道穿透远程桌面&#34;;
     
@@ -237,7 +359,7 @@
     }
     data.push([key, (sum / 1000).toFixed(1)]);
   }
-  
+
   var startDate = new Date();
   var year_Mill = startDate.setFullYear((startDate.getFullYear() - 1));
   var startDate = +new Date(year_Mill);
@@ -275,76 +397,7 @@
       return heatmap_width(6);
     }
   }
-
-  option = {
-    title: {
-        top: 0,
-        left: &#39;center&#39;,
-        text: &#39;博客热力图&#39;
-    },
-    tooltip: {
-      hideDelay: 1000,
-      enterable: true,
-      formatter: function (p) {
-        const date = p.data[0];
-        const posts = dataMap.get(date);
-        var content = `${date}`;
-        for (const [i, post] of posts.entries()) {
-            content += &#34;&lt;br&gt;&#34;;
-            var link = post.link;
-            var title = post.title;
-            var wordCount = (post.wordCount / 1000).toFixed(1);
-            content += `&lt;a href=&#34;${link}&#34; target=&#34;_blank&#34;&gt;${title} | ${wordCount} k&lt;/a&gt;`
-        }
-        return content;
-      }
-    },
-    visualMap: {
-        min: 0,
-        max: 10,
-        type: &#39;piecewise&#39;,
-        orient: &#39;horizontal&#39;,
-        left: &#39;center&#39;,
-        top: 30,
-        
-        inRange: {   
-          
-          color: [&#39;#7aa8744c&#39;, &#39;#7AA874&#39; ] 
-        },
-        splitNumber: 4,
-        text: [&#39;千字&#39;, &#39;&#39;],
-        showLabel: true,
-        itemGap: 20,
-    },
-    calendar: {
-        top: 80,
-        left: 20,
-        right: 4,
-        cellSize: [&#39;auto&#39;, 13],
-        range: getRangeArr(),
-        itemStyle: {
-            color: &#39;#F1F1F1&#39;,
-            borderWidth: 1.5,
-            borderColor: &#39;#fff&#39;,
-        },
-        yearLabel: { show: false },
-        
-        splitLine: {
-          lineStyle: {
-            color: &#39;rgba(0, 0, 0, 0.0)&#39;,
-            
-            
-            
-            
-          }
-        }
-    },
-    series: {
-        type: &#39;heatmap&#39;,
-        coordinateSystem: &#39;calendar&#39;,
-        data: data,
-    }
-  };
+  var option = genOption();
   myChart.setOption(option);
   myChart.on(&#39;click&#39;, function(params) {
     if (params.componentType === &#39;series&#39;) {
@@ -354,6 +407,13 @@
       window.open(link, &#39;_blank&#39;).focus();
     }
 });
+
+  function updateChartColors() {
+    option = genOption();
+    myChart.setOption(option);
+  }
+
+  window.addEventListener(&#39;colorSchemeChange&#39;, updateChartColors);
 &lt;/script&gt; 
 
 </description>
@@ -381,8 +441,106 @@
   window.onresize = function() {
       myChart.resize();
   };
-  var option;
+  
+  function genOption(){
+    var option;
+    const colorSchemeItem = localStorage.getItem(&#39;StackColorScheme&#39;); 
+    if (colorSchemeItem == &#39;light&#39;) {
+      var color_t = [&#39;#a8e4a0&#39;, &#39;#7aa874&#39;, &#39;#4e8a4c&#39;,&#39;#2c5f2d&#39; ]; 
+      var color_font = &#39;#000&#39;; 
+      var color_cube = &#39;#f1f1f1&#39;; 
+      var color_title = &#39;#000&#39;; 
+      var color_border = &#39;#fff&#39;; 
+      var color_split_month = &#39;rgba(0, 0, 0, 0.0)&#39;; 
+    } else {
+      var color_t = [&#39;#fbb1d9&#39;, &#39;#f770d4&#39;, &#39;#d94bbf&#39;, &#39;#a734a2&#39; ]; 
+      var color_font = &#39;#fff&#39;; 
+      var color_cube = &#39;#1e1e1e&#39;; 
+      var color_title = &#39;#fff&#39;; 
+      var color_border = &#39;#121212&#39;; 
+      var color_split_month = &#39;rgba(0, 0, 0, 0.0)&#39;; 
+    }
+    option = {
+      title: {
+          top: 0,
+          left: &#39;center&#39;,
+          text: &#39;博客热力图&#39;,
+          textStyle: {
+            color: color_title,
+            fontSize: 20,
+          }
+      },
+      tooltip: {
+        hideDelay: 1000,
+        enterable: true,
+        formatter: function (p) {
+          const date = p.data[0];
+          const posts = dataMap.get(date);
+          var content = `${date}`;
+          for (const [i, post] of posts.entries()) {
+              content += &#34;&lt;br&gt;&#34;;
+              var link = post.link;
+              var title = post.title;
+              var wordCount = (post.wordCount / 1000).toFixed(1);
+              content += `&lt;a href=&#34;${link}&#34; target=&#34;_blank&#34;&gt;${title} | ${wordCount} k&lt;/a&gt;`
+          }
+          return content;
+        }
+      },
+      visualMap: {
+        min: 0,
+        max: 10,
+        type: &#39;piecewise&#39;,
+        orient: &#39;horizontal&#39;,
+        left: &#39;center&#39;,
+        top: 30,
 
+        inRange: {   
+          
+          color: color_t,
+        },
+        splitNumber: 4,
+        text: [&#39;千字&#39;, &#39;&#39;],
+        showLabel: true,
+        itemGap: 20,
+        textStyle: {
+          color: color_font,
+        }
+      },
+      calendar: {
+        top: 80,
+        left: 20,
+        right: 4,
+        cellSize: [&#39;auto&#39;, 13],
+        range: getRangeArr(),
+        itemStyle: {
+            color: color_cube,
+            borderWidth: 1.5,
+            borderColor: color_border,
+        },
+        monthLabel: { color: color_font },
+        dayLabel: { color: color_font },
+        yearLabel: { show: false },
+        
+        splitLine: {
+          lineStyle: {
+            color: &#39;rgba(0, 0, 0, 0.0)&#39;,
+            
+            
+            
+            
+          }
+        }
+      },
+      series: {
+        type: &#39;heatmap&#39;,
+        coordinateSystem: &#39;calendar&#39;,
+        data: data,
+      }
+  };
+    return option;
+  }
+  
   
   
   
@@ -391,9 +549,33 @@
   
   var dataMap = new Map();
   
+    var key = &#34;2024-09-05&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  1671 ;
+    var link = &#34;/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/&#34;;
+    var title = &#34;HugoStackHeatmap明暗主题适配&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = &#34;2024-09-04&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  4375 ;
+    var link = &#34;/p/hugostack%E8%A3%85%E4%BF%AE/&#34;;
+    var title = &#34;HugoStack装修&#34;;
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
     var key = &#34;2024-09-03&#34;;
     var value = dataMap.get(key);
-    var wordCount =  205 ;
+    var wordCount =  969 ;
     var link = &#34;/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/&#34;;
     var title = &#34;Markdown下的Tex渲染失败解决&#34;;
     
@@ -405,7 +587,7 @@
     }
     var key = &#34;2024-09-02&#34;;
     var value = dataMap.get(key);
-    var wordCount =  777 ;
+    var wordCount =  12859 ;
     var link = &#34;/p/shadewatcher/&#34;;
     var title = &#34;Shadewatcher&#34;;
     
@@ -417,7 +599,7 @@
     }
     var key = &#34;2024-07-24&#34;;
     var value = dataMap.get(key);
-    var wordCount =  318 ;
+    var wordCount =  6489 ;
     var link = &#34;/p/nodlink/&#34;;
     var title = &#34;NODLINK&#34;;
     
@@ -429,7 +611,7 @@
     }
     var key = &#34;2024-05-21&#34;;
     var value = dataMap.get(key);
-    var wordCount =  500 ;
+    var wordCount =  2144 ;
     var link = &#34;/p/cve-2023-2480/&#34;;
     var title = &#34;CVE 2023 2480&#34;;
     
@@ -441,7 +623,7 @@
     }
     var key = &#34;2024-04-18&#34;;
     var value = dataMap.get(key);
-    var wordCount =  223 ;
+    var wordCount =  5574 ;
     var link = &#34;/p/flash/&#34;;
     var title = &#34;FLASH&#34;;
     
@@ -453,7 +635,7 @@
     }
     var key = &#34;2024-03-02&#34;;
     var value = dataMap.get(key);
-    var wordCount =  712 ;
+    var wordCount =  14597 ;
     var link = &#34;/p/magic/&#34;;
     var title = &#34;MAGIC&#34;;
     
@@ -465,7 +647,7 @@
     }
     var key = &#34;2024-03-02&#34;;
     var value = dataMap.get(key);
-    var wordCount =  308 ;
+    var wordCount =  5813 ;
     var link = &#34;/p/atlas/&#34;;
     var title = &#34;ATLAS&#34;;
     
@@ -477,7 +659,7 @@
     }
     var key = &#34;2024-03-02&#34;;
     var value = dataMap.get(key);
-    var wordCount =  81 ;
+    var wordCount =  2963 ;
     var link = &#34;/p/kairos/&#34;;
     var title = &#34;KAIROS&#34;;
     
@@ -489,7 +671,7 @@
     }
     var key = &#34;2024-02-16&#34;;
     var value = dataMap.get(key);
-    var wordCount =  253 ;
+    var wordCount =  5231 ;
     var link = &#34;/p/tfe-gnn/&#34;;
     var title = &#34;TFE GNN&#34;;
     
@@ -501,7 +683,7 @@
     }
     var key = &#34;2023-12-27&#34;;
     var value = dataMap.get(key);
-    var wordCount =  377 ;
+    var wordCount =  5733 ;
     var link = &#34;/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/&#34;;
     var title = &#34;网络认证技术笔记&#34;;
     
@@ -513,7 +695,7 @@
     }
     var key = &#34;2023-12-27&#34;;
     var value = dataMap.get(key);
-    var wordCount =  614 ;
+    var wordCount =  12702 ;
     var link = &#34;/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/&#34;;
     var title = &#34;自然语言处理笔记&#34;;
     
@@ -525,7 +707,7 @@
     }
     var key = &#34;2023-11-29&#34;;
     var value = dataMap.get(key);
-    var wordCount =  154 ;
+    var wordCount =  1725 ;
     var link = &#34;/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/&#34;;
     var title = &#34;网络认证技术作业三&#34;;
     
@@ -537,7 +719,7 @@
     }
     var key = &#34;2023-10-25&#34;;
     var value = dataMap.get(key);
-    var wordCount =  91 ;
+    var wordCount =  437 ;
     var link = &#34;/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/&#34;;
     var title = &#34;复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&#34;;
     
@@ -549,7 +731,7 @@
     }
     var key = &#34;2023-10-19&#34;;
     var value = dataMap.get(key);
-    var wordCount =  1010 ;
+    var wordCount =  9320 ;
     var link = &#34;/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/&#34;;
     var title = &#34;IKEv2标准阅读&#34;;
     
@@ -561,7 +743,7 @@
     }
     var key = &#34;2023-10-16&#34;;
     var value = dataMap.get(key);
-    var wordCount =  143 ;
+    var wordCount =  3980 ;
     var link = &#34;/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/&#34;;
     var title = &#34;Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis&#34;;
     
@@ -573,7 +755,7 @@
     }
     var key = &#34;2023-10-16&#34;;
     var value = dataMap.get(key);
-    var wordCount =  177 ;
+    var wordCount =  1215 ;
     var link = &#34;/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/&#34;;
     var title = &#34;Frp实现隧道穿透远程桌面&#34;;
     
@@ -591,7 +773,7 @@
     }
     data.push([key, (sum / 1000).toFixed(1)]);
   }
-  
+
   var startDate = new Date();
   var year_Mill = startDate.setFullYear((startDate.getFullYear() - 1));
   var startDate = +new Date(year_Mill);
@@ -629,76 +811,7 @@
       return heatmap_width(6);
     }
   }
-
-  option = {
-    title: {
-        top: 0,
-        left: &#39;center&#39;,
-        text: &#39;博客热力图&#39;
-    },
-    tooltip: {
-      hideDelay: 1000,
-      enterable: true,
-      formatter: function (p) {
-        const date = p.data[0];
-        const posts = dataMap.get(date);
-        var content = `${date}`;
-        for (const [i, post] of posts.entries()) {
-            content += &#34;&lt;br&gt;&#34;;
-            var link = post.link;
-            var title = post.title;
-            var wordCount = (post.wordCount / 1000).toFixed(1);
-            content += `&lt;a href=&#34;${link}&#34; target=&#34;_blank&#34;&gt;${title} | ${wordCount} k&lt;/a&gt;`
-        }
-        return content;
-      }
-    },
-    visualMap: {
-        min: 0,
-        max: 10,
-        type: &#39;piecewise&#39;,
-        orient: &#39;horizontal&#39;,
-        left: &#39;center&#39;,
-        top: 30,
-        
-        inRange: {   
-          
-          color: [&#39;#7aa8744c&#39;, &#39;#7AA874&#39; ] 
-        },
-        splitNumber: 4,
-        text: [&#39;千字&#39;, &#39;&#39;],
-        showLabel: true,
-        itemGap: 20,
-    },
-    calendar: {
-        top: 80,
-        left: 20,
-        right: 4,
-        cellSize: [&#39;auto&#39;, 13],
-        range: getRangeArr(),
-        itemStyle: {
-            color: &#39;#F1F1F1&#39;,
-            borderWidth: 1.5,
-            borderColor: &#39;#fff&#39;,
-        },
-        yearLabel: { show: false },
-        
-        splitLine: {
-          lineStyle: {
-            color: &#39;rgba(0, 0, 0, 0.0)&#39;,
-            
-            
-            
-            
-          }
-        }
-    },
-    series: {
-        type: &#39;heatmap&#39;,
-        coordinateSystem: &#39;calendar&#39;,
-        data: data,
-    }
-  };
+  var option = genOption();
   myChart.setOption(option);
   myChart.on(&#39;click&#39;, function(params) {
     if (params.componentType === &#39;series&#39;) {
@@ -708,6 +821,13 @@
       window.open(link, &#39;_blank&#39;).focus();
     }
 });
+
+  function updateChartColors() {
+    option = genOption();
+    myChart.setOption(option);
+  }
+
+  window.addEventListener(&#39;colorSchemeChange&#39;, updateChartColors);
 &lt;/script&gt; 
 
 </description>

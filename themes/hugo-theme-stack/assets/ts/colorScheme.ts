@@ -20,6 +20,7 @@ class StackColorScheme {
 
     private saveScheme() {
         localStorage.setItem(this.localStorageKey, this.currentScheme);
+        window.dispatchEvent(new Event('colorSchemeChange'));
     }
 
     private bindClick(toggleEl: HTMLElement) {

@@ -6,13 +6,15 @@
 
 <link rel='canonical' href='https://blog2.pillar.fun/%E5%85%B3%E4%BA%8E/'>
 
-<link rel="stylesheet" href="/scss/style.min.82c29a3df35b3996da6bb4b4275e5ad453e2587c06ff57bf28028350a6e437b5.css"><meta property='og:title' content="关于">
+<link rel="stylesheet" href="/scss/style.min.6c6664e5fc2fdac653c1188e8232dafd9cc4163e563de86670a6c7148a8685dd.css"><meta property='og:title' content="关于">
 <meta property='og:description' content="知名网络保安 正在加载胸中锦绣....">
 <meta property='og:url' content='https://blog2.pillar.fun/%E5%85%B3%E4%BA%8E/'>
 <meta property='og:site_name' content='π1l4r_のblog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Page' />
 <meta name="twitter:title" content="关于">
 <meta name="twitter:description" content="知名网络保安 正在加载胸中锦绣....">
+    <link rel="shortcut icon" href="/img/lotus.svg" />
+
   
 
 
@@ -199,41 +201,49 @@
         
         
         <li >
-            <a href='/post/class' >
+            <a href='/post/class/' >
                 
                 
                 
-                <span>📕课程</span>
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" /><path d="M19 16h-12a2 2 0 0 0 -2 2" /><path d="M9 8h6" /></svg>
+                
+                <span>课程</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/post/thesis' >
+            <a href='/post/thesis/' >
                 
                 
                 
-                <span>📚论文</span>
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-school"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg>
+                
+                <span>论文</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/post/tech' >
+            <a href='/post/tech/' >
                 
                 
                 
-                <span>👨🏻‍💻技术</span>
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" /><path d="M7 20h10" /><path d="M9 16v4" /><path d="M15 16v4" /></svg>
+                
+                <span>技术</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/post/misc' >
+            <a href='/post/misc/' >
                 
                 
                 
-                <span>👾杂项</span>
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-topology-star-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M18 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M10 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M6 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M18 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M14 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M22 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M6 12h4" /><path d="M14 12h4" /><path d="M15 7l-2 3" /><path d="M9 7l2 3" /><path d="M11 14l-2 3" /><path d="M13 14l2 3" /></svg>
+                
+                <span>杂项</span>
             </a>
         </li>
         
@@ -333,8 +343,106 @@
   window.onresize = function() {
       myChart.resize();
   };
-  var option;
+  
+  function genOption(){
+    var option;
+    const colorSchemeItem = localStorage.getItem('StackColorScheme'); 
+    if (colorSchemeItem == 'light') {
+      var color_t = ['#a8e4a0', '#7aa874', '#4e8a4c','#2c5f2d' ]; 
+      var color_font = '#000'; 
+      var color_cube = '#f1f1f1'; 
+      var color_title = '#000'; 
+      var color_border = '#fff'; 
+      var color_split_month = 'rgba(0, 0, 0, 0.0)'; 
+    } else {
+      var color_t = ['#fbb1d9', '#f770d4', '#d94bbf', '#a734a2' ]; 
+      var color_font = '#fff'; 
+      var color_cube = '#1e1e1e'; 
+      var color_title = '#fff'; 
+      var color_border = '#121212'; 
+      var color_split_month = 'rgba(0, 0, 0, 0.0)'; 
+    }
+    option = {
+      title: {
+          top: 0,
+          left: 'center',
+          text: '博客热力图',
+          textStyle: {
+            color: color_title,
+            fontSize: 20,
+          }
+      },
+      tooltip: {
+        hideDelay: 1000,
+        enterable: true,
+        formatter: function (p) {
+          const date = p.data[0];
+          const posts = dataMap.get(date);
+          var content = `${date}`;
+          for (const [i, post] of posts.entries()) {
+              content += "<br>";
+              var link = post.link;
+              var title = post.title;
+              var wordCount = (post.wordCount / 1000).toFixed(1);
+              content += `<a href="${link}" target="_blank">${title} | ${wordCount} k</a>`
+          }
+          return content;
+        }
+      },
+      visualMap: {
+        min: 0,
+        max: 10,
+        type: 'piecewise',
+        orient: 'horizontal',
+        left: 'center',
+        top: 30,
 
+        inRange: {   
+          
+          color: color_t,
+        },
+        splitNumber: 4,
+        text: ['千字', ''],
+        showLabel: true,
+        itemGap: 20,
+        textStyle: {
+          color: color_font,
+        }
+      },
+      calendar: {
+        top: 80,
+        left: 20,
+        right: 4,
+        cellSize: ['auto', 13],
+        range: getRangeArr(),
+        itemStyle: {
+            color: color_cube,
+            borderWidth: 1.5,
+            borderColor: color_border,
+        },
+        monthLabel: { color: color_font },
+        dayLabel: { color: color_font },
+        yearLabel: { show: false },
+        
+        splitLine: {
+          lineStyle: {
+            color: 'rgba(0, 0, 0, 0.0)',
+            
+            
+            
+            
+          }
+        }
+      },
+      series: {
+        type: 'heatmap',
+        coordinateSystem: 'calendar',
+        data: data,
+      }
+  };
+    return option;
+  }
+  
   
   
   
@@ -343,9 +451,33 @@
   
   var dataMap = new Map();
   
+    var key = "2024-09-05";
+    var value = dataMap.get(key);
+    var wordCount =  1671 ;
+    var link = "/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/";
+    var title = "HugoStackHeatmap明暗主题适配";
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
+    var key = "2024-09-04";
+    var value = dataMap.get(key);
+    var wordCount =  4375 ;
+    var link = "/p/hugostack%E8%A3%85%E4%BF%AE/";
+    var title = "HugoStack装修";
+    
+    
+    if (value == null) {
+      dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+      value.push({wordCount, link, title});
+    }
     var key = "2024-09-03";
     var value = dataMap.get(key);
-    var wordCount =  205 ;
+    var wordCount =  969 ;
     var link = "/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/";
     var title = "Markdown下的Tex渲染失败解决";
     
@@ -357,7 +489,7 @@
     }
     var key = "2024-09-02";
     var value = dataMap.get(key);
-    var wordCount =  777 ;
+    var wordCount =  12859 ;
     var link = "/p/shadewatcher/";
     var title = "Shadewatcher";
     
@@ -369,7 +501,7 @@
     }
     var key = "2024-07-24";
     var value = dataMap.get(key);
-    var wordCount =  318 ;
+    var wordCount =  6489 ;
     var link = "/p/nodlink/";
     var title = "NODLINK";
     
@@ -381,7 +513,7 @@
     }
     var key = "2024-05-21";
     var value = dataMap.get(key);
-    var wordCount =  500 ;
+    var wordCount =  2144 ;
     var link = "/p/cve-2023-2480/";
     var title = "CVE 2023 2480";
     
@@ -393,7 +525,7 @@
     }
     var key = "2024-04-18";
     var value = dataMap.get(key);
-    var wordCount =  223 ;
+    var wordCount =  5574 ;
     var link = "/p/flash/";
     var title = "FLASH";
     
@@ -405,7 +537,7 @@
     }
     var key = "2024-03-02";
     var value = dataMap.get(key);
-    var wordCount =  712 ;
+    var wordCount =  14597 ;
     var link = "/p/magic/";
     var title = "MAGIC";
     
@@ -417,7 +549,7 @@
     }
     var key = "2024-03-02";
     var value = dataMap.get(key);
-    var wordCount =  308 ;
+    var wordCount =  5813 ;
     var link = "/p/atlas/";
     var title = "ATLAS";
     
@@ -429,7 +561,7 @@
     }
     var key = "2024-03-02";
     var value = dataMap.get(key);
-    var wordCount =  81 ;
+    var wordCount =  2963 ;
     var link = "/p/kairos/";
     var title = "KAIROS";
     
@@ -441,7 +573,7 @@
     }
     var key = "2024-02-16";
     var value = dataMap.get(key);
-    var wordCount =  253 ;
+    var wordCount =  5231 ;
     var link = "/p/tfe-gnn/";
     var title = "TFE GNN";
     
@@ -453,7 +585,7 @@
     }
     var key = "2023-12-27";
     var value = dataMap.get(key);
-    var wordCount =  377 ;
+    var wordCount =  5733 ;
     var link = "/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/";
     var title = "网络认证技术笔记";
     
@@ -465,7 +597,7 @@
     }
     var key = "2023-12-27";
     var value = dataMap.get(key);
-    var wordCount =  614 ;
+    var wordCount =  12702 ;
     var link = "/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/";
     var title = "自然语言处理笔记";
     
@@ -477,7 +609,7 @@
     }
     var key = "2023-11-29";
     var value = dataMap.get(key);
-    var wordCount =  154 ;
+    var wordCount =  1725 ;
     var link = "/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/";
     var title = "网络认证技术作业三";
     
@@ -489,7 +621,7 @@
     }
     var key = "2023-10-25";
     var value = dataMap.get(key);
-    var wordCount =  91 ;
+    var wordCount =  437 ;
     var link = "/p/%E5%A4%8D%E7%8E%B0detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/";
     var title = "复现Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis";
     
@@ -501,7 +633,7 @@
     }
     var key = "2023-10-19";
     var value = dataMap.get(key);
-    var wordCount =  1010 ;
+    var wordCount =  9320 ;
     var link = "/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/";
     var title = "IKEv2标准阅读";
     
@@ -513,7 +645,7 @@
     }
     var key = "2023-10-16";
     var value = dataMap.get(key);
-    var wordCount =  143 ;
+    var wordCount =  3980 ;
     var link = "/p/detecting-unknown-encrypted-malicious-traffic-in-real-time-via-flow-interaction-graph-analysis/";
     var title = "Detecting Unknown Encrypted Malicious Traffic in Real Time via Flow Interaction Graph Analysis";
     
@@ -525,7 +657,7 @@
     }
     var key = "2023-10-16";
     var value = dataMap.get(key);
-    var wordCount =  177 ;
+    var wordCount =  1215 ;
     var link = "/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/";
     var title = "Frp实现隧道穿透远程桌面";
     
@@ -543,7 +675,7 @@
     }
     data.push([key, (sum / 1000).toFixed(1)]);
   }
-  
+
   var startDate = new Date();
   var year_Mill = startDate.setFullYear((startDate.getFullYear() - 1));
   var startDate = +new Date(year_Mill);
@@ -581,76 +713,7 @@
       return heatmap_width(6);
     }
   }
-
-  option = {
-    title: {
-        top: 0,
-        left: 'center',
-        text: '博客热力图'
-    },
-    tooltip: {
-      hideDelay: 1000,
-      enterable: true,
-      formatter: function (p) {
-        const date = p.data[0];
-        const posts = dataMap.get(date);
-        var content = `${date}`;
-        for (const [i, post] of posts.entries()) {
-            content += "<br>";
-            var link = post.link;
-            var title = post.title;
-            var wordCount = (post.wordCount / 1000).toFixed(1);
-            content += `<a href="${link}" target="_blank">${title} | ${wordCount} k</a>`
-        }
-        return content;
-      }
-    },
-    visualMap: {
-        min: 0,
-        max: 10,
-        type: 'piecewise',
-        orient: 'horizontal',
-        left: 'center',
-        top: 30,
-        
-        inRange: {   
-          
-          color: ['#7aa8744c', '#7AA874' ] 
-        },
-        splitNumber: 4,
-        text: ['千字', ''],
-        showLabel: true,
-        itemGap: 20,
-    },
-    calendar: {
-        top: 80,
-        left: 20,
-        right: 4,
-        cellSize: ['auto', 13],
-        range: getRangeArr(),
-        itemStyle: {
-            color: '#F1F1F1',
-            borderWidth: 1.5,
-            borderColor: '#fff',
-        },
-        yearLabel: { show: false },
-        
-        splitLine: {
-          lineStyle: {
-            color: 'rgba(0, 0, 0, 0.0)',
-            
-            
-            
-            
-          }
-        }
-    },
-    series: {
-        type: 'heatmap',
-        coordinateSystem: 'calendar',
-        data: data,
-    }
-  };
+  var option = genOption();
   myChart.setOption(option);
   myChart.on('click', function(params) {
     if (params.componentType === 'series') {
@@ -660,6 +723,13 @@
       window.open(link, '_blank').focus();
     }
 });
+
+  function updateChartColors() {
+    option = genOption();
+    myChart.setOption(option);
+  }
+
+  window.addEventListener('colorSchemeChange', updateChartColors);
 </script> 
 
 
@@ -757,9 +827,66 @@
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了18篇文章 ·
+        总计97.81k字
+    </section>
+    
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
     </section>
 </footer>
+
 
 
     
@@ -859,5 +986,18 @@
     }());
 </script>
 
+<script>
+    let s1 = '2023-10-03'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
+</script>
     </body>
 </html>

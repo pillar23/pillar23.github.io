@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我的hugo博客都做了哪些优化呢？">
+<title>HugoStack装修</title>
+
+<link rel='canonical' href='https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/'>
+
+<link rel="stylesheet" href="/scss/style.min.6c6664e5fc2fdac653c1188e8232dafd9cc4163e563de86670a6c7148a8685dd.css"><meta property='og:title' content="HugoStack装修">
+<meta property='og:description' content="我的hugo博客都做了哪些优化呢？">
+<meta property='og:url' content='https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/'>
+<meta property='og:site_name' content='π1l4r_のblog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='前端' /><meta property='article:published_time' content='2024-09-04T15:43:00&#43;08:00'/><meta property='article:modified_time' content='2024-09-04T15:43:00&#43;08:00'/><meta property='og:image' content='https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010.png' />
+<meta name="twitter:title" content="HugoStack装修">
+<meta name="twitter:description" content="我的hugo博客都做了哪些优化呢？"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010.png' />
+    <link rel="shortcut icon" href="/img/lotus.svg" />
+
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8974536233092345980.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
+            <h2 class="site-description">Like tears in rain.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/such-stupid6'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/class/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" /><path d="M19 16h-12a2 2 0 0 0 -2 2" /><path d="M9 8h6" /></svg>
+                
+                <span>课程</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/thesis/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-school"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg>
+                
+                <span>论文</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/tech/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" /><path d="M7 20h10" /><path d="M9 16v4" /><path d="M15 16v4" /></svg>
+                
+                <span>技术</span>
+            </a>
+        </li>
+        
+        
+        <li  class='current' >
+            <a href='/post/misc/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-topology-star-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M18 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M10 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M6 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M18 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M14 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M22 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M6 12h4" /><path d="M14 12h4" /><path d="M15 7l-2 3" /><path d="M9 7l2 3" /><path d="M11 14l-2 3" /><path d="M13 14l2 3" /></svg>
+                
+                <span>杂项</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#导语">导语</a></li>
+    <li><a href="#综述">综述</a></li>
+    <li><a href="#具体操作">具体操作</a>
+      <ol>
+        <li><a href="#customscss">custom.scss</a>
+          <ol>
+            <li><a href="#设置不同的highlight">设置不同的highlight</a></li>
+          </ol>
+        </li>
+        <li><a href="#字数统计">字数统计</a></li>
+        <li><a href="#统计运行时间">统计运行时间</a></li>
+        <li><a href="#自定义菜单">自定义菜单</a></li>
+        <li><a href="#heatmap">heatmap</a></li>
+        <li><a href="#取消相关推荐的图片的奇怪的彩色阴影">取消相关推荐的图片的奇怪的彩色阴影</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/hugostack%E8%A3%85%E4%BF%AE/">
+                <img src="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu17883879965425792116.png"
+                        srcset="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu17883879965425792116.png 800w, /p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu1559150145856903938.png 1600w"
+                        width="800" 
+                        height="283" 
+                        loading="lazy"
+                        alt="Featured image of post HugoStack装修" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%89%8D%E7%AB%AF/" >
+                前端
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/hugostack%E8%A3%85%E4%BF%AE/">HugoStack装修</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            我的hugo博客都做了哪些优化呢？
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 04, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 9 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="导语">导语
+</h2><p>博客就是拿来装修的，发文其实不重要（？</p>
+<h2 id="综述">综述
+</h2><p>我使用的是hugo stack博客，hugo博客有一个好处就是你可以将所有的更改放在博客根目录下，这会覆盖掉theme里对应的同名文件，同时很多主题（比如stack）支持以submodule的模式安装，所以就可以安心的更新主题，使用主题的最新特性了</p>
+<p>这篇装修主要参考了以下大佬们的教程，あぃがとう❣以下排名不分先后</p>
+<p><a class="link" href="https://thirdshire.com/hugo-stack-renovation/"  target="_blank" rel="noopener"
+    >https://thirdshire.com/hugo-stack-renovation/</a></p>
+<p><a class="link" href="https://www.xalaok.top/post/stack-modify/"  target="_blank" rel="noopener"
+    >Hugo-theme-Stack 魔改美化 | Naive Koala (xalaok.top)</a></p>
+<p><a class="link" href="https://blog.liminalnegativespace.xyz/posts/heatmap/"  target="_blank" rel="noopener"
+    >给博客添加heatmap | Liminal Negative Space</a></p>
+<p><a class="link" href="https://mogeko.me/zh-cn/posts/zh-cn/033/"  target="_blank" rel="noopener"
+    >https://mogeko.me/zh-cn/posts/zh-cn/033/</a></p>
+<h2 id="具体操作">具体操作
+</h2><h3 id="customscss">custom.scss
+</h3><p>hugo的custom.scss是优先级最高的scss，其他所有的scss都会被他覆盖掉，这里我们通过修改css实现了</p>
+<ul>
+<li>各种棱角的磨圆，以及某些本来看着不够圆的磨得更圆</li>
+<li>滚动条的美化</li>
+<li>light模式和dark模式的色彩修改（还没改完，这玩意你自己看着改就行，不知道改哪个变量可以去 <code>\assets\scss\variables.scss</code>找</li>
+<li>修复引用块内容窄页面显示问题</li>
+<li>文章内容图片圆角阴影</li>
+<li>文章内容引用块样式</li>
+<li>代码块基础样式修改以及highlight主题变更（其实没啥用，而且还挺麻烦，有后续步骤，觉得麻烦也可以不改）</li>
+<li>设置选中字体的区域背景颜色</li>
+<li>文章封面高度更改</li>
+<li>全局页面布局间距调整</li>
+<li>页面三栏宽度调整</li>
+<li>全局页面小图片样式微调</li>
+<li>归档页面双栏</li>
+<li>链接三栏</li>
+<li>头像旋转动画</li>
+</ul>
+<p>在 <code>assets\scss\custom.scss</code>里写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// 全局滚动条美化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nt">html</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">::-webkit-scrollbar</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">width</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">::-webkit-scrollbar-track</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background-color</span><span class="o">:</span> <span class="ni">transparent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">::-webkit-scrollbar-thumb</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background-color</span><span class="o">:</span> <span class="mh">#d6dee1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border-radius</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border</span><span class="o">:</span> <span class="mi">6</span><span class="kt">px</span> <span class="ni">solid</span> <span class="ni">transparent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background-clip</span><span class="o">:</span> <span class="ni">content-box</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">::-webkit-scrollbar-thumb:hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background-color</span><span class="o">:</span> <span class="mh">#a8bbbf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 页面基本配色
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">:root</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 全局顶部边距
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">--main-top-padding</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 全局卡片圆角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">--card-border-radius</span><span class="o">:</span> <span class="mi">25</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 标签云卡片圆角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">--tag-border-radius</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 卡片间距
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">--section-separation</span><span class="o">:</span> <span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 全局字体大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">--article-font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.8</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">--emphasize-text-color</span><span class="o">:</span> <span class="mh">#9e8f9f</span><span class="p">;</span> <span class="c1">// Add emphasize font color
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// // 行内代码背景色
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// --code-background-color: #f8f8f8;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// // 行内代码前景色
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// --code-text-color: #e96900;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 暗色模式下样式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">&amp;</span><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;dark&#34;</span><span class="o">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 背景色
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="na">--body-background</span><span class="o">:</span> <span class="mh">#000000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 滚动条按钮色
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="na">--scrollbar-thumb</span><span class="o">:</span> <span class="mh">#242424</span><span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 文章卡片背景色
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="na">--card-background</span><span class="o">:</span> <span class="mh">#121212</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">--emphasize-text-color</span><span class="o">:</span> <span class="mh">#d5cfc4</span><span class="p">;</span> <span class="c1">// Add emphasize font color for dark scheme
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 修复引用块内容窄页面显示问题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nt">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">word-break</span><span class="o">:</span> <span class="ni">break-all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">code</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">word-break</span><span class="o">:</span> <span class="ni">break-all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//---------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 文章内容图片圆角阴影
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.article-page</span> <span class="nc">.main-article</span> <span class="nc">.article-content</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">max-width</span><span class="o">:</span> <span class="mi">96</span><span class="kt">%</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">:</span> <span class="ni">auto</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border-radius</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 文章内容引用块样式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.article-content</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">blockquote</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border-left</span><span class="o">:</span> <span class="mi">6</span><span class="kt">px</span> <span class="ni">solid</span> <span class="mh">#358b9a</span><span class="mi">1</span><span class="kt">f</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background</span><span class="o">:</span> <span class="mh">#3a9743</span><span class="mi">1</span><span class="kt">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ---------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 代码块基础样式修改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">max-width</span><span class="o">:</span> <span class="mi">102</span><span class="kt">%</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="ni">pre</span><span class="o">-</span><span class="n">background-color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="na">padding</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-padding</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="na">position</span><span class="o">:</span> <span class="ni">relative</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-left</span><span class="o">:</span> <span class="o">-</span><span class="mi">7</span><span class="kt">px</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-right</span><span class="o">:</span> <span class="o">-</span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">box-shadow</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">shadow-l1</span><span class="p">)</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nc">.copyCodeButton</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">opacity</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// keep Codeblocks LTR
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">[</span><span class="nt">dir</span><span class="o">=</span><span class="s2">&#34;rtl&#34;</span><span class="o">]</span> <span class="k">&amp;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">direction</span><span class="o">:</span> <span class="ni">ltr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">pre</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">margin</span><span class="o">:</span> <span class="ni">initial</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">margin</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">width</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// light模式下的代码块样式调整
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;light&#34;</span><span class="o">]</span> <span class="nc">.article-content</span> <span class="nc">.highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;light&#34;</span><span class="o">]</span> <span class="nc">.chroma</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// color: #ff6f00;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// dark模式下的代码块样式调整
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;dark&#34;</span><span class="o">]</span> <span class="nc">.article-content</span> <span class="nc">.highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#1f1f24</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;dark&#34;</span><span class="o">]</span> <span class="nc">.chroma</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// color: #ff6f00;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#1f1f24</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//-------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 设置选中字体的区域背景颜色
+</span></span></span><span class="line"><span class="cl"><span class="c1">//修改选中颜色
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">::selection</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background</span><span class="o">:</span> <span class="mh">#34495e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">text-decoration</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">accent-color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">accent-color-darker</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">&amp;</span><span class="nc">.link</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">color</span><span class="o">:</span> <span class="mh">#4288b9</span><span class="n">ad</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">font-weight</span><span class="o">:</span> <span class="mi">600</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">2</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">text-decoration</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">cursor</span><span class="o">:</span> <span class="ni">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">text-decoration</span><span class="o">:</span> <span class="ni">underline</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//-------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">//文章封面高度更改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.article-list</span> <span class="nt">article</span> <span class="nc">.article-image</span> <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">height</span><span class="o">:</span> <span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">object-fit</span><span class="o">:</span> <span class="ni">cover</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">:</span> <span class="mi">305</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//---------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 全局页面布局间距调整
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.main-container</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">min-height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">vh</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">align-items</span><span class="o">:</span> <span class="ni">flex-start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">gap</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">section-separation</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="na">padding-top</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">main-top-padding</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">37</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//--------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">//页面三栏宽度调整
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.container</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-left</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-right</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nc">.left-sidebar</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">order</span><span class="o">:</span> <span class="o">-</span><span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">max-width</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="ni">left</span><span class="o">-</span><span class="n">sidebar-max-width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nc">.right-sidebar</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">order</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">max-width</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="ni">right</span><span class="o">-</span><span class="n">sidebar-max-width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">/// Display right sidebar when min-width: lg
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">display</span><span class="o">:</span> <span class="ni">flex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">&amp;</span><span class="nc">.extended</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">max-width</span><span class="o">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">--left-sidebar-max-width</span><span class="o">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">--right-sidebar-max-width</span><span class="o">:</span> <span class="mi">22</span><span class="kt">%</span> <span class="k">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">max-width</span><span class="o">:</span> <span class="mi">1280</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">--left-sidebar-max-width</span><span class="o">:</span> <span class="mi">20</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">--right-sidebar-max-width</span><span class="o">:</span> <span class="mi">30</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">max-width</span><span class="o">:</span> <span class="mi">1453</span><span class="kt">px</span><span class="p">;</span> <span class="c1">//1536px;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="na">--left-sidebar-max-width</span><span class="o">:</span> <span class="mi">15</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">--right-sidebar-max-width</span><span class="o">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">&amp;</span><span class="nc">.compact</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">--left-sidebar-max-width</span><span class="o">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">max-width</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">max-width</span><span class="o">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">--left-sidebar-max-width</span><span class="o">:</span> <span class="mi">20</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">@include</span><span class="nd"> respond</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">max-width</span><span class="o">:</span> <span class="mi">1280</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//-------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">//全局页面小图片样式微调
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.article-list--compact</span> <span class="nt">article</span> <span class="nc">.article-image</span> <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">width</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="ni">image</span><span class="o">-</span><span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="na">height</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="ni">image</span><span class="o">-</span><span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="na">object-fit</span><span class="o">:</span> <span class="ni">cover</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">17</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">//将滚动条修改为圆角样式
+</span></span></span><span class="line"><span class="cl"><span class="c1">//菜单滚动条美化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.menu</span><span class="nd">::-webkit-scrollbar</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//--------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">//归档页面双栏
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/* 归档页面两栏 */</span>
+</span></span><span class="line"><span class="cl"><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">.article-list--compact</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">grid-template-columns</span><span class="o">:</span> <span class="mi">1</span><span class="kt">fr</span> <span class="mi">1</span><span class="kt">fr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">box-shadow</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">gap</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">article</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-background</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="na">border</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">box-shadow</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">shadow-l2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">border-radius</span><span class="o">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//--------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">//链接三栏
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">1024</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">.article-list--compact.links</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">grid-template-columns</span><span class="o">:</span> <span class="mi">1</span><span class="kt">fr</span> <span class="mi">1</span><span class="kt">fr</span> <span class="mi">1</span><span class="kt">fr</span><span class="p">;</span> <span class="c1">//三个1fr即为三栏,两个1fr则为双栏,以此类推即可.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="na">background</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">box-shadow</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">gap</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">article</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">background</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-background</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="na">border</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">box-shadow</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">shadow-l2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">border-radius</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-border-radius</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">&amp;</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="na">margin-right</span><span class="o">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.article-list--tile</span> <span class="nt">article</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">transition</span><span class="o">:</span> <span class="mf">.6</span><span class="kt">s</span> <span class="ni">ease</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.article-list--tile</span> <span class="nt">article</span><span class="nd">:hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">transform</span><span class="o">:</span> <span class="nf">scale</span><span class="p">(</span><span class="mi">1</span><span class="mf">.03</span><span class="o">,</span> <span class="mi">1</span><span class="mf">.03</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.article-content</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">.highlight</span><span class="nd">:before</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">content</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background</span><span class="o">:</span> <span class="sx">url(/code-header.svg)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">:</span> <span class="mi">32</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background-size</span><span class="o">:</span> <span class="mi">57</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background-repeat</span><span class="o">:</span> <span class="ni">no-repeat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">background-position</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="kt">px</span> <span class="mi">2</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 头像旋转动画
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.sidebar</span> <span class="nt">header</span> <span class="nc">.site-avatar</span> <span class="nc">.site-logo</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">transition</span><span class="o">:</span> <span class="ni">transform</span> <span class="mi">1</span><span class="mf">.65</span><span class="kt">s</span> <span class="ni">ease-in-out</span><span class="p">;</span> <span class="c1">// 旋转时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.sidebar</span> <span class="nt">header</span> <span class="nc">.site-avatar</span> <span class="nc">.site-logo</span><span class="nd">:hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">transform</span><span class="o">:</span> <span class="nf">rotate</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">);</span> <span class="c1">// 旋转角度为360度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="设置不同的highlight">设置不同的highlight
+</h4><p>hugo使用的marker自带一个highlight的插件，但是只能全局适用，就是说light和dark都是一个highlight，stack自己设置了白天夜里两套highlight，在 <code>assets\scss\partials\highlight</code>里</p>
+<p>使用 <code>hugo gen chromastyles --style=xcode-dark &gt; syntax.css</code>可以生成<a class="link" href="https://xyproto.github.io/splash/docs/longer/all.html"  target="_blank" rel="noopener"
+    >Chroma Style Gallery (xyproto.github.io)</a>中对应的highlight的css，直接把对应的改成light.scss和dark.scss即可，然后再把common.scss的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.chroma</span> <span class="nc">.lntd</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">vertical-align</span><span class="o">:</span> <span class="ni">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">margin</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* LineTable */</span>
+</span></span><span class="line"><span class="cl"><span class="nc">.chroma</span> <span class="nc">.lntable</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border-spacing</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">margin</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">&gt;</span> <span class="nt">tbody</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&gt;</span> <span class="nt">tr</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="na">display</span><span class="o">:</span> <span class="ni">flex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">&gt;</span> <span class="nt">td</span><span class="nd">:last-child</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="na">overflow-x</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这一部分复制过来保存为scss。然后由于可能报看，还要在 <code>custom.scss</code>里应用这些调整来让代码块看着好看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// light模式下的代码块样式调整
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;light&#34;</span><span class="o">]</span> <span class="nc">.article-content</span> <span class="nc">.highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;light&#34;</span><span class="o">]</span> <span class="nc">.chroma</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// color: #ff6f00;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// dark模式下的代码块样式调整
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;dark&#34;</span><span class="o">]</span> <span class="nc">.article-content</span> <span class="nc">.highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#1f1f24</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="nt">data-scheme</span><span class="o">=</span><span class="s2">&#34;dark&#34;</span><span class="o">]</span> <span class="nc">.chroma</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// color: #ff6f00;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#1f1f24</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我调的xcode的highlight大概长这样</p>
+<p><img src="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340.png"
+	width="1221"
+	height="810"
+	srcset="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340_hu15503236255436664196.png 480w, /p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340_hu8465498485148174660.png 1024w"
+	loading="lazy"
+	
+		alt="1725461883340"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="361px"
+	
+></p>
+<p><img src="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323.png"
+	width="1289"
+	height="845"
+	srcset="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323_hu9513959569688993266.png 480w, /p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323_hu12227870733622770458.png 1024w"
+	loading="lazy"
+	
+		alt="1725461899323"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="152"
+		data-flex-basis="366px"
+	
+></p>
+<p>只能说见仁见智了，我觉得其实不调也没啥，要再个性化的话可能就有点工作量太大了</p>
+<h3 id="字数统计">字数统计
+</h3><p>在 <code>layouts/partials/footer/footer.html</code>中增加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="o">&lt;!--</span> <span class="nt">Add</span> <span class="nt">total</span> <span class="nt">page</span> <span class="nt">and</span> <span class="nt">word</span> <span class="nt">count</span> <span class="nt">time</span> <span class="o">--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nt">section</span> <span class="nt">class</span><span class="o">=</span><span class="s2">&#34;totalcount&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{{</span><span class="nv">$scratch</span><span class="o"> :=</span> <span class="n">newScratch</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{{</span> <span class="nt">range</span> <span class="o">(</span><span class="nt">where</span> <span class="nc">.Site.Pages</span> <span class="s2">&#34;Kind&#34;</span> <span class="s2">&#34;page&#34;</span> <span class="o">)</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{{</span><span class="err">$</span><span class="nt">scratch</span><span class="nc">.Add</span> <span class="s2">&#34;total&#34;</span> <span class="nc">.WordCount</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{{</span> <span class="nt">end</span> <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">发表了</span><span class="p">{{</span> <span class="nt">len</span> <span class="o">(</span><span class="nt">where</span> <span class="nc">.Site.RegularPages</span> <span class="s2">&#34;Section&#34;</span> <span class="s2">&#34;post&#34;</span><span class="o">)</span> <span class="p">}}</span><span class="nt">篇文章</span> <span class="err">·</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">总计</span><span class="p">{{</span> <span class="nt">div</span> <span class="o">(</span><span class="err">$</span><span class="nt">scratch</span><span class="nc">.Get</span> <span class="s2">&#34;total&#34;</span><span class="o">)</span> <span class="nt">1000</span><span class="nc">.0</span> <span class="o">|</span> <span class="nt">lang</span><span class="nc">.FormatNumber</span> <span class="nt">2</span> <span class="p">}}</span><span class="nt">k字</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="nt">section</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意如果你是用zh-cn ja ko语言，需要在config.yaml里设置 <code>hasCJKLanguage:true</code>，否则只会按照英文单词那样以空格分来统计</p>
+<p>在 <code>assets/scss/partials/footer.scss</code>里增加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.totalcount</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-text-color-secondary</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="na">font-weight</span><span class="o">:</span> <span class="ni">normal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="统计运行时间">统计运行时间
+</h3><p>在 <code>layouts/partials/footer/custom.html</code>里添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- Add blog running time --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">s1</span> <span class="o">=</span> <span class="s1">&#39;2023-3-18&#39;</span><span class="p">;</span> <span class="c1">//website start date
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">s1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">s1</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-/g</span><span class="p">,</span> <span class="s2">&#34;/&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">timeDifference</span> <span class="o">=</span> <span class="nx">s2</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">s1</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">days</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">timeDifference</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">hours</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">timeDifference</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">minutes</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">timeDifference</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">days</span> <span class="o">+</span> <span class="s2">&#34;天&#34;</span> <span class="o">+</span> <span class="nx">hours</span> <span class="o">+</span> <span class="s2">&#34;小时&#34;</span> <span class="o">+</span> <span class="nx">minutes</span> <span class="o">+</span> <span class="s2">&#34;分钟&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;runningdays&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后再在 <code>layouts/partials/footer/footer.html</code> 里添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- Add blog running time --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;running-time&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">本博客已稳定运行
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;runningdays&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;running-days&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 <code>assets/scss/partials/footer.scss</code>里添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.running-time</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">card-text-color-secondary</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="na">font-weight</span><span class="o">:</span> <span class="ni">normal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nc">.running-days</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="na">font-weight</span><span class="o">:</span><span class="ni">bold</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">emphasize-text-color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>   
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在variable.scss的 <code>:root</code>里加light和dark模式下的&ndash;emphasize-text-color的值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="na">--emphasize-text-color</span><span class="o">:</span> <span class="mh">#9e8f9f</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当然也可以在custom.scss里加，我在custom.scss里加了，你可以ctrl+F搜拿来参考。</p>
+<h3 id="自定义菜单">自定义菜单
+</h3><p>stack主题可以自定义菜单，他提供了两种方法，一种是在 <code>config.yaml</code>里添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">menu</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#     main:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># - name: 课程</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   url: /post/class</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   weight: 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   params:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#       icon: book-2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># - name: 论文</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   url: /post/thesis</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   weight: 2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   params:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#       icon: school</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># - name: 技术</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   url: /post/tech</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   weight: 3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   params:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#       icon: device-desktop</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># - name: 杂项</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   url: /post/misc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   weight: 4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#   params:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#       icon: topology-star-3</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样的设置，但是会出现选中的时候不高亮的问题，但是第二个可以高亮这个应该就可以高亮，只能说bug没修</p>
+<p>第二种方式是在content/post里的_index.md的开头写，类似这样</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">title:&#34;👨🏻‍💻技术&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">description:&#34;一些我感兴趣的学科相关的技术&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">menu</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">main</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">name:&#34;技术&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">weight:3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">icon:device-desktop</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里icon要放在 <code>assets\icons</code>下，我建议在https://tabler-icons.io/里找对于的svg，这样整体风格是一致的</p>
+<h3 id="heatmap">heatmap
+</h3><p>在 <code>layouts\shortcodes</code>和 <code>\layouts\partials</code>里添加一个heatmap.html</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;heatmap&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">  max-width: 1900px;
+</span></span></span><span class="line"><span class="cl"><span class="s">  height: 180px;
+</span></span></span><span class="line"><span class="cl"><span class="s">  padding: 2px;
+</span></span></span><span class="line"><span class="cl"><span class="s">  text-align: center;
+</span></span></span><span class="line"><span class="cl"><span class="s">  &#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">chartDom</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;heatmap&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">myChart</span> <span class="o">=</span> <span class="nx">echarts</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">chartDom</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">onresize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">myChart</span><span class="p">.</span><span class="nx">resize</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">option</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// echart heatmap data seems to only support two elements tuple
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// it doesn&#39;t render when each item has 3 value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// it also only pass first 2 elements when reading event param
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// so here we build a map to store additional metadata like link and title
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// map format {date: [{wordcount, link, title}]}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// for more information see https://blog.douchi.space/hugo-blog-heatmap
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">var</span> <span class="nx">dataMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span> <span class="nx">range</span> <span class="p">((</span><span class="nx">where</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">RegularPages</span> <span class="s2">&#34;Type&#34;</span> <span class="s2">&#34;post&#34;</span><span class="p">))</span> <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="p">{{</span> <span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">Format</span> <span class="s2">&#34;2006-01-02&#34;</span> <span class="p">}};</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">dataMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">wordCount</span> <span class="o">=</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">WordCount</span> <span class="p">}};</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">RelPermalink</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Title</span> <span class="p">}};</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="c1">// multiple posts in same day
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">dataMap</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="p">[{</span><span class="nx">wordCount</span><span class="p">,</span> <span class="nx">link</span><span class="p">,</span> <span class="nx">title</span><span class="p">}]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">value</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">wordCount</span><span class="p">,</span> <span class="nx">link</span><span class="p">,</span> <span class="nx">title</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="o">-</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// sum up the word count
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">dataMap</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">v</span> <span class="k">of</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">wordCount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">key</span><span class="p">,</span> <span class="p">(</span><span class="nx">sum</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)]);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">startDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">year_Mill</span> <span class="o">=</span> <span class="nx">startDate</span><span class="p">.</span><span class="nx">setFullYear</span><span class="p">((</span><span class="nx">startDate</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">startDate</span> <span class="o">=</span> <span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">year_Mill</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">endDate</span> <span class="o">=</span> <span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">dayTime</span> <span class="o">=</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">startDate</span> <span class="o">=</span> <span class="nx">echarts</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nx">formatTime</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">,</span> <span class="nx">startDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">endDate</span> <span class="o">=</span> <span class="nx">echarts</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nx">formatTime</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">,</span> <span class="nx">endDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// change date range according to months we want to render
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">function</span> <span class="nx">heatmap_width</span><span class="p">(</span><span class="nx">months</span><span class="p">){</span>         
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">startDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">mill</span> <span class="o">=</span> <span class="nx">startDate</span><span class="p">.</span><span class="nx">setMonth</span><span class="p">((</span><span class="nx">startDate</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">-</span> <span class="nx">months</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">endDate</span> <span class="o">=</span> <span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">startDate</span> <span class="o">=</span> <span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">mill</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">endDate</span> <span class="o">=</span> <span class="nx">echarts</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nx">formatTime</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">,</span> <span class="nx">endDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">startDate</span> <span class="o">=</span> <span class="nx">echarts</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nx">formatTime</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">,</span> <span class="nx">startDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">showmonth</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">showmonth</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">startDate</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">endDate</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">showmonth</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">getRangeArr</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">windowWidth</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">windowWidth</span> <span class="o">&gt;=</span> <span class="mi">600</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">heatmap_width</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">windowWidth</span> <span class="o">&gt;=</span> <span class="mi">400</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">heatmap_width</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">heatmap_width</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">left</span><span class="o">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;博客热力图&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tooltip</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">hideDelay</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">enterable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">formatter</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="nx">dataMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">date</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">date</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="p">[</span><span class="nx">i</span><span class="p">,</span> <span class="nx">post</span><span class="p">]</span> <span class="k">of</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">content</span> <span class="o">+=</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">post</span><span class="p">.</span><span class="nx">link</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">var</span> <span class="nx">wordCount</span> <span class="o">=</span> <span class="p">(</span><span class="nx">post</span><span class="p">.</span><span class="nx">wordCount</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">content</span> <span class="o">+=</span> <span class="sb">`&lt;a href=&#34;</span><span class="si">${</span><span class="nx">link</span><span class="si">}</span><span class="sb">&#34; target=&#34;_blank&#34;&gt;</span><span class="si">${</span><span class="nx">title</span><span class="si">}</span><span class="sb"> | </span><span class="si">${</span><span class="nx">wordCount</span><span class="si">}</span><span class="sb"> k&lt;/a&gt;`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">content</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">visualMap</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">min</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">max</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;piecewise&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">orient</span><span class="o">:</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">left</span><span class="o">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">top</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">        <span class="nx">inRange</span><span class="o">:</span> <span class="p">{</span>   
+</span></span><span class="line"><span class="cl">          <span class="c1">//  [floor color, ceiling color]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="nx">color</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;#7aa8744c&#39;</span><span class="p">,</span> <span class="s1">&#39;#7AA874&#39;</span> <span class="p">]</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">splitNumber</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">text</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;千字&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">showLabel</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">itemGap</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">calendar</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">top</span><span class="o">:</span> <span class="mi">80</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">left</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">right</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">cellSize</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">range</span><span class="o">:</span> <span class="nx">getRangeArr</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">itemStyle</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#F1F1F1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">borderWidth</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">borderColor</span><span class="o">:</span> <span class="s1">&#39;#fff&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">yearLabel</span><span class="o">:</span> <span class="p">{</span> <span class="nx">show</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// the splitline between months. set to transparent for now.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">splitLine</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">lineStyle</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;rgba(0, 0, 0, 0.0)&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// shadowColor: &#39;rgba(0, 0, 0, 0.5)&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// shadowBlur: 5,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// width: 0.5,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// type: &#39;dashed&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">series</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;heatmap&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">coordinateSystem</span><span class="o">:</span> <span class="s1">&#39;calendar&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">data</span><span class="o">:</span> <span class="nx">data</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">myChart</span><span class="p">.</span><span class="nx">setOption</span><span class="p">(</span><span class="nx">option</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">myChart</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">componentType</span> <span class="o">===</span> <span class="s1">&#39;series&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// open the first post on the day
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kr">const</span> <span class="nx">post</span> <span class="o">=</span> <span class="nx">dataMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">link</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">origin</span> <span class="o">+</span> <span class="nx">post</span><span class="p">.</span><span class="nx">link</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">link</span><span class="p">,</span> <span class="s1">&#39;_blank&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果在html模板中使用，就在要用的位置写 <code>{{ partial &quot;heatmap&quot; . }}</code></p>
+<p>如果在Markdown里用，在要用的位置写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{/* heatmap */}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>大概长这样</p>
+<p><img src="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010.png"
+	width="1255"
+	height="444"
+	srcset="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu14009910382659409071.png 480w, /p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu1294410752341041196.png 1024w"
+	loading="lazy"
+	
+		alt="1725472639010"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="282"
+		data-flex-basis="678px"
+	
+></p>
+<p>好像对暗色模式的适配不是很好，之后看看怎么改毕比较合理。</p>
+<p>更新：<a class="link" href="/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/" >优化完毕~</a></p>
+<h3 id="取消相关推荐的图片的奇怪的彩色阴影">取消相关推荐的图片的奇怪的彩色阴影
+</h3><p>把 <code>\assets\ts\main.ts</code>的第9行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl">	<span class="c1">// import { getColor } from &#39;ts/color&#39;;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>和33到59行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"> 	<span class="c1">// const articleTile = document.querySelector(&#39;.article-list--tile&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// if (articleTile) {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//     let observer = new IntersectionObserver(async (entries, observer) =&gt; {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//         entries.forEach(entry =&gt; {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//             if (!entry.isIntersecting) return;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//             observer.unobserve(entry.target);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//             const articles = entry.target.querySelectorAll(&#39;article.has-image&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//             articles.forEach(async articles =&gt; {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//                 const image = articles.querySelector(&#39;img&#39;),
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//                     imageURL = image.src,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//                     key = image.getAttribute(&#39;data-key&#39;),
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//                     hash = image.getAttribute(&#39;data-hash&#39;),
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//                     articleDetails: HTMLDivElement = articles.querySelector(&#39;.article-details&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//                 const colors = await getColor(key, hash, imageURL);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//                 articleDetails.style.background = `
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//                 linear-gradient(0deg, 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//                     rgba(${colors.DarkMuted.rgb[0]}, ${colors.DarkMuted.rgb[1]}, ${colors.DarkMuted.rgb[2]}, 0.5) 0%, 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//                     rgba(${colors.Vibrant.rgb[0]}, ${colors.Vibrant.rgb[1]}, ${colors.Vibrant.rgb[2]}, 0.75) 100%)`;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//             })
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//         })
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//     });
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//     observer.observe(articleTile)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>注释掉</p>
+<p>会从这样</p>
+<p><img src="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691.png"
+	width="760"
+	height="264"
+	srcset="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691_hu15586954407967762462.png 480w, /p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691_hu6074927471149048665.png 1024w"
+	loading="lazy"
+	
+		alt="1725459865691"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="287"
+		data-flex-basis="690px"
+	
+></p>
+<p>变成这样</p>
+<p><img src="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880.png"
+	width="747"
+	height="282"
+	srcset="/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880_hu5700767386087177288.png 480w, /p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880_hu5061038115342133582.png 1024w"
+	loading="lazy"
+	
+		alt="1725459811880"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="264"
+		data-flex-basis="635px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+
+
+
+
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/">
+        
+        
+            <div class="article-image">
+                <img src="/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216.47aaca604a121e877fe92b3a52b72f40_hu3976997957566303329.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post HugoStackHeatmap明暗主题适配"
+                        
+                        data-hash="md5-R6rKYEoSHod/6Ss6UrcvQA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">HugoStackHeatmap明暗主题适配</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus"],"lang":"zh-cn","locale":{"admin":"管理员","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神","placeholder":"有什么想说的请留言，建议登录后再留言，可以获得best-effort的回复喔。"},"pageview":true,"serverURL":"https://waline.pillar.fun","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 pill4r
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了18篇文章 ·
+        总计97.81k字
+    </section>
+    
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
+    </section>
+</footer>
+
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script>
+    let s1 = '2023-10-03'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
+</script>
+    </body>
+</html>

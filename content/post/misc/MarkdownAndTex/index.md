@@ -5,7 +5,7 @@ draft = false
 tags = ["工具"]
 categories = ["工具"]
 description = "解决hugo博客的数学公式渲染问题"
-image = "/img/placeholder.jpeg"
+image = "index/1725357281808.png"
 +++
 
 ## 导语
@@ -23,7 +23,6 @@ image = "/img/placeholder.jpeg"
 ![1725357281808](index/1725357281808.png)
 
 好不容易学会的latex公式的敲法（虽然这里用了gpt-4o多模态图转公式），结果不显示，这不得气死？？
-
 
 ### 出现原因
 
