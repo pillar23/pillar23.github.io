@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>前端 on π1l4r_のblog</title>
-        <link>http://localhost:1313/categories/%E5%89%8D%E7%AB%AF/</link>
+        <link>https://blog2.pillar.fun/categories/%E5%89%8D%E7%AB%AF/</link>
         <description>Recent content in 前端 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Thu, 05 Sep 2024 00:15:06 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 05 Sep 2024 00:15:06 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/categories/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>HugoStackHeatmap明暗主题适配</title>
-        <link>http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/</link>
+        <link>https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/</link>
         <pubDate>Thu, 05 Sep 2024 00:15:06 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/</guid>
-        <description>&lt;img src="http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216.png" alt="Featured image of post HugoStackHeatmap明暗主题适配" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
+        <guid>https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216.png" alt="Featured image of post HugoStackHeatmap明暗主题适配" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
 &lt;/h2&gt;&lt;p&gt;水一篇！&lt;/p&gt;
 &lt;p&gt;看了https://yelleis.top/p/hugo-theme-stack-beautification-2/的stack添加热力图，实装后发现和我的高对比度暗色主题巨不适配，遂改之。&lt;/p&gt;
 &lt;h2 id=&#34;操作&#34;&gt;操作
@@ -533,10 +533,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;最后结果大概这样&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216.png&#34;
 	width=&#34;1269&#34;
 	height=&#34;289&#34;
-	srcset=&#34;http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216_hu8290213578622519180.png 480w, http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216_hu6471088621336133234.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216_hu8290213578622519180.png 480w, https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472577216_hu6471088621336133234.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725472577216&#34;
@@ -547,10 +547,10 @@
 		data-flex-basis=&#34;1053px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472581687.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472581687.png&#34;
 	width=&#34;1249&#34;
 	height=&#34;289&#34;
-	srcset=&#34;http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472581687_hu10891447339546873315.png 480w, http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472581687_hu12022918134024245524.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472581687_hu10891447339546873315.png 480w, https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/index/1725472581687_hu12022918134024245524.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725472581687&#34;
@@ -565,11 +565,11 @@
         </item>
         <item>
         <title>HugoStack装修</title>
-        <link>http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/</link>
+        <link>https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/</link>
         <pubDate>Wed, 04 Sep 2024 15:43:00 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/</guid>
-        <description>&lt;img src="http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010.png" alt="Featured image of post HugoStack装修" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
+        <guid>https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010.png" alt="Featured image of post HugoStack装修" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
 &lt;/h2&gt;&lt;p&gt;博客就是拿来装修的，发文其实不重要（？&lt;/p&gt;
 &lt;h2 id=&#34;综述&#34;&gt;综述
 &lt;/h2&gt;&lt;p&gt;我使用的是hugo stack博客，hugo博客有一个好处就是你可以将所有的更改放在博客根目录下，这会覆盖掉theme里对应的同名文件，同时很多主题（比如stack）支持以submodule的模式安装，所以就可以安心的更新主题，使用主题的最新特性了&lt;/p&gt;
@@ -1401,10 +1401,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;我调的xcode的highlight大概长这样&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340.png&#34;
 	width=&#34;1221&#34;
 	height=&#34;810&#34;
-	srcset=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340_hu15503236255436664196.png 480w, http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340_hu8465498485148174660.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340_hu15503236255436664196.png 480w, https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461883340_hu8465498485148174660.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725461883340&#34;
@@ -1415,10 +1415,10 @@
 		data-flex-basis=&#34;361px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323.png&#34;
 	width=&#34;1289&#34;
 	height=&#34;845&#34;
-	srcset=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323_hu9513959569688993266.png 480w, http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323_hu12227870733622770458.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323_hu9513959569688993266.png 480w, https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725461899323_hu12227870733622770458.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725461899323&#34;
@@ -2008,10 +2008,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;大概长这样&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010.png&#34;
 	width=&#34;1255&#34;
 	height=&#34;444&#34;
-	srcset=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu14009910382659409071.png 480w, http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu1294410752341041196.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu14009910382659409071.png 480w, https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725472639010_hu1294410752341041196.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725472639010&#34;
@@ -2023,7 +2023,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;好像对暗色模式的适配不是很好，之后看看怎么改毕比较合理。&lt;/p&gt;
-&lt;p&gt;更新：&lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/&#34; &gt;优化完毕~&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;更新：&lt;a class=&#34;link&#34; href=&#34;https://blog2.pillar.fun/p/hugostackheatmap%E6%98%8E%E6%9A%97%E4%B8%BB%E9%A2%98%E9%80%82%E9%85%8D/&#34; &gt;优化完毕~&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;取消相关推荐的图片的奇怪的彩色阴影&#34;&gt;取消相关推荐的图片的奇怪的彩色阴影
 &lt;/h3&gt;&lt;p&gt;把 &lt;code&gt;\assets\ts\main.ts&lt;/code&gt;的第9行&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2097,10 +2097,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;注释掉&lt;/p&gt;
 &lt;p&gt;会从这样&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691.png&#34;
 	width=&#34;760&#34;
 	height=&#34;264&#34;
-	srcset=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691_hu15586954407967762462.png 480w, http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691_hu6074927471149048665.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691_hu15586954407967762462.png 480w, https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459865691_hu6074927471149048665.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725459865691&#34;
@@ -2112,10 +2112,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;变成这样&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880.png&#34;
 	width=&#34;747&#34;
 	height=&#34;282&#34;
-	srcset=&#34;http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880_hu5700767386087177288.png 480w, http://localhost:1313/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880_hu5061038115342133582.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880_hu5700767386087177288.png 480w, https://blog2.pillar.fun/p/hugostack%E8%A3%85%E4%BF%AE/index/1725459811880_hu5061038115342133582.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725459811880&#34;

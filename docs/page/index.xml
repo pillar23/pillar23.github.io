@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on π1l4r_のblog</title>
-        <link>http://localhost:1313/page/</link>
+        <link>https://blog2.pillar.fun/page/</link>
         <description>Recent content in Pages on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.pillar.fun/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>归档</title>
-        <link>http://localhost:1313/archives/</link>
+        <link>https://blog2.pillar.fun/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/archives/</guid>
+        <guid>https://blog2.pillar.fun/archives/</guid>
         <description>&lt;div id=&#34;heatmap&#34; style=&#34;
   max-width: 1900px;
   height: 180px;
@@ -195,66 +195,6 @@
     } else {
       value.push({wordCount, link, title});
     }
-    var key = &#34;2024-08-26&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  4541 ;
-    var link = &#34;/p/malwaretotal/&#34;;
-    var title = &#34;MalwareTotal&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2024-08-26&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  0 ;
-    var link = &#34;/p/unicorn/&#34;;
-    var title = &#34;UNICORN&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2024-07-30&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  0 ;
-    var link = &#34;/p/malgraph/&#34;;
-    var title = &#34;MalGraph&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2024-07-29&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  0 ;
-    var link = &#34;/p/asm2vec/&#34;;
-    var title = &#34;Asm2vec&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2024-07-29&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  3413 ;
-    var link = &#34;/p/malconv1/&#34;;
-    var title = &#34;MalConv1&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
     var key = &#34;2024-07-24&#34;;
     var value = dataMap.get(key);
     var wordCount =  6489 ;
@@ -363,30 +303,6 @@
     } else {
       value.push({wordCount, link, title});
     }
-    var key = &#34;2023-12-27&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  188 ;
-    var link = &#34;/p/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&#34;;
-    var title = &#34;机器学习笔记&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2023-12-15&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  1704 ;
-    var link = &#34;/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/&#34;;
-    var title = &#34;编译程序高级教程&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
     var key = &#34;2023-11-29&#34;;
     var value = dataMap.get(key);
     var wordCount =  1725 ;
@@ -416,18 +332,6 @@
     var wordCount =  9320 ;
     var link = &#34;/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/&#34;;
     var title = &#34;IKEv2标准阅读&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2023-10-17&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  2357 ;
-    var link = &#34;/p/cuda%E5%AE%9E%E7%8E%B0cnn%E6%8E%A8%E7%90%86%E4%B8%8E%E5%8D%B7%E7%A7%AF/&#34;;
-    var title = &#34;Cuda实现CNN推理与卷积&#34;;
     
     
     if (value == null) {
@@ -528,10 +432,10 @@
         </item>
         <item>
         <title>关于</title>
-        <link>http://localhost:1313/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://blog2.pillar.fun/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://blog2.pillar.fun/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;p style=&#34;text-align: center;&#34;&gt;知名网络保安&lt;/p&gt;
 &lt;p id=&#34;jinrishici-sentence&#34; style=&#34;text-align: center;&#34;&gt;正在加载胸中锦绣....&lt;/p&gt;
 &lt;script src=&#34;https://sdk.jinrishici.com/v2/browser/jinrishici.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
@@ -717,66 +621,6 @@
     } else {
       value.push({wordCount, link, title});
     }
-    var key = &#34;2024-08-26&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  4541 ;
-    var link = &#34;/p/malwaretotal/&#34;;
-    var title = &#34;MalwareTotal&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2024-08-26&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  0 ;
-    var link = &#34;/p/unicorn/&#34;;
-    var title = &#34;UNICORN&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2024-07-30&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  0 ;
-    var link = &#34;/p/malgraph/&#34;;
-    var title = &#34;MalGraph&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2024-07-29&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  0 ;
-    var link = &#34;/p/asm2vec/&#34;;
-    var title = &#34;Asm2vec&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2024-07-29&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  3413 ;
-    var link = &#34;/p/malconv1/&#34;;
-    var title = &#34;MalConv1&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
     var key = &#34;2024-07-24&#34;;
     var value = dataMap.get(key);
     var wordCount =  6489 ;
@@ -885,30 +729,6 @@
     } else {
       value.push({wordCount, link, title});
     }
-    var key = &#34;2023-12-27&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  188 ;
-    var link = &#34;/p/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&#34;;
-    var title = &#34;机器学习笔记&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2023-12-15&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  1704 ;
-    var link = &#34;/p/%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/&#34;;
-    var title = &#34;编译程序高级教程&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
     var key = &#34;2023-11-29&#34;;
     var value = dataMap.get(key);
     var wordCount =  1725 ;
@@ -938,18 +758,6 @@
     var wordCount =  9320 ;
     var link = &#34;/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/&#34;;
     var title = &#34;IKEv2标准阅读&#34;;
-    
-    
-    if (value == null) {
-      dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-      value.push({wordCount, link, title});
-    }
-    var key = &#34;2023-10-17&#34;;
-    var value = dataMap.get(key);
-    var wordCount =  2357 ;
-    var link = &#34;/p/cuda%E5%AE%9E%E7%8E%B0cnn%E6%8E%A8%E7%90%86%E4%B8%8E%E5%8D%B7%E7%A7%AF/&#34;;
-    var title = &#34;Cuda实现CNN推理与卷积&#34;;
     
     
     if (value == null) {
@@ -1050,18 +858,18 @@
         </item>
         <item>
         <title>链接</title>
-        <link>http://localhost:1313/%E9%93%BE%E6%8E%A5/</link>
+        <link>https://blog2.pillar.fun/%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://blog2.pillar.fun/%E9%93%BE%E6%8E%A5/</guid>
         <description></description>
         </item>
         <item>
         <title>搜索</title>
-        <link>http://localhost:1313/search/</link>
+        <link>https://blog2.pillar.fun/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/search/</guid>
+        <guid>https://blog2.pillar.fun/search/</guid>
         <description></description>
         </item>
         

@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>环境 on π1l4r_のblog</title>
-        <link>http://localhost:1313/categories/%E7%8E%AF%E5%A2%83/</link>
+        <link>https://blog2.pillar.fun/categories/%E7%8E%AF%E5%A2%83/</link>
         <description>Recent content in 环境 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Tue, 08 Oct 2024 16:37:46 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 08 Oct 2024 16:37:46 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/categories/%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>VS连接远程服务器的conda的jupynotebook</title>
-        <link>http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/</link>
+        <link>https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/</link>
         <pubDate>Tue, 08 Oct 2024 16:37:46 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/</guid>
-        <description>&lt;img src="http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643.png" alt="Featured image of post VS连接远程服务器的conda的jupynotebook" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
+        <guid>https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643.png" alt="Featured image of post VS连接远程服务器的conda的jupynotebook" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
 &lt;/h2&gt;&lt;p&gt;复现论文的时候需要特定的版本的cuda、torch、pyG，同时希望使用jupyternotebook来记录复现的过程，把我遇到的坑在这里总结一下。&lt;/p&gt;
 &lt;h2 id=&#34;插件&#34;&gt;插件
 &lt;/h2&gt;&lt;p&gt;ssh：直接用ssh插件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727.png&#34;
 	width=&#34;1453&#34;
 	height=&#34;304&#34;
-	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727_hu6439319374276890576.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727_hu9229292312184275360.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727_hu6439319374276890576.png 480w, https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727_hu9229292312184275360.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1728377206727&#34;
@@ -32,10 +32,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;python：直接用python插件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626.png&#34;
 	width=&#34;2154&#34;
 	height=&#34;273&#34;
-	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626_hu4200310498267653980.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626_hu18340413642780412698.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626_hu4200310498267653980.png 480w, https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626_hu18340413642780412698.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1728377245626&#34;
@@ -47,10 +47,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;jupynotebook：直接用jupyter插件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643.png&#34;
 	width=&#34;1645&#34;
 	height=&#34;322&#34;
-	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643_hu6587957002351289173.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643_hu15077530013052728625.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643_hu6587957002351289173.png 480w, https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643_hu15077530013052728625.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1728377258643&#34;
@@ -63,10 +63,10 @@
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;操作&#34;&gt;操作
 &lt;/h2&gt;&lt;p&gt;在服务器上安装ipykernel就可以，在vscode打开ipynb的文件的时候，右上角就可以选择对应的内核&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797.png&#34;
 	width=&#34;1086&#34;
 	height=&#34;222&#34;
-	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797_hu1605910420746978075.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797_hu14601210658032993110.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797_hu1605910420746978075.png 480w, https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797_hu14601210658032993110.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1728378255797&#34;
@@ -115,10 +115,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;来启动一个jupyter server，会有对应的地址&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701.png&#34;
 	width=&#34;1831&#34;
 	height=&#34;538&#34;
-	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701_hu990874976908252749.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701_hu14079707088736171498.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701_hu990874976908252749.png 480w, https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701_hu14079707088736171498.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1728377460701&#34;
@@ -130,10 +130,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后再用vscode连接到服务器，打开对应的ipynb，右上角会有选择内核，选择其他内核-现有jupyter服务器输入刚才的url&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981.png&#34;
 	width=&#34;1074&#34;
 	height=&#34;285&#34;
-	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981_hu4908463316210286438.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981_hu896592384978633724.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981_hu4908463316210286438.png 480w, https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981_hu896592384978633724.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1728377574981&#34;
@@ -144,10 +144,10 @@
 		data-flex-basis=&#34;904px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858.png&#34;
 	width=&#34;1093&#34;
 	height=&#34;198&#34;
-	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858_hu10358275006365393066.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858_hu11371610234175957155.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858_hu10358275006365393066.png 480w, https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858_hu11371610234175957155.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1728377587858&#34;
@@ -158,10 +158,10 @@
 		data-flex-basis=&#34;1324px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240.png&#34;
 	width=&#34;1075&#34;
 	height=&#34;174&#34;
-	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240_hu15918504409722131745.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240_hu13969439519177665970.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240_hu15918504409722131745.png 480w, https://blog2.pillar.fun/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240_hu13969439519177665970.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1728377603240&#34;
