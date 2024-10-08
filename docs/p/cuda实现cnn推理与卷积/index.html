@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ucas 2023秋 赵地老师GPU架构与编程课程大作业一">
+<title>Cuda实现CNN推理与卷积</title>
+
+<link rel='canonical' href='http://localhost:1313/p/cuda%E5%AE%9E%E7%8E%B0cnn%E6%8E%A8%E7%90%86%E4%B8%8E%E5%8D%B7%E7%A7%AF/'>
+
+<link rel="stylesheet" href="/scss/style.min.6c6664e5fc2fdac653c1188e8232dafd9cc4163e563de86670a6c7148a8685dd.css"><meta property='og:title' content="Cuda实现CNN推理与卷积">
+<meta property='og:description' content="ucas 2023秋 赵地老师GPU架构与编程课程大作业一">
+<meta property='og:url' content='http://localhost:1313/p/cuda%E5%AE%9E%E7%8E%B0cnn%E6%8E%A8%E7%90%86%E4%B8%8E%E5%8D%B7%E7%A7%AF/'>
+<meta property='og:site_name' content='π1l4r_のblog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='课程作业' /><meta property='article:published_time' content='2023-10-17T10:31:05&#43;08:00'/><meta property='article:modified_time' content='2023-10-17T10:31:05&#43;08:00'/><meta property='og:image' content='http://localhost:1313/img/placeholder.jpeg' />
+<meta name="twitter:title" content="Cuda实现CNN推理与卷积">
+<meta name="twitter:description" content="ucas 2023秋 赵地老师GPU架构与编程课程大作业一"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/img/placeholder.jpeg' />
+    <link rel="shortcut icon" href="/img/lotus.svg" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8974536233092345980.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">π1l4r_のblog</a></h1>
+            <h2 class="site-description">Like tears in rain.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/such-stupid6'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li  class='current' >
+            <a href='/post/class/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" /><path d="M19 16h-12a2 2 0 0 0 -2 2" /><path d="M9 8h6" /></svg>
+                
+                <span>课程</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/thesis/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-school"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg>
+                
+                <span>论文</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/tech/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" /><path d="M7 20h10" /><path d="M9 16v4" /><path d="M15 16v4" /></svg>
+                
+                <span>技术</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/post/misc/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-topology-star-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M18 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M10 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M6 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M18 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M14 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M22 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M6 12h4" /><path d="M14 12h4" /><path d="M15 7l-2 3" /><path d="M9 7l2 3" /><path d="M11 14l-2 3" /><path d="M13 14l2 3" /></svg>
+                
+                <span>杂项</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#读取数据集">读取数据集</a></li>
+    <li><a href="#读取模型">读取模型</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/cuda%E5%AE%9E%E7%8E%B0cnn%E6%8E%A8%E7%90%86%E4%B8%8E%E5%8D%B7%E7%A7%AF/">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" alt="Featured image of post Cuda实现CNN推理与卷积" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AF%BE%E4%B8%9A/" >
+                课业
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/cuda%E5%AE%9E%E7%8E%B0cnn%E6%8E%A8%E7%90%86%E4%B8%8E%E5%8D%B7%E7%A7%AF/">Cuda实现CNN推理与卷积</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            ucas 2023秋 赵地老师GPU架构与编程课程大作业一
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 17, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="导语">导语
+</h1><p>要求：cuda不调库实现CNN推理 加分：cuda不调库实现CNN训练</p>
+<h1 id="分析">分析
+</h1><p>实现CNN推理的话应该只需要用cuda实现CNN的正向传播，训练就都得实现。</p>
+<p>参考一下<a class="link" href="https://github.com/aammya8/LeNet5_CNN"  target="_blank" rel="noopener"
+    >LeNet5_CNN</a></p>
+<p>这个项目大概是ece408课程的大作业，就是直接实现了LeNet5</p>
+<p>然后他的Makefile对编译的每个东西都include了一个<a class="link" href="https://github.com/KastnerRG/cse160-WI23/tree/315bf09ecd72973ba1e2a461844d10349751f08c/libgputk#libgputk"  target="_blank" rel="noopener"
+    >libgputk</a>，应该是他们课程给的一个用来调试的库，直接全删了依然可以编译。</p>
+<p>然后再按照课程要求，在每个nvcc命令后面加上编译选项 <code>-Xcompiler &quot;-O3 -std=c++14&quot; -gencode arch=compute_60,code=sm_60 -gencode arch=compute_61,code=sm_61 -gencode arch=compute_70,code=sm_70 -rdc=true</code></p>
+<h1 id="源码分析">源码分析
+</h1><p>makefile如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">m2</span><span class="o">:</span>		<span class="n">m</span>2.<span class="n">o</span> <span class="n">custom</span>
+</span></span><span class="line"><span class="cl">		nvcc -o m2 -lm -lcuda -lrt m2.o ece408net.o src/network.o src/mnist.o src/layer/*.o src/loss/*.o src/layer/custom/*.o -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">m2.o</span><span class="o">:</span>		<span class="n">m</span>2.<span class="n">cc</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile m2.cc  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ece408net.o</span><span class="o">:</span>    <span class="n">ece</span>408<span class="n">net</span>.<span class="n">cc</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile ece408net.cc  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">network.o</span><span class="o">:</span>	<span class="n">src</span>/<span class="n">network</span>.<span class="n">cc</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/network.cc -o src/network.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">mnist.o</span><span class="o">:</span>	<span class="n">src</span>/<span class="n">mnist</span>.<span class="n">cc</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/mnist.cc -o src/mnist.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">layer</span><span class="o">:</span>		<span class="n">src</span>/<span class="n">layer</span>/<span class="n">conv</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">layer</span>/<span class="n">ave_pooling</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">layer</span>/<span class="n">conv_cpu</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">layer</span>/<span class="n">conv_cust</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">layer</span>/<span class="n">fully_connected</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">layer</span>/<span class="n">max_pooling</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">layer</span>/<span class="n">relu</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">layer</span>/<span class="n">sigmoid</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">layer</span>/<span class="n">softmax</span>.<span class="n">cc</span> 
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/ave_pooling.cc -o src/layer/ave_pooling.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/conv.cc -o src/layer/conv.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/conv_cpu.cc -o src/layer/conv_cpu.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/conv_cust.cc -o src/layer/conv_cust.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/fully_connected.cc -o src/layer/fully_connected.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/max_pooling.cc -o src/layer/max_pooling.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/relu.cc -o src/layer/relu.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/sigmoid.cc -o src/layer/sigmoid.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/softmax.cc -o src/layer/softmax.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">custom</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/custom/cpu-new-forward.cc -o src/layer/custom/cpu-new-forward.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/custom/gpu-utils.cu -o src/layer/custom/gpu-utils.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/layer/custom/gpu-new-forward-optimized.cu -o src/layer/custom/gpu-new-forward-optimized.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">loss</span><span class="o">:</span>           <span class="n">src</span>/<span class="n">loss</span>/<span class="n">cross_entropy_loss</span>.<span class="n">cc</span> <span class="n">src</span>/<span class="n">loss</span>/<span class="n">mse_loss</span>.<span class="n">cc</span> 
+</span></span><span class="line"><span class="cl">		nvcc --compile src/loss/cross_entropy_loss.cc -o src/loss/cross_entropy_loss.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">		nvcc --compile src/loss/mse_loss.cc -o src/loss/mse_loss.o  -I./ -Xcompiler <span class="s2">&#34;-O3 -std=c++14&#34;</span> -gencode <span class="nv">arch</span><span class="o">=</span>compute_60,code<span class="o">=</span>sm_60 -gencode <span class="nv">arch</span><span class="o">=</span>compute_61,code<span class="o">=</span>sm_61 -gencode <span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>sm_70 -rdc<span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">clean</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		rm m2
+</span></span><span class="line"><span class="cl">		rm m2.o
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">run</span><span class="o">:</span> 		<span class="n">m</span>2
+</span></span><span class="line"><span class="cl">		./m2 <span class="m">1000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最终得到的可执行文件是m2，是m2.o和ece408net.o组成的，先查看一下生成m2.o的源码m2.cc</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;ece408net.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">inference_only</span><span class="p">(</span><span class="kt">int</span> <span class="n">batch_size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Loading fashion-mnist data...&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">MNIST</span> <span class="n">dataset</span><span class="p">(</span><span class="s">&#34;./data/&#34;</span><span class="p">);</span> <span class="err">#</span> <span class="k">class</span> <span class="nc">MNIST定义在minst</span><span class="p">.</span><span class="n">h里</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dataset</span><span class="p">.</span><span class="n">read_test_data</span><span class="p">(</span><span class="n">batch_size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Done&#34;</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Loading model...&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Network</span> <span class="n">dnn</span> <span class="o">=</span> <span class="n">createNetwork_GPU</span><span class="p">();</span> <span class="err">#</span> <span class="err">通过</span><span class="n">createNetworkGPU来建立dnn模型</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Done&#34;</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">forward</span><span class="p">(</span><span class="n">dataset</span><span class="p">.</span><span class="n">test_data</span><span class="p">);</span> <span class="err">#</span> <span class="err">进行正向传播，得到结果</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">float</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">compute_accuracy</span><span class="p">(</span><span class="n">dnn</span><span class="p">.</span><span class="n">output</span><span class="p">(),</span> <span class="n">dataset</span><span class="p">.</span><span class="n">test_labels</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Test Accuracy: &#34;</span><span class="o">&lt;&lt;</span><span class="n">acc</span><span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Test batch size: &#34;</span><span class="o">&lt;&lt;</span><span class="n">batch_size</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">inference_only</span><span class="p">(</span><span class="n">batch_size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>追踪一下控制流把。</p>
+<h2 id="读取数据集">读取数据集
+</h2><p>首先是读取dataset，定义了一个MNIST类，在minst.h和minst.cc里声明和实现</p>
+<p>mnist.h</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#ifndef SRC_MNIST_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define SRC_MNIST_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;./utils.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MNIST</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">data_dir</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Matrix</span> <span class="n">train_data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Matrix</span> <span class="n">train_labels</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Matrix</span> <span class="n">test_data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Matrix</span> <span class="n">test_labels</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">read_mnist_data</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span><span class="p">,</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">read_mnist_label</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span><span class="p">,</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">labels</span><span class="p">,</span> <span class="kt">int</span> <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">explicit</span> <span class="nf">MNIST</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">data_dir</span><span class="p">)</span> <span class="o">:</span> <span class="n">data_dir</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">read</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">read_test_data</span><span class="p">(</span><span class="kt">int</span> <span class="n">batch_size</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif  </span><span class="c1">// SRC_MNIST_H_
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>explicit MNIST(std::string data_dir) : data_dir(data_dir) {}</code> 是MNIST类的构造函数，接受一个string类型的data_dir，并使用成员初始化列表将该参数的值赋给 <code>data_dir</code> 成员变量，且构造函数体为空，即构造的时候不做其他操作（cpp苦手），在代码里使用 <code>MNIST dataset('./data')</code>就是给dataset的对象的private变量data_dir赋值为 <code>./data</code>explicit声明是要求cpp不要进行强制类型转换</p>
+<p><strong>成员初始化列表</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 成员初始化列表初始化成员变量 x 和 y
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MyClass</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 构造函数体（如果需要）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 可以在这里执行其他操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>语法类似上面，给private赋值</p>
+<p>然后使用MNIST类的read_test_data()方法读取数据集</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MNIST</span><span class="o">::</span><span class="n">read_test_data</span><span class="p">(</span><span class="kt">int</span> <span class="n">batch_size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">read_mnist_data</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s">&#34;t10k-86-images-idx3-ubyte&#34;</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">read_mnist_label</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s">&#34;t10k-86-labels-idx1-ubyte&#34;</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用read_mnist_data方法读取ubyte数据集</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MNIST</span><span class="o">::</span><span class="n">read_mnist_data</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span><span class="p">,</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">batch_size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">binary</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// std::cout&lt;&lt;&#34;Reading: &#34;&lt;&lt;filename&lt;&lt;std::endl;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">magic_number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">number_of_images</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n_rows</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n_cols</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">label</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">read</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">magic_number</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">magic_number</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">read</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">number_of_images</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">number_of_images</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">read</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">n_rows</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">n_rows</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">read</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">n_cols</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">n_cols</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//magic_number = ReverseInt(magic_number);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//number_of_images = ReverseInt(number_of_images);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//n_rows = ReverseInt(n_rows);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//n_cols = ReverseInt(n_cols);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">batch_size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">batch_size</span> <span class="o">&lt;</span> <span class="n">number_of_images</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="n">number_of_images</span> <span class="o">=</span> <span class="n">batch_size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// std::cout&lt;&lt;number_of_images&lt;&lt;&#34;,&#34;&lt;&lt;n_rows&lt;&lt;&#34;,&#34;&lt;&lt;n_cols&lt;&lt;std::endl;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n_cols</span> <span class="o">*</span> <span class="n">n_rows</span><span class="p">,</span> <span class="n">number_of_images</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number_of_images</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">n_rows</span><span class="p">;</span> <span class="n">r</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">n_cols</span><span class="p">;</span> <span class="n">c</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">image</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="n">file</span><span class="p">.</span><span class="n">read</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">image</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">image</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">          <span class="n">data</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">n_cols</span> <span class="o">+</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">image</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里要说一下MNIST的ubyte数据集的结构</p>
+<ul>
+<li>前4个字节：魔数（Magic Number） - 一个32位整数，用于标识文件的类型。</li>
+<li>接下来4个字节：图像数量（Number of Images） - 一个32位整数，指示文件中包含的图像数量。</li>
+<li>接下来4个字节：图像的行数（Number of Rows） - 一个32位整数，表示每个图像的行数。</li>
+<li>接下来4个字节：图像的列数（Number of Columns） - 一个32位整数，表示每个图像的列数。</li>
+<li>接下来的字节：图像数据 - 连续的字节序列，每个字节表示一个像素的灰度值，通常是8位的无符号字符。图像数据以行为主排列，依次为每个图像的每一行。</li>
+</ul>
+<p>转为float的是CNN的需求，能够方便范围与归一化、求导和反向传播以及激活函数的非线性需求</p>
+<h2 id="读取模型">读取模型
+</h2><p><code>Network dnn=createNetwork_GPU();</code>用来读取模型，Network类在network.h和network.cc声明与实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#ifndef SRC_NETWORK_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define SRC_NETWORK_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;./layer.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;./loss.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;./optimizer.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;./utils.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Network</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Layer</span><span class="o">*&gt;</span> <span class="n">layers</span><span class="p">;</span>  <span class="c1">// layer pointers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Loss</span><span class="o">*</span> <span class="n">loss</span><span class="p">;</span>  <span class="c1">// loss pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">float</span> <span class="n">BIN_FILE_DELIM</span> <span class="o">=</span> <span class="mh">0xFFFFFFFF</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Network</span><span class="p">()</span> <span class="o">:</span> <span class="n">loss</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">~</span><span class="n">Network</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">layers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">delete</span> <span class="n">layers</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">loss</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">delete</span> <span class="n">loss</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">add_layer</span><span class="p">(</span><span class="n">Layer</span><span class="o">*</span> <span class="n">layer</span><span class="p">)</span> <span class="p">{</span> <span class="n">layers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">layer</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">add_loss</span><span class="p">(</span><span class="n">Loss</span><span class="o">*</span> <span class="n">loss_in</span><span class="p">)</span> <span class="p">{</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_in</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">forward</span><span class="p">(</span><span class="k">const</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">backward</span><span class="p">(</span><span class="k">const</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">,</span> <span class="k">const</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">target</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="n">Optimizer</span><span class="o">&amp;</span> <span class="n">opt</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">output</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">layers</span><span class="p">.</span><span class="n">back</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">output</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">float</span> <span class="nf">get_loss</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">loss</span><span class="o">-&gt;</span><span class="n">output</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">/// Get the serialized layer parameters
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">get_parameters</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">/// Set the layer parameters
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">void</span> <span class="nf">set_parameters</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="o">&gt;&amp;</span> <span class="n">param</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">/// Get the serialized derivatives of layer parameters
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">get_derivatives</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">/// Debugging tool to check parameter gradients
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">void</span> <span class="nf">check_gradient</span><span class="p">(</span><span class="k">const</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">,</span> <span class="k">const</span> <span class="n">Matrix</span><span class="o">&amp;</span> <span class="n">target</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_points</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="kt">int</span> <span class="n">seed</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">save_parameters</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">load_parameters</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif  </span><span class="c1">// SRC_NETWORK_H_
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里定义了Network的构造函数和析构函数，在创建Network的对象时将private变量loss设置为null，也就是不设置模型的损失函数，用delete将Network对象析构</p>
+<p>而 <code>createNetwork_GPU()</code> 方法在ece408net.cc中实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Network</span> <span class="nf">createNetwork_GPU</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Network</span> <span class="n">dnn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">conv1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Conv_Custom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">pool1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MaxPooling</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">conv2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Conv_Custom</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">pool2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MaxPooling</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">fc3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="n">pool2</span><span class="o">-&gt;</span><span class="n">output_dim</span><span class="p">(),</span> <span class="mi">32</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">fc4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">relu1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReLU</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">relu2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReLU</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">relu3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReLU</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Layer</span><span class="o">*</span> <span class="n">softmax</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Softmax</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">conv1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">relu1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">pool1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">conv2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">relu2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">pool2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">fc3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">relu3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">fc4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">softmax</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// loss
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Loss</span><span class="o">*</span> <span class="n">loss</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CrossEntropy</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dnn</span><span class="p">.</span><span class="n">add_loss</span><span class="p">(</span><span class="n">loss</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//load weights
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">dnn</span><span class="p">.</span><span class="n">load_parameters</span><span class="p">(</span><span class="s">&#34;./build/weights-86.bin&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">dnn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/">课程作业</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+
+
+
+
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.9434aa87045727e2091d6d276d38fc7a_hu16538388017536892359.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 网络认证技术作业三"
+                        
+                        data-hash="md5-lDSqhwRXJ&#43;IJHW0nbTj8eg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络认证技术作业三</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" data-key="" data-hash="/img/placeholder.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">IKEv2标准阅读</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/img/placeholder.jpeg" loading="lazy" data-key="" data-hash="/img/placeholder.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络认证技术笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%AC%94%E8%AE%B0/nlp.999d6f0763b13c59ed4e1fd561a261fa_hu6049131033632971541.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 自然语言处理笔记"
+                        
+                        data-hash="md5-mZ1vB2OxPFntTh/VYaJh&#43;g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">自然语言处理笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1704273253086.3eec1d728e2c6623ac8be77a8b38bcc4_hu11402158989205532057.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 机器学习笔记"
+                        
+                        data-hash="md5-Puwdco4sZiOsi&#43;d6izi8xA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机器学习笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus"],"lang":"zh-cn","locale":{"admin":"管理员","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神","placeholder":"有什么想说的请留言，建议登录后再留言，可以获得best-effort的回复喔。"},"pageview":true,"serverURL":"https://waline.pillar.fun","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 pill4r
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了27篇文章 ·
+        总计110.65k字
+    </section>
+    
+    <section class="running-time">
+        已经向互联网拉屎了
+        <span id="runningdays" class="running-days"></span>
+    </section>
+</footer>
+
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script>
+    let s1 = '2023-10-03'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
+</script>
+    </body>
+</html>

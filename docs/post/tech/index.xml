@@ -2,26 +2,196 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>👨🏻‍💻技术 on π1l4r_のblog</title>
-        <link>https://blog2.pillar.fun/post/tech/</link>
+        <link>http://localhost:1313/post/tech/</link>
         <description>Recent content in 👨🏻‍💻技术 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Tue, 21 May 2024 14:41:04 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/post/tech/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 08 Oct 2024 16:37:46 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/tech/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>VS连接远程服务器的conda的jupynotebook</title>
+        <link>http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/</link>
+        <pubDate>Tue, 08 Oct 2024 16:37:46 +0800</pubDate>
+        
+        <guid>http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/</guid>
+        <description>&lt;img src="http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643.png" alt="Featured image of post VS连接远程服务器的conda的jupynotebook" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
+&lt;/h2&gt;&lt;p&gt;复现论文的时候需要特定的版本的cuda、torch、pyG，同时希望使用jupyternotebook来记录复现的过程，把我遇到的坑在这里总结一下。&lt;/p&gt;
+&lt;h2 id=&#34;插件&#34;&gt;插件
+&lt;/h2&gt;&lt;p&gt;ssh：直接用ssh插件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727.png&#34;
+	width=&#34;1453&#34;
+	height=&#34;304&#34;
+	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727_hu6439319374276890576.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377206727_hu9229292312184275360.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1728377206727&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;477&#34;
+		data-flex-basis=&#34;1147px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;python：直接用python插件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626.png&#34;
+	width=&#34;2154&#34;
+	height=&#34;273&#34;
+	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626_hu4200310498267653980.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377245626_hu18340413642780412698.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1728377245626&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;789&#34;
+		data-flex-basis=&#34;1893px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;jupynotebook：直接用jupyter插件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643.png&#34;
+	width=&#34;1645&#34;
+	height=&#34;322&#34;
+	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643_hu6587957002351289173.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377258643_hu15077530013052728625.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1728377258643&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;510&#34;
+		data-flex-basis=&#34;1226px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;操作&#34;&gt;操作
+&lt;/h2&gt;&lt;p&gt;在服务器上安装ipykernel就可以，在vscode打开ipynb的文件的时候，右上角就可以选择对应的内核&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797.png&#34;
+	width=&#34;1086&#34;
+	height=&#34;222&#34;
+	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797_hu1605910420746978075.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728378255797_hu14601210658032993110.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1728378255797&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;489&#34;
+		data-flex-basis=&#34;1174px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;坑&#34;&gt;坑
+&lt;/h2&gt;&lt;p&gt;其实直接用上面的方法就可以获取相对合理的远程环境使用体验了，但是如果你用了pyG（也就是torch_geometric）并且依赖某个特定版本的cuda，而这个版本的cuda是使用conda环境装的的话，会因为LD_LIBRARY_PATH没用被引入而一直用不了，提示&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OSError: libcusparse.so.xx: cannot open shared object file: No such file or directory
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这时候就要在服务器上的对应的conda环境里，使用这个命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python -m ipykernel install --user --name flash --display-name &lt;span class=&#34;s2&#34;&gt;&amp;#34;flash&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;来将这个环境的内核注册到jupyternotebook里，同时使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/home/ubuntu/anaconda3/envs/flash/lib:&lt;span class=&#34;nv&#34;&gt;$LD_LIBRARY_PATH&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;将这个lib引入，接下来使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;jupyter-notebook --port &lt;span class=&#34;m&#34;&gt;9999&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;来启动一个jupyter server，会有对应的地址&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701.png&#34;
+	width=&#34;1831&#34;
+	height=&#34;538&#34;
+	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701_hu990874976908252749.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377460701_hu14079707088736171498.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1728377460701&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;340&#34;
+		data-flex-basis=&#34;816px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后再用vscode连接到服务器，打开对应的ipynb，右上角会有选择内核，选择其他内核-现有jupyter服务器输入刚才的url&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981.png&#34;
+	width=&#34;1074&#34;
+	height=&#34;285&#34;
+	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981_hu4908463316210286438.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377574981_hu896592384978633724.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1728377574981&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;376&#34;
+		data-flex-basis=&#34;904px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858.png&#34;
+	width=&#34;1093&#34;
+	height=&#34;198&#34;
+	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858_hu10358275006365393066.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377587858_hu11371610234175957155.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1728377587858&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;552&#34;
+		data-flex-basis=&#34;1324px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240.png&#34;
+	width=&#34;1075&#34;
+	height=&#34;174&#34;
+	srcset=&#34;http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240_hu15918504409722131745.png 480w, http://localhost:1313/p/vs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84conda%E7%9A%84jupynotebook/index/1728377603240_hu13969439519177665970.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1728377603240&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;617&#34;
+		data-flex-basis=&#34;1482px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在这里你就可以看到你要的环境了。&lt;/p&gt;
+&lt;h2 id=&#34;后记&#34;&gt;后记
+&lt;/h2&gt;&lt;p&gt;感觉大模型的幻觉还是挺严重的，还是说只有我遇到了这个问题啊？我按着大模型给我的方法用ipynb的魔术方法引入对应的.so，打印环境变量有，但是代码还是跑不了，搞得我很烦，一番折腾终于搞成了。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>CVE 2023 2480</title>
-        <link>https://blog2.pillar.fun/p/cve-2023-2480/</link>
+        <link>http://localhost:1313/p/cve-2023-2480/</link>
         <pubDate>Tue, 21 May 2024 14:41:04 +0800</pubDate>
         
-        <guid>https://blog2.pillar.fun/p/cve-2023-2480/</guid>
-        <description>&lt;img src="https://blog2.pillar.fun/p/cve-2023-2480/index/1716361642462.png" alt="Featured image of post CVE 2023 2480" /&gt;&lt;h2 id=&#34;介绍&#34;&gt;介绍
+        <guid>http://localhost:1313/p/cve-2023-2480/</guid>
+        <description>&lt;img src="http://localhost:1313/p/cve-2023-2480/index/1716361642462.png" alt="Featured image of post CVE 2023 2480" /&gt;&lt;h2 id=&#34;介绍&#34;&gt;介绍
 &lt;/h2&gt;&lt;p&gt;JumpServer是使用 Python / Django 进行开发，遵循 Web 2.0 规范的全球首款完全开源的堡垒机软件。因其开源，无插件，Web界面美观，操作方便，分布式，符合4A规范等特点，被很多企业广泛用于内部资产（物理机，云主机等）的管理。
 CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，计算出重置密码后的验证码，从而实现任意账号密码重置。&lt;/p&gt;
 &lt;h2 id=&#34;环境搭建&#34;&gt;环境搭建
 &lt;/h2&gt;&lt;p&gt;下载https://github.com/vulhub/vulhub/blob/master/jumpserver/CVE-2023-42820/，修改config.env的DOMAINS=[你的ip:端口]&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716274683038.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716274683038.png&#34;
 	width=&#34;728&#34;
 	height=&#34;202&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716274683038_hu9945455426368240433.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716274683038_hu4102483469755963012.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716274683038_hu9945455426368240433.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716274683038_hu4102483469755963012.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716274683038&#34;
@@ -42,10 +212,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这里我虽然写了8888还是在8080，感觉并不用写端口，因为我看docker也没做映射&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716275391597.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716275391597.png&#34;
 	width=&#34;2820&#34;
 	height=&#34;246&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716275391597_hu98045963741043335.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716275391597_hu5672929773601086982.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716275391597_hu98045963741043335.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716275391597_hu5672929773601086982.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716275391597&#34;
@@ -62,10 +232,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &lt;/h2&gt;&lt;p&gt;可以看到&lt;/p&gt;
 &lt;p&gt;Patched versions&amp;gt;= v2.28.19, &amp;gt;= v3.6.5&lt;/p&gt;
 &lt;p&gt;在3.6.5和2.28.19都有一个叫做fix: 修复 random error的commit&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716277497141.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716277497141.png&#34;
 	width=&#34;1738&#34;
 	height=&#34;364&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716277497141_hu17747690523404606333.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716277497141_hu15722576282768098942.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716277497141_hu17747690523404606333.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716277497141_hu15722576282768098942.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716277497141&#34;
@@ -77,10 +247,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;在jumpserver中，按照下图逻辑进行验证&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716278166625.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716278166625.png&#34;
 	width=&#34;1116&#34;
 	height=&#34;1098&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716278166625_hu9378551186697026396.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716278166625_hu8833118402373237726.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716278166625_hu9378551186697026396.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716278166625_hu8833118402373237726.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716278166625&#34;
@@ -93,10 +263,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;&lt;/p&gt;
 &lt;p&gt;这里使用了django-simple-captcha实现验证码部分，&lt;/p&gt;
 &lt;p&gt;可以看到用了一个key，而且还提示了其他用这个部分的同学不要用同一个key来生成图片。
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279091529.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279091529.png&#34;
 	width=&#34;1404&#34;
 	height=&#34;756&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279091529_hu15351959186130995856.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279091529_hu1665404315714662442.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279091529_hu15351959186130995856.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279091529_hu1665404315714662442.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279091529&#34;
@@ -108,10 +278,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;
 在url.py里可以看到这个key就是跟在后面的字符串
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279175872.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279175872.png&#34;
 	width=&#34;1408&#34;
 	height=&#34;1136&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279175872_hu4849692422322746224.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279175872_hu674716737958938148.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279175872_hu4849692422322746224.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279175872_hu674716737958938148.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279175872&#34;
@@ -124,10 +294,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;这个key在url里，是可控的，类似这样。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;http://10.207.139.20:8080/core/auth/captcha/image/4cbbebb2305a4ef0d0e1242c352e288073537a7d/&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;在网络服务中，接收用户交互的线程并不唯一，而random.seed()的作用只在当前线程，因此需要将我们控制的key作用在所有线程，所以exp的第一步为重放爆破，将我们控制的key大量发送get请求，使得所有服务器接收的线程均设置random.seed()。然后通过api调用，定位到忘记密码流程。
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279507847.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279507847.png&#34;
 	width=&#34;1396&#34;
 	height=&#34;998&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279507847_hu3761206214685611771.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279507847_hu18085535800535838067.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279507847_hu3761206214685611771.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279507847_hu18085535800535838067.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279507847&#34;
@@ -140,10 +310,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;&lt;/p&gt;
 &lt;p&gt;使用form_invalid方法对用户名是否存在进行验证，并通过random_string方法生成一个长度为36的token，带着token跳转到forgot-password页面。&lt;/p&gt;
 &lt;p&gt;再通过api定位发送验证码的调用函数&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279819826.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279819826.png&#34;
 	width=&#34;1488&#34;
 	height=&#34;1190&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279819826_hu3097253931581043659.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279819826_hu10901117054085966417.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279819826_hu3097253931581043659.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279819826_hu10901117054085966417.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279819826&#34;
@@ -156,10 +326,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;&lt;/p&gt;
 &lt;p&gt;使用该类下create函数，通过random_string方法生成一个长度为6的验证码并进行发送&lt;/p&gt;
 &lt;p&gt;看下来这个random.seed()是作用于全流程的，所以我们需要考虑的是&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279923737.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279923737.png&#34;
 	width=&#34;1466&#34;
 	height=&#34;382&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716279923737_hu9635224062961859939.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716279923737_hu10317905450517595320.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716279923737_hu9635224062961859939.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716279923737_hu10317905450517595320.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716279923737&#34;
@@ -172,10 +342,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 &gt;&lt;/p&gt;
 &lt;p&gt;返回一开始分析的captcha_image函数，该函数控制图片验证码生成，渲染，在每次的忘记密码找回时，均先调用该函数生成图片验证码，用户输入正确的用户名和验证码，才能跳转下一步，我们需要明确在该函数部分调用了几次random类的函数。&lt;/p&gt;
 &lt;p&gt;从头梳理，在django-simple-captcha里直接搜索random,可以找到&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280301856.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280301856.png&#34;
 	width=&#34;1142&#34;
 	height=&#34;418&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280301856_hu15672337437839271470.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280301856_hu15775797388597509584.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280301856_hu15672337437839271470.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280301856_hu15775797388597509584.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280301856&#34;
@@ -187,10 +357,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;是旋转字符的，因为生成的captcha都是4个字符（8、*、3、=）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280428846.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280428846.png&#34;
 	width=&#34;180&#34;
 	height=&#34;38&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280428846_hu16334220535573410729.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280428846_hu895186025764054905.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280428846_hu16334220535573410729.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280428846_hu895186025764054905.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280428846&#34;
@@ -202,10 +372,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;所以调用4次random.randrange(),在settings.py里也可以找到对应的定义，range是（-35，35）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280712311.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280712311.png&#34;
 	width=&#34;1400&#34;
 	height=&#34;1022&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280712311_hu16144377015774234395.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280712311_hu5851205619409003948.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280712311_hu16144377015774234395.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280712311_hu5851205619409003948.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280712311&#34;
@@ -217,10 +387,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;还有noisy_function中&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280971009.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280971009.png&#34;
 	width=&#34;658&#34;
 	height=&#34;202&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280971009_hu10354831525162703192.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280971009_hu5586293157905425759.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280971009_hu10354831525162703192.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280971009_hu5586293157905425759.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280971009&#34;
@@ -231,10 +401,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 		data-flex-basis=&#34;781px&#34;
 	
 &gt;
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280949744.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280949744.png&#34;
 	width=&#34;968&#34;
 	height=&#34;210&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716280949744_hu6515757037290435599.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716280949744_hu13912392796794947723.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716280949744_hu6515757037290435599.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716280949744_hu13912392796794947723.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716280949744&#34;
@@ -245,10 +415,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 		data-flex-basis=&#34;1106px&#34;
 	
 &gt;
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716281019286.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716281019286.png&#34;
 	width=&#34;1256&#34;
 	height=&#34;730&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716281019286_hu4602857788695640790.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716281019286_hu3204913265187145040.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716281019286_hu4602857788695640790.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716281019286_hu3204913265187145040.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716281019286&#34;
@@ -260,10 +430,10 @@ CVE-2023-42820通过可控的伪随机数播种，构造随机数调用过程，
 	
 &gt;
 noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))&lt;/code&gt;次，
-&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716281197925.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716281197925.png&#34;
 	width=&#34;1040&#34;
 	height=&#34;92&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716281197925_hu15227449197770622499.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716281197925_hu17187871561517684744.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716281197925_hu15227449197770622499.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716281197925_hu17187871561517684744.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716281197925&#34;
@@ -275,10 +445,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 	
 &gt;
 在jumpserver中可以看到capcha的大小是180*38，采用noise_dot的噪声算法&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716359299723.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716359299723.png&#34;
 	width=&#34;1598&#34;
 	height=&#34;912&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716359299723_hu14298775265694733587.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716359299723_hu2785259995103988197.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716359299723_hu14298775265694733587.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716359299723_hu2785259995103988197.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716359299723&#34;
@@ -508,10 +678,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;具体来说，就是通过发送30个都发送带有对应seed的验证码生成请求来使每个线程的seed都为我们所设定的seed,此时服务端每个线程的random函数都是经过了一轮之前分析过得random操作后的状态，通过调用nop_random，我们本地的random状态和服务端的random状态是一致的，send_code方法和jumpserver的UserResetPasswordSendCodeApi中的code一致，由于我们本地和服务端状态一致，所以我们本地与运行send_code和服务端运行send_code也是一样的，生成的code也就是一样的了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716361614012.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716361614012.png&#34;
 	width=&#34;2846&#34;
 	height=&#34;1122&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716361614012_hu17109216499527533773.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716361614012_hu8451231658478911746.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716361614012_hu17109216499527533773.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716361614012_hu8451231658478911746.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716361614012&#34;
@@ -522,10 +692,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 		data-flex-basis=&#34;608px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716361642462.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/cve-2023-2480/index/1716361642462.png&#34;
 	width=&#34;1168&#34;
 	height=&#34;1038&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/cve-2023-2480/index/1716361642462_hu13520995659260390177.png 480w, https://blog2.pillar.fun/p/cve-2023-2480/index/1716361642462_hu4620132412066774243.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/cve-2023-2480/index/1716361642462_hu13520995659260390177.png 480w, http://localhost:1313/p/cve-2023-2480/index/1716361642462_hu4620132412066774243.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1716361642462&#34;
@@ -543,11 +713,11 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
         </item>
         <item>
         <title>Frp实现隧道穿透远程桌面</title>
-        <link>https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
+        <link>http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
         <pubDate>Mon, 16 Oct 2023 14:10:06 +0800</pubDate>
         
-        <guid>https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</guid>
-        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post Frp实现隧道穿透远程桌面" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
+        <guid>http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</guid>
+        <description>&lt;img src="http://localhost:1313/img/placeholder.jpeg" alt="Featured image of post Frp实现隧道穿透远程桌面" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
 &lt;/h1&gt;&lt;p&gt;果壳的校园网不给直接内网连远程桌面，应该是因为vlan之间不能互相通信导致的，经典避免病毒在内网渗透。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。&lt;/p&gt;
 &lt;h1 id=&#34;操作&#34;&gt;操作
 &lt;/h1&gt;&lt;p&gt;实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。&lt;/p&gt;
@@ -608,10 +778,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080.png&#34;
 	width=&#34;801&#34;
 	height=&#34;146&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu3526073526915970259.png 480w, https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu763208892251492753.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu3526073526915970259.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu763208892251492753.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697438389080&#34;
@@ -661,10 +831,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果你的被控端的frpc设置开了web，那你应该可以再web界面看到你的xtcp的连接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539.png&#34;
 	width=&#34;1789&#34;
 	height=&#34;127&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu15166759123914315299.png 480w, https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu16856834442233262145.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu15166759123914315299.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu16856834442233262145.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697439827539&#34;
@@ -714,10 +884,10 @@ noizy_dot也用到了random，用了 &lt;code&gt;range(int(size[0]*size[1]*0.1))
 &lt;p&gt;&lt;code&gt;./frpc.exe -c ./frpc.toml&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;visitors是在web里看不见的，看不到不要觉得奇怪。&lt;/p&gt;
 &lt;p&gt;如果在server上可以看到都连上了，直接mstsc连就行了，连127.0.0.1:8000（也就是你在visitor里设置的地址端口）（这里是把log指向了console，所以可以直接看）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017.png&#34;
 	width=&#34;982&#34;
 	height=&#34;141&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu12602357265189021282.png 480w, https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu1288751180935977498.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu12602357265189021282.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu1288751180935977498.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697440033017&#34;

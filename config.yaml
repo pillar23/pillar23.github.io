@@ -1,7 +1,8 @@
 baseurl: https://blog2.pillar.fun
 languageCode: zh-cn
 theme: hugo-theme-stack
-paginate: 5
+pagination:
+    pagerSize: 5
 title: 'π1l4r_のblog'
 copyright: pill4r
 publishDir: 'docs'
