@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on π1l4r_のblog</title>
-        <link>http://localhost:1313/post/</link>
+        <link>https://blog2.pillar.fun/post/</link>
         <description>Recent content in Posts on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Tue, 08 Oct 2024 16:37:46 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Tue, 08 Oct 2024 16:37:46 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/post/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>

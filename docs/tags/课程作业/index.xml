@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>课程作业 on π1l4r_のblog</title>
-        <link>http://localhost:1313/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/</link>
+        <link>https://blog2.pillar.fun/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/</link>
         <description>Recent content in 课程作业 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Wed, 29 Nov 2023 19:56:28 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 29 Nov 2023 19:56:28 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>网络认证技术作业三</title>
-        <link>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</link>
+        <link>https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</link>
         <pubDate>Wed, 29 Nov 2023 19:56:28 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</guid>
-        <description>&lt;img src="http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.png" alt="Featured image of post 网络认证技术作业三" /&gt;&lt;p&gt;为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1&lt;/p&gt;
+        <guid>https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.png" alt="Featured image of post 网络认证技术作业三" /&gt;&lt;p&gt;为了避免跨平台的问题，直接用choco在windows上安装openssl 3.1.1&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;choco install openssl&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;首先生成私钥&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -76,10 +76,10 @@
 &lt;p&gt;&lt;code&gt;subjectAltName = email:copy&lt;/code&gt;用于指定证书的主题可选名称（Subject Alternative Name）。主题可选名称是电子邮件地址，该地址从证书的主题名称字段中复制&lt;/p&gt;
 &lt;p&gt;生成的时候国家地区公司啥的都不重要，我直接敲回车按默认了。邮箱写自己的就行了。&lt;/p&gt;
 &lt;p&gt;直接用windwos自带的证书查看器查看这个证书。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787.png&#34;
 	width=&#34;847&#34;
 	height=&#34;573&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787_hu17165879921753680436.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787_hu4806887702423259926.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787_hu17165879921753680436.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257323787_hu4806887702423259926.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701257323787&#34;
@@ -91,10 +91,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;版本v3是指我们使用了x.509第3版本，然后序列号是有证书生成算法生成的，唯一的指定这个证书，像身份证号似的。签名算法和哈希算法是一个声明，颁发者是我们刚才在生成证书时写的。有效期由我们刚才的 &lt;code&gt;-days&lt;/code&gt; 参数指明，使用者和颁发者一样。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795.png&#34;
 	width=&#34;827&#34;
 	height=&#34;675&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795_hu7533296930055372906.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795_hu17530596613425736032.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795_hu7533296930055372906.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257667795_hu17530596613425736032.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701257667795&#34;
@@ -106,10 +106,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;公钥直接在证书文件里保存。公钥参数0500表示NULL，这是因为RSA的公钥的参数（模数和公开指数）已经在公钥字段中给出，所以不需要在公钥参数字段中再给出，如果是其他的加密算法，可能会包含其他信息。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426.png&#34;
 	width=&#34;819&#34;
 	height=&#34;491&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426_hu2024155453600559689.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426_hu4201524837540034718.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426_hu2024155453600559689.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701257930426_hu4201524837540034718.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701257930426&#34;
@@ -123,10 +123,10 @@
 &lt;p&gt;基本约束&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Subject Type=End Entity&lt;/strong&gt; ：这表示该证书是一个终端实体证书，而不是CA（证书颁发机构）证书。也就是说这个证书不能用于签发/创建其他证书。&lt;strong&gt;Path Length Constraint=None&lt;/strong&gt; ：这表示路径长度没有设置，准许其签发多级的数字证书。然而，由于Subject Type=End Entity，这个证书不能用于签发其他证书，所以这个设置在这种情况下没有意义。这是由于我们使用了 &lt;code&gt;basicConstraints = CA:FALSE&lt;/code&gt;的选项。&lt;/p&gt;
 &lt;p&gt;下面的其他拓展都在-extension部分说过了，这里就不多赘述了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073.png&#34;
 	width=&#34;855&#34;
 	height=&#34;417&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073_hu17716889339716606819.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073_hu10499399039886456992.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073_hu17716889339716606819.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253924073_hu10499399039886456992.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701253924073&#34;
@@ -138,10 +138,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后安装这个证书，并且选择保存路径为受信任的根证书颁发机构&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717.png&#34;
 	width=&#34;1073&#34;
 	height=&#34;571&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717_hu10368783417683325174.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717_hu5072019229119659573.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717_hu10368783417683325174.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254826717_hu5072019229119659573.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254826717&#34;
@@ -153,10 +153,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;我使用的客户端是outlook。使用的邮箱服务是qq邮箱。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046.png&#34;
 	width=&#34;1211&#34;
 	height=&#34;1081&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046_hu10963510743842251483.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046_hu16824046125666459864.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046_hu10963510743842251483.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701253859046_hu16824046125666459864.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701253859046&#34;
@@ -168,10 +168,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;在outlook里添加我的证书&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179.png&#34;
 	width=&#34;943&#34;
 	height=&#34;403&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179_hu1591807652405323081.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179_hu14302989938282512054.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179_hu1591807652405323081.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254522179_hu14302989938282512054.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254522179&#34;
@@ -182,10 +182,10 @@
 		data-flex-basis=&#34;561px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598.png&#34;
 	width=&#34;1187&#34;
 	height=&#34;1061&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598_hu15348383641582059596.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598_hu9657815826302673246.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598_hu15348383641582059596.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254551598_hu9657815826302673246.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254551598&#34;
@@ -196,10 +196,10 @@
 		data-flex-basis=&#34;268px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460.png&#34;
 	width=&#34;1705&#34;
 	height=&#34;1009&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460_hu6951950976345695763.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460_hu12745949766548365465.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460_hu6951950976345695763.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254581460_hu12745949766548365465.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254581460&#34;
@@ -210,10 +210,10 @@
 		data-flex-basis=&#34;405px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232.png&#34;
 	width=&#34;879&#34;
 	height=&#34;655&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232_hu18342330981869491276.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232_hu8299742400613984236.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232_hu18342330981869491276.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701254667232_hu8299742400613984236.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701254667232&#34;
@@ -234,10 +234,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;接下来是导入助教的证书，首先在outlook里新建一个联系人&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693.png&#34;
 	width=&#34;1547&#34;
 	height=&#34;659&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693_hu6224654897561945954.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693_hu17036281567946463483.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693_hu6224654897561945954.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255095693_hu17036281567946463483.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701255095693&#34;
@@ -259,10 +259,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;code&gt;openssl pkcs12 -nokeys&lt;/code&gt;命令用于从PKCS#12文件（通常具有.pfx或.p12扩展名）中提取证书，-nokeys指定不包含私钥，这样生成的output.cer不能做任何需要私钥的操作（我们也没有要用私钥的操作）&lt;/p&gt;
 &lt;p&gt;import password即使提供的私钥.txt的内容。然后就可以成功导入了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765.png&#34;
 	width=&#34;853&#34;
 	height=&#34;459&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765_hu11289906702990029714.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765_hu633056975698361235.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765_hu11289906702990029714.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255140765_hu633056975698361235.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701255140765&#34;
@@ -274,10 +274,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后在发送邮件的时候，在选项里把加密和签署都点了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352.png&#34;
 	width=&#34;1159&#34;
 	height=&#34;155&#34;
-	srcset=&#34;http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352_hu11940644482753663051.png 480w, http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352_hu13369538901111674843.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352_hu11940644482753663051.png 480w, https://blog2.pillar.fun/p/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%89/1701255501352_hu13369538901111674843.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1701255501352&#34;
@@ -292,11 +292,11 @@
         </item>
         <item>
         <title>IKEv2标准阅读</title>
-        <link>http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</link>
+        <link>https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</link>
         <pubDate>Thu, 19 Oct 2023 16:31:55 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</guid>
-        <description>&lt;img src="http://localhost:1313/img/placeholder.jpeg" alt="Featured image of post IKEv2标准阅读" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
+        <guid>https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post IKEv2标准阅读" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
 &lt;/h1&gt;&lt;p&gt;ucas 2023秋 网络认证技术&lt;/p&gt;
 &lt;p&gt;作业2：任选一个标准（口令鉴别协议），书写阅读报告。报告内容要求描述基本原理，解决了什么问题，可能存在什么问题。&lt;/p&gt;
 &lt;h1 id=&#34;概述&#34;&gt;概述
@@ -317,10 +317,10 @@
 &lt;/h1&gt;&lt;h2 id=&#34;11-使用场景&#34;&gt;1.1 使用场景
 &lt;/h2&gt;&lt;p&gt;IP 安全性 （IPsec） 为 IP 数据报提供机密性、数据完整性、访问控制和数据源身份验证，这些服务是通过维护 IP 数据报的源和接收方之间的共享状态来提供的。以手动方式建立此共享状态不能很好地扩展。IKEv2正是这样一个动态建立此状态的协议。IKE 在双方之间执行相互身份验证，并建立 IKE 安全关联 （SA），该关联包含共享机密信息，可用于高效建立用于封装安全有效负载 （ESP） [ESP] 或身份验证标头 （AH） [AH] 的 SA，以及一组加密算法，供 SA 用于保护其承载的流量。IKE 用于在许多不同的场景中协商 ESP 或 AH SA，每种方案都有自己的特殊要求。&lt;/p&gt;
 &lt;h3 id=&#34;111-隧道模式下的安全网关到安全网关&#34;&gt;1.1.1 隧道模式下的安全网关到安全网关
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088.png&#34;
 	width=&#34;1300&#34;
 	height=&#34;339&#34;
-	srcset=&#34;http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088_hu17835943804313113804.png 480w, http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088_hu13568277230924474737.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088_hu17835943804313113804.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697641620088_hu13568277230924474737.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697641620088&#34;
@@ -333,10 +333,10 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;在此方案中，IP 连接的两个endpoint都不实现 IPsec，但它们之间的网络节点会保护部分方式的流量。保护对endpoint是透明的，并且依赖于普通路由通过隧道终结点发送数据包进行处理。每个endpoint将宣布其后subnet的地址集，数据包将以隧道模式发送，其中内部 IP 标头将包含实际端点的 IP 地址。&lt;/p&gt;
 &lt;h3 id=&#34;112-端点到端点传输模式&#34;&gt;1.1.2 端点到端点传输模式
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874.png&#34;
 	width=&#34;1306&#34;
 	height=&#34;327&#34;
-	srcset=&#34;http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874_hu13499073414692899883.png 480w, http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874_hu960953422566784343.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874_hu13499073414692899883.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642019874_hu960953422566784343.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697642019874&#34;
@@ -350,10 +350,10 @@
 &lt;p&gt;在此方案中，IP 连接的两个终结点都实现 IPsec，这是 [IPSECARCH] 中主机的要求。该模式通常使用没有内部 IP 标头。将协商一对地址，以便此 SA 保护数据包。这些endpoint可以根据参与者的 IPsec 身份验证身份实现应用层访问控制。此方案实现了端到端安全性。虽然此场景可能不完全适用于 IPv4 公网，但已在使用 IKEv1 的内网内的特定场景中成功部署。在向 IPv6 过渡期间和采用 IKEv2 期间，应该更广泛地启用它。&lt;/p&gt;
 &lt;p&gt;在这种情况下，一个或两个受保护的端点可能位于网络地址转换 （NAT） 节点后面，在这种情况下，必须对隧道数据包进行 UDP 封装，以便 UDP 标头中的端口号可用于标识 NAT “后面”的各个endpoint。&lt;/p&gt;
 &lt;h3 id=&#34;113隧道模式下的端点到安全网关&#34;&gt;1.1.3隧道模式下的端点到安全网关
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491.png&#34;
 	width=&#34;1309&#34;
 	height=&#34;315&#34;
-	srcset=&#34;http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491_hu17265859170288725566.png 480w, http://localhost:1313/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491_hu2294255082020515239.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491_hu17265859170288725566.png 480w, https://blog2.pillar.fun/p/ikev2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/IKEv2%E6%A0%87%E5%87%86%E9%98%85%E8%AF%BB/1697642991491_hu2294255082020515239.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697642991491&#34;

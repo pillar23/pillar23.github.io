@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>工具 on π1l4r_のblog</title>
-        <link>http://localhost:1313/tags/%E5%B7%A5%E5%85%B7/</link>
+        <link>https://blog2.pillar.fun/tags/%E5%B7%A5%E5%85%B7/</link>
         <description>Recent content in 工具 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Tue, 03 Sep 2024 17:39:50 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Sep 2024 17:39:50 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Markdown下的Tex渲染失败解决</title>
-        <link>http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/</link>
+        <link>https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/</link>
         <pubDate>Tue, 03 Sep 2024 17:39:50 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/</guid>
-        <description>&lt;img src="http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357281808.png" alt="Featured image of post Markdown下的Tex渲染失败解决" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
+        <guid>https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/</guid>
+        <description>&lt;img src="https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357281808.png" alt="Featured image of post Markdown下的Tex渲染失败解决" /&gt;&lt;h2 id=&#34;导语&#34;&gt;导语
 &lt;/h2&gt;&lt;p&gt;最近在用hugo写博客的时候遇到某些公式一直渲染不对的问题，经过一番查证，最终找到了结果，遂把解决过程放在这里供大家参考。&lt;/p&gt;
 &lt;h2 id=&#34;问题引入&#34;&gt;问题引入
 &lt;/h2&gt;&lt;p&gt;某天，柱桑在写论文笔记的时候，突然发现在他的vscode里Markdown的tex都被渲染了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357222653.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357222653.png&#34;
 	width=&#34;750&#34;
 	height=&#34;119&#34;
-	srcset=&#34;http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357222653_hu3306295352701619244.png 480w, http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357222653_hu8016522394854895505.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357222653_hu3306295352701619244.png 480w, https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357222653_hu8016522394854895505.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725357222653&#34;
@@ -32,10 +32,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;而hugo server -D却怎么都不渲染，还出现了斜体&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357281808.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357281808.png&#34;
 	width=&#34;794&#34;
 	height=&#34;76&#34;
-	srcset=&#34;http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357281808_hu6660672308349036891.png 480w, http://localhost:1313/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357281808_hu3594251022020822427.png 1024w&#34;
+	srcset=&#34;https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357281808_hu6660672308349036891.png 480w, https://blog2.pillar.fun/p/markdown%E4%B8%8B%E7%9A%84tex%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/index/1725357281808_hu3594251022020822427.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1725357281808&#34;
