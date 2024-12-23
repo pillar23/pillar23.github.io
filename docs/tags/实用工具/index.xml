@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>实用工具 on π1l4r_のblog</title>
-        <link>https://blog2.pillar.fun/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:1313/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/</link>
         <description>Recent content in 实用工具 on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Mon, 16 Oct 2023 14:10:06 +0800</lastBuildDate><atom:link href="https://blog2.pillar.fun/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 16 Oct 2023 14:10:06 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Frp实现隧道穿透远程桌面</title>
-        <link>https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
+        <link>http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
         <pubDate>Mon, 16 Oct 2023 14:10:06 +0800</pubDate>
         
-        <guid>https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</guid>
-        <description>&lt;img src="https://blog2.pillar.fun/img/placeholder.jpeg" alt="Featured image of post Frp实现隧道穿透远程桌面" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
+        <guid>http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</guid>
+        <description>&lt;img src="http://localhost:1313/img/placeholder.jpeg" alt="Featured image of post Frp实现隧道穿透远程桌面" /&gt;&lt;h1 id=&#34;导语&#34;&gt;导语
 &lt;/h1&gt;&lt;p&gt;果壳的校园网不给直接内网连远程桌面，应该是因为vlan之间不能互相通信导致的，经典避免病毒在内网渗透。todesk自然是可以，但是感觉免费的todesk画质略输一筹的同时延迟也有点小高。于是想到用frp的内网穿透来搞p2p的远程桌面。&lt;/p&gt;
 &lt;h1 id=&#34;操作&#34;&gt;操作
 &lt;/h1&gt;&lt;p&gt;实际上还是挺简单的，为数不多的坑是网上的教程都还是ini格式，但是在现在的版本里已经转为了toml、yaml等，而且参数好像也有些变化。&lt;/p&gt;
@@ -74,10 +74,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;然后启动时一定要用-c指定toml配置文件，否则我也不知道他默认找的哪里的配置文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080.png&#34;
 	width=&#34;801&#34;
 	height=&#34;146&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu3526073526915970259.png 480w, https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu763208892251492753.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu3526073526915970259.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697438389080_hu763208892251492753.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697438389080&#34;
@@ -127,10 +127,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果你的被控端的frpc设置开了web，那你应该可以再web界面看到你的xtcp的连接&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539.png&#34;
 	width=&#34;1789&#34;
 	height=&#34;127&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu15166759123914315299.png 480w, https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu16856834442233262145.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu15166759123914315299.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697439827539_hu16856834442233262145.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697439827539&#34;
@@ -180,10 +180,10 @@
 &lt;p&gt;&lt;code&gt;./frpc.exe -c ./frpc.toml&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;visitors是在web里看不见的，看不到不要觉得奇怪。&lt;/p&gt;
 &lt;p&gt;如果在server上可以看到都连上了，直接mstsc连就行了，连127.0.0.1:8000（也就是你在visitor里设置的地址端口）（这里是把log指向了console，所以可以直接看）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017.png&#34;
 	width=&#34;982&#34;
 	height=&#34;141&#34;
-	srcset=&#34;https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu12602357265189021282.png 480w, https://blog2.pillar.fun/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu1288751180935977498.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu12602357265189021282.png 480w, http://localhost:1313/p/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/frp%E5%AE%9E%E7%8E%B0%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/1697440033017_hu1288751180935977498.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1697440033017&#34;

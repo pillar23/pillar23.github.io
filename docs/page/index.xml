@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on π1l4r_のblog</title>
-        <link>https://blog2.pillar.fun/page/</link>
+        <link>http://localhost:1313/page/</link>
         <description>Recent content in Pages on π1l4r_のblog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>pill4r</copyright>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.pillar.fun/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>归档</title>
-        <link>https://blog2.pillar.fun/archives/</link>
+        <link>http://localhost:1313/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://blog2.pillar.fun/archives/</guid>
+        <guid>http://localhost:1313/archives/</guid>
         <description>&lt;div id=&#34;heatmap&#34; style=&#34;
   max-width: 1900px;
   height: 180px;
@@ -432,10 +432,10 @@
         </item>
         <item>
         <title>关于</title>
-        <link>https://blog2.pillar.fun/%E5%85%B3%E4%BA%8E/</link>
+        <link>http://localhost:1313/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://blog2.pillar.fun/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>http://localhost:1313/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;p style=&#34;text-align: center;&#34;&gt;知名网络保安&lt;/p&gt;
 &lt;p id=&#34;jinrishici-sentence&#34; style=&#34;text-align: center;&#34;&gt;正在加载胸中锦绣....&lt;/p&gt;
 &lt;script src=&#34;https://sdk.jinrishici.com/v2/browser/jinrishici.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
@@ -858,18 +858,18 @@
         </item>
         <item>
         <title>链接</title>
-        <link>https://blog2.pillar.fun/%E9%93%BE%E6%8E%A5/</link>
+        <link>http://localhost:1313/%E9%93%BE%E6%8E%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://blog2.pillar.fun/%E9%93%BE%E6%8E%A5/</guid>
+        <guid>http://localhost:1313/%E9%93%BE%E6%8E%A5/</guid>
         <description></description>
         </item>
         <item>
         <title>搜索</title>
-        <link>https://blog2.pillar.fun/search/</link>
+        <link>http://localhost:1313/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://blog2.pillar.fun/search/</guid>
+        <guid>http://localhost:1313/search/</guid>
         <description></description>
         </item>
         
